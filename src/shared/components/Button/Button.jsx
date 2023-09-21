@@ -7,11 +7,13 @@ const Button = ({
   type = "button",
   icon = null,
   variant = "bigButtonFirst",
+  iconPosition = "right",
 }) => {
   return (
     <ButtonStyled type={type} onClick={onClick} variant={variant}>
+      {iconPosition === "left" && icon}
       {text}
-      {icon}
+      {iconPosition === "right" && icon}
     </ButtonStyled>
   );
 };
@@ -22,6 +24,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
   text: PropTypes.string.isRequired,
   icon: PropTypes.string,
+  iconPosition: PropTypes.string,
   type: PropTypes.string,
   variant: PropTypes.string,
 };

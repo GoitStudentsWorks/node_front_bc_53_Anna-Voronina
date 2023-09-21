@@ -39,6 +39,11 @@ export const ButtonStyled = styled.button`
       background: none;
       color: ${({ theme }) => theme.colors.blue};
       border: ${({ theme }) => theme.borders.medium};
+
+      &:focus,
+      &:hover {
+        color: ${({ theme }) => theme.colors.white};
+      }
     `}
 
   /* Варіант "bigButtonSecond" */
@@ -68,6 +73,11 @@ export const ButtonStyled = styled.button`
       background: none;
       color: ${({ theme }) => theme.colors.blue};
       border: ${({ theme }) => theme.borders.medium};
+
+      &:focus,
+      &:hover {
+        color: ${({ theme }) => theme.colors.white};
+      }
     `}
 
  /* Варіант "logoutButton" */
@@ -81,10 +91,12 @@ export const ButtonStyled = styled.button`
 
  /* Варіант "mobileAddButton" */
       ${({ variant }) =>
-    variant === "mediumButtonSecond" &&
+    variant === "mobileAddButton" &&
     css`
       width: ${({ theme }) => theme.spacing(20)};
       height: ${({ theme }) => theme.spacing(20)};
+      font-size: ${({ theme }) => theme.fontSizes.xs};
+      font-weight: ${({ theme }) => theme.fontWeights.semiBold};
       color: ${({ theme }) => theme.colors.white};
       background: ${({ theme }) => theme.colors.blue};
       border-radius: ${({ theme }) => theme.radii.round};

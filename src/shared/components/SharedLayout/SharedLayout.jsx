@@ -1,5 +1,11 @@
+import MainPage from "../../../pages/MainPage/MainPage";
+
 const SharedLayout = () => {
-  return <div>SharedLayout</div>;
+  return (
+    <div>
+      <MainPage />
+    </div>
+  );
 };
 
 export default SharedLayout;

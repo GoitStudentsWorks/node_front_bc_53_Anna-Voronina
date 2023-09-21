@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position-y: -90px;
-  background-position-x: 3px;
+  background-position-x: 5px;
 
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
@@ -39,7 +39,7 @@ export const Wrapper = styled.div`
     max-width: 1280px;
 
     background-image: url(${bcgDesc});
-    background-position-y: -140px;
+    background-position-y: -110px;
     background-position-x: 10px;
 
     @media (min-device-pixel-ratio: 2),
@@ -61,19 +61,22 @@ export const StyledTittle = styled.h1`
   margin-left: 20px;
   margin-bottom: 20px;
   font-size: 32px;
+  font-family: ${({ theme }) => theme.fonts.manrope.bold};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
-  line-height: 44px;
+  line-height: calc(44 / 32);
 
   @media only screen and (min-width: 768px) {
     margin-left: 32px;
     margin-right: 148px;
     font-size: 68px;
-    line-height: 100px;
+    line-height: calc(100 / 68);
+    font-family: ${({ theme }) => theme.fonts.manrope.bold};
+    font-weight: ${({ theme }) => theme.fontWeights.bold};
   }
   @media only screen and (min-width: 1280px) {
     position: absolute;
     max-width: 500px;
-    top: 33%;
+    top: 25%;
 
     margin-left: 16px;
     margin-right: 0;
@@ -81,7 +84,6 @@ export const StyledTittle = styled.h1`
     font-family: ${({ theme }) => theme.fonts.manrope.extraBold};
     font-weight: ${({ theme }) => theme.fontWeights.extraBold};
 
-    font-weight: 800;
-    line-height: 130%;
+    line-height: calc(88 / 68);
   }
 `;

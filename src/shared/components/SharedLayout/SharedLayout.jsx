@@ -1,6 +1,5 @@
-import Button from "../Button/Button";
 const SharedLayout = () => {
-  return <Button text="SharedLayout" />;
+  return <div>SharedLayout</div>;
 };
 
 export default SharedLayout;

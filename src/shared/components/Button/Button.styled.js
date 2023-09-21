@@ -2,6 +2,8 @@ import styled, { css } from "styled-components";
 
 export const ButtonStyled = styled.button`
   min-height: ${({ theme }) => theme.spacing(10)};
+  color: ${({ theme }) => theme.colors.blue};
+  background: ${({ theme }) => theme.colors.lightBlue};
 
   display: flex;
   align-items: center;
@@ -37,7 +39,6 @@ export const ButtonStyled = styled.button`
       width: ${({ theme }) => theme.spacing(62)};
       padding: 8px 28px;
       background: none;
-      color: ${({ theme }) => theme.colors.blue};
       border: ${({ theme }) => theme.borders.medium};
 
       &:focus,
@@ -71,7 +72,6 @@ export const ButtonStyled = styled.button`
     css`
       width: ${({ theme }) => theme.spacing(41.25)};
       background: none;
-      color: ${({ theme }) => theme.colors.blue};
       border: ${({ theme }) => theme.borders.medium};
 
       &:focus,
@@ -84,9 +84,8 @@ export const ButtonStyled = styled.button`
       ${({ variant }) =>
     variant === "logoutButton" &&
     css`
-      background: none;
       color: ${({ theme }) => theme.colors.white};
-      border: ${({ theme }) => theme.borders.medium};
+      background: ${({ theme }) => theme.colors.blue};
     `}
 
  /* Варіант "mobileAddButton" */

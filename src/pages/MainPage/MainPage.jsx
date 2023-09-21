@@ -1,9 +1,4 @@
-import {
-  StyledPicture,
-  StyledTittle,
-  TittleWrapper,
-  Wrapper,
-} from "./MainPage.styled";
+import { StyledPicture, StyledTittle, Wrapper } from "./MainPage.styled";
 import mainImgMobile from "../../shared/assets/images/mainPage/main_mob@1x.png";
 import mainImgMobileRetina from "../../shared/assets/images/mainPage/main_mob@2x.png";
 import mainImgMobileWebp from "../../shared/assets/images/mainPage/main_mob@1x.webp";
@@ -20,45 +15,42 @@ import mainImgDescWebpRetina from "../../shared/assets/images/mainPage/main_desc
 const MainPage = () => {
   return (
     <Wrapper>
-      <TittleWrapper>
-        <StyledTittle>Take good care of your small pets</StyledTittle>
-      </TittleWrapper>
-      <div>
-        <picture>
-          <source
-            media="(max-width: 767px)"
-            srcSet={`${mainImgMobile} 1x, ${mainImgMobileRetina} 2x`}
-            type="image/png"
-          />
-          <source
-            media="(max-width: 767px)"
-            srcSet={`${mainImgMobileWebp} 1x, ${mainImgMobileRetinaWebp} 2x`}
-            type="image/webp"
-          />
+      <StyledTittle>Take good care of your small pets</StyledTittle>
 
-          <source
-            media="(min-width: 768px)"
-            srcSet={`${mainImgTab} 1x, ${mainImgTabRetina} 2x`}
-            type="image/png"
-          />
-          <source
-            media="(min-width: 768px)"
-            srcSet={`${mainImgTabWebp} 1x, ${mainImgTabWebpRetina} 2x`}
-            type="image/webp"
-          />
-          <source
-            media="(min-width: 1280px)"
-            srcSet={`${mainImgDesc} 1x, ${mainImgDescRetina} 2x`}
-            type="image/png"
-          />
-          <source
-            media="(min-width: 1280px)"
-            srcSet={`${mainImgDescWebp} 1x, ${mainImgDescWebpRetina} 2x`}
-            type="image/webp"
-          />
-          <img src={mainImgDesc} alt="heroImg" />
-        </picture>
-      </div>
+      <StyledPicture>
+        <source
+          media="(min-width: 1280px)"
+          srcSet={`${mainImgDesc} 1x, ${mainImgDescRetina} 2x`}
+          type="image/png"
+        />
+        <source
+          media="(min-width: 1280px)"
+          srcSet={`${mainImgDescWebp} 1x, ${mainImgDescWebpRetina} 2x`}
+          type="image/webp"
+        />
+        <source
+          media="(min-width: 768px)"
+          srcSet={`${mainImgTab} 1x, ${mainImgTabRetina} 2x`}
+          type="image/png"
+        />
+        <source
+          media="(min-width: 768px)"
+          srcSet={`${mainImgTabWebp} 1x, ${mainImgTabWebpRetina} 2x`}
+          type="image/webp"
+        />
+        <source
+          media="(max-width: 767px)"
+          srcSet={`${mainImgMobile} 1x, ${mainImgMobileRetina} 2x`}
+          type="image/png"
+        />
+        <source
+          media="(max-width: 767px)"
+          srcSet={`${mainImgMobileWebp} 1x, ${mainImgMobileRetinaWebp} 2x`}
+          type="image/webp"
+        />
+
+        <img src={mainImgDesc} alt="heroImg" />
+      </StyledPicture>
     </Wrapper>
   );
 };

@@ -8,6 +8,7 @@ import bcgDescRetina from "../../shared/assets/images/background/bg_desc@2x.png"
 
 export const Wrapper = styled.div`
   max-width: 320px;
+  position: relative;
 
   outline: 1px solid red;
 
@@ -35,9 +36,8 @@ export const Wrapper = styled.div`
     }
   }
   @media only screen and (min-width: 1280px) {
-    min-width: 1280px;
-    display: flex;
-    align-items: center;
+    max-width: 1280px;
+
     background-image: url(${bcgDesc});
     background-position-y: -140px;
     background-position-x: 10px;
@@ -50,7 +50,12 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const StyledPicture = styled.picture``;
+export const StyledPicture = styled.picture`
+  @media only screen and (min-width: 1280px) {
+    display: block;
+    margin-left: 363px;
+  }
+`;
 
 export const StyledTittle = styled.h1`
   margin-left: 20px;
@@ -66,18 +71,17 @@ export const StyledTittle = styled.h1`
     line-height: 100px;
   }
   @media only screen and (min-width: 1280px) {
+    position: absolute;
+    max-width: 500px;
+    top: 33%;
+
     margin-left: 16px;
     margin-right: 0;
     font-size: 68px;
+    font-family: ${({ theme }) => theme.fonts.manrope.extraBold};
+    font-weight: ${({ theme }) => theme.fontWeights.extraBold};
 
     font-weight: 800;
     line-height: 130%;
-    width: 100%; /* Установите ширину в 100% для растяжения текста */
-  }
-`;
-export const TittleWrapper = styled.div`
-  @media only screen and (min-width: 1280px) {
-    width: 501px;
-    height: 264px;
   }
 `;

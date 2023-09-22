@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import bcgMob from "../../shared/assets/images/background/bg_mob@1x.png";
-import bcgRetinaMob from "../../shared/assets/images/background/bg_mob@2x.png";
-import bcgTab from "../../shared/assets/images/background/bg_tab@1x.png";
-import bcgTabRetina from "../../shared/assets/images/background/bg_tab@2x.png";
-import bcgDesc from "../../shared/assets/images/background/bg_desc@1x.png";
-import bcgDescRetina from "../../shared/assets/images/background/bg_desc@2x.png";
+import styled from 'styled-components';
+import bcgMob from '../../shared/assets/images/background/bg_mob@1x.png';
+import bcgRetinaMob from '../../shared/assets/images/background/bg_mob@2x.png';
+import bcgTab from '../../shared/assets/images/background/bg_tab@1x.png';
+import bcgTabRetina from '../../shared/assets/images/background/bg_tab@2x.png';
+import bcgDesc from '../../shared/assets/images/background/bg_desc@1x.png';
+import bcgDescRetina from '../../shared/assets/images/background/bg_desc@2x.png';
 
 export const Wrapper = styled.div`
   max-width: 320px;
@@ -15,23 +15,16 @@ export const Wrapper = styled.div`
   background-image: url(${bcgMob});
   background-size: cover;
   background-repeat: no-repeat;
-  background-position-y: -90px;
-  background-position-x: 5px;
 
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
+  @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
     background-image: url(${bcgRetinaMob});
   }
 
   @media only screen and (min-width: 768px) {
     max-width: 768px;
     background-image: url(${bcgTab});
-    background-position-y: -140px;
-    background-position-x: 10px;
-    @media (min-device-pixel-ratio: 2),
-      (min-resolution: 192dpi),
-      (min-resolution: 2dppx) {
+
+    @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
       background-image: url(${bcgTabRetina});
     }
   }
@@ -39,12 +32,8 @@ export const Wrapper = styled.div`
     max-width: 1280px;
 
     background-image: url(${bcgDesc});
-    background-position-y: -110px;
-    background-position-x: 10px;
 
-    @media (min-device-pixel-ratio: 2),
-      (min-resolution: 192dpi),
-      (min-resolution: 2dppx) {
+    @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
       background-image: url(${bcgDescRetina});
     }
   }

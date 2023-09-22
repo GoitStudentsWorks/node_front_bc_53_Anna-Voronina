@@ -100,4 +100,20 @@ export const ButtonStyled = styled.button`
       background: ${({ theme }) => theme.colors.blue};
       border-radius: ${({ theme }) => theme.radii.round};
     `}
+
+    ${({ variant }) =>
+    variant === 'AuthButton' &&
+    css`
+      width: 100%;
+      padding: 10px 28px;
+      color: ${({ theme }) => theme.colors.white};
+      background: ${({ theme }) => theme.colors.blue};
+
+      font-family: ${({ theme }) => theme.fonts.manrope.regular};
+      font-size: ${({ theme }) => theme.fontSizes.l};
+      font-style: normal;
+      font-weight: ${({ theme }) => theme.fontWeights.semiBold};
+      line-height: normal;
+      letter-spacing: 0.8px;
+    `}
 `;

@@ -15,7 +15,10 @@ export const registerSchema = yup.object().shape({
     .max(16, 'the name must contain a maximum of 16 characters'),
   email: yup
     .string()
-    .email('Please enter a valid email address')
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+      'Please enter a valid email address'
+    )
     .test('trim', 'The field must not start or end with spaces', value => {
       if (value) {
         return value.trim() === value;
@@ -23,7 +26,7 @@ export const registerSchema = yup.object().shape({
       return true;
     })
     .required('required field')
-    .max(16, 'the name must contain a maximum of 30 characters'),
+    .max(16, 'the name must contain a maximum of 16 characters'),
   password: yup
     .string()
     .test('trim', 'The field must not start or end with spaces', value => {
@@ -36,7 +39,7 @@ export const registerSchema = yup.object().shape({
     .min(6, 'Password must contain at least 6 characters')
     .max(12, 'Password must contain a maximum of 12 characters')
     .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d|.*[!@#$%^&*()_+\-=.<>])[a-zA-Z\d!@#$%^&*()_+\-=.<>]{6,16}$/,
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!@#$%^&*()_+\-=.<>]{6,16}$/,
       'Minimum 1 uppercase letter, 1 lowercase letter and 1 number'
     ),
   confirmPassword: yup

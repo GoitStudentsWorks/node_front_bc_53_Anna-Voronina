@@ -8,23 +8,23 @@ export const WrapperForm = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: ${({ theme }) => theme.colors.wite};
 
   width: ${({ theme }) => theme.spacing(70)};
-  /* height: ${({ theme }) => theme.spacing(119.75)}; */
+
   flex-shrink: 0;
   border-radius: ${({ theme }) => theme.radii.s};
   box-shadow: ${({ theme }) => theme.shadows.primary};
 
   @media screen and (min-width: 768px) {
     width: ${({ theme }) => theme.spacing(152)};
-    /* height: ${({ theme }) => theme.spacing(157.25)}; */
     padding: 60px 75px;
-
     border-radius: ${({ theme }) => theme.radii.l};
+    background-color: white;
   }
   @media screen and (min-width: 1280px) {
     width: ${({ theme }) => theme.spacing(152)};
-    /* height: ${({ theme }) => theme.spacing(154.25)}; */
+    background-color: white;
   }
 `;
 

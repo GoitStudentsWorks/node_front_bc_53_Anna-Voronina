@@ -1,16 +1,19 @@
 // import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 
-import { registerSchema } from '../../validations/registerSchema';
-import { usePasswordToggle } from '../../../../hooks/usePasswordToggle';
+import { registerSchema } from '@/modules/authForm/validations/registerSchema';
+import { usePasswordToggle } from '@/hooks/usePasswordToggle';
 // import { signUpThunk } from 'redux/auth/authOperations';
 
-import { Button } from '../../../../shared/components/Button/Button';
 import { FormError } from '../FormError/FormError';
 
 import { IndicatorPasswordStrenght } from '../IndicatorPasswordStrenght/IndicatorPasswordStrenght';
 import { TogglePasswordIcon } from '../TogglePasswordVisibility/TogglePasswordVisibility';
 import { ConfirmPasswordIndicator } from '../ConfirmPasswordIndicator/ConfirmPasswordIndicator';
+// import { toast } from 'react-toastify';
+import { Title } from '../Title/Title';
+import { TextWithRouterLink } from '../TextWithRouterLink/TextWithRouterLink';
+import Button from '@/shared/components/Button/Button';
 
 import {
   WrapperМessages,
@@ -21,9 +24,6 @@ import {
   WrapperForm,
   WrapperIcon3,
 } from '../LoginForm/LoginForm.styled';
-import { Title } from '../Title/Title';
-import { TextWithRouterLink } from '../TextWithRouterLink/TextWithRouterLink';
-// import { toast } from 'react-toastify';
 
 export const RegisterForm = () => {
   const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1', 'password2']);
@@ -38,6 +38,7 @@ export const RegisterForm = () => {
   };
 
   const handleSubmit = (value, { resetForm }) => {
+    console.log(value);
     // const { name, email, password } = value;
     // dispatch(signUpThunk({ name, email, password }))
     //   .unwrap()
@@ -84,6 +85,7 @@ export const RegisterForm = () => {
                   autoComplete="off"
                   required
                 />
+
                 <WrapperМessages>
                   <FormError name="email" touched={touched} errors={errors} />
                 </WrapperМessages>
@@ -137,7 +139,7 @@ export const RegisterForm = () => {
               </WrapperIcon3>
             </WrapperField>
             <WrapperButton>
-              <Button type="submit" text="register" />
+              <Button type="submit" text="Registration" variant="AuthButton" />
               <TextWithRouterLink
                 text="Already have an account?  "
                 linkText="Login"

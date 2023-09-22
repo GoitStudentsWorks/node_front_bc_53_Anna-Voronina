@@ -26,8 +26,8 @@ function App() {
         <Route path="add-pet" element={<AddPetPage />} />
         <Route path="friends" element={<OurFriendsPage />} />
         <Route path="news" element={<NewsPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
-      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }

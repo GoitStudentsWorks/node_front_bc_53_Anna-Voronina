@@ -1,55 +1,103 @@
 import styled, { css } from 'styled-components';
 
 export const ButtonStyled = styled.button`
-  width: ${({ theme }) => theme.spacing(75)};
-  height: ${({ theme }) => theme.spacing(12.5)};
-  background: ${({ theme }) => theme.colors.btnGradient};
-  border-radius: ${({ theme }) => theme.radii.button};
-  box-shadow: ${({ theme }) => theme.shadows.secondary};
+  min-height: ${({ theme }) => theme.spacing(10)};
+  color: ${({ theme }) => theme.colors.blue};
+  background: ${({ theme }) => theme.colors.lightBlue};
 
-  color: ${({ theme }) => theme.colors.primaryFont};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: ${({ theme }) => theme.spacing(2)};
+
   text-align: center;
-  font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
+  font-family: ${({ theme }) => theme.fonts.manrope.bold};
+  font-size: ${({ theme }) => theme.fontSizes.m};
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
   line-height: normal;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
+  letter-spacing: 0.64px;
+
+  border-radius: ${({ theme }) => theme.radii.l};
   border: none;
+  padding: 8px 20px;
+
   cursor: pointer;
   outline: none;
   transition: transform ${({ theme }) => theme.transitions.regular};
 
   &:focus,
   &:hover {
-    border-radius: 18px;
-    border: 2px solid yellow;
+    border: none;
+    background: ${({ theme }) => theme.colors.blueGradient};
     transform: scale(1.01);
-    box-shadow: 1px 5px 8px 0px rgba(0, 0, 0, 0.5);
   }
 
-  /* Вариант "primary" */
+  /* Варіант "bigButtonFirst" */
   ${({ variant }) =>
-    variant === 'primary' &&
+    variant === 'bigButtonFirst' &&
     css`
-      background: ${({ theme }) => theme.colors.btnGradient};
+      width: ${({ theme }) => theme.spacing(62)};
+      padding: 8px 28px;
+      background: none;
+      border: ${({ theme }) => theme.borders.medium};
+
+      &:focus,
+      &:hover {
+        color: ${({ theme }) => theme.colors.white};
+      }
     `}
 
-  /* Вариант "secondary" */
+  /* Варіант "bigButtonSecond" */
   ${({ variant }) =>
-    variant === 'secondary' &&
+    variant === 'bigButtonSecond' &&
     css`
-      color: ${({ theme }) => theme.colors.btnVioletText};
-      background: ${({ theme }) => theme.colors.btnWhiteBg};
-      border: ${({ theme }) => theme.borders.normal};
-      border-color: ${({ theme }) => theme.colors.blue};
+      width: ${({ theme }) => theme.spacing(62)};
+      padding: 8px 28px;
+      color: ${({ theme }) => theme.colors.white};
+      background: ${({ theme }) => theme.colors.blue};
     `}
- /* Вариант "third" */
+
+ /* Варіант "mediumButtonFirst" */
       ${({ variant }) =>
-    variant === 'third' &&
+    variant === 'mediumButtonFirst' &&
     css`
-      width: ${({ theme }) => theme.spacing(17.5)};
-      height: ${({ theme }) => theme.spacing(7.5)};
+      width: ${({ theme }) => theme.spacing(41.25)};
+      color: ${({ theme }) => theme.colors.white};
+      background: ${({ theme }) => theme.colors.blue};
+    `}
+
+ /* Варіант "mediumButtonSecond" */
+      ${({ variant }) =>
+    variant === 'mediumButtonSecond' &&
+    css`
+      width: ${({ theme }) => theme.spacing(41.25)};
+      background: none;
+      border: ${({ theme }) => theme.borders.medium};
+
+      &:focus,
+      &:hover {
+        color: ${({ theme }) => theme.colors.white};
+      }
+    `}
+
+ /* Варіант "logoutButton" */
+      ${({ variant }) =>
+    variant === 'logoutButton' &&
+    css`
+      color: ${({ theme }) => theme.colors.white};
+      background: ${({ theme }) => theme.colors.blue};
+    `}
+
+ /* Варіант "mobileAddButton" */
+      ${({ variant }) =>
+    variant === 'mobileAddButton' &&
+    css`
+      width: ${({ theme }) => theme.spacing(20)};
+      height: ${({ theme }) => theme.spacing(20)};
+      font-size: ${({ theme }) => theme.fontSizes.xs};
+      font-weight: ${({ theme }) => theme.fontWeights.semiBold};
+      color: ${({ theme }) => theme.colors.white};
+      background: ${({ theme }) => theme.colors.blue};
+      border-radius: ${({ theme }) => theme.radii.round};
     `}
 `;

@@ -64,6 +64,7 @@ body {
   font-weight: 600;
   line-height: normal;
   color: #111111;
+  background-color: #FEF9F9;
 }
 
 code {

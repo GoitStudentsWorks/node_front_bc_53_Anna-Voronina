@@ -22,7 +22,8 @@ import {
   WrapperButton,
   WrapperField,
   WrapperForm,
-  WrapperIcon3,
+  WrapperAbsoluteMessages,
+  WrapperAbsoluteEye,
 } from '../LoginForm/LoginForm.styled';
 
 export const RegisterForm = () => {
@@ -65,7 +66,7 @@ export const RegisterForm = () => {
         {({ values, handleChange, handleBlur, touched, errors }) => (
           <FormStyled autoComplete="off">
             <WrapperField>
-              <WrapperIcon3>
+              <WrapperAbsoluteMessages>
                 <FieldStyled
                   type="text"
                   name="name"
@@ -76,8 +77,8 @@ export const RegisterForm = () => {
                 <WrapperМessages>
                   <FormError name="name" touched={touched} errors={errors} />
                 </WrapperМessages>
-              </WrapperIcon3>
-              <WrapperIcon3>
+              </WrapperAbsoluteMessages>
+              <WrapperAbsoluteMessages>
                 <FieldStyled
                   type="email"
                   name="email"
@@ -89,43 +90,46 @@ export const RegisterForm = () => {
                 <WrapperМessages>
                   <FormError name="email" touched={touched} errors={errors} />
                 </WrapperМessages>
-              </WrapperIcon3>
-              <WrapperIcon3>
-                <FieldStyled
-                  type={showPasswords.password1 ? 'text' : 'password'}
-                  name="password"
-                  title="Enter the password more difficult, letter, digit, capital letter."
-                  placeholder="Password"
-                  required
-                  value={values.password}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  autoComplete="off"
-                />
-
-                <TogglePasswordIcon
-                  showPassword={showPasswords.password1}
-                  onToggle={() => togglePasswordVisibility('password1')}
-                />
+              </WrapperAbsoluteMessages>
+              <WrapperAbsoluteMessages>
+                <WrapperAbsoluteEye>
+                  <FieldStyled
+                    type={showPasswords.password1 ? 'text' : 'password'}
+                    name="password"
+                    title="Enter the password more difficult, letter, digit, capital letter."
+                    placeholder="Password"
+                    required
+                    value={values.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    autoComplete="off"
+                  />
+                  <TogglePasswordIcon
+                    showPassword={showPasswords.password1}
+                    onToggle={() => togglePasswordVisibility('password1')}
+                  />
+                </WrapperAbsoluteEye>
                 <WrapperМessages>
                   <IndicatorPasswordStrenght values={values} />
                   <FormError name="password" touched={touched} errors={errors} />
                 </WrapperМessages>
-              </WrapperIcon3>
-              <WrapperIcon3>
-                <FieldStyled
-                  type={showPasswords.password2 ? 'text' : 'password'}
-                  name="confirmPassword"
-                  title="Enter the password more difficult, letter, digit, capital letter."
-                  placeholder="Confirm Password"
-                  autoComplete="off"
-                  required
-                />
+              </WrapperAbsoluteMessages>
+              <WrapperAbsoluteMessages>
+                <WrapperAbsoluteEye>
+                  <FieldStyled
+                    type={showPasswords.password2 ? 'text' : 'password'}
+                    name="confirmPassword"
+                    title="Enter the password more difficult, letter, digit, capital letter."
+                    placeholder="Confirm Password"
+                    autoComplete="off"
+                    required
+                  />
 
-                <TogglePasswordIcon
-                  showPassword={showPasswords.password2}
-                  onToggle={() => togglePasswordVisibility('password2')}
-                />
+                  <TogglePasswordIcon
+                    showPassword={showPasswords.password2}
+                    onToggle={() => togglePasswordVisibility('password2')}
+                  />
+                </WrapperAbsoluteEye>
 
                 <WrapperМessages>
                   <ConfirmPasswordIndicator
@@ -136,7 +140,7 @@ export const RegisterForm = () => {
                   />
                   <FormError name="confirmPassword" />
                 </WrapperМessages>
-              </WrapperIcon3>
+              </WrapperAbsoluteMessages>
             </WrapperField>
             <WrapperButton>
               <Button type="submit" text="Registration" variant="AuthButton" />

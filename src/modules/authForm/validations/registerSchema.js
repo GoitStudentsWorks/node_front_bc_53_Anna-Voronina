@@ -37,7 +37,7 @@ export const registerSchema = yup.object().shape({
     })
     .required('required field')
     .min(6, 'Password must contain at least 6 characters')
-    .max(12, 'Password must contain a maximum of 12 characters')
+    .max(12, 'maximum 12 characters possible')
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!@#$%^&*()_+\-=.<>]{6,16}$/,
       'Minimum 1 uppercase letter, 1 lowercase letter and 1 number'

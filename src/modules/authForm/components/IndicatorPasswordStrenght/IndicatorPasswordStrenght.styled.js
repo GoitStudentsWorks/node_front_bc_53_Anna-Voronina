@@ -12,8 +12,7 @@ const passwordStrengthAnimation = keyframes`
 `;
 
 export const PasswordStrengthIndicator = styled.div`
-  width: 100%;
-  height: ${({ theme }) => theme.spacing(0.75)};
+  height: ${({ theme }) => theme.spacing(0.5)};
   background-color: transparent;
   border-radius: 5px;
   animation: ${passwordStrengthAnimation} 0.5s ease;

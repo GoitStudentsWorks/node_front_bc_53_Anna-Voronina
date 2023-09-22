@@ -89,8 +89,11 @@ export const WrapperButton = styled.div`
     gap: ${({ theme }) => theme.spacing(4)};
   }
 `;
-
-export const WrapperIcon3 = styled.div`
+export const WrapperAbsoluteEye = styled.div`
+  position: relative;
+  width: 100%;
+`;
+export const WrapperAbsoluteMessages = styled.div`
   position: relative;
   width: 100%;
 `;

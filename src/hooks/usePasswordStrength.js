@@ -3,7 +3,7 @@ export const usePasswordStrength = () => {
     const maxLength = 10;
     const passwordLength = password?.length || 0;
     const strengthPercentage = (passwordLength / maxLength) * 100;
-    return `${Math.min(strengthPercentage, 100)}%`;
+    return `${Math.min(strengthPercentage, 87)}%`;
   };
 
   const getPasswordStrengthColor = password => {

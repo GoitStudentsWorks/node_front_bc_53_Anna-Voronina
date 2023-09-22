@@ -1,5 +1,13 @@
+import { RegisterForm } from '../../modules/authForm/components/RegisterForm/RegisterForm';
+
+import { RegisterPageWrapper } from './RegisterPage.styled';
+
 const RegisterPage = () => {
-  return <div>RegisterPage</div>;
+  return (
+    <RegisterPageWrapper>
+      <RegisterForm />
+    </RegisterPageWrapper>
+  );
 };
 
 export default RegisterPage;

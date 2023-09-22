@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+export const ContainerUserPage = styled.div`
+  @media only screen and (min-width: 1280px) {
+    display: flex;
+    gap: 32px;
+  }
+`;
+
 export const TitleUserPage = styled.h2`
   margin: 40px 0 18px;
   font-family: ${({ theme }) => theme.fonts.manrope.medium};
@@ -13,6 +20,9 @@ export const TitleUserPage = styled.h2`
     font-size: 28px;
     color: ${({ theme }) => theme.colors.black};
   }
+  @media only screen and (min-width: 1280px) {
+    margin: 62px 0 24px;
+  }
 `;
 
 export const UserFormContainer = styled.div`
@@ -25,5 +35,9 @@ export const UserFormContainer = styled.div`
   @media only screen and (min-width: 768px) {
     padding: 20px 76px 0 20px;
     border-radius: ${({ theme }) => theme.radii.l};
+  }
+  @media only screen and (min-width: 1280px) {
+    width: 395px;
+    padding: 20px 24px 0 16px;
   }
 `;

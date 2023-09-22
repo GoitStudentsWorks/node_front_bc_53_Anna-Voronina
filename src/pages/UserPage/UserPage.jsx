@@ -3,7 +3,11 @@ import { Container } from "../../shared/components/Container/Container";
 import { Logout } from "../../modules/user/Logout/Logout";
 import { PetsData } from "../../modules/user/PetsData/PetsData";
 import { UserData } from "../../modules/user/UserData/UserData";
-import { TitleUserPage, UserFormContainer } from "./UserPage.styled";
+import {
+  ContainerUserPage,
+  TitleUserPage,
+  UserFormContainer,
+} from "./UserPage.styled";
 
 const UserPage = () => {
   const [editing, setEditing] = useState(false);
@@ -14,13 +18,19 @@ const UserPage = () => {
 
   return (
     <Container>
-      <TitleUserPage>My information:</TitleUserPage>
-      <UserFormContainer>
-        <UserData editing={editing} handleEditClick={handleEditClick} />
-        {!editing ? <Logout /> : null}
-      </UserFormContainer>
-
-      <PetsData />
+      <ContainerUserPage>
+        <div>
+          <TitleUserPage>My information:</TitleUserPage>
+          <UserFormContainer>
+            <UserData editing={editing} handleEditClick={handleEditClick} />
+            {!editing ? <Logout /> : null}
+          </UserFormContainer>
+        </div>
+        <div>
+          <TitleUserPage>My pets:</TitleUserPage>
+          <PetsData />
+        </div>
+      </ContainerUserPage>
     </Container>
   );
 };

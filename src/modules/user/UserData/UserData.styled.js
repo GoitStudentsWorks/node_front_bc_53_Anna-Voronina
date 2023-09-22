@@ -13,8 +13,18 @@ export const EditUserBtn = styled.button`
 
 export const EditSvg = styled.svg`
   fill: ${({ theme }) => theme.colors.blue};
+
+  &:hover,
+  &:focus {
+    fill: ${({ theme }) => theme.colors.yellow};
+  }
 `;
 
 export const CrossSvg = styled.svg`
   stroke: ${({ theme }) => theme.colors.blue};
+
+  &:hover,
+  &:focus {
+    stroke: ${({ theme }) => theme.colors.yellow};
+  }
 `;

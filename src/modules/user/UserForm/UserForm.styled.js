@@ -12,6 +12,10 @@ export const ProfileForm = styled.form`
     flex-wrap: wrap;
     gap: 10px;
   }
+  @media only screen and (min-width: 1280px) {
+    flex-direction: column;
+    gap: 0;
+  }
 `;
 
 export const FormContainer = styled.div`
@@ -38,6 +42,9 @@ export const Avatar = styled.div`
   @media only screen and (min-width: 768px) {
     margin: 0;
   }
+  @media only screen and (min-width: 1280px) {
+    margin: 0 auto 63px;
+  }
 `;
 
 export const SelectedPhoto = styled.label`
@@ -52,6 +59,10 @@ export const SelectedPhoto = styled.label`
   @media only screen and (min-width: 768px) {
     top: 213px;
     left: 489px;
+  }
+  @media only screen and (min-width: 1280px) {
+    top: 216px;
+    left: 143px;
   }
 `;
 
@@ -82,6 +93,11 @@ export const EditPhoto = styled.div`
 export const PhotoSvg = styled.svg`
   fill: ${({ theme }) => theme.colors.white};
   stroke: ${({ theme }) => theme.colors.blue};
+
+  &:hover,
+  &:focus {
+    stroke: ${({ theme }) => theme.colors.yellow};
+  }
 `;
 
 export const CrossPhotoSvg = styled.svg`
@@ -139,5 +155,11 @@ export const SaveBtn = styled.button`
     height: 32px;
     margin: 0 auto 16px 100px;
     padding: 5px 108px;
+  }
+  @media only screen and (min-width: 1280px) {
+    margin: 10px auto 23px 100px;
+    padding: 6px 108px;
+    font-size: ${({ theme }) => theme.fontSizes.m};
+    letter-spacing: 0.64px;
   }
 `;

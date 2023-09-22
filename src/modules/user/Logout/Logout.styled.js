@@ -11,6 +11,11 @@ export const LogoutBtn = styled.button`
     height: 24px;
     stroke: ${({ theme }) => theme.colors.blue};
     fill: ${({ theme }) => theme.colors.white};
+
+    &:hover,
+    &:focus {
+      stroke: ${({ theme }) => theme.colors.yellow};
+    }
   }
   p {
     font-family: ${({ theme }) => theme.fonts.manrope.medium};
@@ -23,5 +28,9 @@ export const LogoutBtn = styled.button`
   @media only screen and (min-width: 768px) {
     padding-bottom: 20px;
     margin-top: 14px;
+  }
+  @media only screen and (min-width: 1280px) {
+    padding-bottom: 19px;
+    margin-top: 22px;
   }
 `;

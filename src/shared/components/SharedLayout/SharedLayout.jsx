@@ -1,6 +1,6 @@
-import { Outlet } from "react-router-dom";
-import { Header } from "@/modules/header";
-import { Suspense } from "react";
+import { Outlet } from 'react-router-dom';
+import { Header } from '@/modules/header';
+import { Suspense } from 'react';
 
 const SharedLayout = () => {
   return (

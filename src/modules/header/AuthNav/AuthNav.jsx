@@ -1,4 +1,4 @@
-import { Items, LinkStyles, List } from "./AuthNav.styled";
+import { LinkStyles, List } from "./AuthNav.styled";
 import icon from "../../../shared/icons/sprite.svg";
 
 const routes = [
@@ -10,7 +10,7 @@ export const AuthNav = () => {
     <>
       <List>
         {routes.map((route) => (
-          <Items key={route.path}>
+          <li key={route.path}>
             <LinkStyles to={route.path}>
               {route.text}
               {route.path === "/login" && (
@@ -19,7 +19,7 @@ export const AuthNav = () => {
                 </svg>
               )}
             </LinkStyles>
-          </Items>
+          </li>
         ))}
       </List>
     </>

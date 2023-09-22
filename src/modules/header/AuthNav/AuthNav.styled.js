@@ -14,12 +14,15 @@ export const List = styled.ul`
   li:first-child {
     margin-left: 0;
   }
-  @media (max-width: 706px) {
+  @media (max-width: 766px) {
+    display: none;
+  }
+  @media (max-width: 626px) {
     display: none;
   }
 `;
 
-export const Items = styled.li`
+export const LinkStyles = styled(Link)`
   width: 165px;
   height: 38px;
   border: 2px solid ${({ theme }) => theme.colors.yellow};
@@ -33,13 +36,13 @@ export const Items = styled.li`
 
   svg {
     position: absolute;
+    top: 5px;
+    left: 106px;
     width: 24px;
     height: 24px;
     fill: #ffc107;
     margin-left: 4px;
   }
-`;
-export const LinkStyles = styled(Link)`
   color: ${({ theme }) => theme.colors.yellow};
   font-family: ${({ theme }) => theme.fonts.manrope.bold};
   &.active {

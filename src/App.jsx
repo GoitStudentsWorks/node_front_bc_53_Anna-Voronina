@@ -12,6 +12,7 @@ const OurFriendsPage = lazy(() =>
   import("./pages/OurFriendsPage/OurFriendsPage")
 );
 const NewsPage = lazy(() => import("./pages/NewsPage/NewsPage"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="friends" element={<OurFriendsPage />} />
         <Route path="news" element={<NewsPage />} />
       </Route>
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }

@@ -4,7 +4,7 @@ import { IndicatorWrapper } from './ConfirmPasswordIndicator.styled';
 
 export const ConfirmPasswordIndicator = ({ passwordsMatch, values: { confirmPassword } }) => {
   const width = passwordsMatch ? '100%' : '50%';
-  return confirmPassword && <IndicatorWrapper passwordsMatch={passwordsMatch} style={{ width }} />;
+  return confirmPassword && <IndicatorWrapper $passwordsMatch={passwordsMatch} style={{ width }} />;
 };
 
 ConfirmPasswordIndicator.propTypes = {

@@ -33,8 +33,8 @@ export const ButtonStyled = styled.button`
   }
 
   /* Варіант "bigButtonFirst" */
-  ${({ variant }) =>
-    variant === 'bigButtonFirst' &&
+  ${({ $variant }) =>
+    $variant === 'bigButtonFirst' &&
     css`
       width: ${({ theme }) => theme.spacing(62)};
       padding: 8px 28px;
@@ -48,8 +48,8 @@ export const ButtonStyled = styled.button`
     `}
 
   /* Варіант "bigButtonSecond" */
-  ${({ variant }) =>
-    variant === 'bigButtonSecond' &&
+  ${({ $variant }) =>
+    $variant === 'bigButtonSecond' &&
     css`
       width: ${({ theme }) => theme.spacing(62)};
       padding: 8px 28px;
@@ -58,8 +58,8 @@ export const ButtonStyled = styled.button`
     `}
 
  /* Варіант "mediumButtonFirst" */
-      ${({ variant }) =>
-    variant === 'mediumButtonFirst' &&
+      ${({ $variant }) =>
+    $variant === 'mediumButtonFirst' &&
     css`
       width: ${({ theme }) => theme.spacing(41.25)};
       color: ${({ theme }) => theme.colors.white};
@@ -67,8 +67,8 @@ export const ButtonStyled = styled.button`
     `}
 
  /* Варіант "mediumButtonSecond" */
-      ${({ variant }) =>
-    variant === 'mediumButtonSecond' &&
+      ${({ $variant }) =>
+    $variant === 'mediumButtonSecond' &&
     css`
       width: ${({ theme }) => theme.spacing(41.25)};
       background: none;
@@ -81,16 +81,16 @@ export const ButtonStyled = styled.button`
     `}
 
  /* Варіант "logoutButton" */
-      ${({ variant }) =>
-    variant === 'logoutButton' &&
+      ${({ $variant }) =>
+    $variant === 'logoutButton' &&
     css`
       color: ${({ theme }) => theme.colors.white};
       background: ${({ theme }) => theme.colors.blue};
     `}
 
  /* Варіант "mobileAddButton" */
-      ${({ variant }) =>
-    variant === 'mobileAddButton' &&
+      ${({ $variant }) =>
+    $variant === 'mobileAddButton' &&
     css`
       width: ${({ theme }) => theme.spacing(20)};
       height: ${({ theme }) => theme.spacing(20)};
@@ -101,8 +101,8 @@ export const ButtonStyled = styled.button`
       border-radius: ${({ theme }) => theme.radii.round};
     `}
 
-    ${({ variant }) =>
-    variant === 'AuthButton' &&
+    ${({ $variant }) =>
+    $variant === 'AuthButton' &&
     css`
       width: 100%;
       padding: 10px 28px;

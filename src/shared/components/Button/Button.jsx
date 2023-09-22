@@ -10,7 +10,7 @@ const Button = ({
   iconPosition = 'right',
 }) => {
   return (
-    <ButtonStyled type={type} onClick={onClick} variant={variant}>
+    <ButtonStyled type={type} onClick={onClick} $variant={variant}>
       {iconPosition === 'left' && icon}
       {text}
       {iconPosition === 'right' && icon}

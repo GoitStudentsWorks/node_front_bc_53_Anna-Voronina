@@ -61,6 +61,9 @@ export const LoginForm = () => {
                   placeholder="Email"
                   autoComplete="off"
                   required
+                  className={`${touched.email && errors.email ? 'error' : ''} ${
+                    touched.email && !errors.email ? 'success' : ''
+                  }`}
                 />
 
                 <WrapperМessages>
@@ -79,6 +82,9 @@ export const LoginForm = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     autoComplete="off"
+                    className={`${touched.password && errors.password ? 'error' : ''} ${
+                      touched.password && !errors.password ? 'success' : ''
+                    }`}
                   />
                   <TogglePasswordIcon
                     showPassword={showPasswords.password1}

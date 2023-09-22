@@ -73,6 +73,9 @@ export const RegisterForm = () => {
                   placeholder="Name"
                   autoComplete="off"
                   required
+                  className={`${touched.name && errors.name ? 'error' : ''} ${
+                    touched.name && !errors.name ? 'success' : ''
+                  }`}
                 />
                 <WrapperМessages>
                   <FormError name="name" touched={touched} errors={errors} />
@@ -85,6 +88,9 @@ export const RegisterForm = () => {
                   placeholder="Email"
                   autoComplete="off"
                   required
+                  className={`${touched.email && errors.email ? 'error' : ''} ${
+                    touched.email && !errors.email ? 'success' : ''
+                  }`}
                 />
 
                 <WrapperМessages>
@@ -103,6 +109,9 @@ export const RegisterForm = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     autoComplete="off"
+                    className={`${touched.password && errors.password ? 'error' : ''} ${
+                      touched.password && !errors.password ? 'success' : ''
+                    }`}
                   />
                   <TogglePasswordIcon
                     showPassword={showPasswords.password1}
@@ -123,6 +132,9 @@ export const RegisterForm = () => {
                     placeholder="Confirm Password"
                     autoComplete="off"
                     required
+                    className={`${
+                      touched.confirmPassword && errors.confirmPassword ? 'error' : ''
+                    } ${touched.confirmPassword && !errors.confirmPassword ? 'success' : ''}`}
                   />
 
                   <TogglePasswordIcon

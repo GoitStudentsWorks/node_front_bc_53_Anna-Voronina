@@ -13,10 +13,15 @@ export const LogoutBtn = styled.button`
     fill: ${({ theme }) => theme.colors.white};
   }
   p {
-    color: ${({ theme }) => theme.colors.grey};
     font-family: ${({ theme }) => theme.fonts.manrope.medium};
     font-size: ${({ theme }) => theme.fontSizes.m};
     font-weight: ${({ theme }) => theme.fontWeights.medium};
     letter-spacing: 0.64px;
+    color: ${({ theme }) => theme.colors.grey};
+  }
+
+  @media only screen and (min-width: 768px) {
+    padding-bottom: 20px;
+    margin-top: 14px;
   }
 `;

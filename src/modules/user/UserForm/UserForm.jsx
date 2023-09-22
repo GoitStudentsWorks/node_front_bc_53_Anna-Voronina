@@ -4,6 +4,7 @@ import { userValidationSchema } from "../../../shared/utils/validationSchema";
 import {
   ProfileForm,
   Avatar,
+  FormContainer,
   SelectedPhoto,
   EditPhoto,
   PhotoSvg,
@@ -86,76 +87,78 @@ export const UserForm = ({ editing, handleEditClick }) => {
             <p>{formik.errors.avatar}</p>
           ) : null}
         </Avatar>
-        <UserLabel htmlFor="name">
-          <p>Name:</p>
-          <UserInput
-            type="text"
-            name="name"
-            placeholder="Anna"
-            autoComplete="off"
-            value={name}
-            onChange={formik.handleChange}
-            readOnly={!editing}
-          />
-          {formik.touched.name && formik.errors.name ? (
-            <p>{formik.errors.name}</p>
-          ) : null}
-        </UserLabel>
-        <UserLabel htmlFor="email">
-          <p>Email:</p>
-          <UserInput
-            type="email"
-            name="email"
-            placeholder="anna00@gmail.com"
-            value={email}
-            onChange={formik.handleChange}
-            readOnly={!editing}
-          />
-          {formik.touched.email && formik.errors.email ? (
-            <p>{formik.errors.email}</p>
-          ) : null}
-        </UserLabel>
-        <UserLabel htmlFor="birthday">
-          <p>Birthday:</p>
-          <UserInput
-            type="date"
-            name="birthday"
-            value={birthday ? birthday : "2000-12-01"}
-            onChange={formik.handleChange}
-            readOnly={!editing}
-          />
-          {formik.touched.birthday && formik.errors.birthday ? (
-            <p>{formik.errors.birthday}</p>
-          ) : null}
-        </UserLabel>
-        <UserLabel htmlFor="phone">
-          <p>Phone:</p>
-          <UserInput
-            type="tel"
-            name="phone"
-            placeholder="+38000000000"
-            value={phone}
-            onChange={formik.handleChange}
-            readOnly={!editing}
-          />
-          {formik.touched.phone && formik.errors.phone ? (
-            <p>{formik.errors.phone}</p>
-          ) : null}
-        </UserLabel>
-        <UserLabel htmlFor="city">
-          <p>City:</p>
-          <UserInput
-            type="text"
-            name="city"
-            placeholder="Kyiv"
-            value={city}
-            onChange={formik.handleChange}
-            readOnly={!editing}
-          />
-          {formik.touched.city && formik.errors.city ? (
-            <p>{formik.errors.city}</p>
-          ) : null}
-        </UserLabel>
+        <FormContainer>
+          <UserLabel htmlFor="name">
+            <p>Name:</p>
+            <UserInput
+              type="text"
+              name="name"
+              placeholder="Anna"
+              autoComplete="off"
+              value={name}
+              onChange={formik.handleChange}
+              readOnly={!editing}
+            />
+            {formik.touched.name && formik.errors.name ? (
+              <p>{formik.errors.name}</p>
+            ) : null}
+          </UserLabel>
+          <UserLabel htmlFor="email">
+            <p>Email:</p>
+            <UserInput
+              type="email"
+              name="email"
+              placeholder="anna00@gmail.com"
+              value={email}
+              onChange={formik.handleChange}
+              readOnly={!editing}
+            />
+            {formik.touched.email && formik.errors.email ? (
+              <p>{formik.errors.email}</p>
+            ) : null}
+          </UserLabel>
+          <UserLabel htmlFor="birthday">
+            <p>Birthday:</p>
+            <UserInput
+              type="date"
+              name="birthday"
+              value={birthday ? birthday : "2000-12-01"}
+              onChange={formik.handleChange}
+              readOnly={!editing}
+            />
+            {formik.touched.birthday && formik.errors.birthday ? (
+              <p>{formik.errors.birthday}</p>
+            ) : null}
+          </UserLabel>
+          <UserLabel htmlFor="phone">
+            <p>Phone:</p>
+            <UserInput
+              type="tel"
+              name="phone"
+              placeholder="+38000000000"
+              value={phone}
+              onChange={formik.handleChange}
+              readOnly={!editing}
+            />
+            {formik.touched.phone && formik.errors.phone ? (
+              <p>{formik.errors.phone}</p>
+            ) : null}
+          </UserLabel>
+          <UserLabel htmlFor="city">
+            <p>City:</p>
+            <UserInput
+              type="text"
+              name="city"
+              placeholder="Kyiv"
+              value={city}
+              onChange={formik.handleChange}
+              readOnly={!editing}
+            />
+            {formik.touched.city && formik.errors.city ? (
+              <p>{formik.errors.city}</p>
+            ) : null}
+          </UserLabel>
+        </FormContainer>
 
         {editing && <SaveBtn onClick={handleEditClick}>Save</SaveBtn>}
       </ProfileForm>

@@ -4,6 +4,11 @@ export const EditUserBtn = styled.button`
   position: absolute;
   top: 14px;
   right: 14px;
+
+  @media only screen and (min-width: 768px) {
+    top: 18px;
+    right: 18px;
+  }
 `;
 
 export const EditSvg = styled.svg`

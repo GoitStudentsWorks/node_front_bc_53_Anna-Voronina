@@ -1,10 +1,17 @@
-import MainPage from "../../../pages/MainPage/MainPage";
+import { Outlet } from "react-router-dom";
+import { Header } from "@/modules/header";
+import { Suspense } from "react";
 
 const SharedLayout = () => {
   return (
-    <div>
-      <MainPage />
-    </div>
+    <>
+      <Header />
+      <main>
+        <Suspense fallback={null}>
+          <Outlet />
+        </Suspense>
+      </main>
+    </>
   );
 };
 

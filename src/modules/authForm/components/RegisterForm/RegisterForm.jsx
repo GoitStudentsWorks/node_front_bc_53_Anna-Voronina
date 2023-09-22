@@ -20,11 +20,11 @@ import {
   FieldStyled,
   FormStyled,
   WrapperButton,
-  WrapperField,
   WrapperForm,
   WrapperAbsoluteMessages,
   WrapperAbsoluteEye,
 } from '../LoginForm/LoginForm.styled';
+import { WrapperField } from './RegisterForm.styled';
 
 export const RegisterForm = () => {
   const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1', 'password2']);

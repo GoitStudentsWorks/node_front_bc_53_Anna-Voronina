@@ -8,7 +8,7 @@ export const WrapperForm = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.wite};
+  background-color: ${({ theme }) => theme.colors.white};
 
   width: ${({ theme }) => theme.spacing(70)};
 
@@ -20,11 +20,11 @@ export const WrapperForm = styled.div`
     width: ${({ theme }) => theme.spacing(152)};
     padding: 60px 75px;
     border-radius: ${({ theme }) => theme.radii.l};
-    background-color: white;
+    background-color: ${({ theme }) => theme.colors.white};
   }
   @media screen and (min-width: 1280px) {
     width: ${({ theme }) => theme.spacing(152)};
-    background-color: white;
+    background-color: ${({ theme }) => theme.colors.white};
   }
 `;
 
@@ -43,16 +43,16 @@ export const WrapperField = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-bottom: ${({ theme }) => theme.spacing(10)};
+  margin-bottom: ${({ theme }) => theme.spacing(27.5)};
   width: 100%;
 
   @media screen and (min-width: 768px) {
     gap: ${({ theme }) => theme.spacing(8)};
-    margin-bottom: ${({ theme }) => theme.spacing(13)};
+    margin-bottom: ${({ theme }) => theme.spacing(15)};
   }
 
   @media screen and (min-width: 1280px) {
-    margin-bottom: ${({ theme }) => theme.spacing(10)};
+    margin-bottom: ${({ theme }) => theme.spacing(15)};
   }
 `;
 

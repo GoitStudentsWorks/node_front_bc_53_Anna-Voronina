@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { WrapperForm } from '../LoginForm/LoginForm.styled';
 
 import styled from 'styled-components';
@@ -7,36 +6,21 @@ export const WrapperFormReg = styled(WrapperForm)`
   padding: 60px 62px;
 `;
 
-export const LinkStyled = styled(Link)`
+export const WrapperField = styled.div`
   display: flex;
+  gap: ${({ theme }) => theme.spacing(3.5)};
   justify-content: center;
   align-items: center;
-  min-width: ${({ theme }) => theme.spacing(75)};
-  min-height: ${({ theme }) => theme.spacing(12.5)};
+  flex-direction: column;
+  margin-bottom: ${({ theme }) => theme.spacing(10)};
+  width: 100%;
 
-  text-align: center;
-  font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
+  @media screen and (min-width: 768px) {
+    gap: ${({ theme }) => theme.spacing(8)};
+    margin-bottom: ${({ theme }) => theme.spacing(13)};
+  }
 
-  color: ${({ theme }) => theme.colors.btnVioletText};
-  background: ${({ theme }) => theme.colors.btnWhiteBg};
-  border: ${({ theme }) => theme.borders.normal};
-  border-color: ${({ theme }) => theme.colors.blue};
-  border-radius: ${({ theme }) => theme.radii.button};
-  box-shadow: ${({ theme }) => theme.shadows.secondary};
-  cursor: pointer;
-  transition: transform 250ms ease-in-out;
-
-  &:focus,
-  &:hover {
-    border-radius: 18px;
-    border: 2px solid yellow;
-    transform: scale(1.01);
-    box-shadow: 1px 5px 8px 0px rgba(0, 0, 0, 0.5);
+  @media screen and (min-width: 1280px) {
+    margin-bottom: ${({ theme }) => theme.spacing(10)};
   }
 `;

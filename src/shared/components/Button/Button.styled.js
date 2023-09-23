@@ -2,8 +2,6 @@ import styled, { css } from "styled-components";
 
 export const ButtonStyled = styled.button`
   min-height: ${({ theme }) => theme.spacing(10)};
-  color: ${({ theme }) => theme.colors.blue};
-  background-color: ${({ theme }) => theme.colors.lightBlue};
 
   display: flex;
   align-items: center;
@@ -17,19 +15,43 @@ export const ButtonStyled = styled.button`
   line-height: normal;
   letter-spacing: 0.64px;
 
+  color: ${({ theme }) => theme.colors.blue};
+  background-color: ${({ theme }) => theme.colors.lightBlue};
+
   border-radius: ${({ theme }) => theme.radii.l};
   border: none;
   padding: 8px 20px;
 
+  z-index: 1;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: ${({ theme }) => theme.colors.blueGradient};
+    border-radius: ${({ theme }) => theme.radii.l};
+    opacity: 0;
+    z-index: -1;
+
+    transition: opacity ${({ theme }) => theme.transitions.regular};
+  }
+
   cursor: pointer;
   outline: none;
-  transition: transform ${({ theme }) => theme.transitions.regular};
+  transition: transform ${({ theme }) => theme.transitions.regular},
+    color ${({ theme }) => theme.transitions.regular},
+    background-color ${({ theme }) => theme.transitions.regular};
 
   &:focus,
   &:hover {
     border: none;
     background: ${({ theme }) => theme.colors.blueGradient};
     transform: scale(1.01);
+  }
+
+  &:hover::before,
+  &:focus::before {
+    opacity: 1;
   }
 
   /* Варіант "bigButtonFirst" */

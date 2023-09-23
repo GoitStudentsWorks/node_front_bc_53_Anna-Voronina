@@ -1,5 +1,7 @@
 import {
+  Button,
   Div,
+  // DivLink,
   Headermenu,
   Item,
   LinkMenu,
@@ -7,8 +9,14 @@ import {
   Svg,
   Svgsmall,
 } from "./BurgerMenu.styled";
+import PropTypes from "prop-types";
 import icon from "../../../shared/icons/sprite.svg";
 import { AuthNav } from "../AuthNav/AuthNav";
+
+const routes = [
+  { path: "/login", text: "Log IN" },
+  { path: "/register", text: " Registration" },
+];
 
 export const BurgerMenu = ({ onClick, isOpen }) => {
   return (
@@ -20,13 +28,12 @@ export const BurgerMenu = ({ onClick, isOpen }) => {
               <use xlinkHref={icon + "#icon-logo"}></use>
             </Svg>
             <AuthNav />
-            <button onClick={onClick}>
+            <Button onClick={onClick}>
               <Svgsmall>
                 <use xlinkHref={icon + "#cross-small"}></use>
               </Svgsmall>
-            </button>
+            </Button>
           </Headermenu>
-
           <Section>
             <ul>
               <Item>
@@ -45,7 +52,7 @@ export const BurgerMenu = ({ onClick, isOpen }) => {
     </>
   );
 };
-// BurgerMenu.propTypes = {
-//   onClick: PropTypes.func,
-//   isOpen: PropTypes.bulean,
-// };
+BurgerMenu.propTypes = {
+  onClick: PropTypes.func,
+  isOpen: PropTypes.bulean,
+};

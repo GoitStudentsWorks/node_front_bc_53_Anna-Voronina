@@ -1,4 +1,11 @@
 import styled from "styled-components";
+
+export const Button = styled.button`
+  @media (max-width: 766px) {
+    margin-left: auto;
+  }
+ x
+`;
 export const Svg = styled.svg`
   display: none;
   width: 24px;
@@ -9,7 +16,7 @@ export const Svg = styled.svg`
     display: flex;
   }
 
-  @media (max-width: 320px) {
-    margin-left: 99px;
+  @media (max-width: 656px) {
+    margin-right: auto;
   }
 `;

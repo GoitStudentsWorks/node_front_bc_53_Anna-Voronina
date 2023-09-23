@@ -15,7 +15,7 @@ export const StyledLink = styled(Link)`
   color: ${({ theme }) => theme.colors.black};
   font-size: ${({ theme }) => theme.fontSizes.l};
   font-family: ${({ theme }) => theme.fonts.manrope.medium};
-  
+
   &.active {
     color: ${({ theme }) => theme.colors.yellow};
   }

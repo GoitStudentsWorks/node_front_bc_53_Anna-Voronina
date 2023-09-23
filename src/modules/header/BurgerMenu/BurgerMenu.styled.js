@@ -89,31 +89,37 @@ export const Svg = styled.svg`
   height: 28px;
   margin-right: 167px;
 
-  @media (max-width: 320px) {
-    margin-right: 140px;
+  @media (max-width: 422px) {
+    margin-right: 0;
     width: 116px;
     height: 20px;
   }
 `;
-
+export const Button = styled.button`
+  @media (max-width: 766px) {
+    margin-left: auto;
+  }
+`;
 export const Svgsmall = styled.svg`
   width: 24px;
   height: 24px;
   stroke: yellow;
   margin-left: 24px;
-  @media (max-width: 320px) {
-    margin-left: 0;
-  }
 `;
 
 export const Section = styled.section`
   margin-top: 92px;
   text-align: center;
+  @media (max-width: 320px) {
+    margin-top: 40px;
+  }
 `;
 
 export const Item = styled.li`
   margin-bottom: 60px;
-
+  @media (max-width: 320px) {
+    margin-bottom: 20px;
+  }
   &:last-child {
     margin-bottom: 0;
   }
@@ -128,3 +134,22 @@ export const LinkMenu = styled(Link)`
     color: ${({ theme }) => theme.colors.yellow};
   }
 `;
+export const DivLink = styled.div`
+  /* @media (max-width: 766px) {
+    display: none;
+  }
+
+  @media (max-width: 656px) {
+    display: none;
+  } */
+
+  @media (max-width: 320px) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+`;
+
+
+
+
+

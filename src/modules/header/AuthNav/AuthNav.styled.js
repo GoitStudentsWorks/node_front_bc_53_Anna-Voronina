@@ -14,11 +14,20 @@ export const List = styled.ul`
   li:first-child {
     margin-left: 0;
   }
+
+  /* li:last-child {
+    margin: 0;
+  } */
   @media (max-width: 766px) {
     display: none;
   }
-  @media (max-width: 626px) {
-    display: none;
+  @media (max-width: 320px) {
+    display: block;
+    margin-top: 40px;
+    margin-bottom: 12px;
+    &:last-child {
+      margin: 0;
+    }
   }
 `;
 

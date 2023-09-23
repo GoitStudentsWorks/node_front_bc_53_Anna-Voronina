@@ -9,9 +9,9 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   margin: 4px 0 4px 0;
-  @media (max-width: 768px) {
+  /* @media (max-width: 768px) {
     margin-left: 359px;
-  }
+  } */
   svg {
     margin-left: 8px;
     width: 24px;

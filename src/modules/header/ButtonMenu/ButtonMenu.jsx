@@ -1,6 +1,6 @@
 import { useState } from "react";
 import icon from "../../../shared/icons/sprite.svg";
-import { Svg } from "./ButtonMenu.styled";
+import { Button, Svg } from "./ButtonMenu.styled";
 import { BurgerMenu } from "../BurgerMenu/BurgerMenu";
 export const ButtonMenu = () => {
   const [isOpen, setOpen] = useState(false);
@@ -9,11 +9,11 @@ export const ButtonMenu = () => {
   const close = () => setOpen(false);
   return (
     <>
-      <button onClick={open}>
+      <Button onClick={open}>
         <Svg>
           <use xlinkHref={icon + "#menu-hamburger"}></use>
         </Svg>
-      </button>
+      </Button>
       {isOpen && <BurgerMenu onClick={close} isOpen={isOpen} />}
     </>
   );

@@ -11,37 +11,40 @@ import {
   HomeLink,
   NotFoundPicture,
   NotFoundTitle,
-  NotFoundWrapper,
   PawPrintIcon,
+  NotFoundContentWrapper,
 } from "./NotFoundPage.styled";
+import { BackgroundImgWrapper } from "@/shared/styles/styled components/BackgroundImgWrapper.styled";
 
 const NotFoundPage = () => {
   return (
-    <Container>
-      <NotFoundWrapper>
-        <NotFoundTitle>
-          <span>Ooops!</span>
-          <span>This page not found :(</span>
-        </NotFoundTitle>
-        <NotFoundPicture>
-          <source
-            srcSet={`${NotFoundImg} 1x, ${NotFoundImgRetina} 2x`}
-            type="image/png"
-          />
-          <source
-            srcSet={`${NotFoundImgWebp} 1x, ${NotFoundImgWebpRetina} 2x`}
-            type="image/webp"
-          />
-          <img src={NotFoundImg} alt="404 - not found" />
-        </NotFoundPicture>
-        <HomeLink to="/">
-          <HomeLinkLabel>To main page</HomeLinkLabel>
-          <PawPrintIcon width="24" height="24">
-            <use href={sprite + "#pawprint"}></use>
-          </PawPrintIcon>
-        </HomeLink>
-      </NotFoundWrapper>
-    </Container>
+    <BackgroundImgWrapper $variant="notFound">
+      <Container>
+        <NotFoundContentWrapper>
+          <NotFoundTitle>
+            <span>Ooops!</span>
+            <span>This page not found :(</span>
+          </NotFoundTitle>
+          <NotFoundPicture>
+            <source
+              srcSet={`${NotFoundImg} 1x, ${NotFoundImgRetina} 2x`}
+              type="image/png"
+            />
+            <source
+              srcSet={`${NotFoundImgWebp} 1x, ${NotFoundImgWebpRetina} 2x`}
+              type="image/webp"
+            />
+            <img src={NotFoundImg} alt="404 - not found" />
+          </NotFoundPicture>
+          <HomeLink to="/">
+            <HomeLinkLabel>To main page</HomeLinkLabel>
+            <PawPrintIcon width="24" height="24">
+              <use href={sprite + "#pawprint"}></use>
+            </PawPrintIcon>
+          </HomeLink>
+        </NotFoundContentWrapper>
+      </Container>
+    </BackgroundImgWrapper>
   );
 };
 

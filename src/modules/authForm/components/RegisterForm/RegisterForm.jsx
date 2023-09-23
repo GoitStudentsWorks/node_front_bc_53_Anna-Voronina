@@ -14,7 +14,6 @@ import { ConfirmPasswordIndicator } from '../ConfirmPasswordIndicator/ConfirmPas
 import { Title } from '../Title/Title';
 import { TextWithRouterLink } from '../TextWithRouterLink/TextWithRouterLink';
 import Button from '@/shared/components/Button/Button';
-import sprite from '@/shared/icons/sprite.svg';
 
 import {
   WrapperМessages,
@@ -24,10 +23,10 @@ import {
   WrapperForm,
   WrapperAbsoluteMessages,
   WrapperAbsoluteEye,
-  ErrorIcon,
-  SuccessIcon,
 } from '../LoginForm/LoginForm.styled';
 import { WrapperField } from './RegisterForm.styled';
+import { FormFieldIcon } from '../FormFieldIcon/FormFieldIcon';
+import { getClassName } from '../helpers/getClassName';
 
 export const RegisterForm = () => {
   const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1', 'password2']);
@@ -49,7 +48,7 @@ export const RegisterForm = () => {
     //   .then(data => {
     //     resetForm();
     //     toast.success(
-    //       `${data.user.name}, thanks for signing up. Welcome to Money Guard! We are happy to have you on board.`
+    //       `${data.user.name}, Thank you for registering. Welcome to the Flea Nursery. We hope you don't get bitten :)`
     //     );
     //   })
     //   .catch(error => {
@@ -76,21 +75,9 @@ export const RegisterForm = () => {
                   placeholder="Name"
                   autoComplete="off"
                   required
-                  className={`${touched.name && errors.name ? 'error' : ''} ${
-                    touched.name && !errors.name ? 'success' : ''
-                  }`}
+                  className={getClassName(touched.name, errors.name)}
                 />
-                {touched.name && errors.name ? (
-                  <ErrorIcon width="24" height="24">
-                    <use href={sprite + '#cross-small'}></use>
-                  </ErrorIcon>
-                ) : null}
-                {touched.name && !errors.name ? (
-                  <SuccessIcon width="24" height="24">
-                    <use href={sprite + '#check'}></use>
-                  </SuccessIcon>
-                ) : null}
-
+                <FormFieldIcon touched={touched.name} error={errors.name} />
                 <WrapperМessages>
                   <FormError name="name" touched={touched} errors={errors} />
                 </WrapperМessages>
@@ -102,20 +89,9 @@ export const RegisterForm = () => {
                   placeholder="Email"
                   autoComplete="off"
                   required
-                  className={`${touched.email && errors.email ? 'error' : ''} ${
-                    touched.email && !errors.email ? 'success' : ''
-                  }`}
+                  className={getClassName(touched.email, errors.email)}
                 />
-                {touched.email && errors.email ? (
-                  <ErrorIcon width="24" height="24">
-                    <use href={sprite + '#cross-small'}></use>
-                  </ErrorIcon>
-                ) : null}
-                {touched.email && !errors.email ? (
-                  <SuccessIcon width="24" height="24">
-                    <use href={sprite + '#check'}></use>
-                  </SuccessIcon>
-                ) : null}
+                <FormFieldIcon touched={touched.email} error={errors.email} />
 
                 <WrapperМessages>
                   <FormError name="email" touched={touched} errors={errors} />
@@ -133,21 +109,10 @@ export const RegisterForm = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     autoComplete="off"
-                    className={`${touched.password && errors.password ? 'error' : ''} ${
-                      touched.password && !errors.password ? 'success' : ''
-                    }`}
+                    className={getClassName(touched.password, errors.password)}
                   />
+                  <FormFieldIcon touched={touched.password} error={errors.password} right="52px" />
 
-                  {touched.password && errors.password ? (
-                    <ErrorIcon width="24" height="24">
-                      <use href={sprite + '#cross-small'}></use>
-                    </ErrorIcon>
-                  ) : null}
-                  {touched.password && !errors.password ? (
-                    <SuccessIcon width="24" height="24">
-                      <use href={sprite + '#check'}></use>
-                    </SuccessIcon>
-                  ) : null}
                   <TogglePasswordIcon
                     showPassword={showPasswords.password1}
                     onToggle={() => togglePasswordVisibility('password1')}
@@ -167,20 +132,13 @@ export const RegisterForm = () => {
                     placeholder="Confirm Password"
                     autoComplete="off"
                     required
-                    className={`${
-                      touched.confirmPassword && errors.confirmPassword ? 'error' : ''
-                    } ${touched.confirmPassword && !errors.confirmPassword ? 'success' : ''}`}
+                    className={getClassName(touched.confirmPassword, errors.confirmPassword)}
                   />
-                  {touched.confirmPassword && errors.confirmPassword ? (
-                    <ErrorIcon width="24" height="24">
-                      <use href={sprite + '#cross-small'}></use>
-                    </ErrorIcon>
-                  ) : null}
-                  {touched.confirmPassword && !errors.confirmPassword ? (
-                    <SuccessIcon width="24" height="24">
-                      <use href={sprite + '#check'}></use>
-                    </SuccessIcon>
-                  ) : null}
+                  <FormFieldIcon
+                    touched={touched.confirmPassword}
+                    error={errors.confirmPassword}
+                    right="52px"
+                  />
 
                   <TogglePasswordIcon
                     showPassword={showPasswords.password2}

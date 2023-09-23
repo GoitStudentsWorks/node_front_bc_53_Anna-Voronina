@@ -19,6 +19,8 @@ import { IndicatorPasswordStrenght } from '../IndicatorPasswordStrenght/Indicato
 import { TextWithRouterLink } from '../TextWithRouterLink/TextWithRouterLink';
 import { loginSchema } from '../../validations/loginSchema';
 import Button from '@/shared/components/Button/Button';
+import { FormFieldIcon } from '../FormFieldIcon/FormFieldIcon';
+import { getClassName } from '../helpers/getClassName';
 
 export const LoginForm = () => {
   const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1']);
@@ -61,10 +63,10 @@ export const LoginForm = () => {
                   placeholder="Email"
                   autoComplete="off"
                   required
-                  className={`${touched.email && errors.email ? 'error' : ''} ${
-                    touched.email && !errors.email ? 'success' : ''
-                  }`}
+                  className={getClassName(touched.email, errors.email)}
                 />
+
+                <FormFieldIcon touched={touched.email} error={errors.email} />
 
                 <WrapperМessages>
                   <FormError name="email" touched={touched} errors={errors} />
@@ -82,10 +84,9 @@ export const LoginForm = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     autoComplete="off"
-                    className={`${touched.password && errors.password ? 'error' : ''} ${
-                      touched.password && !errors.password ? 'success' : ''
-                    }`}
+                    className={getClassName(touched.password, errors.password)}
                   />
+                  <FormFieldIcon touched={touched.password} error={errors.password} right="52px" />
                   <TogglePasswordIcon
                     showPassword={showPasswords.password1}
                     onToggle={() => togglePasswordVisibility('password1')}

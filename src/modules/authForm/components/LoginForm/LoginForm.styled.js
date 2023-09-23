@@ -1,6 +1,6 @@
 import { Field, Form } from 'formik';
 
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const WrapperForm = styled.div`
   padding: 40px 12px;
@@ -116,23 +116,4 @@ export const WrapperМessages = styled.div`
   @media screen and (min-width: 768px) {
     position: absolute;
   }
-`;
-
-const iconStyles = css`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 16px;
-`;
-
-export const ErrorIcon = styled.svg`
-  ${iconStyles}
-
-  stroke: ${({ theme }) => theme.colors.red};
-`;
-
-export const SuccessIcon = styled.svg`
-  ${iconStyles}
-  fill:transparent;
-  stroke: ${({ theme }) => theme.colors.green};
 `;

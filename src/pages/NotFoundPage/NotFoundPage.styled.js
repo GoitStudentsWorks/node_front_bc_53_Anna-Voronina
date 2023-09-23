@@ -1,17 +1,11 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const NotFoundWrapper = styled.div`
+export const NotFoundContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: ${({ theme }) => theme.spacing(20)};
-  padding-bottom: ${({ theme }) => theme.spacing(68.75)};
-
-  @media only screen and (min-width: 768px) {
-    padding-top: ${({ theme }) => theme.spacing(15)};
-  }
 `;
 
 export const NotFoundTitle = styled.h1`

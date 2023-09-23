@@ -38,13 +38,17 @@ export const Searchbar = ({ onSubmit }) => {
         value={inputValue}
         onChange={handleInput}
       />
-      <SearchButton type="submit">
+      <SearchButton type="submit" aria-label="search button">
         <ButtonIcon>
           <use href={sprite + "#search"}></use>
         </ButtonIcon>
       </SearchButton>
       {inputValue.trim() !== "" && (
-        <DeleteButton type="button" onClick={handleDelete}>
+        <DeleteButton
+          type="button"
+          aria-label="delete button"
+          onClick={handleDelete}
+        >
           <DeleteIcon>
             <use href={sprite + "#cross-small"}></use>
           </DeleteIcon>

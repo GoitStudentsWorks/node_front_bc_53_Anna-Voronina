@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Container } from "../../shared/components/Container/Container";
-import { Logout } from "../../modules/user/Logout/Logout";
+import { Logout } from "../../shared/components/Logout/Logout";
 import { PetsData } from "../../modules/user/PetsData/PetsData";
 import { UserData } from "../../modules/user/UserData/UserData";
 import {
@@ -23,7 +23,7 @@ const UserPage = () => {
           <TitleUserPage>My information:</TitleUserPage>
           <UserFormContainer>
             <UserData editing={editing} handleEditClick={handleEditClick} />
-            {!editing ? <Logout /> : null}
+            {!editing ? <Logout variant="profile" /> : null}
           </UserFormContainer>
         </div>
         <div>

@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import PropTypes from "prop-types";
-import { userValidationSchema } from "../../../shared/utils/validationSchema";
+import { userValidationSchema } from "../helpers/validationSchema";
 import {
   ProfileForm,
   Avatar,

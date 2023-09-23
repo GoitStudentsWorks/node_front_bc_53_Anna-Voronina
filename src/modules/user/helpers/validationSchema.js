@@ -1,8 +1,8 @@
 import * as Yup from "yup";
-
-const PHONE_REGEXP = /^\+380\d{9}$/;
-
-const EMAIL_REGEXP = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+import {
+  emailValidator,
+  phoneValidator,
+} from "../../../shared/constants/regexp";
 
 export const userValidationSchema = Yup.object().shape({
   avatar: Yup.mixed()
@@ -17,7 +17,7 @@ export const userValidationSchema = Yup.object().shape({
     .matches(/^[a-zA-Z]{2,16}$/, "Name must contain only letters and spaces"),
 
   email: Yup.string()
-    .matches(EMAIL_REGEXP, "Invalid email format")
+    .matches(emailValidator, "Invalid email format")
     .required("The field 'Email' is required"),
 
   birthday: Yup.string()
@@ -29,7 +29,7 @@ export const userValidationSchema = Yup.object().shape({
 
   phone: Yup.string()
     .required("The 'Phone' field is required")
-    .matches(PHONE_REGEXP, "Incorrect phone format. Example: +380671234567"),
+    .matches(phoneValidator, "Incorrect phone format. Example: +380671234567"),
 
   city: Yup.string().matches(
     /^[A-Za-z\s,]+$/,

@@ -25,6 +25,8 @@ import {
   WrapperAbsoluteEye,
 } from '../LoginForm/LoginForm.styled';
 import { WrapperField } from './RegisterForm.styled';
+import { FormFieldIcon } from '../FormFieldIcon/FormFieldIcon';
+import { getClassName } from '../helpers/getClassName';
 
 export const RegisterForm = () => {
   const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1', 'password2']);
@@ -46,7 +48,7 @@ export const RegisterForm = () => {
     //   .then(data => {
     //     resetForm();
     //     toast.success(
-    //       `${data.user.name}, thanks for signing up. Welcome to Money Guard! We are happy to have you on board.`
+    //       `${data.user.name}, Thank you for registering. Welcome to the Flea Nursery. We hope you don't get bitten :)`
     //     );
     //   })
     //   .catch(error => {
@@ -73,7 +75,9 @@ export const RegisterForm = () => {
                   placeholder="Name"
                   autoComplete="off"
                   required
+                  className={getClassName(touched.name, errors.name)}
                 />
+                <FormFieldIcon touched={touched.name} error={errors.name} />
                 <WrapperМessages>
                   <FormError name="name" touched={touched} errors={errors} />
                 </WrapperМessages>
@@ -85,7 +89,9 @@ export const RegisterForm = () => {
                   placeholder="Email"
                   autoComplete="off"
                   required
+                  className={getClassName(touched.email, errors.email)}
                 />
+                <FormFieldIcon touched={touched.email} error={errors.email} />
 
                 <WrapperМessages>
                   <FormError name="email" touched={touched} errors={errors} />
@@ -103,7 +109,10 @@ export const RegisterForm = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     autoComplete="off"
+                    className={getClassName(touched.password, errors.password)}
                   />
+                  <FormFieldIcon touched={touched.password} error={errors.password} right="52px" />
+
                   <TogglePasswordIcon
                     showPassword={showPasswords.password1}
                     onToggle={() => togglePasswordVisibility('password1')}
@@ -123,6 +132,12 @@ export const RegisterForm = () => {
                     placeholder="Confirm Password"
                     autoComplete="off"
                     required
+                    className={getClassName(touched.confirmPassword, errors.confirmPassword)}
+                  />
+                  <FormFieldIcon
+                    touched={touched.confirmPassword}
+                    error={errors.confirmPassword}
+                    right="52px"
                   />
 
                   <TogglePasswordIcon

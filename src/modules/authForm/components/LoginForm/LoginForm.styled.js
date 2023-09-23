@@ -75,6 +75,14 @@ export const FieldStyled = styled(Field)`
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   line-height: 24px;
   letter-spacing: 0.64px;
+
+  &.error {
+    border-color: ${({ theme }) => theme.colors.red}; // Красный бордер при ошибке
+  }
+
+  &.success {
+    border-color: ${({ theme }) => theme.colors.green}; // Зеленый бордер при успешной валидации
+  }
 `;
 
 export const WrapperButton = styled.div`

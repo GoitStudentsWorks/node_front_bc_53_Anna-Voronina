@@ -14,6 +14,7 @@ import { ConfirmPasswordIndicator } from '../ConfirmPasswordIndicator/ConfirmPas
 import { Title } from '../Title/Title';
 import { TextWithRouterLink } from '../TextWithRouterLink/TextWithRouterLink';
 import Button from '@/shared/components/Button/Button';
+import sprite from '@/shared/icons/sprite.svg';
 
 import {
   WrapperМessages,
@@ -23,6 +24,8 @@ import {
   WrapperForm,
   WrapperAbsoluteMessages,
   WrapperAbsoluteEye,
+  ErrorIcon,
+  SuccessIcon,
 } from '../LoginForm/LoginForm.styled';
 import { WrapperField } from './RegisterForm.styled';
 
@@ -77,6 +80,17 @@ export const RegisterForm = () => {
                     touched.name && !errors.name ? 'success' : ''
                   }`}
                 />
+                {touched.name && errors.name ? (
+                  <ErrorIcon width="24" height="24">
+                    <use href={sprite + '#cross-small'}></use>
+                  </ErrorIcon>
+                ) : null}
+                {touched.name && !errors.name ? (
+                  <SuccessIcon width="24" height="24">
+                    <use href={sprite + '#check'}></use>
+                  </SuccessIcon>
+                ) : null}
+
                 <WrapperМessages>
                   <FormError name="name" touched={touched} errors={errors} />
                 </WrapperМessages>
@@ -92,6 +106,16 @@ export const RegisterForm = () => {
                     touched.email && !errors.email ? 'success' : ''
                   }`}
                 />
+                {touched.email && errors.email ? (
+                  <ErrorIcon width="24" height="24">
+                    <use href={sprite + '#cross-small'}></use>
+                  </ErrorIcon>
+                ) : null}
+                {touched.email && !errors.email ? (
+                  <SuccessIcon width="24" height="24">
+                    <use href={sprite + '#check'}></use>
+                  </SuccessIcon>
+                ) : null}
 
                 <WrapperМessages>
                   <FormError name="email" touched={touched} errors={errors} />
@@ -113,6 +137,17 @@ export const RegisterForm = () => {
                       touched.password && !errors.password ? 'success' : ''
                     }`}
                   />
+
+                  {touched.password && errors.password ? (
+                    <ErrorIcon width="24" height="24">
+                      <use href={sprite + '#cross-small'}></use>
+                    </ErrorIcon>
+                  ) : null}
+                  {touched.password && !errors.password ? (
+                    <SuccessIcon width="24" height="24">
+                      <use href={sprite + '#check'}></use>
+                    </SuccessIcon>
+                  ) : null}
                   <TogglePasswordIcon
                     showPassword={showPasswords.password1}
                     onToggle={() => togglePasswordVisibility('password1')}
@@ -136,6 +171,16 @@ export const RegisterForm = () => {
                       touched.confirmPassword && errors.confirmPassword ? 'error' : ''
                     } ${touched.confirmPassword && !errors.confirmPassword ? 'success' : ''}`}
                   />
+                  {touched.confirmPassword && errors.confirmPassword ? (
+                    <ErrorIcon width="24" height="24">
+                      <use href={sprite + '#cross-small'}></use>
+                    </ErrorIcon>
+                  ) : null}
+                  {touched.confirmPassword && !errors.confirmPassword ? (
+                    <SuccessIcon width="24" height="24">
+                      <use href={sprite + '#check'}></use>
+                    </SuccessIcon>
+                  ) : null}
 
                   <TogglePasswordIcon
                     showPassword={showPasswords.password2}

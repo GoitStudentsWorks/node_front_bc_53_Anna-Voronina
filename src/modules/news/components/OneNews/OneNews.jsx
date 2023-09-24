@@ -37,11 +37,11 @@ const OneNews = ({ imgUrl, title, text, date, url }) => {
 };
 
 OneNews.propTypes = {
-  date: PropTypes.any,
-  imgUrl: PropTypes.any,
-  text: PropTypes.any,
-  title: PropTypes.any,
-  url: PropTypes.any,
+  date: PropTypes.string.isRequired,
+  imgUrl: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
 };
 
 export default OneNews;

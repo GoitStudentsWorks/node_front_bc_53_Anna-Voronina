@@ -26,7 +26,7 @@ import {
 } from '../LoginForm/LoginForm.styled';
 import { WrapperField } from './RegisterForm.styled';
 import { FormFieldIcon } from '../FormFieldIcon/FormFieldIcon';
-import { getClassName } from '../helpers/getClassName';
+import { getClassName } from '../../helpers/getClassName';
 
 export const RegisterForm = () => {
   const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1', 'password2']);

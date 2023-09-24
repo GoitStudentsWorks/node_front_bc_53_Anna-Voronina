@@ -20,7 +20,7 @@ import { TextWithRouterLink } from '../TextWithRouterLink/TextWithRouterLink';
 import { loginSchema } from '../../validations/loginSchema';
 import Button from '@/shared/components/Button/Button';
 import { FormFieldIcon } from '../FormFieldIcon/FormFieldIcon';
-import { getClassName } from '../helpers/getClassName';
+import { getClassName } from '../../helpers/getClassName';
 
 export const LoginForm = () => {
   const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1']);

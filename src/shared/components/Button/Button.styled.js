@@ -62,6 +62,8 @@ export const ButtonStyled = styled.button`
       padding: 8px 28px;
       background: none;
       border: ${({ theme }) => theme.borders.medium};
+      font-family: ${({ theme }) => theme.fonts.manrope.semiBold};
+      font-weight: ${({ theme }) => theme.fontWeights.semiBold};
 
       &:focus,
       &:hover {

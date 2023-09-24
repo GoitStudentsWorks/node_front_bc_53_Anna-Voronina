@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const SearchForm = styled.form`
+  margin: auto;
   display: flex;
   align-items: center;
   gap: 10px;
-  width: 280px;
   height: 44px;
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: ${({ theme }) => theme.spacing(6)};
@@ -38,7 +38,7 @@ export const SearchFormInput = styled.input`
 
 export const SearchButton = styled.button`
   display: inline-block;
-  height: 44px;
+  height: ${({ theme }) => theme.spacing(11)};
 
   opacity: 0.6;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -54,7 +54,7 @@ export const ButtonIcon = styled.svg`
 
 export const DeleteButton = styled.button`
   display: inline-block;
-  height: 44px;
+  height: ${({ theme }) => theme.spacing(11)};
 
   opacity: 0.6;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);

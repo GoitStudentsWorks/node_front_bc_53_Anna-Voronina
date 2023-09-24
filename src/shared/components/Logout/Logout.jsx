@@ -1,15 +1,49 @@
 import PropTypes from "prop-types";
-import { LogoutBtn } from "./Logout.styled.js";
-import Icons from "../../../shared/icons/sprite.svg";
+import { useState } from "react";
+import { LogoutBtn, ModalTitle, BtnContainer } from "./Logout.styled.js";
+import { Modal } from "../Modal/Modal.jsx";
+import Button from "../Button/Button.jsx";
+import Icons from "../../icons/sprite.svg";
 
 export const Logout = ({ variant }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleClickLogout = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleYesClick = () => {
+    setIsModalOpen(false);
+    window.location.href = "/";
+  };
+
   return (
-    <LogoutBtn $variant={variant}>
-      Log out
-      <svg>
-        <use xlinkHref={Icons + "#logout"}> </use>
-      </svg>
-    </LogoutBtn>
+    <>
+      <LogoutBtn onClick={handleClickLogout} $variant={variant}>
+        Log out
+        <svg>
+          <use href={Icons + "#logout"}> </use>
+        </svg>
+      </LogoutBtn>
+      {isModalOpen && (
+        <Modal onClose={() => setIsModalOpen(false)}>
+          <ModalTitle>Already leaving?</ModalTitle>
+          <BtnContainer>
+            <Button
+              text="Cancel"
+              onClick={() => setIsModalOpen(false)}
+              variant="Cancel"
+            />
+            <Button
+              text="Yes"
+              onClick={handleYesClick}
+              icon={Icons + "#logout"}
+              variant="logoutButton"
+            />
+          </BtnContainer>
+        </Modal>
+      )}
+    </>
   );
 };
 

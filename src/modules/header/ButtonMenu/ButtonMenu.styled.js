@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
 export const Button = styled.button`
-  @media (max-width: 766px) {
+  @media (max-width: 768px) {
     margin-left: auto;
   }
- x
 `;
 export const Svg = styled.svg`
   display: none;

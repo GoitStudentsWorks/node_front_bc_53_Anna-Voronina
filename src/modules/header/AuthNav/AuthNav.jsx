@@ -1,14 +1,14 @@
 import { LinkStyles, List } from "./AuthNav.styled";
 import icon from "../../../shared/icons/sprite.svg";
-
+import PropTypes from "prop-types";
 const routes = [
   { path: "/login", text: "Log IN" },
   { path: "/register", text: " Registration" },
 ];
-export const AuthNav = () => {
+export const AuthNav = ({ variant = null }) => {
   return (
     <>
-      <List>
+      <List $variant={variant}>
         {routes.map((route) => (
           <li key={route.path}>
             <LinkStyles to={route.path}>
@@ -24,4 +24,7 @@ export const AuthNav = () => {
       </List>
     </>
   );
+};
+AuthNav.propTypes = {
+  variant: PropTypes.string,
 };

@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 export const List = styled.ul`
-  display: flex;
+  display: none;
+  @media (max-width: 1600px) and (min-width: 768px) {
+    display: flex;
+  }
+  flex-flow: row nowrap;
   margin-left: auto;
   li {
     margin-left: 40px;
@@ -10,25 +14,38 @@ export const List = styled.ul`
       margin-left: 20px;
     }
   }
-
   li:first-child {
     margin-left: 0;
   }
 
-  /* li:last-child {
-    margin: 0;
-  } */
-  @media (max-width: 766px) {
+  @media (max-width: 769px) and (min-width: 321px) {
     display: none;
   }
-  @media (max-width: 320px) {
-    display: block;
-    margin-top: 40px;
-    margin-bottom: 12px;
-    &:last-child {
-      margin: 0;
-    }
-  }
+
+  ${({ $variant }) =>
+    $variant === "none" &&
+    css`
+      display: none;
+    `}
+
+  ${({ $variant }) =>
+    $variant === "flex" &&
+    css`
+      display: flex;
+      @media (max-width: 320px) {
+        margin-top: 40px;
+        align-items: center;
+        flex-flow: column;
+
+        &:last-child {
+          margin: 0;
+          margin-left: 0;
+        }
+        li:last-child {
+          margin-left: 0;
+        }
+      }
+    `}
 `;
 
 export const LinkStyles = styled(Link)`

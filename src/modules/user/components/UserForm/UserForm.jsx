@@ -1,6 +1,7 @@
 import { useFormik } from "formik";
 import PropTypes from "prop-types";
-import { userValidationSchema } from "../helpers/validationSchema";
+import { userValidationSchema } from "../../helpers/validationSchema";
+import Button from "../../../../shared/components/Button/Button";
 import {
   ProfileForm,
   Avatar,
@@ -11,11 +12,10 @@ import {
   CrossPhotoSvg,
   UserLabel,
   UserInput,
-  SaveBtn,
 } from "./UserForm.styled";
-import user from "../images/user.jpg";
-import user2x from "../images/user@2x.jpg";
-import Icons from "../../../shared/icons/sprite.svg";
+import user from "../../images/user.jpg";
+import user2x from "../../images/user@2x.jpg";
+import Icons from "../../../../shared/icons/sprite.svg";
 
 export const UserForm = ({ editing, handleEditClick }) => {
   const formik = useFormik({
@@ -160,7 +160,9 @@ export const UserForm = ({ editing, handleEditClick }) => {
           </UserLabel>
         </FormContainer>
 
-        {editing && <SaveBtn onClick={handleEditClick}>Save</SaveBtn>}
+        {editing && (
+          <Button text="Save" onClick={handleEditClick} variant="Save" />
+        )}
       </ProfileForm>
     </>
   );

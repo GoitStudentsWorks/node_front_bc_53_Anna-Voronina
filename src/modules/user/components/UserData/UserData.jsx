@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { UserForm } from "../UserForm/UserForm";
-import Icons from "../../../shared/icons/sprite.svg";
+import Icons from "../../../../shared/icons/sprite.svg";
 import { EditUserBtn, EditSvg, CrossSvg } from "./UserData.styled";
 
 export const UserData = ({ editing, handleEditClick }) => {

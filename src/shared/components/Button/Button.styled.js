@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 export const ButtonStyled = styled.button`
   min-height: ${({ theme }) => theme.spacing(10)};
@@ -25,7 +25,7 @@ export const ButtonStyled = styled.button`
   z-index: 1;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     background-image: ${({ theme }) => theme.colors.blueGradient};
@@ -56,7 +56,7 @@ export const ButtonStyled = styled.button`
 
   /* Варіант "bigButtonFirst" */
   ${({ $variant }) =>
-    $variant === 'bigButtonFirst' &&
+    $variant === "bigButtonFirst" &&
     css`
       width: ${({ theme }) => theme.spacing(62)};
       padding: 8px 28px;
@@ -73,7 +73,7 @@ export const ButtonStyled = styled.button`
 
   /* Варіант "bigButtonSecond" */
   ${({ $variant }) =>
-    $variant === 'bigButtonSecond' &&
+    $variant === "bigButtonSecond" &&
     css`
       width: ${({ theme }) => theme.spacing(62)};
       padding: 8px 28px;
@@ -83,7 +83,7 @@ export const ButtonStyled = styled.button`
 
  /* Варіант "mediumButtonFirst" */
       ${({ $variant }) =>
-    $variant === 'mediumButtonFirst' &&
+    $variant === "mediumButtonFirst" &&
     css`
       width: ${({ theme }) => theme.spacing(41.25)};
       color: ${({ theme }) => theme.colors.white};
@@ -92,7 +92,7 @@ export const ButtonStyled = styled.button`
 
  /* Варіант "mediumButtonSecond" */
       ${({ $variant }) =>
-    $variant === 'mediumButtonSecond' &&
+    $variant === "mediumButtonSecond" &&
     css`
       width: ${({ theme }) => theme.spacing(41.25)};
       background: none;
@@ -104,17 +104,57 @@ export const ButtonStyled = styled.button`
       }
     `}
 
- /* Варіант "logoutButton" */
+     /* Варіант "logoutButton" */
       ${({ $variant }) =>
-    $variant === 'logoutButton' &&
+    $variant === "logoutButton" &&
     css`
+      width: 256px;
+      padding: 8px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: ${({ theme }) => theme.spacing(2)};
+      border-radius: ${({ theme }) => theme.radii.l};
       color: ${({ theme }) => theme.colors.white};
-      background: ${({ theme }) => theme.colors.blue};
+      background-color: ${({ theme }) => theme.colors.blue};
+
+      svg {
+        width: 24px;
+        height: 24px;
+        fill: transparent;
+        stroke: ${({ theme }) => theme.colors.white};
+      }
+
+      @media only screen and (min-width: 768px) {
+        width: 129px;
+      }
+    `}  
+    
+    ${({ $variant }) =>
+    $variant === "Cancel" &&
+    css`
+      width: 256px;
+      height: 40px;
+      border: 2px solid ${({ theme }) => theme.colors.blue};
+      background-color: ${({ theme }) => theme.colors.white};
+      color: ${({ theme }) => theme.colors.blue};
+
+      &:focus,
+      &:hover {
+        border: none;
+        color: ${({ theme }) => theme.colors.white};
+        background: ${({ theme }) => theme.colors.blueGradient};
+      }
+
+      @media only screen and (min-width: 768px) {
+        width: 129px;
+        padding: 8px 20px;
+      }
     `}
 
  /* Варіант "mobileAddButton" */
       ${({ $variant }) =>
-    $variant === 'mobileAddButton' &&
+    $variant === "mobileAddButton" &&
     css`
       width: ${({ theme }) => theme.spacing(20)};
       height: ${({ theme }) => theme.spacing(20)};
@@ -126,7 +166,7 @@ export const ButtonStyled = styled.button`
     `}
 
     ${({ $variant }) =>
-    $variant === 'AuthButton' &&
+    $variant === "AuthButton" &&
     css`
       width: 100%;
       padding: 10px 28px;
@@ -139,5 +179,31 @@ export const ButtonStyled = styled.button`
       font-weight: ${({ theme }) => theme.fontWeights.semiBold};
       line-height: normal;
       letter-spacing: 0.8px;
+    `}
+
+
+   ${({ $variant }) =>
+    $variant === "Save" &&
+    css`
+      min-height: 31px;
+      padding: 5px 107px;
+      margin: 5px auto 20px;
+      font-size: ${({ theme }) => theme.fontSizes.s};
+      letter-spacing: 0.56px;
+      background-color: ${({ theme }) => theme.colors.blue};
+      color: ${({ theme }) => theme.colors.lightPink};
+
+      @media only screen and (min-width: 768px) {
+        max-height: 32px;
+        margin: 0 auto 16px 102px;
+        padding: 8px 108px;
+      }
+      @media only screen and (min-width: 1280px) {
+        max-height: 34px;
+        margin: 10px auto 23px 100px;
+        padding: 6px 108px;
+        font-size: ${({ theme }) => theme.fontSizes.m};
+        letter-spacing: 0.64px;
+      }
     `}
 `;

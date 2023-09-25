@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 import {
+  Card,
+  BeforeDiv,
   Article,
   Img,
   BlockInfo,
@@ -13,26 +15,28 @@ import formatDate from "../../helpers/formatDate";
 
 const OneNews = ({ imgUrl, title, text, date, url }) => {
   return (
-    <Article>
-      <Img src={imgUrl} alt={title} />
+    <Card>
+      <BeforeDiv></BeforeDiv>
+      <Article>
+        <Img src={imgUrl} alt={title} />
 
-      <BlockInfo>
-        <div>
+        <BlockInfo>
           <Title>{title}</Title>
           <Paragraph>{text}</Paragraph>
-        </div>
-        <DivStyled>
-          <Date>{formatDate(date)}</Date>
-          <ReadMore
-            href={url}
-            target="_blanck"
-            rel="noopener noreferrer nofollow"
-          >
-            Read more
-          </ReadMore>
-        </DivStyled>
-      </BlockInfo>
-    </Article>
+
+          <DivStyled>
+            <Date>{formatDate(date)}</Date>
+            <ReadMore
+              href={url}
+              target="_blanck"
+              rel="noopener noreferrer nofollow"
+            >
+              Read more
+            </ReadMore>
+          </DivStyled>
+        </BlockInfo>
+      </Article>
+    </Card>
   );
 };
 

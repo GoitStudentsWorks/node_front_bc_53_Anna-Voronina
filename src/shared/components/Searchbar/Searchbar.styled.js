@@ -34,6 +34,11 @@ export const SearchFormInput = styled.input`
 
   border: none;
   outline: none;
+
+  @media screen and (min-width: 768px) {
+    font-size: ${({ theme }) => theme.fontSizes.l};
+    letter-spacing: 0.8px;
+  }
 `;
 
 export const SearchButton = styled.button`

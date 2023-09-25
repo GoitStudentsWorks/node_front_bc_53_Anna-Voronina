@@ -21,7 +21,7 @@ import { loginSchema } from '../../validations/loginSchema';
 import Button from '@/shared/components/Button/Button';
 import { FormFieldIcon } from '../FormFieldIcon/FormFieldIcon';
 import { getClassName } from '../../helpers/getClassName';
-import { FIlter } from '../../../filter/components/FIlter';
+import { FIlter } from '../../../filter/components/Filter/Filter';
 
 export const LoginForm = () => {
   const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1']);

@@ -80,10 +80,3 @@ export const SvgCheck = styled.svg`
   stroke: ${({ theme }) => theme.colors.blue};
   cursor: pointer;
 `;
-
-export const WrapperCheckButton = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: ${({ theme }) => theme.spacing(38)};
-`;

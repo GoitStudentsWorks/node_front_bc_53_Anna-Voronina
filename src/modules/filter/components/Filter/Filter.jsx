@@ -6,7 +6,6 @@ import {
   FilterWrapper,
   Options,
   SvgCheck,
-  WrapperCheckButton,
   WrapperOpenOptions,
 } from './Filter.styled';
 
@@ -14,13 +13,14 @@ import sprite from '@/shared/icons/sprite.svg';
 
 import Button from '@/shared/components/Button/Button';
 
-import { ageOptions, genderOptions } from '../service/optionsService';
-import { initialCheckboxesState } from '../service/initialCheckboxesState';
-import { transformString } from '../helpers/transformString';
+import { ageOptions, genderOptions } from '../../service/optionsService';
+import { initialCheckboxesState } from '../../service/initialCheckboxesState';
+import { CheckButton } from '../CheckButton/CheckButton';
 
 export const FIlter = () => {
   const [isButtonsVisible, setButtonsVisible] = useState(false);
   const [checkboxes, setCheckboxes] = useState(initialCheckboxesState);
+  console.log(`checkboxes:`, checkboxes);
 
   const toggleButtons = () => {
     setButtonsVisible(!isButtonsVisible);
@@ -133,34 +133,7 @@ export const FIlter = () => {
           </Filter2>
         )}
       </FilterWrapper>
-      <WrapperCheckButton>
-        {ageOptions.map(option => (
-          <div key={option.value}>
-            {checkboxes.ageOptions[option.value] && (
-              <Button
-                text={transformString(option.value)}
-                variant="filterCheck"
-                icon="cross-small"
-                iconVariant="transparent"
-                iconOnClick={() => handleCheckboxChange('ageOptions', option.value)}
-              />
-            )}
-          </div>
-        ))}
-        {genderOptions.map(option => (
-          <div key={option.value}>
-            {checkboxes.genderOptions[option.value] && (
-              <Button
-                text={transformString(option.value)}
-                variant="filterCheck"
-                icon="cross-small"
-                iconVariant="transparent"
-                iconOnClick={() => handleCheckboxChange('genderOptions', option.value)}
-              />
-            )}
-          </div>
-        ))}
-      </WrapperCheckButton>
+      <CheckButton checkboxes={checkboxes} handleCheckboxChange={handleCheckboxChange} />
     </>
   );
 };

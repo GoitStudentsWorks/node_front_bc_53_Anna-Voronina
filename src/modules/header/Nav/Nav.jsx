@@ -1,20 +1,23 @@
-import { List } from "./Nav.styled";
+import { Item, List } from "./Nav.styled";
 import { StyledLink } from "./Nav.styled";
-
-export const Nav = () => {
+import PropTypes from "prop-types";
+export const Nav = ({ variant = null }) => {
   return (
     <>
-      <List>
-        <li>
+      <List $variant={variant}>
+        <Item>
           <StyledLink to="/news">News</StyledLink>
-        </li>
-        <li>
+        </Item>
+        <Item>
           <StyledLink to="/notices">Find pet</StyledLink>
-        </li>
-        <li>
+        </Item>
+        <Item>
           <StyledLink to="/friends">Our friends</StyledLink>
-        </li>
+        </Item>
       </List>
     </>
   );
+};
+Nav.propTypes = {
+  variant: PropTypes.string,
 };

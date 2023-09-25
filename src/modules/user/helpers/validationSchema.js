@@ -1,7 +1,10 @@
 import * as Yup from "yup";
 import {
+  nameValidator,
   emailValidator,
   phoneValidator,
+  birthdayValidator,
+  cityValidator,
 } from "../../../shared/constants/regexp";
 
 export const userValidationSchema = Yup.object().shape({
@@ -14,7 +17,7 @@ export const userValidationSchema = Yup.object().shape({
 
   name: Yup.string()
     .required("The 'Name' field is required")
-    .matches(/^[a-zA-Z]{2,16}$/, "Name must contain only letters and spaces"),
+    .matches(nameValidator, "Name must contain only letters and spaces"),
 
   email: Yup.string()
     .matches(emailValidator, "Invalid email format")
@@ -23,7 +26,7 @@ export const userValidationSchema = Yup.object().shape({
   birthday: Yup.string()
     .required("Date of birth is required")
     .matches(
-      /^(\d{2}-\d{2}-\d{4})$/,
+      birthdayValidator,
       "Date of birth must be in the format DD-MM-YYYY"
     ),
 
@@ -32,7 +35,7 @@ export const userValidationSchema = Yup.object().shape({
     .matches(phoneValidator, "Incorrect phone format. Example: +380671234567"),
 
   city: Yup.string().matches(
-    /^[A-Za-z\s,]+$/,
+    cityValidator,
     "Incorrect city format. Example: Brovary, Kyiv, Akhtyrka, Sumy"
   ),
 });

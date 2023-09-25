@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Container } from "../../shared/components/Container/Container";
 import { Logout } from "../../shared/components/Logout/Logout";
-import { PetsData } from "../../modules/user/PetsData/PetsData";
-import { UserData } from "../../modules/user/UserData/UserData";
+import { PetsData } from "../../modules/user/components/PetsData/PetsData";
+import { UserData } from "../../modules/user/components/UserData/UserData";
 import {
   ContainerUserPage,
   TitleUserPage,

@@ -136,30 +136,3 @@ export const UserInput = styled.input`
     border-radius: ${({ theme }) => theme.radii.s};
   }
 `;
-
-export const SaveBtn = styled.button`
-  width: 248px;
-  height: 31px;
-  padding: 6px 107px;
-  margin: 5px auto 20px;
-  border-radius: ${({ theme }) => theme.radii.l};
-  font-family: ${({ theme }) => theme.fonts.manrope.bold};
-  font-size: ${({ theme }) => theme.fontSizes.s};
-  font-weight: ${({ theme }) => theme.fontWeights.bold};
-  letter-spacing: 0.56px;
-  background-color: ${({ theme }) => theme.colors.blue};
-  color: ${({ theme }) => theme.colors.lightPink};
-
-  @media only screen and (min-width: 768px) {
-    width: 255px;
-    height: 32px;
-    margin: 0 auto 16px 100px;
-    padding: 5px 108px;
-  }
-  @media only screen and (min-width: 1280px) {
-    margin: 10px auto 23px 100px;
-    padding: 6px 108px;
-    font-size: ${({ theme }) => theme.fontSizes.m};
-    letter-spacing: 0.64px;
-  }
-`;

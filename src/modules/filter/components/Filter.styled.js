@@ -37,9 +37,10 @@ export const Options = styled.div`
 `;
 
 export const CheckboxLabel = styled.label`
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 20px;
 
   font-family: ${({ theme }) => theme.fonts.inter.regular};
   font-size: ${({ theme }) => theme.fontSizes.xs};
@@ -55,6 +56,12 @@ export const CheckboxInput = styled.input`
 `;
 
 export const SvgCheck = styled.svg`
+  position: absolute;
+  top: 50%;
+  background-color: ${({ theme }) => theme.colors.lightBlue};
+
+  transform: translateY(-50%);
+
   fill: transparent;
   stroke: ${({ theme }) => theme.colors.blue};
   cursor: pointer;

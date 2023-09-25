@@ -5,6 +5,7 @@ import {
   Filter2,
   FilterWrapper,
   Options,
+  SvgCheck,
   WrapperOpenOptions,
 } from './Filter.styled';
 import Button from '@/shared/components/Button/Button';
@@ -16,20 +17,40 @@ export const FIlter = () => {
   const [checkboxes, setCheckboxes] = useState({
     showCheckboxByAge: false,
     showCheckboxByGender: false,
+    ageOptions: {
+      'up to 1 year': false,
+      'up to 2 years': false,
+      'from 2 years': false,
+    },
+    genderOptions: {
+      female: false,
+      male: false,
+    },
   });
-
+  console.log(checkboxes);
   const toggleButtons = () => {
     setButtonsVisible(!isButtonsVisible);
-    setCheckboxes({
+    setCheckboxes(prevState => ({
+      ...prevState,
       showCheckboxByAge: false,
       showCheckboxByGender: false,
-    });
+    }));
   };
 
   const showCheckboxDiv = checkboxName => {
     setCheckboxes(prevCheckboxes => ({
       ...prevCheckboxes,
       [checkboxName]: !prevCheckboxes[checkboxName],
+    }));
+  };
+
+  const handleCheckboxChange = (group, name) => {
+    setCheckboxes(prevCheckboxes => ({
+      ...prevCheckboxes,
+      [group]: {
+        ...prevCheckboxes[group],
+        [name]: !prevCheckboxes[group][name],
+      },
     }));
   };
 
@@ -68,8 +89,23 @@ export const FIlter = () => {
               <Options>
                 {ageOptions.map(option => (
                   <CheckboxLabel key={option.value}>
-                    <CheckboxInput type="checkbox" name="age" value={option.value} />
+                    <CheckboxInput
+                      type="checkbox"
+                      name="age"
+                      value={option.value}
+                      checked={checkboxes.ageOptions[option.value]}
+                      onChange={() => handleCheckboxChange('ageOptions', option.value)}
+                    />
                     {option.name}
+                    {checkboxes.ageOptions[option.value] ? (
+                      <SvgCheck width="24" height="24">
+                        <use href={sprite + '#round'}></use>
+                      </SvgCheck>
+                    ) : (
+                      <SvgCheck width="24" height="24">
+                        <use href={sprite + '#check-round'}></use>
+                      </SvgCheck>
+                    )}
                   </CheckboxLabel>
                 ))}
               </Options>
@@ -88,8 +124,23 @@ export const FIlter = () => {
               <Options>
                 {genderOptions.map(option => (
                   <CheckboxLabel key={option.value}>
-                    <CheckboxInput type="checkbox" name="gender" value={option.value} />
+                    <CheckboxInput
+                      type="checkbox"
+                      name="gender"
+                      value={option.value}
+                      checked={checkboxes.genderOptions[option.value]}
+                      onChange={() => handleCheckboxChange('genderOptions', option.value)}
+                    />
                     {option.name}
+                    {checkboxes.genderOptions[option.value] ? (
+                      <SvgCheck width="24" height="24">
+                        <use href={sprite + '#round'}></use>
+                      </SvgCheck>
+                    ) : (
+                      <SvgCheck width="24" height="24">
+                        <use href={sprite + '#check-round'}></use>
+                      </SvgCheck>
+                    )}
                   </CheckboxLabel>
                 ))}
               </Options>

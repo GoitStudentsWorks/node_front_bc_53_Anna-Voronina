@@ -7,12 +7,12 @@ import {
 } from "./authOperations";
 
 const pending = (state) => {
-  state.loading = true;
-  state.error = "";
+  state.isLoading = true;
+  state.error = null;
 };
 
 const rejected = (state, action) => {
-  state.loading = false;
+  state.isLoading = false;
   state.error = action.payload;
 };
 
@@ -34,8 +34,8 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(logoutThunk.fulfilled, (state) => {
-        state.user = { name: "", email: "" };
-        state.token = "";
+        state.user = { name: null, email: null };
+        state.token = null;
         state.isLoggedIn = false;
       })
       .addCase(refreshThunk.fulfilled, (state, action) => {
@@ -55,7 +55,7 @@ const authSlice = createSlice({
           state.user = payload.user;
           state.token = payload.token;
           state.isLoggedIn = true;
-          state.loading = false;
+          state.isLoading = false;
         }
       )
       .addMatcher(isAnyOf(loginThunk.pending, registerThunk.pending), pending)

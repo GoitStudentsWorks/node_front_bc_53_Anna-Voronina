@@ -1,13 +1,20 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-export const Svg = styled.svg`
-  width: 162px;
-  height: 28px;
-  margin: 10px 159px 10px 0;
-  @media (max-width: 768px) {
-    margin-right: auto;
-  }
 
-  @media (max-width: 749px) {
-    margin: 10px 0 10px 0;
+export const LogoLink = styled(Link)`
+  transition: transform ${({ theme }) => theme.transitions.regular};
+
+  &:hover,
+  &:focus {
+    transform: scale(1.07);
+  }
+`;
+
+export const LogoSvg = styled.svg`
+  width: 116px;
+  height: 28px;
+
+  @media only screen and (min-width: 768px) {
+    width: 162px;
   }
 `;

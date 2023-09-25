@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { Container } from "../../shared/components/Container/Container";
 import { Logout } from "../../shared/components/Logout/Logout";
+import Button from "../../shared/components/Button/Button";
 import { PetsData } from "../../modules/user/components/PetsData/PetsData";
 import { UserData } from "../../modules/user/components/UserData/UserData";
 import {
   ContainerUserPage,
-  TitleUserPage,
+  TitleUserInf,
+  TitleUserPets,
   UserFormContainer,
+  AddBtn,
 } from "./UserPage.styled";
 
 const UserPage = () => {
@@ -20,14 +23,17 @@ const UserPage = () => {
     <Container>
       <ContainerUserPage>
         <div>
-          <TitleUserPage>My information:</TitleUserPage>
+          <TitleUserInf>My information:</TitleUserInf>
           <UserFormContainer>
             <UserData editing={editing} handleEditClick={handleEditClick} />
             {!editing ? <Logout variant="profile" /> : null}
           </UserFormContainer>
         </div>
         <div>
-          <TitleUserPage>My pets:</TitleUserPage>
+          <AddBtn to="/add-pet">
+            <Button text="Add&nbsp;pet" icon="plus" variant="AddButton" />
+          </AddBtn>
+          <TitleUserPets>My pets:</TitleUserPets>
           <PetsData />
         </div>
       </ContainerUserPage>

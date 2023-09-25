@@ -6,25 +6,24 @@ import { UserNav } from "../UserNav/UserNav";
 import icon from "../../../shared/icons/sprite.svg";
 import { Logo } from "../Logo/Logo";
 
-export const BurgerMenu = ({ onClick, isOpen = null }) => {
+export const BurgerMenu = ({ onClick, isOpen = false }) => {
   return (
     <>
-      {isOpen && (
-        <Div open={isOpen}>
-          <BurgerHeader>
-            <Logo />
-            <AuthNav variant="tabletMenu" />
-            <Button onClick={onClick}>
-              <Svgsmall width={24} height={24}>
-                <use xlinkHref={icon + "#cross-small"}></use>
-              </Svgsmall>
-            </Button>
-          </BurgerHeader>
-          <AuthNav variant="menu" />
-          {/* <UserNav variant={isOpen ? "flex" : "none"} /> */}
-          <Nav variant="menu" />
-        </Div>
-      )}
+      <Div className={isOpen ? "open" : "closed"}>
+        <BurgerHeader>
+          <Logo />
+          <AuthNav variant="tabletMenu" />
+          {/* <UserNav variant="tabletMenu" /> */}
+          <Button onClick={onClick}>
+            <Svgsmall width={24} height={24}>
+              <use xlinkHref={icon + "#cross-small"}></use>
+            </Svgsmall>
+          </Button>
+        </BurgerHeader>
+        <AuthNav variant="menu" />
+        {/* <UserNav variant="menu" /> */}
+        <Nav variant="menu" />
+      </Div>
     </>
   );
 };

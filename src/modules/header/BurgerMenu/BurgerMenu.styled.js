@@ -1,22 +1,4 @@
-import styled, { keyframes, css } from "styled-components";
-
-const slideInRight = keyframes`
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-`;
-
-const slideOutLeft = keyframes`
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(100%);
-  }
-`;
+import styled from "styled-components";
 
 export const Div = styled.div`
   position: fixed;
@@ -24,6 +6,7 @@ export const Div = styled.div`
   right: 0;
   background: #fff;
   z-index: 1000;
+  transform: translateX(100%);
 
   display: flex;
   flex-direction: column;
@@ -39,14 +22,11 @@ export const Div = styled.div`
   animation-timing-function: ease;
   animation-fill-mode: forwards;
 
-  ${(props) =>
-    props.isopen
-      ? css`
-          transform: translateX(0);
-        `
-      : css`
-          transform: translateX(100%);
-        `}
+  transition: transform 350ms ease-out;
+
+  &.open {
+    transform: translateX(0);
+  }
 
   @media only screen and (min-width: 768px) {
     padding: ${({ theme }) => theme.spacing(8)};

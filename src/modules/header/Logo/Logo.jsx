@@ -1,14 +1,13 @@
-import { Link } from "react-router-dom";
 import icon from "../../../shared/icons/sprite.svg";
-import { Svg } from "./Logo.styled";
+import { LogoLink, LogoSvg } from "./Logo.styled";
 
 export const Logo = () => {
   return (
-    <Link to="/main">
-      <Svg>
+    <LogoLink to="/">
+      <LogoSvg>
         <use xlinkHref={icon + "#icon-logo"}></use>
-      </Svg>
+      </LogoSvg>
       {/* <p> ManePage</p> */}
-    </Link>
+    </LogoLink>
   );
 };

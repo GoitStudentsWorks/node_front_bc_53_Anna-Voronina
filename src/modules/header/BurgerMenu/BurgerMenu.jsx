@@ -1,47 +1,34 @@
-import {
-  Button,
-  Div,
-  Headermenu,
-  Section,
-  Svg,
-  Svgsmall,
-} from "./BurgerMenu.styled";
 import PropTypes from "prop-types";
-import icon from "../../../shared/icons/sprite.svg";
+import { BurgerHeader, Button, Div, Svgsmall } from "./BurgerMenu.styled";
 import { AuthNav } from "../AuthNav/AuthNav";
 import { Nav } from "../Nav/Nav";
-import { Link } from "react-router-dom";
+import { UserNav } from "../UserNav/UserNav";
+import icon from "../../../shared/icons/sprite.svg";
+import { Logo } from "../Logo/Logo";
 
 export const BurgerMenu = ({ onClick, isOpen = null }) => {
   return (
     <>
       {isOpen && (
         <Div open={isOpen}>
-          <Headermenu>
-            <Link to="/main">
-              <Svg>
-                <use xlinkHref={icon + "#icon-logo"}></use>
-              </Svg>
-            </Link>
-
-            {isOpen && <AuthNav variant={isOpen ? "none" : "flex"} />}
-
+          <BurgerHeader>
+            <Logo />
+            <AuthNav variant="tabletMenu" />
             <Button onClick={onClick}>
-              <Svgsmall>
+              <Svgsmall width={24} height={24}>
                 <use xlinkHref={icon + "#cross-small"}></use>
               </Svgsmall>
             </Button>
-          </Headermenu>
-          {isOpen && <AuthNav variant={isOpen ? "flex" : "none"} />}
-
-          <Section>
-            {isOpen && <Nav variant={isOpen ? "flex" : "none"} />}
-          </Section>
+          </BurgerHeader>
+          <AuthNav variant="menu" />
+          {/* <UserNav variant={isOpen ? "flex" : "none"} /> */}
+          <Nav variant="menu" />
         </Div>
       )}
     </>
   );
 };
+
 BurgerMenu.propTypes = {
   onClick: PropTypes.func,
   isOpen: PropTypes.bool,

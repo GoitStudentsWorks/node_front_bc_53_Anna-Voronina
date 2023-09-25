@@ -10,17 +10,18 @@ const Button = ({
   variant = 'bigButtonFirst',
   iconPosition = 'right',
   iconVariant = '',
+  iconOnClick = null,
 }) => {
   return (
     <ButtonStyled type={type} onClick={onClick} $variant={variant}>
       {iconPosition === 'left' && (
-        <SvgStyled width="24" height="24" $iconVariant={iconVariant}>
+        <SvgStyled width="24" height="24" $iconVariant={iconVariant} onClick={iconOnClick}>
           <use href={`${sprite}#${icon}`}></use>
         </SvgStyled>
       )}
       {text}
       {iconPosition === 'right' && (
-        <SvgStyled width="24" height="24" $iconVariant={iconVariant}>
+        <SvgStyled width="24" height="24" $iconVariant={iconVariant} onClick={iconOnClick}>
           <use href={`${sprite}#${icon}`}></use>
         </SvgStyled>
       )}
@@ -38,4 +39,5 @@ Button.propTypes = {
   type: PropTypes.string,
   variant: PropTypes.string,
   iconVariant: PropTypes.string,
+  iconOnClick: PropTypes.func,
 };

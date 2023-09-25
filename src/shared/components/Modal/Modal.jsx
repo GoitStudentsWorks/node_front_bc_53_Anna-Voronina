@@ -6,7 +6,7 @@ import sprite from "../../icons/sprite.svg";
 
 const modalRoot = document.querySelector("#modal-root");
 
-export const Modal = ({ children, onClose }) => {
+export const Modal = ({ children, onClose, variant }) => {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.code === "Escape") {
@@ -35,7 +35,7 @@ export const Modal = ({ children, onClose }) => {
 
   return createPortal(
     <Backdrop onClick={handleClickBackdrop}>
-      <ModalStyled>
+      <ModalStyled $variant={variant}>
         <IconCloseModal onClick={handleCloseModal}>
           <use href={sprite + "#cross-small"}></use>
         </IconCloseModal>

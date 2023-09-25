@@ -163,17 +163,33 @@ export const ButtonStyled = styled.button`
       }
     `}
 
- /* Варіант "mobileAddButton" */
-      ${({ $variant }) =>
-    $variant === "mobileAddButton" &&
+     ${({ $variant }) =>
+    $variant === "AddButton" &&
     css`
       width: ${({ theme }) => theme.spacing(20)};
       height: ${({ theme }) => theme.spacing(20)};
+      flex-direction: column-reverse;
+      gap: 4px;
+      border-radius: ${({ theme }) => theme.radii.round};
       font-size: ${({ theme }) => theme.fontSizes.xs};
       font-weight: ${({ theme }) => theme.fontWeights.semiBold};
       color: ${({ theme }) => theme.colors.white};
-      background: ${({ theme }) => theme.colors.blue};
-      border-radius: ${({ theme }) => theme.radii.round};
+      background: linear-gradient(290deg, #419ef1 0%, #9bd0ff 107.89%);
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      @media only screen and (min-width: 768px) {
+        height: 40px;
+        width: 129px;
+        flex-direction: row;
+        padding: 8px 20px;
+        gap: 8px;
+        border-radius: ${({ theme }) => theme.radii.l};
+        background: ${({ theme }) => theme.colors.blue};
+      }
     `}
 
     ${({ $variant }) =>

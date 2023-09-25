@@ -1,5 +1,12 @@
+import { OurFriendsList } from "../../modules/ourFriends/OurFriendsList/OurFriendsList";
+import { Container } from "../../shared/components/Container/Container";
+
 const OurFriendsPage = () => {
-  return <div>OurFriendsPage</div>;
+  return (
+    <Container>
+      <OurFriendsList />
+    </Container>
+  );
 };
 
 export default OurFriendsPage;

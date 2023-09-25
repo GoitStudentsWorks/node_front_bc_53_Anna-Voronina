@@ -1,5 +1,16 @@
 import styled, { css } from 'styled-components';
 
+export const SvgStyled = styled.svg`
+  fill: currentColor;
+  stroke: currentColor;
+
+  ${({ $iconVariant }) =>
+    $iconVariant === 'transparent' &&
+    css`
+      fill: transparent;
+    `}
+`;
+
 export const ButtonStyled = styled.button`
   min-height: ${({ theme }) => theme.spacing(10)};
   position: relative;
@@ -137,5 +148,42 @@ export const ButtonStyled = styled.button`
       font-weight: ${({ theme }) => theme.fontWeights.semiBold};
       line-height: normal;
       letter-spacing: 0.8px;
+    `}
+
+    ${({ $variant }) =>
+    $variant === 'filter' &&
+    css`
+      width: 100%;
+      background: none;
+      border: ${({ theme }) => theme.borders.medium};
+
+      &:focus,
+      &:hover {
+        color: ${({ theme }) => theme.colors.white};
+      }
+    `}
+
+    ${({ $variant }) =>
+    $variant === 'filterBySelect' &&
+    css`
+      width: 100%;
+      padding: 4px 8px;
+      background: ${({ theme }) => theme.colors.lightBlue};
+      border-radius: ${({ theme }) => theme.radii.s};
+
+      justify-content: flex-start;
+      gap: ${({ theme }) => theme.spacing(2.25)};
+
+      font-family: ${({ theme }) => theme.fonts.inter.regular};
+      font-size: ${({ theme }) => theme.fontSizes.s};
+      font-style: normal;
+      font-weight: ${({ theme }) => theme.fontWeights.regular};
+      line-height: 18.2px;
+      letter-spacing: normal;
+
+      &:focus,
+      &:hover {
+        color: ${({ theme }) => theme.colors.white};
+      }
     `}
 `;

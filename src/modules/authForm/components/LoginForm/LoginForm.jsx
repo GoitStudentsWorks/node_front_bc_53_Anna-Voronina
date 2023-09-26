@@ -1,7 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
+import { loginThunk } from '@/redux/auth/authOperations';
+
+import { selectIsSuccess } from '@/redux/global/globalSelectors';
 
 import { toast } from 'react-toastify';
+
 import { Title } from '../Title/Title';
 
 import { usePasswordToggle } from '@/hooks/usePasswordToggle';
@@ -18,22 +22,17 @@ import {
 } from './LoginForm.styled';
 import { FormError } from '../FormError/FormError';
 import { TogglePasswordIcon } from '../TogglePasswordVisibility/TogglePasswordVisibility';
-import { IndicatorPasswordStrenght } from '../IndicatorPasswordStrenght/IndicatorPasswordStrenght';
+
 import { TextWithRouterLink } from '../TextWithRouterLink/TextWithRouterLink';
 import { loginSchema } from '../../validations/loginSchema';
 import Button from '@/shared/components/Button/Button';
 import { FormFieldIcon } from '../FormFieldIcon/FormFieldIcon';
 import { getClassName } from '../../helpers/getClassName';
-import { loginThunk } from '@/redux/auth/authOperations';
-
-import { setIsSuccess } from '@/redux/global/globalSlice';
-import { selectIsSuccess } from '@/redux/global/globalSelectors';
-import { useNavigate } from 'react-router-dom';
 
 export const LoginForm = () => {
   const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1']);
   const isSuccess = useSelector(selectIsSuccess);
-  const navigate = useNavigate();
+
   console.log(`isSuccess:`, isSuccess);
 
   const dispatch = useDispatch();
@@ -49,8 +48,6 @@ export const LoginForm = () => {
     dispatch(loginThunk({ email, password }))
       .unwrap()
       .then(data => {
-        dispatch(setIsSuccess(true));
-        navigate('/user');
         toast.success(
           `${data.token}, Thank you for registering. Welcome to the Flea Nursery. We hope you don't get bitten :)`
         );
@@ -116,13 +113,12 @@ export const LoginForm = () => {
                     />
                   </WrapperAbsoluteEye>
                   <WrapperМessages>
-                    <IndicatorPasswordStrenght values={values} />
                     <FormError name="password" touched={touched} errors={errors} />
                   </WrapperМessages>
                 </WrapperAbsoluteMessages>
               </WrapperField>
               <WrapperButton>
-                <Button type="submit" text="Login" variant="AuthButton" />
+                <Button type="submit" text="Login" variant="authButton" />
                 <TextWithRouterLink
                   text="Already have an account?  "
                   linkText="Register"

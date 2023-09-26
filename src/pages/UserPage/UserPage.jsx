@@ -7,7 +7,6 @@ import {
   AddBtn,
   ContainerUserPage,
   TitleUserInf,
-  TitleUserPage,
   TitleUserPets,
   UserFormContainer,
 } from './UserPage.styled';

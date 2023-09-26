@@ -13,13 +13,13 @@ const Button = ({
 }) => {
   return (
     <ButtonStyled type={type} onClick={onClick} $variant={variant}>
-      {iconPosition === "left" && (
+      {iconPosition === "left" && icon !== null && (
         <SvgStyled width="24" height="24" $iconVariant={iconVariant}>
           <use href={`${sprite}#${icon}`}></use>
         </SvgStyled>
       )}
       {text}
-      {iconPosition === "right" && (
+      {iconPosition === "right" && icon !== null && (
         <SvgStyled width="24" height="24" $iconVariant={iconVariant}>
           <use href={`${sprite}#${icon}`}></use>
         </SvgStyled>

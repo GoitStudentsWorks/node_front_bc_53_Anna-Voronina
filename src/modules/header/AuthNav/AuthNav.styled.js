@@ -1,27 +1,41 @@
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 export const List = styled.ul`
-  display: flex;
-  gap: 20px;
-  margin-right: 24px;
-  margin-left: auto;
+  display: none;
 
-  @media only screen and (max-width: 767px) {
-    display: none;
+  @media only screen and (min-width: 768px) {
+    display: flex;
+    gap: 20px;
+    margin-right: 24px;
+    margin-left: auto;
   }
 
   ${({ $variant }) =>
     $variant === "menu" &&
     css`
-      @media only screen and (max-width: 767px) {
-        display: flex;
-        flex-direction: column;
-        max-width: 165px;
-        margin: 0;
-      }
+      display: flex;
+      flex-direction: column;
+      max-width: 165px;
+      margin: 0;
 
       @media only screen and (min-width: 768px) {
         display: none;
+      }
+    `}
+
+  ${({ $variant }) =>
+    $variant === "attentionModal" &&
+    css`
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      @media only screen and (min-width: 768px) {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        margin: 0;
       }
     `}
 `;

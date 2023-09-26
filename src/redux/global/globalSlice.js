@@ -1,11 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {};
+const initialState = {
+  isSuccess: false,
+};
 
 const globalSlice = createSlice({
-  name: "global",
+  name: 'global',
   initialState,
-  reducers: {},
+  reducers: {
+    setIsSuccess: (state, action) => {
+      state.isSuccess = action.payload;
+    },
+  },
 });
 
+export const { setIsSuccess } = globalSlice.actions;
 export const globalReducer = globalSlice.reducer;

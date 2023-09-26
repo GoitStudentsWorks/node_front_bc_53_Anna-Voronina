@@ -1,18 +1,18 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 export const SvgStyled = styled.svg`
   fill: currentColor;
   stroke: currentColor;
 
   ${({ $iconVariant }) =>
-    $iconVariant === 'transparent' &&
+    $iconVariant === "transparent" &&
     css`
       fill: transparent;
     `}
 `;
 
 export const ButtonStyled = styled.button`
-  min-height: ${({ theme }) => theme.spacing(10)};
+  height: ${({ theme }) => theme.spacing(10)};
   position: relative;
   display: flex;
   align-items: center;
@@ -27,7 +27,6 @@ export const ButtonStyled = styled.button`
   letter-spacing: 0.64px;
 
   color: ${({ theme }) => theme.colors.blue};
-  background-color: ${({ theme }) => theme.colors.lightBlue};
 
   border-radius: ${({ theme }) => theme.radii.l};
   border: none;
@@ -36,7 +35,7 @@ export const ButtonStyled = styled.button`
   z-index: 1;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     background-image: ${({ theme }) => theme.colors.blueGradient};
@@ -67,7 +66,7 @@ export const ButtonStyled = styled.button`
 
   /* Варіант "bigButtonFirst" */
   ${({ $variant }) =>
-    $variant === 'bigButtonFirst' &&
+    $variant === "bigButtonFirst" &&
     css`
       width: ${({ theme }) => theme.spacing(62)};
       padding: 8px 28px;
@@ -84,7 +83,7 @@ export const ButtonStyled = styled.button`
 
   /* Варіант "bigButtonSecond" */
   ${({ $variant }) =>
-    $variant === 'bigButtonSecond' &&
+    $variant === "bigButtonSecond" &&
     css`
       width: ${({ theme }) => theme.spacing(62)};
       padding: 8px 28px;
@@ -94,7 +93,7 @@ export const ButtonStyled = styled.button`
 
  /* Варіант "mediumButtonFirst" */
       ${({ $variant }) =>
-    $variant === 'mediumButtonFirst' &&
+    $variant === "mediumButtonFirst" &&
     css`
       width: ${({ theme }) => theme.spacing(41.25)};
       color: ${({ theme }) => theme.colors.white};
@@ -103,7 +102,7 @@ export const ButtonStyled = styled.button`
 
  /* Варіант "mediumButtonSecond" */
       ${({ $variant }) =>
-    $variant === 'mediumButtonSecond' &&
+    $variant === "mediumButtonSecond" &&
     css`
       width: ${({ theme }) => theme.spacing(41.25)};
       background: none;
@@ -117,37 +116,24 @@ export const ButtonStyled = styled.button`
 
      /* Варіант "logoutButton" */
       ${({ $variant }) =>
-    $variant === 'logoutButton' &&
+    $variant === "logoutButton" &&
     css`
-      width: 256px;
-      padding: 8px 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: ${({ theme }) => theme.spacing(2)};
+      width: ${({ theme }) => theme.spacing(64)};
       border-radius: ${({ theme }) => theme.radii.l};
       color: ${({ theme }) => theme.colors.white};
       background-color: ${({ theme }) => theme.colors.blue};
 
-      svg {
-        width: 24px;
-        height: 24px;
-        fill: transparent;
-        stroke: ${({ theme }) => theme.colors.white};
-      }
-
       @media only screen and (min-width: 768px) {
-        width: 129px;
+        width: ${({ theme }) => theme.spacing(32.25)};
       }
     `}  
     
     ${({ $variant }) =>
-    $variant === 'Cancel' &&
+    $variant === "cancel" &&
     css`
-      width: 256px;
-      height: 40px;
-      border: 2px solid ${({ theme }) => theme.colors.blue};
-      background-color: ${({ theme }) => theme.colors.white};
+      width: ${({ theme }) => theme.spacing(64)};
+      border: ${({ theme }) => theme.borders.medium};
+      background-color: none;
       color: ${({ theme }) => theme.colors.blue};
 
       &:focus,
@@ -158,14 +144,13 @@ export const ButtonStyled = styled.button`
       }
 
       @media only screen and (min-width: 768px) {
-        width: 129px;
-        padding: 8px 20px;
+        width: ${({ theme }) => theme.spacing(32.25)};
       }
     `}
 
  /* Варіант "mobileAddButton" */
       ${({ $variant }) =>
-    $variant === 'mobileAddButton' &&
+    $variant === "mobileAddButton" &&
     css`
       width: ${({ theme }) => theme.spacing(20)};
       height: ${({ theme }) => theme.spacing(20)};
@@ -177,7 +162,7 @@ export const ButtonStyled = styled.button`
     `}
 
     ${({ $variant }) =>
-    $variant === 'AuthButton' &&
+    $variant === "AuthButton" &&
     css`
       width: 100%;
       padding: 10px 28px;
@@ -193,7 +178,7 @@ export const ButtonStyled = styled.button`
     `}
 
     ${({ $variant }) =>
-    $variant === 'filter' &&
+    $variant === "filter" &&
     css`
       width: 100%;
       background: none;
@@ -206,7 +191,7 @@ export const ButtonStyled = styled.button`
     `}
 
     ${({ $variant }) =>
-    $variant === 'filterBySelect' &&
+    $variant === "filterBySelect" &&
     css`
       width: 100%;
       padding: 4px 8px;
@@ -230,7 +215,7 @@ export const ButtonStyled = styled.button`
     `};
 
   ${({ $variant }) =>
-    $variant === 'Save' &&
+    $variant === "Save" &&
     css`
       min-height: 31px;
       padding: 5px 107px;

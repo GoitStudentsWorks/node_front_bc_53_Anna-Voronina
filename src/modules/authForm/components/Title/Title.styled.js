@@ -9,5 +9,4 @@ export const TitleStyled = styled.h2`
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   line-height: normal;
   letter-spacing: 1.44px;
-  margin-bottom: ${({ theme }) => theme.spacing(10)};
 `;

@@ -24,6 +24,7 @@ import Button from '@/shared/components/Button/Button';
 import { FormFieldIcon } from '../FormFieldIcon/FormFieldIcon';
 import { getClassName } from '../../helpers/getClassName';
 import { loginThunk } from '../../../../redux/auth/authOperations';
+import { FIlter } from '../../../filter/components/Filter/Filter';
 
 export const LoginForm = () => {
   const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1']);
@@ -41,11 +42,10 @@ export const LoginForm = () => {
     dispatch(loginThunk({ email, password }))
       .unwrap()
       .then(data => {
-        resetForm();
-        toast
-          .success
-          // `${data.user.name}, thanks for signing up. Welcome to Money Guard! We are happy to have you on board.`
-          ();
+        window.location.href = '/user';
+        toast.success(
+          `${data.token}, Thank you for registering. Welcome to the Flea Nursery. We hope you don't get bitten :)`
+        );
       })
       .catch(error => {
         toast.error(error.message);

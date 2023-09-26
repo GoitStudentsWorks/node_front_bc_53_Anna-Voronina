@@ -166,6 +166,7 @@ export const ButtonStyled = styled.button`
      ${({ $variant }) =>
     $variant === "AddButton" &&
     css`
+      z-index: 0;
       width: ${({ theme }) => theme.spacing(20)};
       height: ${({ theme }) => theme.spacing(20)};
       flex-direction: column-reverse;

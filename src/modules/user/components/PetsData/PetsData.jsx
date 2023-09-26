@@ -9,6 +9,7 @@ import {
   PetsCardIcon,
   PetsModalTitle,
   PetsModalText,
+  PetsModalBtnContainer,
 } from "./PetsData.styled";
 import Icon from "../../../../shared/icons/sprite.svg";
 import user from "../../images/user.jpg";
@@ -83,14 +84,14 @@ export const PetsData = () => {
             <span> “Cute dog looking for a home”</span>? <br />
             You can`t undo this action.
           </PetsModalText>
-          <div>
+          <PetsModalBtnContainer>
             <Button
               text="Cancel"
               onClick={() => setIsModalOpen(false)}
               variant="Cancel"
             />
             <Button text="Yes" icon="trash-2" variant="logoutButton" />
-          </div>
+          </PetsModalBtnContainer>
         </Modal>
       )}
     </PetsList>

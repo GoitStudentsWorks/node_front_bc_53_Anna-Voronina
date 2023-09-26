@@ -8,7 +8,7 @@ const Button = ({
   type = "button",
   icon = null,
   variant = "bigButtonFirst",
-  iconPosition = "right",
+  iconPosition = null,
   iconVariant = "",
 }) => {
   return (

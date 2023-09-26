@@ -1,8 +1,7 @@
 import styled, { css } from "styled-components";
+import { ButtonStyled } from "../Button/Button.styled";
 
-export const LogoutBtn = styled.button`
-  display: flex;
-
+export const LogoutBtn = styled(ButtonStyled)`
   svg {
     width: 24px;
     height: 24px;
@@ -10,11 +9,24 @@ export const LogoutBtn = styled.button`
     fill: transparent;
   }
 
+  background: none;
+
+  &:focus,
+  &:hover {
+    border: none;
+    background: none;
+
+    transform: scale(1.07);
+  }
+
+  &:hover::before,
+  &:focus::before {
+    opacity: 0;
+  }
+
   ${({ $variant }) =>
     $variant === "profile" &&
     css`
-      padding-bottom: 24px;
-      margin-top: 24px;
       flex-direction: row-reverse;
       gap: 12px;
       font-family: ${({ theme }) => theme.fonts.manrope.medium};
@@ -22,15 +34,6 @@ export const LogoutBtn = styled.button`
       font-weight: ${({ theme }) => theme.fontWeights.medium};
       letter-spacing: 0.64px;
       color: ${({ theme }) => theme.colors.grey};
-
-      @media only screen and (min-width: 768px) {
-        padding-bottom: 20px;
-        margin-top: 14px;
-      }
-      @media only screen and (min-width: 1280px) {
-        padding-bottom: 19px;
-        margin-top: 22px;
-      }
     `}
 
   ${({ $variant, $type }) =>
@@ -91,30 +94,4 @@ export const LogoutBtn = styled.button`
         display: none;
       }
     `};
-`;
-
-export const ModalTitle = styled.p`
-  margin: 65px auto 44px;
-  text-align: center;
-  font-family: ${({ theme }) => theme.fonts.manrope.medium};
-  font-size: ${({ theme }) => theme.fontSizes.xl};
-  font-weight: ${({ theme }) => theme.fontWeights.medium};
-  letter-spacing: 0.96px;
-  color: ${({ theme }) => theme.colors.black};
-  @media only screen and (min-width: 768px) {
-    margin: 84px auto 48px;
-    font-size: 36px;
-    letter-spacing: 1.44px;
-  }
-`;
-
-export const BtnContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  @media only screen and (min-width: 768px) {
-    flex-direction: row;
-    justify-content: center;
-    gap: 17px;
-  }
 `;

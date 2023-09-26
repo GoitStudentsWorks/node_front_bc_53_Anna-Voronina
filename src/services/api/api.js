@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const connectionsApi = axios.create({
-  baseURL: "/api/",
+  baseURL: "https://petgrammers-backend.onrender.com/api",
 });
 
 /**

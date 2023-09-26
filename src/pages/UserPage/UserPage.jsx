@@ -36,7 +36,12 @@ const UserPage = () => {
         </div>
         <div>
           <AddBtn to="/add-pet">
-            <Button text="Add&nbsp;pet" icon="plus" variant="AddButton" />
+            <Button
+              text="Add&nbsp;pet"
+              icon="plus"
+              iconPosition="right"
+              variant="addButton"
+            />
           </AddBtn>
           <TitleUserPets>My pets:</TitleUserPets>
           <PetsData />

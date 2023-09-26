@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
 import { createPortal } from "react-dom";
-import { Backdrop, ModalStyled, IconCloseModal } from "./Modal.styled";
+import { Backdrop, ModalStyled, ButtonCloseModal } from "./Modal.styled";
 import { useEffect } from "react";
 import sprite from "../../icons/sprite.svg";
 
 const modalRoot = document.querySelector("#modal-root");
 
-export const Modal = ({ children, onClose }) => {
+export const Modal = ({ children, onClose, variant }) => {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.code === "Escape") {
@@ -36,9 +36,15 @@ export const Modal = ({ children, onClose }) => {
   return createPortal(
     <Backdrop onClick={handleClickBackdrop}>
       <ModalStyled>
-        <IconCloseModal onClick={handleCloseModal}>
-          <use href={sprite + "#cross-small"}></use>
-        </IconCloseModal>
+        <ButtonCloseModal
+          $variant={variant}
+          aria-label="close modal"
+          onClick={handleCloseModal}
+        >
+          <svg width={24} height={24}>
+            <use href={sprite + "#cross-small"}></use>
+          </svg>
+        </ButtonCloseModal>
         {children}
       </ModalStyled>
     </Backdrop>,
@@ -49,4 +55,5 @@ export const Modal = ({ children, onClose }) => {
 Modal.propTypes = {
   children: PropTypes.node.isRequired,
   onClose: PropTypes.func.isRequired,
+  variant: PropTypes.string,
 };

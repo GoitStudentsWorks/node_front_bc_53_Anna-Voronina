@@ -1,47 +1,33 @@
-import {
-  Button,
-  Div,
-  Headermenu,
-  Section,
-  Svg,
-  Svgsmall,
-} from "./BurgerMenu.styled";
 import PropTypes from "prop-types";
-import icon from "../../../shared/icons/sprite.svg";
+import { BurgerHeader, Button, Div, Svgsmall } from "./BurgerMenu.styled";
 import { AuthNav } from "../AuthNav/AuthNav";
 import { Nav } from "../Nav/Nav";
-import { Link } from "react-router-dom";
+import { UserNav } from "../UserNav/UserNav";
+import icon from "../../../shared/icons/sprite.svg";
+import { Logo } from "../Logo/Logo";
 
-export const BurgerMenu = ({ onClick, isOpen = null }) => {
+export const BurgerMenu = ({ onClick, isOpen = false }) => {
   return (
     <>
-      {isOpen && (
-        <Div open={isOpen}>
-          <Headermenu>
-            <Link to="/main">
-              <Svg>
-                <use xlinkHref={icon + "#icon-logo"}></use>
-              </Svg>
-            </Link>
-
-            {isOpen && <AuthNav variant={isOpen ? "none" : "flex"} />}
-
-            <Button onClick={onClick}>
-              <Svgsmall>
-                <use xlinkHref={icon + "#cross-small"}></use>
-              </Svgsmall>
-            </Button>
-          </Headermenu>
-          {isOpen && <AuthNav variant={isOpen ? "flex" : "none"} />}
-
-          <Section>
-            {isOpen && <Nav variant={isOpen ? "flex" : "none"} />}
-          </Section>
-        </Div>
-      )}
+      <Div className={isOpen ? "open" : "closed"}>
+        <BurgerHeader>
+          <Logo />
+          <AuthNav variant="tabletMenu" />
+          {/* <UserNav variant="tabletMenu" /> */}
+          <Button onClick={onClick}>
+            <Svgsmall width={24} height={24}>
+              <use xlinkHref={icon + "#cross-small"}></use>
+            </Svgsmall>
+          </Button>
+        </BurgerHeader>
+        <AuthNav variant="menu" />
+        {/* <UserNav variant="menu" /> */}
+        <Nav variant="menu" />
+      </Div>
     </>
   );
 };
+
 BurgerMenu.propTypes = {
   onClick: PropTypes.func,
   isOpen: PropTypes.bool,

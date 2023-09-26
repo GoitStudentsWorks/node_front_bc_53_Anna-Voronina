@@ -1,4 +1,6 @@
+import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
+import { toast } from 'react-toastify';
 import { Title } from '../Title/Title';
 
 import { usePasswordToggle } from '@/hooks/usePasswordToggle';
@@ -21,12 +23,12 @@ import { loginSchema } from '../../validations/loginSchema';
 import Button from '@/shared/components/Button/Button';
 import { FormFieldIcon } from '../FormFieldIcon/FormFieldIcon';
 import { getClassName } from '../../helpers/getClassName';
-import { FIlter } from '../../../filter/components/Filter/Filter';
+import { loginThunk } from '../../../../redux/auth/authOperations';
 
 export const LoginForm = () => {
   const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1']);
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const initialValues = {
     email: '',
@@ -35,18 +37,19 @@ export const LoginForm = () => {
 
   const handleSubmit = (value, { resetForm }) => {
     console.log(value);
-    // const {  email, password } = value;
-    // dispatch(signUpThunk({  email, password }))
-    //   .unwrap()
-    //   .then(data => {
-    //     resetForm();
-    //     toast.success(
-    //       `${data.user.name}, thanks for signing up. Welcome to Money Guard! We are happy to have you on board.`
-    //     );
-    //   })
-    //   .catch(error => {
-    //     toast.error(error.message);
-    //   });
+    const { email, password } = value;
+    dispatch(loginThunk({ email, password }))
+      .unwrap()
+      .then(data => {
+        resetForm();
+        toast
+          .success
+          // `${data.user.name}, thanks for signing up. Welcome to Money Guard! We are happy to have you on board.`
+          ();
+      })
+      .catch(error => {
+        toast.error(error.message);
+      });
     resetForm();
   };
 

@@ -5,7 +5,7 @@ import { Modal } from "../Modal/Modal.jsx";
 import Button from "../Button/Button.jsx";
 import Icons from "../../icons/sprite.svg";
 
-export const Logout = ({ variant }) => {
+export const Logout = ({ variant, type }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleClickLogout = () => {
@@ -19,7 +19,7 @@ export const Logout = ({ variant }) => {
 
   return (
     <>
-      <LogoutBtn onClick={handleClickLogout} $variant={variant}>
+      <LogoutBtn onClick={handleClickLogout} $variant={variant} $type={type}>
         Log out
         <svg>
           <use href={Icons + "#logout"}> </use>

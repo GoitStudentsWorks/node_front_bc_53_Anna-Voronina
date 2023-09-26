@@ -148,11 +148,9 @@ export const ButtonStyled = styled.button`
       }
     `}
 
- /* Варіант "mobileAddButton" */
-      ${({ $variant }) =>
-    $variant === "mobileAddButton" &&
+  ${({ $variant }) =>
+    $variant === "addButton" &&
     css`
-      z-index: 0;
       width: ${({ theme }) => theme.spacing(20)};
       height: ${({ theme }) => theme.spacing(20)};
       flex-direction: column-reverse;
@@ -161,14 +159,15 @@ export const ButtonStyled = styled.button`
       font-size: ${({ theme }) => theme.fontSizes.xs};
       font-weight: ${({ theme }) => theme.fontWeights.semiBold};
       color: ${({ theme }) => theme.colors.white};
+      background: ${({ theme }) => theme.colors.blue};
+      border-radius: ${({ theme }) => theme.radii.round};
       background: linear-gradient(290deg, #419ef1 0%, #9bd0ff 107.89%);
-
       svg {
         width: 24px;
         height: 24px;
       }
-
       @media only screen and (min-width: 768px) {
+        z-index: 0;
         height: 40px;
         width: 129px;
         flex-direction: row;
@@ -237,7 +236,6 @@ export const ButtonStyled = styled.button`
     css`
       min-height: 31px;
       padding: 5px 107px;
-      margin: 5px auto 20px;
       font-size: ${({ theme }) => theme.fontSizes.s};
       letter-spacing: 0.56px;
       background-color: ${({ theme }) => theme.colors.blue};

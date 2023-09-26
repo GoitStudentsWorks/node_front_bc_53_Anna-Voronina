@@ -27,6 +27,8 @@ export const LogoutBtn = styled(ButtonStyled)`
   ${({ $variant }) =>
     $variant === "profile" &&
     css`
+      padding: 8px 0;
+      margin-top: 16px;
       flex-direction: row-reverse;
       gap: 12px;
       font-family: ${({ theme }) => theme.fonts.manrope.medium};
@@ -34,6 +36,14 @@ export const LogoutBtn = styled(ButtonStyled)`
       font-weight: ${({ theme }) => theme.fontWeights.medium};
       letter-spacing: 0.64px;
       color: ${({ theme }) => theme.colors.grey};
+
+      @media only screen and (min-width: 768px) {
+        margin-top: 6px;
+      }
+
+      @media only screen and (min-width: 1280px) {
+        margin-top: 14px;
+      }
     `}
 
   ${({ $variant, $type }) =>

@@ -1,5 +1,8 @@
+import { useState } from 'react';
 import {ProductList, ProductItem, PetCategory, FavoriteBtn, HeartIconPrimal, NoticesItemImg, ItemTitle, WrapperBtn, WrapperInformation, InformationMap, IconInformation, IconWrapper, ContentWrapper } from "./ProductCardList.styled";
 import Button from '@/shared/components/Button/Button';
+import { ModalProductCart } from '../popups/ModalProductCart';
+
 
 // const city = [
 //   {
@@ -20,7 +23,18 @@ import Button from '@/shared/components/Button/Button';
 import sprite from '../../../shared/icons/sprite.svg';
 import card from '../img/Rectangle 24.png';
 
+
+
+
 const ProductCardList = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+  const handleModalOpen = ()  => {
+
+    setIsModalOpen(true);
+
+  };
 
 
   return <ProductList>
@@ -77,11 +91,18 @@ const ProductCardList = () => {
           </ItemTitle>
 
           <WrapperBtn>
-            <Button type="button" text="Learn more" variant="bigButtonFirst" />
+            <Button type="button" text="Learn more" variant="bigButtonFirst" onClick={handleModalOpen}/>
           </WrapperBtn>
         </ContentWrapper>
 
       </ProductItem>
+      {isModalOpen && (
+        <ModalProductCart
+        setIsModalOpen={
+          setIsModalOpen
+        }
+        />
+          )}
     </ProductList>
 };
 

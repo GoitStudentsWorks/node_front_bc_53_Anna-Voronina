@@ -27,11 +27,14 @@ import { WrapperField } from './RegisterForm.styled';
 import { FormFieldIcon } from '../FormFieldIcon/FormFieldIcon';
 import { getClassName } from '../../helpers/getClassName';
 import { registerThunk } from '../../../../redux/auth/authOperations';
+import { setIsSuccess } from '../../../../redux/global/globalSlice';
+import { useNavigate } from 'react-router-dom';
 
 export const RegisterForm = () => {
   const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1', 'password2']);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const initialValues = {
     name: '',
@@ -45,16 +48,9 @@ export const RegisterForm = () => {
     const { name, email, password } = value;
     dispatch(registerThunk({ name, email, password }))
       .unwrap()
-      .then(data => {
-        console.log(data);
-        resetForm();
-        window.location.href = '/user';
-
-        setTimeout(() => {
-          toast.success(
-            `${data.name}, Thank you for registering. Welcome to the Flea Nursery. We hope you don't get bitten :)`
-          );
-        }, 5000);
+      .then(() => {
+        dispatch(setIsSuccess(true));
+        navigate('/user');
       })
       .catch(error => {
         console.log(error);
@@ -164,7 +160,7 @@ export const RegisterForm = () => {
               </WrapperAbsoluteMessages>
             </WrapperField>
             <WrapperButton>
-              <Button type="submit" text="Registration" variant="AuthButton" />
+              <Button type="submit" text="Registration" variant="authButton" />
               <TextWithRouterLink
                 text="Already have an account?  "
                 linkText="Login"

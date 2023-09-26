@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Backdrop = styled.div`
   background: rgba(97, 97, 97, 0.6);
@@ -8,6 +8,7 @@ export const Backdrop = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 100;
 `;
 
 export const ModalStyled = styled.div`
@@ -28,12 +29,20 @@ export const ModalStyled = styled.div`
     border-radius: ${({ theme }) => theme.spacing(10)};
 
     padding: ${({ theme }) => theme.spacing(6)};
-    min-width: ${({ theme }) => theme.spacing(152)};
+    max-width: ${({ theme }) => theme.spacing(152)};
     min-height: ${({ theme }) => theme.spacing(88)};
   }
+
+  ${({ $variant }) =>
+    $variant === "petsModal" &&
+    css`
+      @media screen and (min-width: 768px) {
+        max-width: ${({ theme }) => theme.spacing(170.25)};
+      }
+    `}
 `;
 
-export const IconCloseModal = styled.svg`
+export const ButtonCloseModal = styled.button`
   width: ${({ theme }) => theme.spacing(6)};
   height: ${({ theme }) => theme.spacing(6)};
   stroke: ${({ theme }) => theme.colors.blue};
@@ -41,11 +50,24 @@ export const IconCloseModal = styled.svg`
   position: absolute;
   top: ${({ theme }) => theme.spacing(3)};
   right: ${({ theme }) => theme.spacing(3)};
-  &:hover {
+
+  transition: stroke ${({ theme }) => theme.transitions.regular};
+
+  &:hover,
+  &:focus {
     cursor: pointer;
+    stroke: ${({ theme }) => theme.colors.yellow};
   }
+
   @media screen and (min-width: 768px) {
     top: ${({ theme }) => theme.spacing(6)};
     right: ${({ theme }) => theme.spacing(6)};
   }
+
+  ${({ $variant }) =>
+    $variant === "bigPadding" &&
+    css`
+      top: ${({ theme }) => theme.spacing(4)};
+      right: ${({ theme }) => theme.spacing(4)};
+    `}
 `;

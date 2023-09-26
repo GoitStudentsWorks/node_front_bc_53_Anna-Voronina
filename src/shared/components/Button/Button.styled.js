@@ -1,11 +1,11 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 export const SvgStyled = styled.svg`
   fill: currentColor;
   stroke: currentColor;
 
   ${({ $iconVariant }) =>
-    $iconVariant === "transparent" &&
+    $iconVariant === 'transparent' &&
     css`
       fill: transparent;
       width: 16px;
@@ -15,7 +15,7 @@ export const SvgStyled = styled.svg`
 `;
 
 export const ButtonStyled = styled.button`
-  min-height: ${({ theme }) => theme.spacing(10)};
+  height: ${({ theme }) => theme.spacing(10)};
   position: relative;
   display: flex;
   align-items: center;
@@ -30,7 +30,6 @@ export const ButtonStyled = styled.button`
   letter-spacing: 0.64px;
 
   color: ${({ theme }) => theme.colors.blue};
-  background-color: ${({ theme }) => theme.colors.lightBlue};
 
   border-radius: ${({ theme }) => theme.radii.l};
   border: none;
@@ -39,7 +38,7 @@ export const ButtonStyled = styled.button`
   z-index: 1;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
     background-image: ${({ theme }) => theme.colors.blueGradient};
@@ -60,7 +59,7 @@ export const ButtonStyled = styled.button`
   &:hover {
     border: none;
     background: ${({ theme }) => theme.colors.blueGradient};
-    transform: scale(1.01);
+    transform: scale(1.07);
   }
 
   &:hover::before,
@@ -70,7 +69,7 @@ export const ButtonStyled = styled.button`
 
   /* Варіант "bigButtonFirst" */
   ${({ $variant }) =>
-    $variant === "bigButtonFirst" &&
+    $variant === 'bigButtonFirst' &&
     css`
       width: ${({ theme }) => theme.spacing(62)};
       padding: 8px 28px;
@@ -87,7 +86,7 @@ export const ButtonStyled = styled.button`
 
   /* Варіант "bigButtonSecond" */
   ${({ $variant }) =>
-    $variant === "bigButtonSecond" &&
+    $variant === 'bigButtonSecond' &&
     css`
       width: ${({ theme }) => theme.spacing(62)};
       padding: 8px 28px;
@@ -97,7 +96,7 @@ export const ButtonStyled = styled.button`
 
  /* Варіант "mediumButtonFirst" */
       ${({ $variant }) =>
-    $variant === "mediumButtonFirst" &&
+    $variant === 'mediumButtonFirst' &&
     css`
       width: ${({ theme }) => theme.spacing(41.25)};
       color: ${({ theme }) => theme.colors.white};
@@ -106,7 +105,7 @@ export const ButtonStyled = styled.button`
 
  /* Варіант "mediumButtonSecond" */
       ${({ $variant }) =>
-    $variant === "mediumButtonSecond" &&
+    $variant === 'mediumButtonSecond' &&
     css`
       width: ${({ theme }) => theme.spacing(41.25)};
       background: none;
@@ -120,37 +119,24 @@ export const ButtonStyled = styled.button`
 
      /* Варіант "logoutButton" */
       ${({ $variant }) =>
-    $variant === "logoutButton" &&
+    $variant === 'logoutButton' &&
     css`
-      width: 256px;
-      padding: 8px 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: ${({ theme }) => theme.spacing(2)};
+      width: ${({ theme }) => theme.spacing(64)};
       border-radius: ${({ theme }) => theme.radii.l};
       color: ${({ theme }) => theme.colors.white};
       background-color: ${({ theme }) => theme.colors.blue};
 
-      svg {
-        width: 24px;
-        height: 24px;
-        fill: transparent;
-        stroke: ${({ theme }) => theme.colors.white};
-      }
-
       @media only screen and (min-width: 768px) {
-        width: 129px;
+        width: ${({ theme }) => theme.spacing(32.25)};
       }
     `}  
     
     ${({ $variant }) =>
-    $variant === "Cancel" &&
+    $variant === 'cancel' &&
     css`
-      width: 256px;
-      height: 40px;
-      border: 2px solid ${({ theme }) => theme.colors.blue};
-      background-color: ${({ theme }) => theme.colors.white};
+      width: ${({ theme }) => theme.spacing(64)};
+      border: ${({ theme }) => theme.borders.medium};
+      background-color: none;
       color: ${({ theme }) => theme.colors.blue};
 
       &:focus,
@@ -161,26 +147,42 @@ export const ButtonStyled = styled.button`
       }
 
       @media only screen and (min-width: 768px) {
-        width: 129px;
-        padding: 8px 20px;
+        width: ${({ theme }) => theme.spacing(32.25)};
       }
     `}
 
- /* Варіант "mobileAddButton" */
-      ${({ $variant }) =>
-    $variant === "mobileAddButton" &&
+  ${({ $variant }) =>
+    $variant === 'addButton' &&
     css`
       width: ${({ theme }) => theme.spacing(20)};
       height: ${({ theme }) => theme.spacing(20)};
+      flex-direction: column-reverse;
+      gap: 4px;
+      border-radius: ${({ theme }) => theme.radii.round};
       font-size: ${({ theme }) => theme.fontSizes.xs};
       font-weight: ${({ theme }) => theme.fontWeights.semiBold};
       color: ${({ theme }) => theme.colors.white};
       background: ${({ theme }) => theme.colors.blue};
       border-radius: ${({ theme }) => theme.radii.round};
+      background: linear-gradient(290deg, #419ef1 0%, #9bd0ff 107.89%);
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+      @media only screen and (min-width: 768px) {
+        z-index: 0;
+        height: 40px;
+        width: 129px;
+        flex-direction: row;
+        padding: 8px 20px;
+        gap: 8px;
+        border-radius: ${({ theme }) => theme.radii.l};
+        background: ${({ theme }) => theme.colors.blue};
+      }
     `}
 
     ${({ $variant }) =>
-    $variant === "AuthButton" &&
+    $variant === 'authButton' &&
     css`
       width: 100%;
       padding: 10px 28px;
@@ -196,7 +198,7 @@ export const ButtonStyled = styled.button`
     `}
 
     ${({ $variant }) =>
-    $variant === "filter" &&
+    $variant === 'filter' &&
     css`
       width: 100%;
       background: none;
@@ -209,7 +211,7 @@ export const ButtonStyled = styled.button`
     `}
 
     ${({ $variant }) =>
-    $variant === "filterBySelect" &&
+    $variant === 'filterBySelect' &&
     css`
       width: 100%;
       padding: 4px 8px;
@@ -240,11 +242,10 @@ export const ButtonStyled = styled.button`
     `};
 
   ${({ $variant }) =>
-    $variant === "Save" &&
+    $variant === 'Save' &&
     css`
       min-height: 31px;
       padding: 5px 107px;
-      margin: 5px auto 20px;
       font-size: ${({ theme }) => theme.fontSizes.s};
       letter-spacing: 0.56px;
       background-color: ${({ theme }) => theme.colors.blue};

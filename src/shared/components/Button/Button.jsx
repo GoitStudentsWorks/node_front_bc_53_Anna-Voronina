@@ -7,10 +7,10 @@ const Button = ({
   text,
   type = 'button',
   icon = null,
-  variant = 'bigButtonFirst',
-  iconPosition = 'right',
   iconVariant = '',
   iconOnClick = null,
+  variant = 'bigButtonFirst',
+  iconPosition = null,
 }) => {
   return (
     <ButtonStyled type={type} onClick={onClick} $variant={variant}>

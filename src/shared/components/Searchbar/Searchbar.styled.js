@@ -5,22 +5,22 @@ export const SearchForm = styled.form`
   display: flex;
   align-items: center;
   gap: 10px;
-  height: 44px;
+  height: ${({ theme }) => theme.spacing(11)};
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: ${({ theme }) => theme.spacing(6)};
   box-shadow: ${({ theme }) => theme.shadows.primary};
-  overflow: hidden;
 
   padding: 10px 12px 10px 20px;
+
   @media screen and (min-width: 768px) {
-    width: 608px;
+    width: ${({ theme }) => theme.spacing(152)};
     border-radius: ${({ theme }) => theme.spacing(5)};
     padding: 10px 20px;
   }
 `;
 
 export const SearchFormInput = styled.input`
-  display: inline-block;
+  display: block;
   width: 100%;
   color: ${({ theme }) => theme.colors.grey};
 
@@ -42,8 +42,8 @@ export const SearchFormInput = styled.input`
 `;
 
 export const SearchButton = styled.button`
-  display: inline-block;
-  height: ${({ theme }) => theme.spacing(11)};
+  display: block;
+  height: ${({ theme }) => theme.spacing(6)};
 
   opacity: 0.6;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -58,8 +58,8 @@ export const ButtonIcon = styled.svg`
 `;
 
 export const DeleteButton = styled.button`
-  display: inline-block;
-  height: ${({ theme }) => theme.spacing(11)};
+  display: block;
+  height: ${({ theme }) => theme.spacing(6)};
 
   opacity: 0.6;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);

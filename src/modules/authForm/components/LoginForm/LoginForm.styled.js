@@ -35,6 +35,7 @@ export const FormStyled = styled(Form)`
   flex-direction: column;
   width: 100%;
   height: 100%;
+  margin-top: ${({ theme }) => theme.spacing(9)};
 `;
 
 export const WrapperField = styled.div`

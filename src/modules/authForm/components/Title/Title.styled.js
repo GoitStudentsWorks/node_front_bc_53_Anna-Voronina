@@ -4,10 +4,14 @@ export const TitleStyled = styled.h2`
   color: ${({ theme }) => theme.colors.black};
   text-align: center;
   font-family: ${({ theme }) => theme.fonts.manrope.medium};
-  font-size: 36px;
+  font-size: ${({ theme }) => theme.spacing(6)};
   font-style: normal;
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   line-height: normal;
   letter-spacing: 1.44px;
-  margin-bottom: ${({ theme }) => theme.spacing(10)};
+
+  @media screen and (min-width: 768px) {
+    font-size: 36px;
+    letter-spacing: 1.44px;
+  }
 `;

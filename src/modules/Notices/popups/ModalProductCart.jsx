@@ -23,7 +23,7 @@ import card from "../img/Rectangle 24.png";
 
 export const ModalProductCart = ({ setIsModalOpen }) => {
   return (
-    <Modal onClose={() => setIsModalOpen(false)}>
+    <Modal onClose={() => setIsModalOpen(false)} variant="petsModal">
       <ModalWrapper>
         <TopWrapper>
           <CategoryName> Test</CategoryName>
@@ -62,7 +62,6 @@ export const ModalProductCart = ({ setIsModalOpen }) => {
               <NoticesInfoParameters>
                 Phone:
                 <ParametersValue $variant="yellow">
-                  {" "}
                   +380981234567
                 </ParametersValue>
               </NoticesInfoParameters>

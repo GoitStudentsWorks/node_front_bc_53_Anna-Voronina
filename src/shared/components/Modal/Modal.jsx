@@ -35,7 +35,7 @@ export const Modal = ({ children, onClose, variant }) => {
 
   return createPortal(
     <Backdrop onClick={handleClickBackdrop}>
-      <ModalStyled>
+      <ModalStyled $variant={variant}>
         <ButtonCloseModal
           $variant={variant}
           aria-label="close modal"

@@ -2,12 +2,13 @@ import styled, { css } from "styled-components";
 
 export const ModalWrapper = styled.div`
   position: relative;
-  width: 280px;
+  /* width: 280px; */
+  padding: 8px 8px 0 8px;
   margin-top: 10%;
   /* height: 786px; */
   @media screen and (min-width: 768px) {
     margin: 0;
-    width: 681px;
+    /* width: 681px; */
     /* max-height: 540px; */
   }
 `;
@@ -59,7 +60,7 @@ export const NoticesInfoTitle = styled.h3`
   color: ${({ theme }) => theme.colors.black};
   margin-bottom: 20px;
 
-  word-break: break-all;
+  /* word-break: break-all; */
   @media screen and (min-width: 768px) {
     font-size: 28px;
   }
@@ -72,11 +73,12 @@ export const ParametersList = styled.ul`
 `;
 
 export const NoticesInfoParameters = styled.li`
-  position: relative;
+  /* position: relative; */
   font-weight: ${({ theme }) => theme.fontWeights.semiBold};
   font-size: ${({ theme }) => theme.fontSizes.s};
   line-height: normal;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   text-align: center;
   color: ${({ theme }) => theme.colors.black};
@@ -86,9 +88,10 @@ export const NoticesInfoParameters = styled.li`
 `;
 
 export const ParametersValue = styled.span`
-  width: max-content;
-  position: absolute;
-  left: 118px;
+  width: 65%;
+  /* position: absolute; */
+
+  /* left: 76px; */
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   font-size: ${({ theme }) => theme.fontSizes.xs};
   line-height: normal;

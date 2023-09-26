@@ -92,3 +92,29 @@ export const LogoutBtn = styled.button`
       }
     `};
 `;
+
+export const ModalTitle = styled.p`
+  margin: 65px auto 44px;
+  text-align: center;
+  font-family: ${({ theme }) => theme.fonts.manrope.medium};
+  font-size: ${({ theme }) => theme.fontSizes.xl};
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
+  letter-spacing: 0.96px;
+  color: ${({ theme }) => theme.colors.black};
+  @media only screen and (min-width: 768px) {
+    margin: 84px auto 48px;
+    font-size: 36px;
+    letter-spacing: 1.44px;
+  }
+`;
+
+export const BtnContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  @media only screen and (min-width: 768px) {
+    flex-direction: row;
+    justify-content: center;
+    gap: 17px;
+  }
+`;

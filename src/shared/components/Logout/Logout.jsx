@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { LogoutBtn } from "./Logout.styled.js";
+import { BtnContainer, LogoutBtn, ModalTitle } from "./Logout.styled.js";
 import { Modal } from "../Modal/Modal.jsx";
 import Button from "../Button/Button.jsx";
 import Icons from "../../icons/sprite.svg";
@@ -27,8 +27,8 @@ export const Logout = ({ variant, type }) => {
       </LogoutBtn>
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)} variant="logout">
-          <h3>Already leaving?</h3>
-          <div>
+          <ModalTitle>Already leaving?</ModalTitle>
+          <BtnContainer>
             <Button
               text="Cancel"
               onClick={() => setIsModalOpen(false)}
@@ -40,7 +40,7 @@ export const Logout = ({ variant, type }) => {
               icon="logout"
               variant="logoutButton"
             />
-          </div>
+          </BtnContainer>
         </Modal>
       )}
     </>

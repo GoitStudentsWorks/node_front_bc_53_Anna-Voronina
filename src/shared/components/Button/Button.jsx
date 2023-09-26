@@ -11,9 +11,15 @@ const Button = ({
   iconOnClick = null,
   variant = 'bigButtonFirst',
   iconPosition = null,
+  isButtonsVisible,
 }) => {
   return (
-    <ButtonStyled type={type} onClick={onClick} $variant={variant}>
+    <ButtonStyled
+      type={type}
+      onClick={onClick}
+      $variant={variant}
+      $isButtonsVisible={isButtonsVisible}
+    >
       {iconPosition === 'left' && (
         <SvgStyled width="24" height="24" $iconVariant={iconVariant} onClick={iconOnClick}>
           <use href={`${sprite}#${icon}`}></use>
@@ -40,4 +46,5 @@ Button.propTypes = {
   variant: PropTypes.string,
   iconVariant: PropTypes.string,
   iconOnClick: PropTypes.func,
+  isButtonsVisible: PropTypes.bool,
 };

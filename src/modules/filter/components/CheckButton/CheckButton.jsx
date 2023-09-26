@@ -17,6 +17,7 @@ export const CheckButton = ({ checkboxes, handleCheckboxChange }) => {
               icon="cross-small"
               iconVariant="transparent"
               iconOnClick={() => handleCheckboxChange('ageOptions', option.value)}
+              iconPosition="right"
             />
           )}
         </div>
@@ -30,6 +31,7 @@ export const CheckButton = ({ checkboxes, handleCheckboxChange }) => {
               icon="cross-small"
               iconVariant="transparent"
               iconOnClick={() => handleCheckboxChange('genderOptions', option.value)}
+              iconPosition="right"
             />
           )}
         </div>

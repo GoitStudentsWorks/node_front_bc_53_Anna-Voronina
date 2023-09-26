@@ -32,8 +32,6 @@ export const LoginForm = () => {
   const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1']);
   const isSuccess = useSelector(selectIsSuccess);
 
-  console.log(`isSuccess:`, isSuccess);
-
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -42,7 +40,7 @@ export const LoginForm = () => {
   };
 
   const handleSubmit = (value, { resetForm }) => {
-    console.log(value);
+    
     const { email, password } = value;
     dispatch(loginThunk({ email, password }))
       .unwrap()

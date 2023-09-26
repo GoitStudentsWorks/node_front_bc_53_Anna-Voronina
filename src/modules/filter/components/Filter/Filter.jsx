@@ -20,7 +20,6 @@ import { CheckButton } from '../CheckButton/CheckButton';
 export const FIlter = () => {
   const [isButtonsVisible, setButtonsVisible] = useState(false);
   const [checkboxes, setCheckboxes] = useState(initialCheckboxesState);
-  console.log(`checkboxes:`, checkboxes);
 
   const toggleButtons = () => {
     setButtonsVisible(!isButtonsVisible);
@@ -57,6 +56,8 @@ export const FIlter = () => {
           variant="filter"
           icon="filters-3"
           iconVariant="transparent"
+          iconPosition="right"
+          isButtonsVisible={isButtonsVisible}
         />
         {isButtonsVisible && (
           <Filter2>
@@ -65,7 +66,7 @@ export const FIlter = () => {
                 onClick={() => showCheckboxDiv('showCheckboxByAge')}
                 text="By age"
                 variant="filterBySelect"
-                icon="chevron-down"
+                icon={checkboxes.showCheckboxByAge ? 'chevron-up' : 'chevron-down'}
                 iconVariant="transparent"
                 iconPosition="left"
               />
@@ -100,7 +101,7 @@ export const FIlter = () => {
                 onClick={() => showCheckboxDiv('showCheckboxByGender')}
                 text="By Gender"
                 variant="filterBySelect"
-                icon="chevron-down"
+                icon={checkboxes.showCheckboxByGender ? 'chevron-up' : 'chevron-down'}
                 iconVariant="transparent"
                 iconPosition="left"
               />

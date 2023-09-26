@@ -44,7 +44,6 @@ export const RegisterForm = () => {
   };
 
   const handleSubmit = (value, { resetForm }) => {
-    console.log(value);
     const { name, email, password } = value;
     dispatch(registerThunk({ name, email, password }))
       .unwrap()
@@ -53,7 +52,7 @@ export const RegisterForm = () => {
         navigate('/user');
       })
       .catch(error => {
-        console.log(error);
+        
         toast.error(error);
       });
     resetForm();

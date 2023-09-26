@@ -201,8 +201,13 @@ export const ButtonStyled = styled.button`
     $variant === 'filter' &&
     css`
       width: 100%;
-      background: none;
-      border: ${({ theme }) => theme.borders.medium};
+
+      background: ${({ theme, $isButtonsVisible }) =>
+        $isButtonsVisible ? theme.colors.blueGradient : 'none'};
+      border: ${({ theme, $isButtonsVisible }) =>
+        $isButtonsVisible ? theme.borders.none : theme.borders.medium};
+      color: ${({ theme, $isButtonsVisible }) =>
+        $isButtonsVisible ? theme.colors.white : theme.colors.blue};
 
       &:focus,
       &:hover {

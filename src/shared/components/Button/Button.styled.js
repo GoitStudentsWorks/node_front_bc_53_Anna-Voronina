@@ -95,18 +95,24 @@ export const ButtonStyled = styled.button`
       ${({ $variant }) =>
     $variant === 'mediumButtonFirst' &&
     css`
-      width: ${({ theme }) => theme.spacing(41.25)};
+      width: 100%;
       color: ${({ theme }) => theme.colors.white};
       background: ${({ theme }) => theme.colors.blue};
+      @media only screen and (min-width: 768px) {
+        width: ${({ theme }) => theme.spacing(41.25)};
+      }
     `}
 
  /* Варіант "mediumButtonSecond" */
       ${({ $variant }) =>
     $variant === 'mediumButtonSecond' &&
     css`
-      width: ${({ theme }) => theme.spacing(41.25)};
+      width: 100%;
       background: none;
       border: ${({ theme }) => theme.borders.medium};
+      @media only screen and (min-width: 768px) {
+        width: ${({ theme }) => theme.spacing(41.25)};
+      }
 
       &:focus,
       &:hover {
@@ -126,8 +132,8 @@ export const ButtonStyled = styled.button`
       @media only screen and (min-width: 768px) {
         width: ${({ theme }) => theme.spacing(32.25)};
       }
-    `}  
-    
+    `}
+
     ${({ $variant }) =>
     $variant === 'cancel' &&
     css`

@@ -49,8 +49,10 @@ export const Avatar = styled.div`
 
 export const SelectedPhoto = styled.label`
   position: absolute;
-  top: 216px;
-  left: 82px;
+  position: absolute;
+  top: 225px;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   input {
     display: none;
@@ -59,6 +61,7 @@ export const SelectedPhoto = styled.label`
   @media only screen and (min-width: 768px) {
     top: 213px;
     left: 489px;
+    transform: translate(0%, 0%);
   }
   @media only screen and (min-width: 1280px) {
     top: 216px;
@@ -91,12 +94,11 @@ export const EditPhoto = styled.div`
 `;
 
 export const PhotoSvg = styled.svg`
-  fill: ${({ theme }) => theme.colors.white};
-  stroke: ${({ theme }) => theme.colors.blue};
+  fill: ${({ theme }) => theme.colors.blue};
 
   &:hover,
   &:focus {
-    stroke: ${({ theme }) => theme.colors.yellow};
+    fill: ${({ theme }) => theme.colors.yellow};
   }
 `;
 

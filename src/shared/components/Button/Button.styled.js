@@ -56,7 +56,7 @@ export const ButtonStyled = styled.button`
   &:hover {
     border: none;
     background: ${({ theme }) => theme.colors.blueGradient};
-    transform: scale(1.01);
+    transform: scale(1.07);
   }
 
   &:hover::before,

@@ -42,8 +42,13 @@ export const IconCloseModal = styled.svg`
   position: absolute;
   top: ${({ theme }) => theme.spacing(3)};
   right: ${({ theme }) => theme.spacing(3)};
-  &:hover {
+
+  transition: stroke ${({ theme }) => theme.transitions.regular};
+
+  &:hover,
+  &:focus {
     cursor: pointer;
+    stroke: ${({ theme }) => theme.colors.yellow};
   }
   @media screen and (min-width: 768px) {
     top: ${({ theme }) => theme.spacing(6)};

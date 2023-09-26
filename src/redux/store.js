@@ -11,6 +11,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { globalReducer } from "./global/globalSlice";
+import { authReducer } from "./auth/authSlice";
 
 const persistConfig = {
   key: "token",
@@ -19,7 +20,7 @@ const persistConfig = {
   whitelist: ["token"],
 };
 
-const persistedReducer = persistReducer(persistConfig, globalReducer);
+const persistedReducer = persistReducer(persistConfig, authReducer);
 
 export const store = configureStore({
   reducer: {

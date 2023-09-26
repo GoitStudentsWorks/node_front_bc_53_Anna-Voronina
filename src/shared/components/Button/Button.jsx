@@ -8,18 +8,18 @@ const Button = ({
   type = "button",
   icon = null,
   variant = "bigButtonFirst",
-  iconPosition = "right",
+  iconPosition = null,
   iconVariant = "",
 }) => {
   return (
     <ButtonStyled type={type} onClick={onClick} $variant={variant}>
-      {iconPosition === "left" && icon !== null && (
+      {iconPosition === "left" && (
         <SvgStyled width="24" height="24" $iconVariant={iconVariant}>
           <use href={`${sprite}#${icon}`}></use>
         </SvgStyled>
       )}
       {text}
-      {iconPosition === "right" && icon !== null && (
+      {iconPosition === "right" && (
         <SvgStyled width="24" height="24" $iconVariant={iconVariant}>
           <use href={`${sprite}#${icon}`}></use>
         </SvgStyled>

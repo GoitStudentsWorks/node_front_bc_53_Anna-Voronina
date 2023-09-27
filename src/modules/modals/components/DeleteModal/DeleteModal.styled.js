@@ -32,7 +32,6 @@ export const Title = styled.h3`
   font-family: ${({ theme }) => theme.fonts.manrope.bold};
   font-size: ${({ theme }) => theme.spacing(6)};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
-  line-height: normal;
   letter-spacing: 0.96px;
 
   @media only screen and (min-width: 768px) {
@@ -47,7 +46,6 @@ export const TextStyled = styled.p`
   font-family: ${({ theme }) => theme.fonts.manrope.medium};
   font-size: ${({ theme }) => theme.spacing(3.5)};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
-  line-height: normal;
   letter-spacing: -0.14px;
 
   @media only screen and (min-width: 768px) {
@@ -60,7 +58,6 @@ export const BoldText = styled.span`
   font-family: ${({ theme }) => theme.fonts.manrope.bold};
   font-size: ${({ theme }) => theme.spacing(3.5)};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
-  line-height: normal;
   letter-spacing: -0.14px;
 
   @media only screen and (min-width: 768px) {

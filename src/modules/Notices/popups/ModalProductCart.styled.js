@@ -1,58 +1,74 @@
 import styled, { css } from "styled-components";
 
 export const ModalWrapper = styled.div`
-  position: relative;
-  /* width: 280px; */
-  padding: 8px 8px 0 8px;
-  margin-top: 10%;
-  /* height: 786px; */
+  padding-top: ${({ theme }) => theme.spacing(8)};
+
   @media screen and (min-width: 768px) {
-    margin: 0;
-    /* width: 681px; */
-    /* max-height: 540px; */
+    padding-top: ${({ theme }) => theme.spacing(2)};
+    padding-left: ${({ theme }) => theme.spacing(2)};
+    padding-right: ${({ theme }) => theme.spacing(2)};
   }
 `;
 
 export const TopWrapper = styled.div`
+  margin-bottom: 12px;
+
   @media screen and (min-width: 768px) {
     display: flex;
     gap: 24px;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
+  }
+`;
+
+export const PhotoDiv = styled.div`
+  position: relative;
+  height: 240px;
+  width: 240px;
+  margin: auto;
+  margin-bottom: 12px;
+
+  @media screen and (min-width: 768px) {
+    margin: 0;
+    height: 298px;
+    width: 262px;
   }
 `;
 
 export const CategoryName = styled.span`
   position: absolute;
   top: 16px;
-  border-top-right-radius: 14px;
-  border-bottom-right-radius: 14px;
+  display: block;
+  border-radius: 0px 14px 14px 0px;
+  width: 126px;
+  padding: 11px 12px;
+  text-align: center;
+
+  font-family: ${({ theme }) => theme.fonts.manrope.medium};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   font-size: ${({ theme }) => theme.fontSizes.s};
-  line-height: normal;
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.04em;
-  color: ${({ theme }) => theme.colors.black};
-  padding: 6px 53px 6px 20px;
+
   background: ${({ theme }) => theme.colors.lightBlue};
-  backdrop-filter: blur(50px);
 `;
 
 export const NoticesInfoImg = styled.img`
-  /* height: 240px; */
-  /* width: 240px; */
-  margin-bottom: 12px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  overflow: hidden;
   border-radius: 0px 0px 40px 40px;
+`;
+
+export const ParamsBox = styled.div`
+  width: 256px;
+  margin: 0 auto;
+
   @media screen and (min-width: 768px) {
-    height: 298px;
-    width: 262px;
+    width: 321px;
   }
 `;
 
-export const ParamsBox = styled.div``;
-
 export const NoticesInfoTitle = styled.h3`
+  font-family: ${({ theme }) => theme.fonts.manrope.bold};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   font-size: ${({ theme }) => theme.fontSizes.xl};
   line-height: normal;
@@ -62,14 +78,15 @@ export const NoticesInfoTitle = styled.h3`
 
   /* word-break: break-all; */
   @media screen and (min-width: 768px) {
+    width: 268px;
     font-size: 28px;
   }
 `;
 
 export const ParametersList = styled.ul`
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 8px;
-  margin-bottom: 28px;
 `;
 
 export const NoticesInfoParameters = styled.li`
@@ -89,9 +106,7 @@ export const NoticesInfoParameters = styled.li`
 
 export const ParametersValue = styled.span`
   width: 65%;
-  /* position: absolute; */
 
-  /* left: 76px; */
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   font-size: ${({ theme }) => theme.fontSizes.xs};
   line-height: normal;
@@ -109,39 +124,47 @@ export const ParametersValue = styled.span`
     `}
 `;
 
-export const BottomContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  @media screen and (min-width: 768px) {
-    gap: 70px;
-  }
-`;
+// export const BottomContent = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   gap: 12px;
+//   @media screen and (min-width: 768px) {
+//     gap: 70px;
+//   }
+// `;
 
 export const CommentsText = styled.p`
+  max-width: 256px;
+  margin: 0 auto;
+  margin-bottom: ${({ theme }) => theme.spacing(3)};
+
+  font-family: ${({ theme }) => theme.fonts.manrope.medium};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
-  font-size: ${({ theme }) => theme.fontSizes.m};
-  line-height: 24px;
-  color: ${({ theme }) => theme.colors.black};
+  font-size: ${({ theme }) => theme.fontSizes.s};
+  letter-spacing: 0.56px;
 
   @media screen and (min-width: 768px) {
-    font-size: 16px;
-    line-height: 24px;
+    max-width: 100%;
+    margin-bottom: ${({ theme }) => theme.spacing(17.5)};
+    font-size: ${({ theme }) => theme.fontSizes.m};
+    line-height: 1.5;
+    letter-spacing: 0.64px;
   }
 `;
 
 export const CommentsTextStrong = styled.span`
-  font-family: ${({ theme }) => theme.fonts.manrope.bold};
+  font-family: ${({ theme }) => theme.fonts.manrope.semiBold};
   font-weight: ${({ theme }) => theme.fontWeights.semiBold};
 `;
 
 export const WrapperBtn = styled.div`
+  margin-left: auto;
   display: flex;
   flex-direction: column-reverse;
   gap: 8px;
 
   @media screen and (min-width: 768px) {
-    display: inline-flex;
+    gap: 17px;
     justify-content: flex-end;
     flex-direction: row;
   }

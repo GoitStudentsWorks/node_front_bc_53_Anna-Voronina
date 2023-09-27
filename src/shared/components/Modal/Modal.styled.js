@@ -37,7 +37,7 @@ export const ModalStyled = styled.div`
     $variant === "petsModal" &&
     css`
       @media screen and (min-width: 768px) {
-        max-width: ${({ theme }) => theme.spacing(170.25)};
+        width: ${({ theme }) => theme.spacing(170.25)};
       }
     `}
 `;

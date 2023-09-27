@@ -20,7 +20,6 @@ export const Title = styled.h3`
   font-family: ${({ theme }) => theme.fonts.manrope.medium};
   font-size: ${({ theme }) => theme.spacing(6)};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
-  line-height: normal;
   letter-spacing: 0.96px;
 
   @media only screen and (min-width: 768px) {

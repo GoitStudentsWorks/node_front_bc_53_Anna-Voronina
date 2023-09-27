@@ -12,6 +12,5 @@ export const TitleStyled = styled.h2`
 
   @media screen and (min-width: 768px) {
     font-size: 36px;
-    letter-spacing: 1.44px;
   }
 `;

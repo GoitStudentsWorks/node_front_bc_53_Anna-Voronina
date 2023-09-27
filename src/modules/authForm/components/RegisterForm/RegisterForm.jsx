@@ -9,7 +9,7 @@ import { FormError } from '../FormError/FormError';
 import { IndicatorPasswordStrenght } from '../IndicatorPasswordStrenght/IndicatorPasswordStrenght';
 import { TogglePasswordIcon } from '../TogglePasswordVisibility/TogglePasswordVisibility';
 import { ConfirmPasswordIndicator } from '../ConfirmPasswordIndicator/ConfirmPasswordIndicator';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { Title } from '../Title/Title';
 import { TextWithRouterLink } from '../TextWithRouterLink/TextWithRouterLink';
 import Button from '@/shared/components/Button/Button';
@@ -44,7 +44,6 @@ export const RegisterForm = () => {
   };
 
   const handleSubmit = (value, { resetForm }) => {
-    console.log(value);
     const { name, email, password } = value;
     dispatch(registerThunk({ name, email, password }))
       .unwrap()
@@ -53,8 +52,8 @@ export const RegisterForm = () => {
         navigate('/user');
       })
       .catch(error => {
-        console.log(error);
-        // toast.error(error.message);
+        
+        toast.error(error);
       });
     resetForm();
   };

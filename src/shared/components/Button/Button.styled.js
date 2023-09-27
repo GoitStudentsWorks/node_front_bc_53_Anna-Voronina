@@ -8,6 +8,9 @@ export const SvgStyled = styled.svg`
     $iconVariant === 'transparent' &&
     css`
       fill: transparent;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
     `}
 `;
 
@@ -204,8 +207,13 @@ export const ButtonStyled = styled.button`
     $variant === 'filter' &&
     css`
       width: 100%;
-      background: none;
-      border: ${({ theme }) => theme.borders.medium};
+
+      background: ${({ theme, $isButtonsVisible }) =>
+        $isButtonsVisible ? theme.colors.blueGradient : 'none'};
+      border: ${({ theme, $isButtonsVisible }) =>
+        $isButtonsVisible ? theme.borders.none : theme.borders.medium};
+      color: ${({ theme, $isButtonsVisible }) =>
+        $isButtonsVisible ? theme.colors.white : theme.colors.blue};
 
       &:focus,
       &:hover {
@@ -233,7 +241,14 @@ export const ButtonStyled = styled.button`
 
       &:focus,
       &:hover {
-        color: ${({ theme }) => theme.colors.white};
+        border: none;
+        background: none;
+        transform: none;
+      }
+
+      &:hover::before,
+      &:focus::before {
+        opacity: 0;
       }
     `};
 
@@ -258,6 +273,45 @@ export const ButtonStyled = styled.button`
         padding: 6px 108px;
         font-size: ${({ theme }) => theme.fontSizes.m};
         letter-spacing: 0.64px;
+      }
+    `}
+
+  ${({ $variant }) =>
+    $variant === 'filterCheck' &&
+    css`
+      padding: 8px 16px;
+      gap: ${({ theme }) => theme.spacing(1)};
+      min-width: ${({ theme }) => theme.spacing(21.5)};
+      background: ${({ theme }) => theme.colors.white};
+      border-radius: ${({ theme }) => theme.radii.s};
+      box-shadow: ${({ theme }) => theme.shadows.primary};
+
+      font-family: ${({ theme }) => theme.fonts.inter.regular};
+      font-size: ${({ theme }) => theme.fontSizes.xs};
+      font-style: normal;
+      font-weight: ${({ theme }) => theme.fontWeights.regular};
+      line-height: 14.4px;
+      letter-spacing: normal;
+      transition: transform ${({ theme }) => theme.transitions.regular};
+      cursor: default;
+
+      &:focus,
+      &:hover {
+        border: none;
+        background: ${({ theme }) => theme.colors.white};
+        transform: none;
+        transform: scale(1.07);
+      }
+
+      &:hover::before,
+      &:focus::before {
+        opacity: 0;
+        
+      }
+
+      
+
+      
       }
     `}
 `;

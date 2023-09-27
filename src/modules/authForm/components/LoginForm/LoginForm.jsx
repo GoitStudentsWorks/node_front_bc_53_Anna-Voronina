@@ -22,7 +22,6 @@ import {
 } from './LoginForm.styled';
 import { FormError } from '../FormError/FormError';
 import { TogglePasswordIcon } from '../TogglePasswordVisibility/TogglePasswordVisibility';
-
 import { TextWithRouterLink } from '../TextWithRouterLink/TextWithRouterLink';
 import { loginSchema } from '../../validations/loginSchema';
 import Button from '@/shared/components/Button/Button';
@@ -33,8 +32,6 @@ export const LoginForm = () => {
   const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1']);
   const isSuccess = useSelector(selectIsSuccess);
 
-  console.log(`isSuccess:`, isSuccess);
-
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -43,7 +40,7 @@ export const LoginForm = () => {
   };
 
   const handleSubmit = (value, { resetForm }) => {
-    console.log(value);
+    
     const { email, password } = value;
     dispatch(loginThunk({ email, password }))
       .unwrap()
@@ -53,9 +50,7 @@ export const LoginForm = () => {
         );
       })
       .catch(error => {
-        console.log(error);
-
-        toast.error(error.message);
+        toast.error(error);
       });
     resetForm();
   };

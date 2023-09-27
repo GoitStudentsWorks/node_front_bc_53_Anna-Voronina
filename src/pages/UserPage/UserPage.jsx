@@ -18,7 +18,7 @@ import Button from '../../shared/components/Button/Button';
 const UserPage = () => {
   const [editing, setEditing] = useState(false);
   const isSuccess = useSelector(selectIsSuccess);
-  console.log(`isSuccess:`, isSuccess);
+  
 
   const handleEditClick = () => {
     setEditing(prevState => !prevState);

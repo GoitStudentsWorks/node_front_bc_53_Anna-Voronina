@@ -29,7 +29,7 @@ export const UserForm = ({ editing, handleEditClick }) => {
     },
     validationSchema: userValidationSchema,
     onSubmit: (values) => {
-      console.log("Form values:", values);
+      
     },
   });
   const { avatar, name, email, birthday, phone, city } = formik.values;

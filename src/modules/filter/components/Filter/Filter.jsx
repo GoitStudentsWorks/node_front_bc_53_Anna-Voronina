@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   CheckboxInput,
   CheckboxLabel,
@@ -15,41 +14,49 @@ import sprite from '@/shared/icons/sprite.svg';
 import Button from '@/shared/components/Button/Button';
 
 import { ageOptions, genderOptions } from '../../service/optionsService';
-import { initialCheckboxesState } from '../../service/initialCheckboxesState';
-import { CheckButton } from '../CheckButton/CheckButton';
+
 import { FilterButton } from '../FilterButton/FilterButton';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  setSelectCheckboxName,
+  toggleAgeOption,
+  toggleButtons,
+  toggleCheckboxByAge,
+  toggleCheckboxByGender,
+  toggleGenderOption,
+} from '../../../../redux/global/globalSlice';
+import { selectCheckboxes, selectIsButtonsVisible } from '../../../../redux/global/globalSelectors';
+import { CheckButton } from '../CheckButton/CheckButton';
 
 export const FIlter = () => {
-  const [isButtonsVisible, setButtonsVisible] = useState(false);
-  const [checkboxes, setCheckboxes] = useState(initialCheckboxesState);
-  console.log(checkboxes.selectedCheckbox ?? checkboxes);
+  const dispatch = useDispatch();
+  const isButtonsVisible = useSelector(selectIsButtonsVisible);
+  const checkboxes = useSelector(selectCheckboxes);
 
-  const toggleButtons = () => {
-    setButtonsVisible(!isButtonsVisible);
-    setCheckboxes(prevState => ({
-      ...prevState,
-      showCheckboxByAge: false,
-      showCheckboxByGender: false,
-    }));
+  // console.log(checkboxes);
+
+  const toggleButtonsFilter = () => {
+    dispatch(toggleButtons());
   };
 
-  const showCheckboxDiv = checkboxName => {
-    setCheckboxes(prevCheckboxes => ({
-      ...prevCheckboxes,
-      [checkboxName]: !prevCheckboxes[checkboxName],
-    }));
+  const toggleSelectByAge = () => {
+    dispatch(toggleCheckboxByAge());
   };
 
-  const handleCheckboxChange = (group, name) => {
-    const isChecked = !checkboxes[group][name];
-    setCheckboxes(prevCheckboxes => ({
-      ...prevCheckboxes,
-      [group]: {
-        ...prevCheckboxes[group],
-        [name]: !prevCheckboxes[group][name],
-      },
-      selectedCheckbox: isChecked ? name : null,
-    }));
+  const toggleSelectByGender = () => {
+    dispatch(toggleCheckboxByGender());
+  };
+
+  const toggleCheckBoxAgeOption = option => {
+    const isChecked = !checkboxes.ageOptions[option];
+    dispatch(toggleAgeOption(option));
+    dispatch(setSelectCheckboxName(isChecked ? option : null));
+  };
+
+  const toggleCheckBoxGenderOption = option => {
+    const isChecked = !checkboxes.genderOptions[option];
+    dispatch(toggleGenderOption(option));
+    dispatch(setSelectCheckboxName(isChecked ? option : null));
   };
 
   return (
@@ -57,7 +64,7 @@ export const FIlter = () => {
       <WrapperNoticesFilter>
         <FilterWrapper>
           <Button
-            onClick={toggleButtons}
+            onClick={toggleButtonsFilter}
             text="Filter"
             variant="filter"
             icon="filters-3"
@@ -69,12 +76,12 @@ export const FIlter = () => {
             <Filter2>
               <WrapperOpenOptions>
                 <Button
-                  onClick={() => showCheckboxDiv('showCheckboxByAge')}
                   text="By age"
                   variant="filterBySelect"
                   icon={checkboxes.showCheckboxByAge ? 'chevron-up' : 'chevron-down'}
                   iconVariant="transparent"
                   iconPosition="left"
+                  onClick={toggleSelectByAge}
                 />
                 {checkboxes.showCheckboxByAge && (
                   <Options>
@@ -85,7 +92,7 @@ export const FIlter = () => {
                           name="age"
                           value={option.value}
                           checked={checkboxes.ageOptions[option.value]}
-                          onChange={() => handleCheckboxChange('ageOptions', option.value)}
+                          onChange={() => toggleCheckBoxAgeOption(option.value)}
                         />
                         {option.name}
                         {checkboxes.ageOptions[option.value] ? (
@@ -104,12 +111,12 @@ export const FIlter = () => {
               </WrapperOpenOptions>
               <WrapperOpenOptions>
                 <Button
-                  onClick={() => showCheckboxDiv('showCheckboxByGender')}
                   text="By Gender"
                   variant="filterBySelect"
                   icon={checkboxes.showCheckboxByGender ? 'chevron-up' : 'chevron-down'}
                   iconVariant="transparent"
                   iconPosition="left"
+                  onClick={toggleSelectByGender}
                 />
                 {checkboxes.showCheckboxByGender && (
                   <Options>
@@ -120,7 +127,7 @@ export const FIlter = () => {
                           name="gender"
                           value={option.value}
                           checked={checkboxes.genderOptions[option.value]}
-                          onChange={() => handleCheckboxChange('genderOptions', option.value)}
+                          onChange={() => toggleCheckBoxGenderOption(option.value)}
                         />
                         {option.name}
                         {checkboxes.genderOptions[option.value] ? (
@@ -142,7 +149,9 @@ export const FIlter = () => {
         </FilterWrapper>
         <FilterButton />
       </WrapperNoticesFilter>
-      <CheckButton checkboxes={checkboxes} handleCheckboxChange={handleCheckboxChange} />
+      <div>
+        <CheckButton checkboxes={checkboxes} />
+      </div>
     </>
   );
 };

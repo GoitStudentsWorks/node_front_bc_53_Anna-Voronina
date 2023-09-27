@@ -10,4 +10,5 @@ export const initialCheckboxesState = {
     female: false,
     male: false,
   },
+  selectCheckbox: null,
 };

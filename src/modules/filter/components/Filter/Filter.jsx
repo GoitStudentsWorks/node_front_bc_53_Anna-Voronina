@@ -6,6 +6,7 @@ import {
   FilterWrapper,
   Options,
   SvgCheck,
+  WrapperNoticesFilter,
   WrapperOpenOptions,
 } from './Filter.styled';
 
@@ -16,10 +17,12 @@ import Button from '@/shared/components/Button/Button';
 import { ageOptions, genderOptions } from '../../service/optionsService';
 import { initialCheckboxesState } from '../../service/initialCheckboxesState';
 import { CheckButton } from '../CheckButton/CheckButton';
+import { FilterButton } from '../FilterButton/FilterButton';
 
 export const FIlter = () => {
   const [isButtonsVisible, setButtonsVisible] = useState(false);
   const [checkboxes, setCheckboxes] = useState(initialCheckboxesState);
+  console.log(checkboxes.selectedCheckbox ?? checkboxes);
 
   const toggleButtons = () => {
     setButtonsVisible(!isButtonsVisible);
@@ -38,102 +41,107 @@ export const FIlter = () => {
   };
 
   const handleCheckboxChange = (group, name) => {
+    const isChecked = !checkboxes[group][name];
     setCheckboxes(prevCheckboxes => ({
       ...prevCheckboxes,
       [group]: {
         ...prevCheckboxes[group],
         [name]: !prevCheckboxes[group][name],
       },
+      selectedCheckbox: isChecked ? name : null,
     }));
   };
 
   return (
     <>
-      <FilterWrapper>
-        <Button
-          onClick={toggleButtons}
-          text="Filter"
-          variant="filter"
-          icon="filters-3"
-          iconVariant="transparent"
-          iconPosition="right"
-          isButtonsVisible={isButtonsVisible}
-        />
-        {isButtonsVisible && (
-          <Filter2>
-            <WrapperOpenOptions>
-              <Button
-                onClick={() => showCheckboxDiv('showCheckboxByAge')}
-                text="By age"
-                variant="filterBySelect"
-                icon={checkboxes.showCheckboxByAge ? 'chevron-up' : 'chevron-down'}
-                iconVariant="transparent"
-                iconPosition="left"
-              />
-              {checkboxes.showCheckboxByAge && (
-                <Options>
-                  {ageOptions.map(option => (
-                    <CheckboxLabel key={option.value}>
-                      <CheckboxInput
-                        type="checkbox"
-                        name="age"
-                        value={option.value}
-                        checked={checkboxes.ageOptions[option.value]}
-                        onChange={() => handleCheckboxChange('ageOptions', option.value)}
-                      />
-                      {option.name}
-                      {checkboxes.ageOptions[option.value] ? (
-                        <SvgCheck width="24" height="24">
-                          <use href={sprite + '#check-round'}></use>
-                        </SvgCheck>
-                      ) : (
-                        <SvgCheck width="24" height="24">
-                          <use href={sprite + '#round'}></use>
-                        </SvgCheck>
-                      )}
-                    </CheckboxLabel>
-                  ))}
-                </Options>
-              )}
-            </WrapperOpenOptions>
-            <WrapperOpenOptions>
-              <Button
-                onClick={() => showCheckboxDiv('showCheckboxByGender')}
-                text="By Gender"
-                variant="filterBySelect"
-                icon={checkboxes.showCheckboxByGender ? 'chevron-up' : 'chevron-down'}
-                iconVariant="transparent"
-                iconPosition="left"
-              />
-              {checkboxes.showCheckboxByGender && (
-                <Options>
-                  {genderOptions.map(option => (
-                    <CheckboxLabel key={option.value}>
-                      <CheckboxInput
-                        type="checkbox"
-                        name="gender"
-                        value={option.value}
-                        checked={checkboxes.genderOptions[option.value]}
-                        onChange={() => handleCheckboxChange('genderOptions', option.value)}
-                      />
-                      {option.name}
-                      {checkboxes.genderOptions[option.value] ? (
-                        <SvgCheck width="24" height="24">
-                          <use href={sprite + '#check-round'}></use>
-                        </SvgCheck>
-                      ) : (
-                        <SvgCheck width="24" height="24">
-                          <use href={sprite + '#round'}></use>
-                        </SvgCheck>
-                      )}
-                    </CheckboxLabel>
-                  ))}
-                </Options>
-              )}
-            </WrapperOpenOptions>
-          </Filter2>
-        )}
-      </FilterWrapper>
+      <WrapperNoticesFilter>
+        <FilterWrapper>
+          <Button
+            onClick={toggleButtons}
+            text="Filter"
+            variant="filter"
+            icon="filters-3"
+            iconVariant="transparent"
+            iconPosition="right"
+            isButtonsVisible={isButtonsVisible}
+          />
+          {isButtonsVisible && (
+            <Filter2>
+              <WrapperOpenOptions>
+                <Button
+                  onClick={() => showCheckboxDiv('showCheckboxByAge')}
+                  text="By age"
+                  variant="filterBySelect"
+                  icon={checkboxes.showCheckboxByAge ? 'chevron-up' : 'chevron-down'}
+                  iconVariant="transparent"
+                  iconPosition="left"
+                />
+                {checkboxes.showCheckboxByAge && (
+                  <Options>
+                    {ageOptions.map(option => (
+                      <CheckboxLabel key={option.value}>
+                        <CheckboxInput
+                          type="checkbox"
+                          name="age"
+                          value={option.value}
+                          checked={checkboxes.ageOptions[option.value]}
+                          onChange={() => handleCheckboxChange('ageOptions', option.value)}
+                        />
+                        {option.name}
+                        {checkboxes.ageOptions[option.value] ? (
+                          <SvgCheck width="24" height="24">
+                            <use href={sprite + '#check-round'}></use>
+                          </SvgCheck>
+                        ) : (
+                          <SvgCheck width="24" height="24">
+                            <use href={sprite + '#round'}></use>
+                          </SvgCheck>
+                        )}
+                      </CheckboxLabel>
+                    ))}
+                  </Options>
+                )}
+              </WrapperOpenOptions>
+              <WrapperOpenOptions>
+                <Button
+                  onClick={() => showCheckboxDiv('showCheckboxByGender')}
+                  text="By Gender"
+                  variant="filterBySelect"
+                  icon={checkboxes.showCheckboxByGender ? 'chevron-up' : 'chevron-down'}
+                  iconVariant="transparent"
+                  iconPosition="left"
+                />
+                {checkboxes.showCheckboxByGender && (
+                  <Options>
+                    {genderOptions.map(option => (
+                      <CheckboxLabel key={option.value}>
+                        <CheckboxInput
+                          type="checkbox"
+                          name="gender"
+                          value={option.value}
+                          checked={checkboxes.genderOptions[option.value]}
+                          onChange={() => handleCheckboxChange('genderOptions', option.value)}
+                        />
+                        {option.name}
+                        {checkboxes.genderOptions[option.value] ? (
+                          <SvgCheck width="24" height="24">
+                            <use href={sprite + '#check-round'}></use>
+                          </SvgCheck>
+                        ) : (
+                          <SvgCheck width="24" height="24">
+                            <use href={sprite + '#round'}></use>
+                          </SvgCheck>
+                        )}
+                      </CheckboxLabel>
+                    ))}
+                  </Options>
+                )}
+              </WrapperOpenOptions>
+            </Filter2>
+          )}
+        </FilterWrapper>
+        <FilterButton />
+      </WrapperNoticesFilter>
       <CheckButton checkboxes={checkboxes} handleCheckboxChange={handleCheckboxChange} />
     </>
   );

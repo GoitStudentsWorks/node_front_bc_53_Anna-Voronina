@@ -8,6 +8,13 @@ export const SvgStyled = styled.svg`
     $iconVariant === 'transparent' &&
     css`
       fill: transparent;
+
+      cursor: pointer;
+    `}
+  ${({ $iconVariant }) =>
+    $iconVariant === 'filterbutton' &&
+    css`
+      fill: transparent;
       width: 16px;
       height: 16px;
       cursor: pointer;

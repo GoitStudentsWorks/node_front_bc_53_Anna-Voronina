@@ -6,6 +6,7 @@ import { ageOptions, genderOptions } from '../../service/optionsService';
 import Button from '@/shared/components/Button/Button';
 
 export const CheckButton = ({ checkboxes, handleCheckboxChange }) => {
+  console.log(checkboxes);
   return (
     <WrapperCheckButton>
       {ageOptions.map(option => (
@@ -15,7 +16,7 @@ export const CheckButton = ({ checkboxes, handleCheckboxChange }) => {
               text={transformString(option.value)}
               variant="filterCheck"
               icon="cross-small"
-              iconVariant="transparent"
+              iconVariant="filterbutton"
               iconOnClick={() => handleCheckboxChange('ageOptions', option.value)}
               iconPosition="right"
             />
@@ -29,7 +30,7 @@ export const CheckButton = ({ checkboxes, handleCheckboxChange }) => {
               text={transformString(option.value)}
               variant="filterCheck"
               icon="cross-small"
-              iconVariant="transparent"
+              iconVariant="filterbutton"
               iconOnClick={() => handleCheckboxChange('genderOptions', option.value)}
               iconPosition="right"
             />

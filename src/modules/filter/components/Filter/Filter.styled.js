@@ -80,3 +80,7 @@ export const SvgCheck = styled.svg`
   stroke: ${({ theme }) => theme.colors.blue};
   cursor: pointer;
 `;
+export const WrapperNoticesFilter = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+`;

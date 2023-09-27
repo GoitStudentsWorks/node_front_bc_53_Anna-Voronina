@@ -29,7 +29,7 @@ export const ModalStyled = styled.div`
     border-radius: ${({ theme }) => theme.spacing(10)};
 
     padding: ${({ theme }) => theme.spacing(6)};
-    max-width: ${({ theme }) => theme.spacing(152)};
+    width: ${({ theme }) => theme.spacing(152)};
     min-height: ${({ theme }) => theme.spacing(88)};
   }
 

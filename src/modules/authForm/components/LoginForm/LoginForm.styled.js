@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 export const WrapperForm = styled.div`
   padding: 40px 12px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,12 +30,14 @@ export const WrapperForm = styled.div`
 `;
 
 export const FormStyled = styled(Form)`
+  margin-top: ${({ theme }) => theme.spacing(10)};
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 100%;
   height: 100%;
+  margin-top: ${({ theme }) => theme.spacing(9)};
 `;
 
 export const WrapperField = styled.div`

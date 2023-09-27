@@ -1,16 +1,15 @@
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 
 import { registerSchema } from '@/modules/authForm/validations/registerSchema';
 import { usePasswordToggle } from '@/hooks/usePasswordToggle';
-// import { signUpThunk } from 'redux/auth/authOperations';
 
 import { FormError } from '../FormError/FormError';
 
 import { IndicatorPasswordStrenght } from '../IndicatorPasswordStrenght/IndicatorPasswordStrenght';
 import { TogglePasswordIcon } from '../TogglePasswordVisibility/TogglePasswordVisibility';
 import { ConfirmPasswordIndicator } from '../ConfirmPasswordIndicator/ConfirmPasswordIndicator';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { Title } from '../Title/Title';
 import { TextWithRouterLink } from '../TextWithRouterLink/TextWithRouterLink';
 import Button from '@/shared/components/Button/Button';
@@ -27,11 +26,15 @@ import {
 import { WrapperField } from './RegisterForm.styled';
 import { FormFieldIcon } from '../FormFieldIcon/FormFieldIcon';
 import { getClassName } from '../../helpers/getClassName';
+import { registerThunk } from '../../../../redux/auth/authOperations';
+import { setIsSuccess } from '../../../../redux/global/globalSlice';
+import { useNavigate } from 'react-router-dom';
 
 export const RegisterForm = () => {
   const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1', 'password2']);
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const initialValues = {
     name: '',
@@ -41,19 +44,17 @@ export const RegisterForm = () => {
   };
 
   const handleSubmit = (value, { resetForm }) => {
-    console.log(value);
-    // const { name, email, password } = value;
-    // dispatch(signUpThunk({ name, email, password }))
-    //   .unwrap()
-    //   .then(data => {
-    //     resetForm();
-    //     toast.success(
-    //       `${data.user.name}, Thank you for registering. Welcome to the Flea Nursery. We hope you don't get bitten :)`
-    //     );
-    //   })
-    //   .catch(error => {
-    //     toast.error(error.message);
-    //   });
+    const { name, email, password } = value;
+    dispatch(registerThunk({ name, email, password }))
+      .unwrap()
+      .then(() => {
+        dispatch(setIsSuccess(true));
+        navigate('/user');
+      })
+      .catch(error => {
+        
+        toast.error(error);
+      });
     resetForm();
   };
 
@@ -158,7 +159,7 @@ export const RegisterForm = () => {
               </WrapperAbsoluteMessages>
             </WrapperField>
             <WrapperButton>
-              <Button type="submit" text="Registration" variant="AuthButton" />
+              <Button type="submit" text="Registration" variant="authButton" />
               <TextWithRouterLink
                 text="Already have an account?  "
                 linkText="Login"

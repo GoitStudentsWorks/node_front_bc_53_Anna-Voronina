@@ -2,77 +2,79 @@ import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 export const List = styled.ul`
   display: none;
-  @media (max-width: 1600px) and (min-width: 768px) {
+
+  @media only screen and (min-width: 768px) {
     display: flex;
-  }
-  flex-flow: row nowrap;
-  margin-left: auto;
-  li {
-    margin-left: 40px;
-
-    @media (max-width: 768px) {
-      margin-left: 20px;
-    }
-  }
-  li:first-child {
-    margin-left: 0;
-  }
-
-  @media (max-width: 769px) and (min-width: 321px) {
-    display: none;
+    gap: 20px;
+    margin-right: 24px;
+    margin-left: auto;
   }
 
   ${({ $variant }) =>
-    $variant === "none" &&
+    $variant === "menu" &&
     css`
-      display: none;
+      display: flex;
+      flex-direction: column;
+      max-width: 165px;
+      margin: 0;
+
+      @media only screen and (min-width: 768px) {
+        display: none;
+      }
     `}
 
   ${({ $variant }) =>
-    $variant === "flex" &&
+    $variant === "attentionModal" &&
     css`
       display: flex;
-      @media (max-width: 320px) {
-        margin-top: 40px;
-        align-items: center;
-        flex-flow: column;
+      flex-direction: column;
+      gap: 12px;
 
-        &:last-child {
-          margin: 0;
-          margin-left: 0;
-        }
-        li:last-child {
-          margin-left: 0;
-        }
+      @media only screen and (min-width: 768px) {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        margin: 0;
       }
     `}
 `;
 
 export const LinkStyles = styled(Link)`
-  width: 165px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: ${({ theme }) => theme.spacing(2)};
+  min-width: 142px;
   height: 38px;
+  padding: 8px 20px;
+
   border: 2px solid ${({ theme }) => theme.colors.yellow};
   border-radius: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 4px 0 4px 0;
   text-align: center;
-  position: relative;
 
   svg {
-    position: absolute;
-    top: 5px;
-    left: 106px;
     width: 24px;
     height: 24px;
-    fill: #ffc107;
-    margin-left: 4px;
+    fill: ${({ theme }) => theme.colors.white};
   }
-  color: ${({ theme }) => theme.colors.yellow};
+
   font-family: ${({ theme }) => theme.fonts.manrope.bold};
-  &.active {
-    color: ${({ theme }) => theme.colors.white};
-    background-color: ${({ theme }) => theme.colors.yellow};
+  color: ${({ theme }) => theme.colors.yellow};
+  background-color: transparent;
+
+  transition: transform ${({ theme }) => theme.transitions.regular};
+
+  &:hover,
+  &:focus {
+    transform: scale(1.07);
   }
+
+  ${({ $type }) =>
+    $type === "login" &&
+    css`
+      min-width: 165px;
+      color: ${({ theme }) => theme.colors.white};
+      background-color: ${({ theme }) => theme.colors.yellow};
+    `}
 `;

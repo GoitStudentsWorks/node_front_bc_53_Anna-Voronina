@@ -22,12 +22,19 @@ export const WrapperOpenOptions = styled.div`
   width: 100%;
   border-radius: ${({ theme }) => theme.radii.s};
   background-color: ${({ theme }) => theme.colors.lightBlue};
+  transition: transform ${({ theme }) => theme.transitions.regular};
+
+  &:focus,
+  &:hover {
+    border: none;
+    transform: scale(1.07);
+  }
 `;
 
 export const Options = styled.div`
   width: 100%;
   display: flex;
-  padding: 0 14px 14px 14px;
+  padding: 8px 14px 14px 14px;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
@@ -49,6 +56,13 @@ export const CheckboxLabel = styled.label`
   line-height: 15.6px;
   letter-spacing: normal;
   color: ${({ theme }) => theme.colors.blue};
+  transition: transform ${({ theme }) => theme.transitions.regular};
+
+  &:focus,
+  &:hover {
+    border: none;
+    transform: scale(1.07);
+  }
 `;
 
 export const CheckboxInput = styled.input`

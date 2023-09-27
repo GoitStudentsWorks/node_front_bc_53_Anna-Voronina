@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const connectionsApi = axios.create({
-  baseURL: "/api/",
+  baseURL: "https://petgrammers-backend.onrender.com/api",
 });
 
 /**
@@ -38,7 +38,7 @@ export const login = async (user) => {
 
 // Logout user
 export const logout = async () => {
-  await connectionsApi.delete(`/auth/logout`);
+  await connectionsApi.post(`/auth/logout`);
   clearToken();
 };
 

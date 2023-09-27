@@ -8,11 +8,14 @@ export const SvgStyled = styled.svg`
     $iconVariant === 'transparent' &&
     css`
       fill: transparent;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
     `}
 `;
 
 export const ButtonStyled = styled.button`
-  min-height: ${({ theme }) => theme.spacing(10)};
+  height: ${({ theme }) => theme.spacing(10)};
   position: relative;
   display: flex;
   align-items: center;
@@ -27,7 +30,6 @@ export const ButtonStyled = styled.button`
   letter-spacing: 0.64px;
 
   color: ${({ theme }) => theme.colors.blue};
-  background-color: ${({ theme }) => theme.colors.lightBlue};
 
   border-radius: ${({ theme }) => theme.radii.l};
   border: none;
@@ -57,7 +59,7 @@ export const ButtonStyled = styled.button`
   &:hover {
     border: none;
     background: ${({ theme }) => theme.colors.blueGradient};
-    transform: scale(1.01);
+    transform: scale(1.07);
   }
 
   &:hover::before,
@@ -96,18 +98,24 @@ export const ButtonStyled = styled.button`
       ${({ $variant }) =>
     $variant === 'mediumButtonFirst' &&
     css`
-      width: ${({ theme }) => theme.spacing(41.25)};
+      width: 100%;
       color: ${({ theme }) => theme.colors.white};
       background: ${({ theme }) => theme.colors.blue};
+      @media only screen and (min-width: 768px) {
+        width: ${({ theme }) => theme.spacing(41.25)};
+      }
     `}
 
  /* Варіант "mediumButtonSecond" */
       ${({ $variant }) =>
     $variant === 'mediumButtonSecond' &&
     css`
-      width: ${({ theme }) => theme.spacing(41.25)};
+      width: 100%;
       background: none;
       border: ${({ theme }) => theme.borders.medium};
+      @media only screen and (min-width: 768px) {
+        width: ${({ theme }) => theme.spacing(41.25)};
+      }
 
       &:focus,
       &:hover {
@@ -119,35 +127,22 @@ export const ButtonStyled = styled.button`
       ${({ $variant }) =>
     $variant === 'logoutButton' &&
     css`
-      width: 256px;
-      padding: 8px 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: ${({ theme }) => theme.spacing(2)};
+      width: ${({ theme }) => theme.spacing(64)};
       border-radius: ${({ theme }) => theme.radii.l};
       color: ${({ theme }) => theme.colors.white};
       background-color: ${({ theme }) => theme.colors.blue};
 
-      svg {
-        width: 24px;
-        height: 24px;
-        fill: transparent;
-        stroke: ${({ theme }) => theme.colors.white};
-      }
-
       @media only screen and (min-width: 768px) {
-        width: 129px;
+        width: ${({ theme }) => theme.spacing(32.25)};
       }
-    `}  
-    
+    `}
+
     ${({ $variant }) =>
-    $variant === 'Cancel' &&
+    $variant === 'cancel' &&
     css`
-      width: 256px;
-      height: 40px;
-      border: 2px solid ${({ theme }) => theme.colors.blue};
-      background-color: ${({ theme }) => theme.colors.white};
+      width: ${({ theme }) => theme.spacing(64)};
+      border: ${({ theme }) => theme.borders.medium};
+      background-color: none;
       color: ${({ theme }) => theme.colors.blue};
 
       &:focus,
@@ -158,26 +153,42 @@ export const ButtonStyled = styled.button`
       }
 
       @media only screen and (min-width: 768px) {
-        width: 129px;
-        padding: 8px 20px;
+        width: ${({ theme }) => theme.spacing(32.25)};
       }
     `}
 
- /* Варіант "mobileAddButton" */
-      ${({ $variant }) =>
-    $variant === 'mobileAddButton' &&
+  ${({ $variant }) =>
+    $variant === 'addButton' &&
     css`
       width: ${({ theme }) => theme.spacing(20)};
       height: ${({ theme }) => theme.spacing(20)};
+      flex-direction: column-reverse;
+      gap: 4px;
+      border-radius: ${({ theme }) => theme.radii.round};
       font-size: ${({ theme }) => theme.fontSizes.xs};
       font-weight: ${({ theme }) => theme.fontWeights.semiBold};
       color: ${({ theme }) => theme.colors.white};
       background: ${({ theme }) => theme.colors.blue};
       border-radius: ${({ theme }) => theme.radii.round};
+      background: linear-gradient(290deg, #419ef1 0%, #9bd0ff 107.89%);
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+      @media only screen and (min-width: 768px) {
+        z-index: 0;
+        height: 40px;
+        width: 129px;
+        flex-direction: row;
+        padding: 8px 20px;
+        gap: 8px;
+        border-radius: ${({ theme }) => theme.radii.l};
+        background: ${({ theme }) => theme.colors.blue};
+      }
     `}
 
     ${({ $variant }) =>
-    $variant === 'AuthButton' &&
+    $variant === 'authButton' &&
     css`
       width: 100%;
       padding: 10px 28px;
@@ -196,8 +207,13 @@ export const ButtonStyled = styled.button`
     $variant === 'filter' &&
     css`
       width: 100%;
-      background: none;
-      border: ${({ theme }) => theme.borders.medium};
+
+      background: ${({ theme, $isButtonsVisible }) =>
+        $isButtonsVisible ? theme.colors.blueGradient : 'none'};
+      border: ${({ theme, $isButtonsVisible }) =>
+        $isButtonsVisible ? theme.borders.none : theme.borders.medium};
+      color: ${({ theme, $isButtonsVisible }) =>
+        $isButtonsVisible ? theme.colors.white : theme.colors.blue};
 
       &:focus,
       &:hover {
@@ -225,7 +241,14 @@ export const ButtonStyled = styled.button`
 
       &:focus,
       &:hover {
-        color: ${({ theme }) => theme.colors.white};
+        border: none;
+        background: none;
+        transform: none;
+      }
+
+      &:hover::before,
+      &:focus::before {
+        opacity: 0;
       }
     `};
 
@@ -234,7 +257,6 @@ export const ButtonStyled = styled.button`
     css`
       min-height: 31px;
       padding: 5px 107px;
-      margin: 5px auto 20px;
       font-size: ${({ theme }) => theme.fontSizes.s};
       letter-spacing: 0.56px;
       background-color: ${({ theme }) => theme.colors.blue};
@@ -251,6 +273,45 @@ export const ButtonStyled = styled.button`
         padding: 6px 108px;
         font-size: ${({ theme }) => theme.fontSizes.m};
         letter-spacing: 0.64px;
+      }
+    `}
+
+  ${({ $variant }) =>
+    $variant === 'filterCheck' &&
+    css`
+      padding: 8px 16px;
+      gap: ${({ theme }) => theme.spacing(1)};
+      min-width: ${({ theme }) => theme.spacing(21.5)};
+      background: ${({ theme }) => theme.colors.white};
+      border-radius: ${({ theme }) => theme.radii.s};
+      box-shadow: ${({ theme }) => theme.shadows.primary};
+
+      font-family: ${({ theme }) => theme.fonts.inter.regular};
+      font-size: ${({ theme }) => theme.fontSizes.xs};
+      font-style: normal;
+      font-weight: ${({ theme }) => theme.fontWeights.regular};
+      line-height: 14.4px;
+      letter-spacing: normal;
+      transition: transform ${({ theme }) => theme.transitions.regular};
+      cursor: default;
+
+      &:focus,
+      &:hover {
+        border: none;
+        background: ${({ theme }) => theme.colors.white};
+        transform: none;
+        transform: scale(1.07);
+      }
+
+      &:hover::before,
+      &:focus::before {
+        opacity: 0;
+        
+      }
+
+      
+
+      
       }
     `}
 `;

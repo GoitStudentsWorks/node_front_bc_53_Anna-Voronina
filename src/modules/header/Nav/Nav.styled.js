@@ -1,82 +1,56 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled, { css } from "styled-components";
+
 export const List = styled.ul`
   display: none;
-  @media (max-width: 1600px) and (min-width: 1075px) {
+
+  @media only screen and (min-width: 1280px) {
     display: flex;
-  }
-  margin: 10px 0 10px 0;
-
-  li {
-    margin-right: 40px;
-    ${({ $variant }) =>
-      $variant === "flex" &&
-      css`
-        margin-bottom: 60px;
-        @media (max-width: 320px) {
-          margin-bottom: 20px;
-        }
-        &:last-child {
-          margin-bottom: 0;
-        }
-      `}
-  }
-
-  @media (max-width: 1075px) and (min-width: 769px) {
-    display: none;
+    margin-left: 160px;
+    gap: ${({ theme }) => theme.spacing(10)};
   }
 
   ${({ $variant }) =>
-    $variant === "flex" &&
+    $variant === "menu" &&
     css`
-      @media (max-width: 768px) {
-        display: flex;
-        flex-flow: column nowrap;
-        margin-left: 32px;
-      }
-      @media (max-width: 320px) {
-        display: flex;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
 
-        margin-top: 40px;
-        align-items: center;
-        flex-flow: column;
-
-        &:last-child {
-          margin: 0;
-
-          margin-left: 43px;
-        }
-        li:last-child {
-          margin-left: 0;
-        }
+      @media only screen and (min-width: 768px) {
+        gap: 60px;
       }
     `}
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled(NavLink)`
   color: ${({ theme }) => theme.colors.black};
   font-size: ${({ theme }) => theme.fontSizes.l};
-  font-family: ${({ theme }) => theme.fonts.manrope.medium};
+  font-family: ${({ theme }) => theme.fonts.manrope.semiBold};
+  font-weight: ${({ theme }) => theme.fontWeights.semiBold};
+  letter-spacing: 0.8px;
 
-  @media (max-width: 768px) {
-    font-size: ${({ theme }) => theme.fontSizes.xxl};
+  transition: transform ${({ theme }) => theme.transitions.regular};
+
+  &:hover,
+  &:focus {
+    transform: scale(1.07);
   }
-  @media (max-width: 320px) {
-    font-size: 32px;
-  }
+
   &.active {
     color: ${({ theme }) => theme.colors.yellow};
   }
-`;
 
-export const Item = styled.li`
-  @media (max-width: 768px) {
-    margin-bottom: 60px;
-  }
-  @media (max-width: 320px) {
-    margin-bottom: 20px;
-  }
-  &:last-child {
-    margin-bottom: 0;
-  }
+  ${({ $variant }) =>
+    $variant === "menu" &&
+    css`
+      font-size: 32px;
+      letter-spacing: 1.28px;
+
+      @media only screen and (min-width: 768px) {
+        font-size: ${({ theme }) => theme.fontSizes.xxl};
+      }
+    `}
 `;

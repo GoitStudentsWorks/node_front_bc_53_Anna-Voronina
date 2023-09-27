@@ -8,16 +8,16 @@ export const usePasswordStrength = () => {
 
   const getPasswordStrengthColor = password => {
     const passwordStrengthRanges = [
-      { length: 1, color: '#FD450B' },
-      { length: 3, color: '#FF6231' },
-      { length: 4, color: '#F37952' },
-      { length: 5, color: '#FC675D' },
-      { length: 6, color: '#F6C881' },
-      { length: 7, color: '#FBEC67' },
-      { length: 8, color: '#F8E32B' },
-      { length: 9, color: '#CAF98F' },
-      { length: 10, color: '#52E54F' },
-      { length: Infinity, color: '#099E06' }, // Для довжини більше 10
+      { length: 1, color: '#CC0000' },
+      { length: 3, color: '#FF0000' },
+      { length: 4, color: '#FF2A00' },
+      { length: 5, color: '#FF5500' },
+      { length: 6, color: '#FFAA00' },
+      { length: 7, color: '#FFC107' },
+      { length: 8, color: '#B39500' },
+      { length: 9, color: '#5DBA00' },
+      { length: 10, color: '#12B000' },
+      { length: Infinity, color: '#2A8000' }, 
     ];
 
     const { color } = passwordStrengthRanges.find(range => password?.length <= range.length) || {
@@ -28,9 +28,17 @@ export const usePasswordStrength = () => {
 
   const getPasswordStrengthText = password => {
     const passwordStrengthRanges = [
-      { min: 2, max: 6, text: 'Weak Password' },
-      { min: 7, max: 10, text: 'Medium Strength Password' },
-      { min: 11, max: Infinity, text: 'Strong Password' },
+      { min: 1, max: 1, text: 'Invalid Password' },
+      { min: 2, max: 2, text: 'Very Weak Password' },
+      { min: 3, max: 3, text: 'Weak Password' },
+      { min: 4, max: 4, text: 'Below Average Password' },
+      { min: 5, max: 5, text: 'Average Password' },
+      { min: 6, max: 6, text: 'Moderate Password' },
+      { min: 7, max: 7, text: 'Invalid Password' },
+      { min: 8, max: 8, text: 'Strong Password' },
+      { min: 9, max: 9, text: 'Very Strong Password' },
+      { min: 10, max: 10, text: 'Robust Password' },
+      { min: 11, max: Infinity, text: 'Secure!!!' },
     ];
 
     const { text } = passwordStrengthRanges.find(

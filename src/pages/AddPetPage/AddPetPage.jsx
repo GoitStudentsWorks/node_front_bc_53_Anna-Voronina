@@ -1,5 +1,11 @@
+import SelectForm from "../../modules/addPet/components/selectForm/selectForm";
+
 const AddPetPage = () => {
-  return <div>AddPetPage</div>;
+  return (
+    <>
+      <SelectForm />
+    </>
+  );
 };
 
 export default AddPetPage;

@@ -1,8 +1,19 @@
 import styled from "styled-components";
+
 export const Headers = styled.header`
-  margin: 20px 16px 0 16px;
-  height: 48px;
-  background-color: #fef9f9;
+  padding-top: 20px;
+
+  @media only screen and (min-width: 768px) {
+    padding-top: 24px;
+  }
+`;
+
+export const HeaderNav = styled.nav`
   display: flex;
-  /* border: 1px solid tomato; */
+  justify-content: space-between;
+  align-items: center;
+
+  @media only screen and (min-width: 768px) {
+    justify-content: flex-start;
+  }
 `;

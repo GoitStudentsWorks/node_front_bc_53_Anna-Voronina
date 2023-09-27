@@ -27,12 +27,13 @@ import { loginSchema } from '../../validations/loginSchema';
 import Button from '@/shared/components/Button/Button';
 import { FormFieldIcon } from '../FormFieldIcon/FormFieldIcon';
 import { getClassName } from '../../helpers/getClassName';
+import { useNavigate } from 'react-router-dom';
 
 export const LoginForm = () => {
   const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1']);
-  const isSuccess = useSelector(selectIsSuccess);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const initialValues = {
     email: '',
@@ -40,14 +41,11 @@ export const LoginForm = () => {
   };
 
   const handleSubmit = (value, { resetForm }) => {
-    
     const { email, password } = value;
     dispatch(loginThunk({ email, password }))
       .unwrap()
-      .then(data => {
-        toast.success(
-          `${data.token}, Thank you for registering. Welcome to the Flea Nursery. We hope you don't get bitten :)`
-        );
+      .then(() => {
+        navigate('/user');
       })
       .catch(error => {
         toast.error(error);

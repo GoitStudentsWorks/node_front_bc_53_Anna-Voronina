@@ -1,5 +1,13 @@
-import React from "react";
+import data from "../ourFriends.json";
+import { OurFriendsCard } from "../OurFriendsCard/OurFriendsCard";
+import { StyledList } from "./OurFriendsList.styled";
 
 export const OurFriendsList = () => {
-  return <div>OurFriendsList</div>;
+  return (
+    <StyledList>
+      {data.map((res, idx) => {
+        return <OurFriendsCard key={idx} {...res} />;
+      })}
+    </StyledList>
+  );
 };

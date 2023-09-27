@@ -1,22 +1,27 @@
-import { useState } from "react";
-import { Container } from "../../shared/components/Container/Container";
-import { Logout } from "../../shared/components/Logout/Logout";
-import Button from "../../shared/components/Button/Button";
-import { PetsData } from "../../modules/user/components/PetsData/PetsData";
-import { UserData } from "../../modules/user/components/UserData/UserData";
+import { useState } from 'react';
+import { Container } from '../../shared/components/Container/Container';
+import { Logout } from '../../shared/components/Logout/Logout';
+import { PetsData } from '../../modules/user/components/PetsData/PetsData';
+import { UserData } from '../../modules/user/components/UserData/UserData';
 import {
+  AddBtn,
   ContainerUserPage,
   TitleUserInf,
   TitleUserPets,
   UserFormContainer,
-  AddBtn,
-} from "./UserPage.styled";
+} from './UserPage.styled';
+import { useSelector } from 'react-redux';
+import { selectIsSuccess } from '../../redux/global/globalSelectors';
+import { ModalAuth } from '../../modules/authForm/components/ModalAuth/ModalAuth';
+import Button from '../../shared/components/Button/Button';
 
 const UserPage = () => {
   const [editing, setEditing] = useState(false);
+  const isSuccess = useSelector(selectIsSuccess);
+  console.log(`isSuccess:`, isSuccess);
 
   const handleEditClick = () => {
-    setEditing((prevState) => !prevState);
+    setEditing(prevState => !prevState);
   };
 
   return (
@@ -31,12 +36,18 @@ const UserPage = () => {
         </div>
         <div>
           <AddBtn to="/add-pet">
-            <Button text="Add&nbsp;pet" icon="plus" variant="AddButton" />
+            <Button
+              text="Add&nbsp;pet"
+              icon="plus"
+              iconPosition="right"
+              variant="addButton"
+            />
           </AddBtn>
           <TitleUserPets>My pets:</TitleUserPets>
           <PetsData />
         </div>
       </ContainerUserPage>
+      {isSuccess && <ModalAuth />}
     </Container>
   );
 };

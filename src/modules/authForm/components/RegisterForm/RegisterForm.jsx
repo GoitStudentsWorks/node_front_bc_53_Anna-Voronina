@@ -1,18 +1,18 @@
-import { useDispatch } from "react-redux";
-import { Formik } from "formik";
+import { useDispatch } from 'react-redux';
+import { Formik } from 'formik';
 
-import { registerSchema } from "@/modules/authForm/validations/registerSchema";
-import { usePasswordToggle } from "@/hooks/usePasswordToggle";
+import { registerSchema } from '@/modules/authForm/validations/registerSchema';
+import { usePasswordToggle } from '@/hooks/usePasswordToggle';
 
-import { FormError } from "../FormError/FormError";
+import { FormError } from '../FormError/FormError';
 
-import { IndicatorPasswordStrenght } from "../IndicatorPasswordStrenght/IndicatorPasswordStrenght";
-import { TogglePasswordIcon } from "../TogglePasswordVisibility/TogglePasswordVisibility";
-import { ConfirmPasswordIndicator } from "../ConfirmPasswordIndicator/ConfirmPasswordIndicator";
-// import { toast } from 'react-toastify';
-import { Title } from "../Title/Title";
-import { TextWithRouterLink } from "../TextWithRouterLink/TextWithRouterLink";
-import Button from "@/shared/components/Button/Button";
+import { IndicatorPasswordStrenght } from '../IndicatorPasswordStrenght/IndicatorPasswordStrenght';
+import { TogglePasswordIcon } from '../TogglePasswordVisibility/TogglePasswordVisibility';
+import { ConfirmPasswordIndicator } from '../ConfirmPasswordIndicator/ConfirmPasswordIndicator';
+import { toast } from 'react-toastify';
+import { Title } from '../Title/Title';
+import { TextWithRouterLink } from '../TextWithRouterLink/TextWithRouterLink';
+import Button from '@/shared/components/Button/Button';
 
 import {
   WrapperМessages,
@@ -22,42 +22,38 @@ import {
   WrapperForm,
   WrapperAbsoluteMessages,
   WrapperAbsoluteEye,
-} from "../LoginForm/LoginForm.styled";
-import { WrapperField } from "./RegisterForm.styled";
-import { FormFieldIcon } from "../FormFieldIcon/FormFieldIcon";
-import { getClassName } from "../../helpers/getClassName";
-import { registerThunk } from "../../../../redux/auth/authOperations";
+} from '../LoginForm/LoginForm.styled';
+import { WrapperField } from './RegisterForm.styled';
+import { FormFieldIcon } from '../FormFieldIcon/FormFieldIcon';
+import { getClassName } from '../../helpers/getClassName';
+import { registerThunk } from '../../../../redux/auth/authOperations';
+import { setIsSuccess } from '../../../../redux/global/globalSlice';
+import { useNavigate } from 'react-router-dom';
 
 export const RegisterForm = () => {
-  const { showPasswords, togglePasswordVisibility } = usePasswordToggle([
-    "password1",
-    "password2",
-  ]);
+  const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1', 'password2']);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const initialValues = {
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
   };
 
   const handleSubmit = (value, { resetForm }) => {
-    console.log(value);
     const { name, email, password } = value;
     dispatch(registerThunk({ name, email, password }))
       .unwrap()
-      .then((data) => {
-        resetForm();
-        window.location.href = "/user";
-        // toast.success(
-        //   `${data.user.name}, Thank you for registering. Welcome to the Flea Nursery. We hope you don't get bitten :)`
-        // );
+      .then(() => {
+        dispatch(setIsSuccess(true));
+        navigate('/user');
       })
-      .catch((error) => {
-        console.log(error);
-        // toast.error(error.message);
+      .catch(error => {
+        
+        toast.error(error);
       });
     resetForm();
   };
@@ -105,7 +101,7 @@ export const RegisterForm = () => {
               <WrapperAbsoluteMessages>
                 <WrapperAbsoluteEye>
                   <FieldStyled
-                    type={showPasswords.password1 ? "text" : "password"}
+                    type={showPasswords.password1 ? 'text' : 'password'}
                     name="password"
                     title="Enter the password more difficult, letter, digit, capital letter."
                     placeholder="Password"
@@ -116,39 +112,28 @@ export const RegisterForm = () => {
                     autoComplete="off"
                     className={getClassName(touched.password, errors.password)}
                   />
-                  <FormFieldIcon
-                    touched={touched.password}
-                    error={errors.password}
-                    right="52px"
-                  />
+                  <FormFieldIcon touched={touched.password} error={errors.password} right="52px" />
 
                   <TogglePasswordIcon
                     showPassword={showPasswords.password1}
-                    onToggle={() => togglePasswordVisibility("password1")}
+                    onToggle={() => togglePasswordVisibility('password1')}
                   />
                 </WrapperAbsoluteEye>
                 <WrapperМessages>
                   <IndicatorPasswordStrenght values={values} />
-                  <FormError
-                    name="password"
-                    touched={touched}
-                    errors={errors}
-                  />
+                  <FormError name="password" touched={touched} errors={errors} />
                 </WrapperМessages>
               </WrapperAbsoluteMessages>
               <WrapperAbsoluteMessages>
                 <WrapperAbsoluteEye>
                   <FieldStyled
-                    type={showPasswords.password2 ? "text" : "password"}
+                    type={showPasswords.password2 ? 'text' : 'password'}
                     name="confirmPassword"
                     title="Enter the password more difficult, letter, digit, capital letter."
                     placeholder="Confirm Password"
                     autoComplete="off"
                     required
-                    className={getClassName(
-                      touched.confirmPassword,
-                      errors.confirmPassword
-                    )}
+                    className={getClassName(touched.confirmPassword, errors.confirmPassword)}
                   />
                   <FormFieldIcon
                     touched={touched.confirmPassword}
@@ -158,7 +143,7 @@ export const RegisterForm = () => {
 
                   <TogglePasswordIcon
                     showPassword={showPasswords.password2}
-                    onToggle={() => togglePasswordVisibility("password2")}
+                    onToggle={() => togglePasswordVisibility('password2')}
                   />
                 </WrapperAbsoluteEye>
 
@@ -166,8 +151,7 @@ export const RegisterForm = () => {
                   <ConfirmPasswordIndicator
                     values={values}
                     passwordsMatch={
-                      values.password === values.confirmPassword &&
-                      values.confirmPassword !== ""
+                      values.password === values.confirmPassword && values.confirmPassword !== ''
                     }
                   />
                   <FormError name="confirmPassword" />
@@ -175,7 +159,7 @@ export const RegisterForm = () => {
               </WrapperAbsoluteMessages>
             </WrapperField>
             <WrapperButton>
-              <Button type="submit" text="Registration" variant="AuthButton" />
+              <Button type="submit" text="Registration" variant="authButton" />
               <TextWithRouterLink
                 text="Already have an account?  "
                 linkText="Login"

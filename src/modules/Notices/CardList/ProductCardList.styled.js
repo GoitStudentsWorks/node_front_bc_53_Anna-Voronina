@@ -44,7 +44,7 @@ export const PetCategory = styled.span`
   position: absolute;
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   font-size: ${({ theme }) => theme.fontSizes.s};
-  line-height: ${({ theme }) => theme.fontSizes.m};
+  line-height: normal;
   font-family: ${({ theme }) => theme.fonts.medium} !important;
   display: flex;
   align-items: center;
@@ -98,7 +98,6 @@ export const HeartIconPrimal = styled.svg`
 `;
 
 export const NoticesItemImg = styled.img`
-
   width: 100%;
 
   @media screen and (min-width: 768px) {
@@ -111,7 +110,6 @@ export const ContentWrapper = styled.div`
   padding: 20px 20px 24px;
   display: flex;
   flex-direction: column;
-
 `;
 
 export const ItemTitle = styled.h3`
@@ -172,7 +170,6 @@ export const InformationMap = styled.li`
   &:hover {
     background: ${({ theme }) => theme.colors.blueGradient};
     color: ${({ theme }) => theme.colors.white};
-
   }
   &:focus svg,
   &:hover svg {

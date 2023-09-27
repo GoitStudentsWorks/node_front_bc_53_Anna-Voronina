@@ -1,13 +1,16 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 export const SvgStyled = styled.svg`
   fill: currentColor;
   stroke: currentColor;
 
   ${({ $iconVariant }) =>
-    $iconVariant === "transparent" &&
+    $iconVariant === 'transparent' &&
     css`
       fill: transparent;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
     `}
 `;
 
@@ -35,7 +38,7 @@ export const ButtonStyled = styled.button`
   z-index: 1;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
     background-image: ${({ theme }) => theme.colors.blueGradient};
@@ -66,7 +69,7 @@ export const ButtonStyled = styled.button`
 
   /* Варіант "bigButtonFirst" */
   ${({ $variant }) =>
-    $variant === "bigButtonFirst" &&
+    $variant === 'bigButtonFirst' &&
     css`
       width: ${({ theme }) => theme.spacing(62)};
       padding: 8px 28px;
@@ -83,7 +86,7 @@ export const ButtonStyled = styled.button`
 
   /* Варіант "bigButtonSecond" */
   ${({ $variant }) =>
-    $variant === "bigButtonSecond" &&
+    $variant === 'bigButtonSecond' &&
     css`
       width: ${({ theme }) => theme.spacing(62)};
       padding: 8px 28px;
@@ -93,20 +96,26 @@ export const ButtonStyled = styled.button`
 
  /* Варіант "mediumButtonFirst" */
       ${({ $variant }) =>
-    $variant === "mediumButtonFirst" &&
+    $variant === 'mediumButtonFirst' &&
     css`
-      width: ${({ theme }) => theme.spacing(41.25)};
+      width: 100%;
       color: ${({ theme }) => theme.colors.white};
       background: ${({ theme }) => theme.colors.blue};
+      @media only screen and (min-width: 768px) {
+        width: ${({ theme }) => theme.spacing(41.25)};
+      }
     `}
 
  /* Варіант "mediumButtonSecond" */
       ${({ $variant }) =>
-    $variant === "mediumButtonSecond" &&
+    $variant === 'mediumButtonSecond' &&
     css`
-      width: ${({ theme }) => theme.spacing(41.25)};
+      width: 100%;
       background: none;
       border: ${({ theme }) => theme.borders.medium};
+      @media only screen and (min-width: 768px) {
+        width: ${({ theme }) => theme.spacing(41.25)};
+      }
 
       &:focus,
       &:hover {
@@ -116,7 +125,7 @@ export const ButtonStyled = styled.button`
 
      /* Варіант "logoutButton" */
       ${({ $variant }) =>
-    $variant === "logoutButton" &&
+    $variant === 'logoutButton' &&
     css`
       width: ${({ theme }) => theme.spacing(64)};
       border-radius: ${({ theme }) => theme.radii.l};
@@ -126,10 +135,10 @@ export const ButtonStyled = styled.button`
       @media only screen and (min-width: 768px) {
         width: ${({ theme }) => theme.spacing(32.25)};
       }
-    `}  
-    
+    `}
+
     ${({ $variant }) =>
-    $variant === "cancel" &&
+    $variant === 'cancel' &&
     css`
       width: ${({ theme }) => theme.spacing(64)};
       border: ${({ theme }) => theme.borders.medium};
@@ -149,7 +158,7 @@ export const ButtonStyled = styled.button`
     `}
 
   ${({ $variant }) =>
-    $variant === "addButton" &&
+    $variant === 'addButton' &&
     css`
       width: ${({ theme }) => theme.spacing(20)};
       height: ${({ theme }) => theme.spacing(20)};
@@ -179,7 +188,7 @@ export const ButtonStyled = styled.button`
     `}
 
     ${({ $variant }) =>
-    $variant === "AuthButton" &&
+    $variant === 'authButton' &&
     css`
       width: 100%;
       padding: 10px 28px;
@@ -195,11 +204,16 @@ export const ButtonStyled = styled.button`
     `}
 
     ${({ $variant }) =>
-    $variant === "filter" &&
+    $variant === 'filter' &&
     css`
       width: 100%;
-      background: none;
-      border: ${({ theme }) => theme.borders.medium};
+
+      background: ${({ theme, $isButtonsVisible }) =>
+        $isButtonsVisible ? theme.colors.blueGradient : 'none'};
+      border: ${({ theme, $isButtonsVisible }) =>
+        $isButtonsVisible ? theme.borders.none : theme.borders.medium};
+      color: ${({ theme, $isButtonsVisible }) =>
+        $isButtonsVisible ? theme.colors.white : theme.colors.blue};
 
       &:focus,
       &:hover {
@@ -208,7 +222,7 @@ export const ButtonStyled = styled.button`
     `}
 
     ${({ $variant }) =>
-    $variant === "filterBySelect" &&
+    $variant === 'filterBySelect' &&
     css`
       width: 100%;
       padding: 4px 8px;
@@ -227,12 +241,19 @@ export const ButtonStyled = styled.button`
 
       &:focus,
       &:hover {
-        color: ${({ theme }) => theme.colors.white};
+        border: none;
+        background: none;
+        transform: none;
+      }
+
+      &:hover::before,
+      &:focus::before {
+        opacity: 0;
       }
     `};
 
   ${({ $variant }) =>
-    $variant === "Save" &&
+    $variant === 'Save' &&
     css`
       min-height: 31px;
       padding: 5px 107px;
@@ -252,6 +273,45 @@ export const ButtonStyled = styled.button`
         padding: 6px 108px;
         font-size: ${({ theme }) => theme.fontSizes.m};
         letter-spacing: 0.64px;
+      }
+    `}
+
+  ${({ $variant }) =>
+    $variant === 'filterCheck' &&
+    css`
+      padding: 8px 16px;
+      gap: ${({ theme }) => theme.spacing(1)};
+      min-width: ${({ theme }) => theme.spacing(21.5)};
+      background: ${({ theme }) => theme.colors.white};
+      border-radius: ${({ theme }) => theme.radii.s};
+      box-shadow: ${({ theme }) => theme.shadows.primary};
+
+      font-family: ${({ theme }) => theme.fonts.inter.regular};
+      font-size: ${({ theme }) => theme.fontSizes.xs};
+      font-style: normal;
+      font-weight: ${({ theme }) => theme.fontWeights.regular};
+      line-height: 14.4px;
+      letter-spacing: normal;
+      transition: transform ${({ theme }) => theme.transitions.regular};
+      cursor: default;
+
+      &:focus,
+      &:hover {
+        border: none;
+        background: ${({ theme }) => theme.colors.white};
+        transform: none;
+        transform: scale(1.07);
+      }
+
+      &:hover::before,
+      &:focus::before {
+        opacity: 0;
+        
+      }
+
+      
+
+      
       }
     `}
 `;

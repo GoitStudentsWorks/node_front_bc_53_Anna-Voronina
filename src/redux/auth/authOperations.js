@@ -14,7 +14,7 @@ export const registerThunk = createAsyncThunk(
       const data = await register(credentials);
       return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -26,7 +26,7 @@ export const loginThunk = createAsyncThunk(
       const data = await login(credentials);
       return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -37,7 +37,7 @@ export const logoutThunk = createAsyncThunk(
     try {
       await logout();
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -54,7 +54,7 @@ export const refreshThunk = createAsyncThunk(
       const data = await getCurrentUser("/auth/current");
       return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );

@@ -3,14 +3,23 @@ import { Modal } from "../../../../shared/components/Modal/Modal";
 import Button from "../../../../shared/components/Button/Button";
 import { useNavigate } from "react-router";
 import { ModalTitle, BtnContainer, Filling } from "./LogoutModal.styled";
+import { useDispatch } from "react-redux";
+import { logoutThunk } from "../../../../redux/auth/authOperations";
+import { toast } from "react-toastify";
 
 export const LogoutModal = ({ onClose }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleYesClick = () => {
-    onClose();
-    navigate("/");
+    dispatch(logoutThunk())
+      .unwrap()
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => toast.error(error));
   };
+
   return (
     <Modal onClose={onClose}>
       <Filling>

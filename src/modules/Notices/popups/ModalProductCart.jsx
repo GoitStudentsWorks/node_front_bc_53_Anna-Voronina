@@ -15,6 +15,7 @@ import {
   ParamsBox,
   TopWrapper,
   WrapperBtn,
+  NavValue,
 } from "./ModalProductCart.styled";
 import Button from "../../../shared/components/Button/Button";
 
@@ -49,7 +50,13 @@ export const ModalProductCart = ({ setIsModalOpen }) => {
               </NoticesInfoParameters>
               <NoticesInfoParameters>
                 Place:
-                <ParametersValue> Lviv</ParametersValue>
+                <NavValue
+                  href={`https://www.google.com/maps/place/${"Lviv"}`}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                >
+                  Lviv
+                </NavValue>
               </NoticesInfoParameters>
               <NoticesInfoParameters>
                 The sex:
@@ -57,15 +64,15 @@ export const ModalProductCart = ({ setIsModalOpen }) => {
               </NoticesInfoParameters>
               <NoticesInfoParameters>
                 Email:
-                <ParametersValue $variant="yellow">
+                <NavValue href="mailto:user001@gmail.com" $variant="yellow">
                   user001@gmail.com
-                </ParametersValue>
+                </NavValue>
               </NoticesInfoParameters>
               <NoticesInfoParameters>
                 Phone:
-                <ParametersValue $variant="yellow">
+                <NavValue href="tel:+380981234567" $variant="yellow">
                   +380981234567
-                </ParametersValue>
+                </NavValue>
               </NoticesInfoParameters>
             </ParametersList>
           </ParamsBox>

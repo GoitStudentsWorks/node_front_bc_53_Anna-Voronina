@@ -1,7 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { initialCheckboxesState } from '../../modules/filter/service/initialCheckboxesState';
+import { fetchFriendsThunk, fetchNewsThunk } from './globalOperations';
 
 const initialState = {
+  news: [],
+  friends: [],
   isSuccess: false,
   isButtonsVisible: false,
   checkboxes: initialCheckboxesState,
@@ -38,6 +41,15 @@ const globalSlice = createSlice({
       console.log(option);
       state.checkboxes.selectCheckbox = option;
     },
+  },
+  extraReducers: builder => {
+    builder
+      .addCase(fetchNewsThunk.fulfilled, (state, action) => {
+        state.news = action.payload;
+      })
+      .addCase(fetchFriendsThunk.fulfilled, (state, action) => {
+        state.friends = action.payload;
+      });
   },
 });
 

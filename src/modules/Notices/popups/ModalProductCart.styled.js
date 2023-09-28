@@ -116,22 +116,33 @@ export const ParametersValue = styled.span`
   @media screen and (min-width: 768px) {
     font-size: ${({ theme }) => theme.fontSizes.m};
   }
+`;
+
+export const NavValue = styled.a`
+  width: 65%;
+
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
+  font-size: ${({ theme }) => theme.fontSizes.xs};
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  color: ${({ theme }) => theme.colors.black};
+  cursor: pointer;
+  @media screen and (min-width: 768px) {
+    font-size: ${({ theme }) => theme.fontSizes.m};
+  }
 
   ${({ $variant }) =>
     $variant === "yellow" &&
     css`
       color: ${({ theme }) => theme.colors.yellow};
     `}
-`;
 
-// export const BottomContent = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   gap: 12px;
-//   @media screen and (min-width: 768px) {
-//     gap: 70px;
-//   }
-// `;
+  &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.colors.blue};
+  }
+`;
 
 export const CommentsText = styled.p`
   max-width: 256px;

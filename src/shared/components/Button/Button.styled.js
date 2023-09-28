@@ -213,14 +213,31 @@ export const ButtonStyled = styled.button`
     ${({ $variant }) =>
     $variant === 'filter' &&
     css`
-      width: 100%;
+      display: flex;
+      padding: 0;
+      gap: 0;
+      border-radius: 50%;
+      justify-content: center;
+      align-items: center;
+      width: ${({ theme }) => theme.spacing(10)};
 
-      background: ${({ theme, $isButtonsVisible }) =>
-        $isButtonsVisible ? theme.colors.blueGradient : 'none'};
-      border: ${({ theme, $isButtonsVisible }) =>
-        $isButtonsVisible ? theme.borders.none : theme.borders.medium};
       color: ${({ theme, $isButtonsVisible }) =>
         $isButtonsVisible ? theme.colors.white : theme.colors.blue};
+      background-color: ${({ theme, $isButtonsVisible }) =>
+        $isButtonsVisible ? theme.colors.blue : theme.colors.lightBlue};
+
+      @media screen and (min-width: 768px) {
+        border-radius: 40px;
+        width: ${({ theme }) => theme.spacing(38)};
+        background: ${({ theme, $isButtonsVisible }) =>
+          $isButtonsVisible ? theme.colors.blueGradient : 'none'};
+        border: ${({ theme, $isButtonsVisible }) =>
+          $isButtonsVisible ? theme.borders.none : theme.borders.medium};
+        color: ${({ theme, $isButtonsVisible }) =>
+          $isButtonsVisible ? theme.colors.white : theme.colors.blue};
+      }
+      @media screen and (min-width: 1280px) {
+      }
 
       &:focus,
       &:hover {
@@ -318,16 +335,23 @@ export const ButtonStyled = styled.button`
     ${({ $variant }) =>
     $variant === 'addPet' &&
     css`
-      width: ${({ theme }) => theme.spacing(32.5)};
-      padding: 8px 20px;
-      color: ${({ theme }) => theme.colors.white};
-      background: ${({ theme }) => theme.colors.blue};
+      display: none;
 
-      font-family: ${({ theme }) => theme.fonts.manrope.bold};
-      font-size: ${({ theme }) => theme.fontSizes.m};
-      font-style: normal;
-      font-weight: ${({ theme }) => theme.fontWeights.bold};
-      line-height: normal;
-      letter-spacing: 0.64px;
+      @media screen and (min-width: 768px) {
+        display: flex;
+        width: ${({ theme }) => theme.spacing(32.25)};
+        padding: 8px 16px;
+        color: ${({ theme }) => theme.colors.white};
+        background: ${({ theme }) => theme.colors.blue};
+
+        font-family: ${({ theme }) => theme.fonts.manrope.bold};
+        font-size: ${({ theme }) => theme.fontSizes.m};
+        font-style: normal;
+        font-weight: ${({ theme }) => theme.fontWeights.bold};
+        line-height: normal;
+        letter-spacing: 0.64px;
+      }
+      @media screen and (min-width: 1280px) {
+      }
     `}
 `;

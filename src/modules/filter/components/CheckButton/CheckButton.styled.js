@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const WrapperCheckButton = styled.div`
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: end;
   align-items: center;
+  gap: 12px;
 `;

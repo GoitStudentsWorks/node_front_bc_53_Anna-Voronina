@@ -34,3 +34,9 @@ export const LabelStyled = styled.label`
 export const InputStyled = styled.input`
   display: none;
 `;
+
+export const FormStyled = styled.form`
+  display: flex;
+  gap: ${({ theme }) => theme.spacing(3)};
+  flex-wrap: wrap;
+`;

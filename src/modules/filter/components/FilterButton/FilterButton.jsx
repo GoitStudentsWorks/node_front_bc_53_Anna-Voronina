@@ -1,4 +1,4 @@
-import { InputStyled, LabelStyled } from './FilterButton.styled';
+import { FormStyled, InputStyled, LabelStyled } from './FilterButton.styled';
 import { useState } from 'react';
 
 export const FilterButton = () => {
@@ -10,7 +10,7 @@ export const FilterButton = () => {
   };
 
   return (
-    <form>
+    <FormStyled>
       <LabelStyled>
         <InputStyled
           type="radio"
@@ -65,6 +65,6 @@ export const FilterButton = () => {
         />
         my ads
       </LabelStyled>
-    </form>
+    </FormStyled>
   );
 };

@@ -19,9 +19,11 @@ export const Searchbar = ({ onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (inputValue.trim() === "") {
+      return alert("Please fill out the search field!");
+    }
 
     onSubmit(inputValue.trim());
-    setInputValue("");
   };
 
   const handleDelete = () => {

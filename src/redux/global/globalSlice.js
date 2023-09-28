@@ -1,5 +1,9 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { fetchFriendsThunk, fetchNewsThunk } from "./globalOperations";
+import {
+  fetchFriendsThunk,
+  fetchNewsBySearchThunk,
+  fetchNewsThunk,
+} from "./globalOperations";
 
 const pending = (state) => {
   state.isLoading = true;
@@ -28,20 +32,31 @@ const globalSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchNewsThunk.fulfilled, (state, action) => {
-        state.news = action.payload;
-        state.isLoading = false;
-      })
       .addCase(fetchFriendsThunk.fulfilled, (state, action) => {
         state.friends = action.payload;
         state.isLoading = false;
       })
       .addMatcher(
-        isAnyOf(fetchNewsThunk.pending, fetchFriendsThunk.pending),
+        isAnyOf(fetchNewsThunk.fulfilled, fetchNewsBySearchThunk.fulfilled),
+        (state, action) => {
+          state.news = action.payload;
+          state.isLoading = false;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          fetchNewsThunk.pending,
+          fetchFriendsThunk.pending,
+          fetchNewsBySearchThunk.pending
+        ),
         pending
       )
       .addMatcher(
-        isAnyOf(fetchNewsThunk.rejected, fetchFriendsThunk.rejected),
+        isAnyOf(
+          fetchNewsThunk.rejected,
+          fetchFriendsThunk.rejected,
+          fetchNewsBySearchThunk.rejected
+        ),
         rejected
       );
   },

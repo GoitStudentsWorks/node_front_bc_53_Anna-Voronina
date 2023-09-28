@@ -4,7 +4,7 @@ import { LogoutBtn } from "./Logout.styled.js";
 import { LogoutModal } from "../../../modules/modals/components/LogoutModal/LogoutModal.jsx";
 import Icons from "../../icons/sprite.svg";
 
-export const Logout = ({ variant, type }) => {
+export const Logout = ({ variant, type, onMenuClose }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
@@ -19,7 +19,13 @@ export const Logout = ({ variant, type }) => {
           <use href={Icons + "#logout"}> </use>
         </svg>
       </LogoutBtn>
-      {isModalOpen && <LogoutModal onClose={toggleModal} />}
+      {isModalOpen && (
+        <LogoutModal
+          onClose={toggleModal}
+          onMenuClose={onMenuClose}
+          variant={variant}
+        />
+      )}
     </>
   );
 };
@@ -27,4 +33,5 @@ export const Logout = ({ variant, type }) => {
 Logout.propTypes = {
   variant: PropTypes.string,
   type: PropTypes.string,
+  onMenuClose: PropTypes.func,
 };

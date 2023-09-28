@@ -1,17 +1,18 @@
-import news from "../../news.json";
+import { useSelector } from "react-redux";
 import OneNews from "../OneNews/OneNews";
-import { ListNewsStyled } from "./ListNews.styled";
+import { ListNewsStyled, PlugStyled } from "./ListNews.styled";
+import { selectNewsSort } from "../../../../redux/global/globalSelectors";
 
 const ListNews = () => {
-  const sortNews = news.sort((a, b) => new Date(b.date) - new Date(a.date));
+  const newsSort = useSelector(selectNewsSort);
 
   return (
     <>
-      {sortNews.lenght === 0 ? (
-        <h3>News is displayed here...</h3>
+      {newsSort.length === 0 ? (
+        <PlugStyled>News are displayed here...</PlugStyled>
       ) : (
         <ListNewsStyled>
-          {sortNews.map((item) => {
+          {newsSort.map((item) => {
             return <OneNews key={item.id} {...item} />;
           })}
         </ListNewsStyled>

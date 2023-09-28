@@ -5,6 +5,9 @@ import {
   login,
   logout,
   getCurrentUser,
+  updateUserData,
+  updateAvatar,
+  fetchUserData,
 } from "../../services/api/api.js";
 
 export const registerThunk = createAsyncThunk(
@@ -52,6 +55,42 @@ export const refreshThunk = createAsyncThunk(
     try {
       setToken(persistedToken);
       const data = await getCurrentUser("/auth/current");
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const updateUserDataThunk = createAsyncThunk(
+  "auth/updateUserData",
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const data = await updateUserData(credentials);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const updateAvatarThunk = createAsyncThunk(
+  "auth/updateAvatar",
+  async (avatar, { rejectWithValue }) => {
+    try {
+      const data = await updateAvatar(avatar);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const fetchUserDataThunk = createAsyncThunk(
+  "auth/fetchUserData",
+  async (_, { rejectWithValue }) => {
+    try {
+      const data = await fetchUserData();
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);

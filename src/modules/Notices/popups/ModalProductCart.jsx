@@ -2,7 +2,6 @@
 import PropTypes from "prop-types";
 import { Modal } from "../../../shared/components/Modal/Modal";
 import {
-  BottomContent,
   CategoryName,
   CommentsText,
   CommentsTextStrong,
@@ -10,11 +9,13 @@ import {
   NoticesInfoImg,
   NoticesInfoParameters,
   NoticesInfoTitle,
+  PhotoDiv,
   ParametersList,
   ParametersValue,
   ParamsBox,
   TopWrapper,
   WrapperBtn,
+  NavValue,
 } from "./ModalProductCart.styled";
 import Button from "../../../shared/components/Button/Button";
 
@@ -26,8 +27,10 @@ export const ModalProductCart = ({ setIsModalOpen }) => {
     <Modal onClose={() => setIsModalOpen(false)} variant="petsModal">
       <ModalWrapper>
         <TopWrapper>
-          <CategoryName> Test</CategoryName>
-          <NoticesInfoImg src={card} alt="icon" />
+          <PhotoDiv>
+            <CategoryName> Test</CategoryName>
+            <NoticesInfoImg src={card} alt="icon" />
+          </PhotoDiv>
 
           <ParamsBox>
             <NoticesInfoTitle>Сute dog looking for a home</NoticesInfoTitle>
@@ -47,7 +50,13 @@ export const ModalProductCart = ({ setIsModalOpen }) => {
               </NoticesInfoParameters>
               <NoticesInfoParameters>
                 Place:
-                <ParametersValue> Lviv</ParametersValue>
+                <NavValue
+                  href={`https://www.google.com/maps/place/${"Lviv"}`}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                >
+                  Lviv
+                </NavValue>
               </NoticesInfoParameters>
               <NoticesInfoParameters>
                 The sex:
@@ -55,38 +64,36 @@ export const ModalProductCart = ({ setIsModalOpen }) => {
               </NoticesInfoParameters>
               <NoticesInfoParameters>
                 Email:
-                <ParametersValue $variant="yellow">
+                <NavValue href="mailto:user001@gmail.com" $variant="yellow">
                   user001@gmail.com
-                </ParametersValue>
+                </NavValue>
               </NoticesInfoParameters>
               <NoticesInfoParameters>
                 Phone:
-                <ParametersValue $variant="yellow">
+                <NavValue href="tel:+380981234567" $variant="yellow">
                   +380981234567
-                </ParametersValue>
+                </NavValue>
               </NoticesInfoParameters>
             </ParametersList>
           </ParamsBox>
         </TopWrapper>
-        <BottomContent>
-          <CommentsText>
-            <CommentsTextStrong>Comments: </CommentsTextStrong>
-            Rich would be the perfect addition to an active family that loves to
-            play and go on walks. I bet he would love having a doggy playmate
-            too!
-          </CommentsText>
 
-          <WrapperBtn>
-            <Button
-              text="Add to"
-              variant="mediumButtonFirst"
-              iconVariant="transparent"
-              iconPosition="right"
-              icon="heart"
-            />
-            <Button text="Contact" variant="mediumButtonSecond" />
-          </WrapperBtn>
-        </BottomContent>
+        <CommentsText>
+          <CommentsTextStrong>Comments: </CommentsTextStrong>
+          Rich would be the perfect addition to an active family that loves to
+          play and go on walks. I bet he would love having a doggy playmate too!
+        </CommentsText>
+
+        <WrapperBtn>
+          <Button
+            text="Add to"
+            variant="logoutButton"
+            iconVariant="transparent"
+            iconPosition="right"
+            icon="heart"
+          />
+          <Button text="Contact" variant="cancel" />
+        </WrapperBtn>
       </ModalWrapper>
     </Modal>
   );

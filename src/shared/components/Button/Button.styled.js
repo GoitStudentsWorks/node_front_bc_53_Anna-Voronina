@@ -8,6 +8,13 @@ export const SvgStyled = styled.svg`
     $iconVariant === 'transparent' &&
     css`
       fill: transparent;
+
+      cursor: pointer;
+    `}
+  ${({ $iconVariant }) =>
+    $iconVariant === 'filterbutton' &&
+    css`
+      fill: transparent;
       width: 16px;
       height: 16px;
       cursor: pointer;
@@ -26,7 +33,7 @@ export const ButtonStyled = styled.button`
   font-family: ${({ theme }) => theme.fonts.manrope.bold};
   font-size: ${({ theme }) => theme.fontSizes.m};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
-  line-height: normal;
+
   letter-spacing: 0.64px;
 
   color: ${({ theme }) => theme.colors.blue};
@@ -195,25 +202,42 @@ export const ButtonStyled = styled.button`
       color: ${({ theme }) => theme.colors.white};
       background: ${({ theme }) => theme.colors.blue};
 
-      font-family: ${({ theme }) => theme.fonts.manrope.regular};
+      font-family: ${({ theme }) => theme.fonts.manrope.semiBold};
       font-size: ${({ theme }) => theme.fontSizes.l};
       font-style: normal;
       font-weight: ${({ theme }) => theme.fontWeights.semiBold};
-      line-height: normal;
+
       letter-spacing: 0.8px;
     `}
 
     ${({ $variant }) =>
     $variant === 'filter' &&
     css`
-      width: 100%;
+      display: flex;
+      padding: 0;
+      gap: 0;
+      border-radius: 50%;
+      justify-content: center;
+      align-items: center;
+      width: ${({ theme }) => theme.spacing(10)};
 
-      background: ${({ theme, $isButtonsVisible }) =>
-        $isButtonsVisible ? theme.colors.blueGradient : 'none'};
-      border: ${({ theme, $isButtonsVisible }) =>
-        $isButtonsVisible ? theme.borders.none : theme.borders.medium};
       color: ${({ theme, $isButtonsVisible }) =>
         $isButtonsVisible ? theme.colors.white : theme.colors.blue};
+      background-color: ${({ theme, $isButtonsVisible }) =>
+        $isButtonsVisible ? theme.colors.blue : theme.colors.lightBlue};
+
+      @media screen and (min-width: 768px) {
+        border-radius: 40px;
+        width: ${({ theme }) => theme.spacing(38)};
+        background: ${({ theme, $isButtonsVisible }) =>
+          $isButtonsVisible ? theme.colors.blueGradient : 'none'};
+        border: ${({ theme, $isButtonsVisible }) =>
+          $isButtonsVisible ? theme.borders.none : theme.borders.medium};
+        color: ${({ theme, $isButtonsVisible }) =>
+          $isButtonsVisible ? theme.colors.white : theme.colors.blue};
+      }
+      @media screen and (min-width: 1280px) {
+      }
 
       &:focus,
       &:hover {
@@ -306,12 +330,28 @@ export const ButtonStyled = styled.button`
       &:hover::before,
       &:focus::before {
         opacity: 0;
-        
       }
+    `}
+    ${({ $variant }) =>
+    $variant === 'addPet' &&
+    css`
+      display: none;
 
-      
+      @media screen and (min-width: 768px) {
+        display: flex;
+        width: ${({ theme }) => theme.spacing(32.25)};
+        padding: 8px 16px;
+        color: ${({ theme }) => theme.colors.white};
+        background: ${({ theme }) => theme.colors.blue};
 
-      
+        font-family: ${({ theme }) => theme.fonts.manrope.bold};
+        font-size: ${({ theme }) => theme.fontSizes.m};
+        font-style: normal;
+        font-weight: ${({ theme }) => theme.fontWeights.bold};
+        line-height: normal;
+        letter-spacing: 0.64px;
+      }
+      @media screen and (min-width: 1280px) {
       }
     `}
 `;

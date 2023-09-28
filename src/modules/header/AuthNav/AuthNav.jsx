@@ -7,12 +7,18 @@ const routes = [
   { path: "/register", text: "Registration", type: "register" },
 ];
 
-export const AuthNav = ({ variant = null }) => {
+export const AuthNav = ({ variant = null, onClick }) => {
+  const variantCheck = variant === "menu" || "tabletMenu";
+
   return (
     <List $variant={variant}>
       {routes.map((route) => (
         <li key={route.path}>
-          <LinkStyles to={route.path} $type={route.type}>
+          <LinkStyles
+            to={route.path}
+            $type={route.type}
+            onClick={variantCheck ? onClick : null}
+          >
             <span>{route.text}</span>
             {route.path === "/login" && (
               <svg>
@@ -28,4 +34,5 @@ export const AuthNav = ({ variant = null }) => {
 
 AuthNav.propTypes = {
   variant: PropTypes.string,
+  onClick: PropTypes.func,
 };

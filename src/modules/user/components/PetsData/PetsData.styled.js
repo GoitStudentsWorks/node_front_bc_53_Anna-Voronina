@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const PetsList = styled.div`
+export const PetsList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -10,7 +10,7 @@ export const PetsList = styled.div`
   }
 `;
 
-export const PetsCardContainer = styled.div`
+export const PetsCardContainer = styled.li`
   position: relative;
   padding: 16px 20px 40px;
   display: flex;

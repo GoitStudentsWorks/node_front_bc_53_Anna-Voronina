@@ -18,7 +18,6 @@ export const ModalTitle = styled.h3`
   font-family: ${({ theme }) => theme.fonts.manrope.medium};
   font-size: ${({ theme }) => theme.fontSizes.xl};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
-  line-height: normal;
   letter-spacing: 0.96px;
   color: ${({ theme }) => theme.colors.black};
 

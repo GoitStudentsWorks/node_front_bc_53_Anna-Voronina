@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const Filling = styled.div`
   padding-top: ${({ theme }) => theme.spacing(11)};
   padding-bottom: ${({ theme }) => theme.spacing(11)};
-  padding-left: ${({ theme }) => theme.spacing(1)};
-  padding-right: ${({ theme }) => theme.spacing(1)};
+  padding-left: ${({ theme }) => theme.spacing(2)};
+  padding-right: ${({ theme }) => theme.spacing(2)};
 
   text-align: center;
 
@@ -20,7 +20,6 @@ export const Title = styled.h3`
   font-family: ${({ theme }) => theme.fonts.manrope.medium};
   font-size: ${({ theme }) => theme.spacing(6)};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
-  line-height: normal;
   letter-spacing: 0.96px;
 
   @media only screen and (min-width: 768px) {

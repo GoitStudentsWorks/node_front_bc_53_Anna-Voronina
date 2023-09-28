@@ -1,71 +1,52 @@
-import { useState } from 'react';
-import {ProductList, ProductItem, PetCategory, FavoriteBtn, HeartIconPrimal, NoticesItemImg, ItemTitle, WrapperBtn, WrapperInformation, InformationMap, IconInformation, IconWrapper, ContentWrapper } from "./ProductCardList.styled";
-import Button from '@/shared/components/Button/Button';
-import { ModalProductCart } from '../popups/ModalProductCart';
-
-
-// const city = [
-//   {
-//     id: 1,
-//     name: Lviv,
-//   },
-//   {
-//     id: 2,
-//     name: Ivano-Frankivsk,
-//   },
-//   {
-//     id: 3,
-//     name: Khmelnytskyi,
-//   },
-// ]
+import { useState } from "react";
+import {
+  ProductList,
+  ProductItem,
+  PetCategory,
+  FavoriteBtn,
+  HeartIconPrimal,
+  NoticesItemImg,
+  ItemTitle,
+  WrapperBtn,
+  WrapperInformation,
+  InformationMap,
+  IconInformation,
+  IconWrapper,
+  ContentWrapper,
+} from "./ProductCardList.styled";
+import Button from "@/shared/components/Button/Button";
+import { ModalProductCart } from "../popups/ModalProductCart";
 
 // Photo
-import sprite from '../../../shared/icons/sprite.svg';
-import card from '../img/Rectangle 24.png';
-
-
-
+import sprite from "../../../shared/icons/sprite.svg";
+import card from "../img/Rectangle 24.png";
 
 const ProductCardList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-
-  const handleModalOpen = ()  => {
-
+  const handleModalOpen = () => {
     setIsModalOpen(true);
-
   };
 
-
-  return <ProductList>
-
+  return (
+    <ProductList>
       <ProductItem id="" key="">
         <IconWrapper>
-       <PetCategory>test</PetCategory>
+          <PetCategory>test</PetCategory>
 
-          <FavoriteBtn
-            onClick={()=> {}}
-          >
-            <HeartIconPrimal >
+          <FavoriteBtn onClick={() => {}}>
+            <HeartIconPrimal>
               <use href={sprite + "#heart"}></use>
             </HeartIconPrimal>
           </FavoriteBtn>
 
-          <NoticesItemImg
-            loading="lazy"
-            src={card}
-            alt="icon"
-          />
+          <NoticesItemImg loading="lazy" src={card} alt="icon" />
 
           <WrapperInformation>
             <InformationMap>
               <IconInformation>
                 <use href={sprite + "#location-1"}></use>
               </IconInformation>
-            {/* {city.name.lengtgh > 20
-                ? (list_name = list_name.slice(0, 20) + '...')
-                : (list_name = list_name)
-              } */}
               Lviv
             </InformationMap>
 
@@ -86,24 +67,21 @@ const ProductCardList = () => {
         </IconWrapper>
 
         <ContentWrapper>
-          <ItemTitle>
-            Сute dog looking for a home
-          </ItemTitle>
+          <ItemTitle>Сute dog looking for a home</ItemTitle>
 
           <WrapperBtn>
-            <Button type="button" text="Learn more" variant="bigButtonFirst" onClick={handleModalOpen}/>
+            <Button
+              type="button"
+              text="Learn more"
+              variant="bigButtonFirst"
+              onClick={handleModalOpen}
+            />
           </WrapperBtn>
         </ContentWrapper>
-
       </ProductItem>
-      {isModalOpen && (
-        <ModalProductCart
-        setIsModalOpen={
-          setIsModalOpen
-        }
-        />
-          )}
+      {isModalOpen && <ModalProductCart setIsModalOpen={setIsModalOpen} />}
     </ProductList>
+  );
 };
 
 export default ProductCardList;

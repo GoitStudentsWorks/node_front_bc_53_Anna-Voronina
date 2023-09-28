@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const WrapperCheckButton = styled.div`
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: end;
   align-items: center;
-  width: ${({ theme }) => theme.spacing(38)};
+  gap: 12px;
 `;

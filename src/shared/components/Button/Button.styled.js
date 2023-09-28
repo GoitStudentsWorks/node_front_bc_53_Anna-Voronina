@@ -1,11 +1,11 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 export const SvgStyled = styled.svg`
   fill: currentColor;
   stroke: currentColor;
 
   ${({ $iconVariant }) =>
-    $iconVariant === "transparent" &&
+    $iconVariant === 'transparent' &&
     css`
       fill: transparent;
 
@@ -45,7 +45,7 @@ export const ButtonStyled = styled.button`
   z-index: 1;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
     background-image: ${({ theme }) => theme.colors.blueGradient};
@@ -76,7 +76,7 @@ export const ButtonStyled = styled.button`
 
   /* Варіант "bigButtonFirst" */
   ${({ $variant }) =>
-    $variant === "bigButtonFirst" &&
+    $variant === 'bigButtonFirst' &&
     css`
       width: ${({ theme }) => theme.spacing(62)};
       padding: 8px 28px;
@@ -93,7 +93,7 @@ export const ButtonStyled = styled.button`
 
   /* Варіант "bigButtonSecond" */
   ${({ $variant }) =>
-    $variant === "bigButtonSecond" &&
+    $variant === 'bigButtonSecond' &&
     css`
       width: ${({ theme }) => theme.spacing(62)};
       padding: 8px 28px;
@@ -103,7 +103,7 @@ export const ButtonStyled = styled.button`
 
  /* Варіант "mediumButtonFirst" */
       ${({ $variant }) =>
-    $variant === "mediumButtonFirst" &&
+    $variant === 'mediumButtonFirst' &&
     css`
       width: 100%;
       color: ${({ theme }) => theme.colors.white};
@@ -115,7 +115,7 @@ export const ButtonStyled = styled.button`
 
  /* Варіант "mediumButtonSecond" */
       ${({ $variant }) =>
-    $variant === "mediumButtonSecond" &&
+    $variant === 'mediumButtonSecond' &&
     css`
       width: 100%;
       background: none;
@@ -132,7 +132,7 @@ export const ButtonStyled = styled.button`
 
      /* Варіант "logoutButton" */
       ${({ $variant }) =>
-    $variant === "logoutButton" &&
+    $variant === 'logoutButton' &&
     css`
       width: ${({ theme }) => theme.spacing(64)};
       border-radius: ${({ theme }) => theme.radii.l};
@@ -145,7 +145,7 @@ export const ButtonStyled = styled.button`
     `}
 
     ${({ $variant }) =>
-    $variant === "cancel" &&
+    $variant === 'cancel' &&
     css`
       width: ${({ theme }) => theme.spacing(64)};
       border: ${({ theme }) => theme.borders.medium};
@@ -165,7 +165,7 @@ export const ButtonStyled = styled.button`
     `}
 
   ${({ $variant }) =>
-    $variant === "addButton" &&
+    $variant === 'addButton' &&
     css`
       width: ${({ theme }) => theme.spacing(20)};
       height: ${({ theme }) => theme.spacing(20)};
@@ -195,14 +195,14 @@ export const ButtonStyled = styled.button`
     `}
 
     ${({ $variant }) =>
-    $variant === "authButton" &&
+    $variant === 'authButton' &&
     css`
       width: 100%;
       padding: 10px 28px;
       color: ${({ theme }) => theme.colors.white};
       background: ${({ theme }) => theme.colors.blue};
 
-      font-family: ${({ theme }) => theme.fonts.manrope.regular};
+      font-family: ${({ theme }) => theme.fonts.manrope.semiBold};
       font-size: ${({ theme }) => theme.fontSizes.l};
       font-style: normal;
       font-weight: ${({ theme }) => theme.fontWeights.semiBold};
@@ -211,12 +211,12 @@ export const ButtonStyled = styled.button`
     `}
 
     ${({ $variant }) =>
-    $variant === "filter" &&
+    $variant === 'filter' &&
     css`
       width: 100%;
 
       background: ${({ theme, $isButtonsVisible }) =>
-        $isButtonsVisible ? theme.colors.blueGradient : "none"};
+        $isButtonsVisible ? theme.colors.blueGradient : 'none'};
       border: ${({ theme, $isButtonsVisible }) =>
         $isButtonsVisible ? theme.borders.none : theme.borders.medium};
       color: ${({ theme, $isButtonsVisible }) =>
@@ -229,7 +229,7 @@ export const ButtonStyled = styled.button`
     `}
 
     ${({ $variant }) =>
-    $variant === "filterBySelect" &&
+    $variant === 'filterBySelect' &&
     css`
       width: 100%;
       padding: 4px 8px;
@@ -260,7 +260,7 @@ export const ButtonStyled = styled.button`
     `};
 
   ${({ $variant }) =>
-    $variant === "Save" &&
+    $variant === 'Save' &&
     css`
       min-height: 31px;
       padding: 5px 107px;
@@ -284,7 +284,7 @@ export const ButtonStyled = styled.button`
     `}
 
   ${({ $variant }) =>
-    $variant === "filterCheck" &&
+    $variant === 'filterCheck' &&
     css`
       padding: 8px 16px;
       gap: ${({ theme }) => theme.spacing(1)};
@@ -314,5 +314,20 @@ export const ButtonStyled = styled.button`
       &:focus::before {
         opacity: 0;
       }
+    `}
+    ${({ $variant }) =>
+    $variant === 'addPet' &&
+    css`
+      width: ${({ theme }) => theme.spacing(32.5)};
+      padding: 8px 20px;
+      color: ${({ theme }) => theme.colors.white};
+      background: ${({ theme }) => theme.colors.blue};
+
+      font-family: ${({ theme }) => theme.fonts.manrope.bold};
+      font-size: ${({ theme }) => theme.fontSizes.m};
+      font-style: normal;
+      font-weight: ${({ theme }) => theme.fontWeights.bold};
+      line-height: normal;
+      letter-spacing: 0.64px;
     `}
 `;

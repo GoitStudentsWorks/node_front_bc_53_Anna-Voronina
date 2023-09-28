@@ -24,38 +24,25 @@ import {
   toggleCheckboxByAge,
   toggleCheckboxByGender,
   toggleGenderOption,
-} from '../../../../redux/global/globalSlice';
-import { selectCheckboxes, selectIsButtonsVisible } from '../../../../redux/global/globalSelectors';
-import { CheckButton } from '../CheckButton/CheckButton';
+} from '@/redux/global/globalSlice';
+import { selectCheckboxes, selectIsButtonsVisible } from '@/redux/global/globalSelectors';
 
 export const FIlter = () => {
   const dispatch = useDispatch();
   const isButtonsVisible = useSelector(selectIsButtonsVisible);
   const checkboxes = useSelector(selectCheckboxes);
 
-  // console.log(checkboxes);
-
   const toggleButtonsFilter = () => {
     dispatch(toggleButtons());
   };
 
-  const toggleSelectByAge = () => {
-    dispatch(toggleCheckboxByAge());
+  const toggleSelectByOption = optionType => {
+    optionType === 'age' ? dispatch(toggleCheckboxByAge()) : dispatch(toggleCheckboxByGender());
   };
 
-  const toggleSelectByGender = () => {
-    dispatch(toggleCheckboxByGender());
-  };
-
-  const toggleCheckBoxAgeOption = option => {
-    const isChecked = !checkboxes.ageOptions[option];
-    dispatch(toggleAgeOption(option));
-    dispatch(setSelectCheckboxName(isChecked ? option : null));
-  };
-
-  const toggleCheckBoxGenderOption = option => {
-    const isChecked = !checkboxes.genderOptions[option];
-    dispatch(toggleGenderOption(option));
+  const toggleCheckBoxOption = (optionType, option) => {
+    const isChecked = !checkboxes[`${optionType}Options`][option];
+    dispatch(optionType === 'age' ? toggleAgeOption(option) : toggleGenderOption(option));
     dispatch(setSelectCheckboxName(isChecked ? option : null));
   };
 
@@ -81,7 +68,7 @@ export const FIlter = () => {
                   icon={checkboxes.showCheckboxByAge ? 'chevron-up' : 'chevron-down'}
                   iconVariant="transparent"
                   iconPosition="left"
-                  onClick={toggleSelectByAge}
+                  onClick={() => toggleSelectByOption('age')}
                 />
                 {checkboxes.showCheckboxByAge && (
                   <Options>
@@ -92,7 +79,7 @@ export const FIlter = () => {
                           name="age"
                           value={option.value}
                           checked={checkboxes.ageOptions[option.value]}
-                          onChange={() => toggleCheckBoxAgeOption(option.value)}
+                          onChange={() => toggleCheckBoxOption('age', option.value)}
                         />
                         {option.name}
                         {checkboxes.ageOptions[option.value] ? (
@@ -116,7 +103,7 @@ export const FIlter = () => {
                   icon={checkboxes.showCheckboxByGender ? 'chevron-up' : 'chevron-down'}
                   iconVariant="transparent"
                   iconPosition="left"
-                  onClick={toggleSelectByGender}
+                  onClick={() => toggleSelectByOption('gender')}
                 />
                 {checkboxes.showCheckboxByGender && (
                   <Options>
@@ -127,7 +114,7 @@ export const FIlter = () => {
                           name="gender"
                           value={option.value}
                           checked={checkboxes.genderOptions[option.value]}
-                          onChange={() => toggleCheckBoxGenderOption(option.value)}
+                          onChange={() => toggleCheckBoxOption('gender', option.value)}
                         />
                         {option.name}
                         {checkboxes.genderOptions[option.value] ? (
@@ -149,9 +136,6 @@ export const FIlter = () => {
         </FilterWrapper>
         <FilterButton />
       </WrapperNoticesFilter>
-      <div>
-        <CheckButton checkboxes={checkboxes} />
-      </div>
     </>
   );
 };

@@ -59,6 +59,7 @@ const authSlice = createSlice({
       })
       .addCase(updateAvatarThunk.fulfilled, (state, action) => {
         state.user.avatarURL = action.payload;
+        state.isLoading = false;
       })
       .addMatcher(
         isAnyOf(loginThunk.fulfilled, registerThunk.fulfilled),
@@ -73,6 +74,7 @@ const authSlice = createSlice({
         isAnyOf(fetchUserDataThunk.fulfilled, updateUserDataThunk.fulfilled),
         (state, action) => {
           state.user = { ...state.user, ...action.payload };
+          state.isLoading = false;
         }
       )
       .addMatcher(

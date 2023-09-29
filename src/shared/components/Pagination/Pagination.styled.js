@@ -41,7 +41,7 @@ export const PaginationContainer = styled.div`
 
       &.disabled {
         color: rgba(17, 17, 17, 0.5);
-        cursor: not-allowed;
+        cursor: default;
       }
     }
 
@@ -55,7 +55,7 @@ export const PaginationContainer = styled.div`
 
       &.disabled {
         color: rgba(17, 17, 17, 0.5);
-        cursor: not-allowed;
+        cursor: default;
       }
     }
   }

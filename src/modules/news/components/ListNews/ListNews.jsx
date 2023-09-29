@@ -1,11 +1,10 @@
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
 import OneNews from "../OneNews/OneNews";
 import { ListNewsStyled, PlugStyled } from "./ListNews.styled";
-import { selectNewsSort } from "../../../../redux/global/globalSelectors";
+// import { selectNewsSort } from "../../../../redux/global/globalSelectors";
 
-const ListNews = () => {
-  const newsSort = useSelector(selectNewsSort);
-
+const ListNews = ({ newsSort }) => {
   return (
     <>
       {newsSort.length === 0 ? (
@@ -19,6 +18,10 @@ const ListNews = () => {
       )}
     </>
   );
+};
+
+ListNews.propTypes = {
+  newsSort: PropTypes.arrayOf(PropTypes.shape({})),
 };
 
 export default ListNews;

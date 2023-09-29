@@ -1,8 +1,12 @@
-import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { initialCheckboxesState } from '../../modules/filter/service/initialCheckboxesState';
-import { fetchFriendsThunk, fetchNewsBySearchThunk, fetchNewsThunk } from './globalOperations';
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { initialCheckboxesState } from "../../modules/filter/service/initialCheckboxesState";
+import {
+  fetchFriendsThunk,
+  fetchNewsBySearchThunk,
+  fetchNewsThunk,
+} from "./globalOperations";
 
-const pending = state => {
+const pending = (state) => {
   state.isLoading = true;
   state.error = null;
 };
@@ -22,30 +26,33 @@ const initialState = {
 };
 
 const globalSlice = createSlice({
-  name: 'global',
+  name: "global",
   initialState,
   reducers: {
     setIsSuccess: (state, action) => {
       state.isSuccess = action.payload;
     },
-    toggleButtons: state => {
+    toggleButtons: (state) => {
       state.isButtonsVisible = !state.isButtonsVisible;
       state.checkboxes.showCheckboxByAge = false;
       state.checkboxes.showCheckboxByGender = false;
     },
-    toggleCheckboxByAge: state => {
+    toggleCheckboxByAge: (state) => {
       state.checkboxes.showCheckboxByAge = !state.checkboxes.showCheckboxByAge;
     },
-    toggleCheckboxByGender: state => {
-      state.checkboxes.showCheckboxByGender = !state.checkboxes.showCheckboxByGender;
+    toggleCheckboxByGender: (state) => {
+      state.checkboxes.showCheckboxByGender =
+        !state.checkboxes.showCheckboxByGender;
     },
     toggleAgeOption: (state, action) => {
       const option = action.payload;
-      state.checkboxes.ageOptions[option] = !state.checkboxes.ageOptions[option];
+      state.checkboxes.ageOptions[option] =
+        !state.checkboxes.ageOptions[option];
     },
     toggleGenderOption: (state, action) => {
       const option = action.payload;
-      state.checkboxes.genderOptions[option] = !state.checkboxes.genderOptions[option];
+      state.checkboxes.genderOptions[option] =
+        !state.checkboxes.genderOptions[option];
     },
     setSelectCheckboxName: (state, action) => {
       const option = action.payload;
@@ -53,7 +60,7 @@ const globalSlice = createSlice({
       state.checkboxes.selectCheckbox = option;
     },
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
       .addCase(fetchFriendsThunk.fulfilled, (state, action) => {
         state.friends = action.payload;
@@ -67,7 +74,11 @@ const globalSlice = createSlice({
         }
       )
       .addMatcher(
-        isAnyOf(fetchNewsThunk.pending, fetchFriendsThunk.pending, fetchNewsBySearchThunk.pending),
+        isAnyOf(
+          fetchNewsThunk.pending,
+          fetchFriendsThunk.pending,
+          fetchNewsBySearchThunk.pending
+        ),
         pending
       )
       .addMatcher(

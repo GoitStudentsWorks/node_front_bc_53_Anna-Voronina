@@ -8,7 +8,7 @@ const routes = [
 ];
 
 export const AuthNav = ({ variant = null, onClick }) => {
-  const variantCheck = variant === "menu" || "tabletMenu";
+  const variantCheck = variant === "menu" || variant === "tabletMenu";
 
   return (
     <List $variant={variant}>
@@ -22,7 +22,7 @@ export const AuthNav = ({ variant = null, onClick }) => {
             <span>{route.text}</span>
             {route.path === "/login" && (
               <svg>
-                <use xlinkHref={icon + "#pawprint"}> </use>
+                <use href={icon + "#pawprint"}> </use>
               </svg>
             )}
           </LinkStyles>

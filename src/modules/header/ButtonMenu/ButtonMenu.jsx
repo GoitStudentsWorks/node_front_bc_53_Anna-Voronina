@@ -19,7 +19,7 @@ export const ButtonMenu = () => {
     <>
       <Button onClick={open}>
         <Svg>
-          <use xlinkHref={icon + "#menu-hamburger"}></use>
+          <use href={icon + "#menu-hamburger"}></use>
         </Svg>
       </Button>
       <BurgerMenu onClick={close} isOpen={isOpen} />

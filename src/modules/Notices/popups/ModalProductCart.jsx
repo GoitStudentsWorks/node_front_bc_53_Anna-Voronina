@@ -1,5 +1,7 @@
 // import { useNavigate } from "react-router";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+import { selectChosenNotice } from "../../../redux/notices/noticesSelectors";
 import { Modal } from "../../../shared/components/Modal/Modal";
 import {
   CategoryName,
@@ -20,58 +22,73 @@ import {
 import Button from "../../../shared/components/Button/Button";
 
 // Photo
-import card from "../img/Rectangle 24.png";
+// import card from "../img/Rectangle 24.png";
 
 export const ModalProductCart = ({ setIsModalOpen }) => {
+  const {
+    category,
+    comments,
+    date,
+    file,
+    location,
+    name,
+    email,
+    phone,
+    sex,
+    title,
+    type,
+    _id,
+  } = useSelector(selectChosenNotice);
+
   return (
     <Modal onClose={() => setIsModalOpen(false)} variant="petsModal">
-      <ModalWrapper>
+      <ModalWrapper key={_id}>
         <TopWrapper>
           <PhotoDiv>
-            <CategoryName> Test</CategoryName>
-            <NoticesInfoImg src={card} alt="icon" />
+            <CategoryName>{category}</CategoryName>
+            <NoticesInfoImg src={file} alt="icon" />
           </PhotoDiv>
 
           <ParamsBox>
-            <NoticesInfoTitle>Сute dog looking for a home</NoticesInfoTitle>
+            <NoticesInfoTitle>{title}</NoticesInfoTitle>
 
             <ParametersList>
               <NoticesInfoParameters>
                 Name:
-                <ParametersValue> Rich</ParametersValue>
+                <ParametersValue>{name}</ParametersValue>
               </NoticesInfoParameters>
               <NoticesInfoParameters>
                 Birthday:
-                <ParametersValue> 21.01.2020</ParametersValue>
+                <ParametersValue>{date}</ParametersValue>
               </NoticesInfoParameters>
               <NoticesInfoParameters>
                 Type:
-                <ParametersValue> Pomeranian</ParametersValue>
+                <ParametersValue> {type}</ParametersValue>
               </NoticesInfoParameters>
               <NoticesInfoParameters>
                 Place:
                 <NavValue
-                  href={`https://www.google.com/maps/place/${"Lviv"}`}
+                  href={`https://www.google.com/maps/place/${location}`}
                   target="_blank"
                   rel="noopener noreferrer nofollow"
                 >
-                  Lviv
+                  {location}
                 </NavValue>
               </NoticesInfoParameters>
               <NoticesInfoParameters>
                 The sex:
-                <ParametersValue> male</ParametersValue>
+                <ParametersValue>{sex}</ParametersValue>
               </NoticesInfoParameters>
               <NoticesInfoParameters>
                 Email:
                 <NavValue href="mailto:user001@gmail.com" $variant="yellow">
-                  user001@gmail.com
+                  {email}
                 </NavValue>
               </NoticesInfoParameters>
               <NoticesInfoParameters>
                 Phone:
                 <NavValue href="tel:+380981234567" $variant="yellow">
-                  +380981234567
+                  {phone}
                 </NavValue>
               </NoticesInfoParameters>
             </ParametersList>
@@ -80,8 +97,7 @@ export const ModalProductCart = ({ setIsModalOpen }) => {
 
         <CommentsText>
           <CommentsTextStrong>Comments: </CommentsTextStrong>
-          Rich would be the perfect addition to an active family that loves to
-          play and go on walks. I bet he would love having a doggy playmate too!
+          {comments}
         </CommentsText>
 
         <WrapperBtn>

@@ -40,7 +40,7 @@ const ProductCardList = () => {
     setIsModalOpen(true);
     dispatch(fetchNoticeByIdThunk(id));
   };
-
+  console.log(notices);
   return (
     <>
       <ProductList>

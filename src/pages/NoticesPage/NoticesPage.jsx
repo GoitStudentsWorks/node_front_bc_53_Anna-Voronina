@@ -13,6 +13,7 @@ const NoticesPage = () => {
 
   return (
     <Container>
+      {/* <NoticesFilters /> */}
       <ProductCardList />
     </Container>
   );

@@ -25,70 +25,57 @@ import Button from "../../../shared/components/Button/Button";
 // import card from "../img/Rectangle 24.png";
 
 export const ModalProductCart = ({ setIsModalOpen }) => {
-  const {
-    category,
-    comments,
-    date,
-    file,
-    location,
-    name,
-    email,
-    phone,
-    sex,
-    title,
-    type,
-    _id,
-  } = useSelector(selectChosenNotice);
+  const notice = useSelector(selectChosenNotice);
 
   return (
     <Modal onClose={() => setIsModalOpen(false)} variant="petsModal">
-      <ModalWrapper key={_id}>
+      <ModalWrapper key={notice?._id}>
         <TopWrapper>
           <PhotoDiv>
-            <CategoryName>{category}</CategoryName>
-            <NoticesInfoImg src={file} alt="icon" />
+            <CategoryName>{notice?.category}</CategoryName>
+            <NoticesInfoImg src={notice?.file} alt="icon" />
           </PhotoDiv>
 
           <ParamsBox>
-            <NoticesInfoTitle>{title}</NoticesInfoTitle>
+            <NoticesInfoTitle>{notice?.title}</NoticesInfoTitle>
 
             <ParametersList>
               <NoticesInfoParameters>
                 Name:
-                <ParametersValue>{name}</ParametersValue>
+                <ParametersValue>{notice?.name}</ParametersValue>
               </NoticesInfoParameters>
               <NoticesInfoParameters>
                 Birthday:
-                <ParametersValue>{date}</ParametersValue>
+                <ParametersValue>{notice?.date}</ParametersValue>
               </NoticesInfoParameters>
               <NoticesInfoParameters>
                 Type:
-                <ParametersValue> {type}</ParametersValue>
+                <ParametersValue> {notice?.type}</ParametersValue>
               </NoticesInfoParameters>
               <NoticesInfoParameters>
                 Place:
                 <NavValue
-                  href={`https://www.google.com/maps/place/${location}`}
+                  href={`https://www.google.com/maps/place/${notice?.location}`}
                   target="_blank"
                   rel="noopener noreferrer nofollow"
                 >
-                  {location}
+                  {notice?.location}
                 </NavValue>
               </NoticesInfoParameters>
               <NoticesInfoParameters>
                 The sex:
-                <ParametersValue>{sex}</ParametersValue>
+                <ParametersValue>{notice?.sex}</ParametersValue>
               </NoticesInfoParameters>
               <NoticesInfoParameters>
                 Email:
                 <NavValue href="mailto:user001@gmail.com" $variant="yellow">
-                  {email}
+                  {notice?.email}
                 </NavValue>
               </NoticesInfoParameters>
               <NoticesInfoParameters>
                 Phone:
                 <NavValue href="tel:+380981234567" $variant="yellow">
-                  {phone}
+                  {notice?.phone}
                 </NavValue>
               </NoticesInfoParameters>
             </ParametersList>
@@ -97,7 +84,7 @@ export const ModalProductCart = ({ setIsModalOpen }) => {
 
         <CommentsText>
           <CommentsTextStrong>Comments: </CommentsTextStrong>
-          {comments}
+          {notice?.comments}
         </CommentsText>
 
         <WrapperBtn>

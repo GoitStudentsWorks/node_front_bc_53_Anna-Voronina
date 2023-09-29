@@ -11,18 +11,18 @@ export const BurgerMenu = ({ onClick, isOpen = false }) => {
     <>
       <Div className={isOpen ? "open" : "closed"}>
         <BurgerHeader>
-          <Logo />
-          <AuthNav variant="tabletMenu" />
-          {/* <UserNav variant="tabletMenu" /> */}
+          <Logo variant="menu" onClick={onClick} />
+          {/* <AuthNav variant="tabletMenu" onClick={onClick} /> */}
+          <UserNav variant="tabletMenu" onClick={onClick} />
           <Button onClick={onClick}>
             <Svgsmall width={24} height={24}>
               <use xlinkHref={icon + "#cross-small"}></use>
             </Svgsmall>
           </Button>
         </BurgerHeader>
-        <AuthNav variant="menu" />
-        {/* <UserNav variant="menu" /> */}
-        <Nav variant="menu" />
+        {/* <AuthNav variant="menu" onClick={onClick} /> */}
+        <UserNav variant="menu" onClick={onClick} />
+        <Nav variant="menu" onClick={onClick} />
       </Div>
     </>
   );

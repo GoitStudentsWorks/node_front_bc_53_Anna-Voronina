@@ -6,6 +6,8 @@ export const PlugStyled = styled.h3`
   left: 50%;
   transform: translate(-50%, -50%);
 
+  text-align: center;
+
   font-family: ${({ theme }) => theme.fonts.manrope.bold};
   font-size: ${({ theme }) => theme.fontSizes.xl};
   font-weight: ${({ theme }) => theme.fontWeights.bold};

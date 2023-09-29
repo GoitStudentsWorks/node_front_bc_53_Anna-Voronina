@@ -1,21 +1,38 @@
 import styled from 'styled-components';
 
 export const FilterWrapper = styled.div`
+  position: relative;
   display: flex;
-  flex-direction: column;
+  justify-content: end;
+
   width: ${({ theme }) => theme.spacing(38)};
 `;
 
 export const Filter2 = styled.div`
-  padding: 8px;
+  z-index: 8;
+  top: 40px;
+  position: absolute;
+  width: ${({ theme }) => theme.spacing(38)};
+  padding: ${({ theme }) => theme.spacing(2)};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: ${({ theme }) => theme.spacing(2)};
-  width: 100%;
+  background-color: ${({ theme }) => theme.colors.white};
 
   border-radius: ${({ theme }) => theme.radii.s};
+`;
+
+export const TitleFilter = styled.p`
+  font-family: ${({ theme }) => theme.fonts.inter.bold};
+  font-size: ${({ theme }) => theme.fontSizes.m};
+  font-style: normal;
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
+  line-height: normal;
+  letter-spacing: 0.64px;
+  color: ${({ theme }) => theme.colors.blue};
+  z-index: 1;
 `;
 
 export const WrapperOpenOptions = styled.div`

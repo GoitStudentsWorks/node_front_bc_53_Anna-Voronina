@@ -19,9 +19,9 @@ export const fetchNewsThunk = createAsyncThunk(
 
 export const fetchNewsBySearchThunk = createAsyncThunk(
   "global/fetchNewsBySearch",
-  async (_, { rejectWithValue }) => {
+  async (searchQuery, { rejectWithValue }) => {
     try {
-      const { data } = await fetchNewsBySearch();
+      const { data } = await fetchNewsBySearch(searchQuery);
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);

@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import Button from "../../../../shared/components/Button/Button";
 
 export const StepButton = ({ step, onSubmit, values }) => {
   const handleButtonClick = () => {
@@ -10,9 +11,15 @@ export const StepButton = ({ step, onSubmit, values }) => {
   };
 
   return (
-    <button type="button" onClick={handleButtonClick} values={values}>
-      {step === 1 ? "Next" : step === 2 ? "Done" : ""}
-    </button>
+    <Button
+      text={step === 1 ? "Next" : step === 2 ? "Done" : ""}
+      type="button"
+      icon="paws"
+      iconPosition="right"
+      variant="bigButtonSecond"
+      onClick={handleButtonClick}
+      values={values}
+    />
   );
 };
 

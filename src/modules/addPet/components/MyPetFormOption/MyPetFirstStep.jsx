@@ -1,19 +1,28 @@
-import { Field } from "formik";
+import {
+  FieldStyled,
+  StyledLabel,
+  WrapperField,
+} from "./MyPetFirstStep.styled";
 
 const MyPetFirstStep = (formikProps) => {
   const { errors, touched } = formikProps;
   return (
     <>
-      <div>
-        <label>Name:</label>
-        <Field type="text" name="name" placeholder="Type name pet" required />
+      <WrapperField>
+        <StyledLabel>Pet's name:</StyledLabel>
+        <FieldStyled
+          type="text"
+          name="name"
+          placeholder="Type name pet"
+          required
+        />
         {touched.name && errors.name && (
           <div className="error">{errors.name}</div>
         )}
-      </div>
-      <div>
-        <label>Date of Birth:</label>
-        <Field
+      </WrapperField>
+      <WrapperField>
+        <StyledLabel>Date of Birth:</StyledLabel>
+        <FieldStyled
           type="text"
           name="date"
           placeholder="Type date of birth"
@@ -22,14 +31,19 @@ const MyPetFirstStep = (formikProps) => {
         {touched.date && errors.date && (
           <div className="error">{errors.date}</div>
         )}
-      </div>
-      <div>
-        <label>Type of Pet:</label>
-        <Field type="text" name="type" placeholder="Type of pet" required />
+      </WrapperField>
+      <WrapperField>
+        <StyledLabel>Type of Pet:</StyledLabel>
+        <FieldStyled
+          type="text"
+          name="type"
+          placeholder="Type of pet"
+          required
+        />
         {touched.type && errors.type && (
           <div className="error">{errors.type}</div>
         )}
-      </div>
+      </WrapperField>
     </>
   );
 };

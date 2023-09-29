@@ -1,37 +1,50 @@
 import PropTypes from "prop-types";
-import { Field } from "formik";
+import {
+  FieldComentStyled,
+  FileInput,
+  FileInputContainer,
+  FileWrapper,
+  StyledLabel,
+  WrapperField,
+} from "./MyPetSecondStep.styled";
 
 const MyPetSecondStep = ({
   errors,
   touched,
   fileInputRef,
   handleFileChange,
+  imageUrl,
 }) => {
   return (
     <>
-      <div>
-        <label>Upload File:</label>
-        <input
-          type="file"
-          name="file"
-          ref={fileInputRef}
-          onChange={handleFileChange}
-          autoComplete="off"
-          required
-        />
-        {touched.file && errors.file && (
-          <div className="error">{errors.file}</div>
-        )}
-      </div>
-      <div>
-        <label>Comments:</label>
-        <Field
+      <FileWrapper>
+        <StyledLabel>
+          Load the pet’s <br /> image:
+        </StyledLabel>
+        <FileInputContainer imageUrl={imageUrl}>
+          <FileInput
+            type="file"
+            name="file"
+            ref={fileInputRef}
+            onChange={handleFileChange}
+            autoComplete="off"
+            required
+          />
+          {touched.file && errors.file && (
+            <div className="error">{errors.file}</div>
+          )}
+        </FileInputContainer>
+      </FileWrapper>
+      <WrapperField>
+        <StyledLabel>Comments:</StyledLabel>
+        <FieldComentStyled
           type="text"
           name="comments"
           placeholder="Comments"
           autoComplete="off"
+          component="textarea"
         />
-      </div>
+      </WrapperField>
     </>
   );
 };
@@ -41,6 +54,7 @@ MyPetSecondStep.propTypes = {
   touched: PropTypes.object.isRequired,
   fileInputRef: PropTypes.object.isRequired,
   handleFileChange: PropTypes.func.isRequired,
+  imageUrl: PropTypes.object,
 };
 
 export default MyPetSecondStep;

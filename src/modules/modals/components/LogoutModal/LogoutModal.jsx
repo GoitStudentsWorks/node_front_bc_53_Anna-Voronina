@@ -7,14 +7,20 @@ import { useDispatch } from "react-redux";
 import { logoutThunk } from "../../../../redux/auth/authOperations";
 import { toast } from "react-toastify";
 
-export const LogoutModal = ({ onClose }) => {
+export const LogoutModal = ({ onClose, onMenuClose, variant }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const variantCheck = variant === "menu" || "tabletMenu";
 
   const handleYesClick = () => {
     dispatch(logoutThunk())
       .unwrap()
       .then(() => {
+        if (variantCheck) {
+          onMenuClose();
+        }
+        onClose();
         navigate("/");
       })
       .catch((error) => toast.error(error));
@@ -42,4 +48,6 @@ export const LogoutModal = ({ onClose }) => {
 
 LogoutModal.propTypes = {
   onClose: PropTypes.func.isRequired,
+  onMenuClose: PropTypes.func,
+  variant: PropTypes.string,
 };

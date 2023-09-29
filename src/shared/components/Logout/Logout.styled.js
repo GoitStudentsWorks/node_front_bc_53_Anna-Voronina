@@ -46,13 +46,13 @@ export const LogoutBtn = styled(ButtonStyled)`
       }
     `}
 
-  ${({ $variant, $type }) =>
+  ${({ $variant }) =>
     $variant === "header" &&
     css`
-      display: ${$type === "tabletMenu" ? "flex" : "none"};
+      display: none;
       justify-content: center;
       align-items: center;
-      padding: 8px 20px;
+      padding: 8px 18px;
       gap: ${({ theme }) => theme.spacing(2)};
 
       width: 135px;
@@ -70,7 +70,7 @@ export const LogoutBtn = styled(ButtonStyled)`
         stroke: ${({ theme }) => theme.colors.white};
       }
 
-      @media only screen and (min-width: 1280px) {
+      @media only screen and (min-width: 768px) {
         display: flex;
       }
     `}
@@ -83,7 +83,7 @@ export const LogoutBtn = styled(ButtonStyled)`
       left: 20px;
 
       width: 135px;
-      padding: 8px 20px;
+      padding: 8px 18px;
       justify-content: center;
       align-items: center;
       gap: ${({ theme }) => theme.spacing(2)};

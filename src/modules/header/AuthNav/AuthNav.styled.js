@@ -17,6 +17,7 @@ export const List = styled.ul`
       flex-direction: column;
       max-width: 165px;
       margin: 0;
+      gap: ${({ theme }) => theme.spacing(3)};
 
       @media only screen and (min-width: 768px) {
         display: none;

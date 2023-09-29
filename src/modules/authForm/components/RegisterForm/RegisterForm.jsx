@@ -1,18 +1,23 @@
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
-
-import { registerSchema } from '@/modules/authForm/validations/registerSchema';
-import { usePasswordToggle } from '@/hooks/usePasswordToggle';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { FormError } from '../FormError/FormError';
-
 import { IndicatorPasswordStrenght } from '../IndicatorPasswordStrenght/IndicatorPasswordStrenght';
 import { TogglePasswordIcon } from '../TogglePasswordVisibility/TogglePasswordVisibility';
 import { ConfirmPasswordIndicator } from '../ConfirmPasswordIndicator/ConfirmPasswordIndicator';
-import { toast } from 'react-toastify';
 import { Title } from '../Title/Title';
 import { TextWithRouterLink } from '../TextWithRouterLink/TextWithRouterLink';
 import Button from '@/shared/components/Button/Button';
+import { WrapperField } from './RegisterForm.styled';
+import { FormFieldIcon } from '../FormFieldIcon/FormFieldIcon';
+
+import { getClassName } from '../../helpers/getClassName';
+import { usePasswordToggle } from '@/hooks/usePasswordToggle';
+import { registerSchema } from '@/modules/authForm/validations/registerSchema';
+import { setIsSuccess } from '@/redux/global/globalSlice';
+import { registerThunk } from '@/redux/auth/authOperations';
 
 import {
   WrapperМessages,
@@ -23,12 +28,6 @@ import {
   WrapperAbsoluteMessages,
   WrapperAbsoluteEye,
 } from '../LoginForm/LoginForm.styled';
-import { WrapperField } from './RegisterForm.styled';
-import { FormFieldIcon } from '../FormFieldIcon/FormFieldIcon';
-import { getClassName } from '../../helpers/getClassName';
-import { registerThunk } from '../../../../redux/auth/authOperations';
-import { setIsSuccess } from '../../../../redux/global/globalSlice';
-import { useNavigate } from 'react-router-dom';
 
 export const RegisterForm = () => {
   const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1', 'password2']);
@@ -52,7 +51,6 @@ export const RegisterForm = () => {
         navigate('/user');
       })
       .catch(error => {
-        
         toast.error(error);
       });
     resetForm();

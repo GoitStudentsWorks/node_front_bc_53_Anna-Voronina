@@ -5,7 +5,7 @@ import { PaginationContainer } from "./Pagination.styled";
 
 export const Pagination = ({
   onPageChange,
-  totalPets,
+  totalItems,
   currentPage,
   perPage,
 }) => {
@@ -13,14 +13,15 @@ export const Pagination = ({
 
   const marginPages = isMobile ? 1 : 2;
 
-  const pageCount = Math.ceil(totalPets / perPage);
+  const pageCount = Math.ceil(totalItems / perPage);
 
   const handlePageClick = (event) => {
-    const selectedPage = event.selected * perPage;
+    const selectedPage = event.selected + 1;
+
     onPageChange(selectedPage);
   };
 
-  if (totalPets <= perPage) {
+  if (totalItems <= perPage) {
     return null;
   }
 
@@ -47,6 +48,6 @@ export const Pagination = ({
 Pagination.propTypes = {
   perPage: PropTypes.number,
   currentPage: PropTypes.number,
-  totalPets: PropTypes.number,
+  totalItems: PropTypes.number,
   onPageChange: PropTypes.func,
 };

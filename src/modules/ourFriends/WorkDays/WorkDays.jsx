@@ -13,7 +13,7 @@ export const WorkDays = ({ days, isActive, toggleActive }) => {
                 {daysOfWeek[idx]} {day.from} - {day.to}
               </StyledItem>
             ))
-          : `${days[0].from} - ${days[0].to}`}
+          : `${days[0]?.from} - ${days[0]?.to}`}
       </StyledList>
     </StyledDate>
   );

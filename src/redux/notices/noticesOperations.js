@@ -59,6 +59,7 @@ export const fetchNoticeByIdThunk = createAsyncThunk(
   async (noticeId, { rejectWithValue }) => {
     try {
       const { data } = await fetchNoticeById(noticeId);
+      console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
@@ -80,9 +81,10 @@ export const fetchFilteredNoticesThunk = createAsyncThunk(
 
 export const fetchAllNoticesThunk = createAsyncThunk(
   "notices/fetchAllNotices",
-  async ({ page, limit }, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const { data } = await fetchAllNotices({ page, limit });
+      const { data } = await fetchAllNotices();
+      console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);

@@ -23,8 +23,8 @@ export const registerSchema = yup.object().shape({
       }
       return true;
     })
-    .required('required field')
-    .max(16, 'the name must contain a maximum of 16 characters'),
+    .required('required field'),
+
   password: yup
     .string()
     .test('trim', 'The field must not start or end with spaces', value => {

@@ -119,6 +119,9 @@ export const ItemTitle = styled.h3`
   letter-spacing: -0.01em;
   color: ${({ theme }) => theme.colors.black};
   margin-bottom: 20px;
+  &::first-letter {
+    text-transform: uppercase;
+  }
 `;
 
 export const WrapperBtn = styled.div`
@@ -159,7 +162,7 @@ export const InformationMap = styled.li`
   color: ${({ theme }) => theme.colors.black};
   background: ${({ theme }) => theme.colors.lightBlue};
   backdrop-filter: blur(2px);
-  padding: 2px 5px;
+  padding: 2px 3px;
   border-radius: ${({ theme }) => theme.radii.xs};
   border-color: ${({ theme }) => theme.colors.blue};
   outline: none;
@@ -182,4 +185,11 @@ export const IconInformation = styled.svg`
   width: 24px;
   stroke: ${({ theme }) => theme.colors.blue};
   fill: transparent;
+`;
+
+export const WrapperLocation = styled.span`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 6ch;
 `;

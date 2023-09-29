@@ -31,14 +31,13 @@ export const StyledList = styled.ul`
   @media only screen and (min-width: 1280px) {
     font-size: ${({ theme }) => theme.fontSizes.m};
     top: 10%;
-    left: -40%;
+    left: -30%;
     font-size: ${({ theme, $isActive }) => $isActive && theme.fontSizes.s};
   }
 `;
 
 export const StyledDate = styled.div`
   position: relative;
-  margin-bottom: 20px;
 `;
 
 export const StyledItem = styled.li`

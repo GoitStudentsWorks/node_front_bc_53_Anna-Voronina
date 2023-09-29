@@ -1,10 +1,13 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import {
+  StyledAddress,
   StyledCardWrapper,
   StyledH3,
   StyledImg,
+  StyledImgLink,
   StyledList,
+  StyledListItem,
   StyledP,
   StyledText,
   StyledTittle,
@@ -32,17 +35,17 @@ export const OurFriendsCard = ({
 
   return (
     <Wrapper>
-      <a href={url}>
-        <StyledTittle>{title}</StyledTittle>
-      </a>
+      <StyledTittle>
+        <a href={url}>{title}</a>
+      </StyledTittle>
       <StyledCardWrapper>
-        <a href={url}>
+        <StyledImgLink href={url}>
           <StyledImg src={imageUrl} alt={title} />
-        </a>
+        </StyledImgLink>
 
-        <address>
-          <ul>
-            <StyledList>
+        <StyledAddress>
+          <StyledList>
+            <StyledListItem>
               <button>
                 <StyledH3>Time:</StyledH3>
                 {workDays ? (
@@ -55,8 +58,8 @@ export const OurFriendsCard = ({
                   <StyledP>day and night</StyledP>
                 )}
               </button>
-            </StyledList>
-            <StyledList>
+            </StyledListItem>
+            <StyledListItem>
               <StyledH3>Address:</StyledH3>
               {addressUrl ? (
                 <StyledText
@@ -69,25 +72,25 @@ export const OurFriendsCard = ({
               ) : (
                 <StyledP>website only</StyledP>
               )}
-            </StyledList>
-            <StyledList>
+            </StyledListItem>
+            <StyledListItem>
               <StyledH3>Email:</StyledH3>
               {email ? (
                 <StyledText href={`mailto:${email}`}>{email}</StyledText>
               ) : (
                 <StyledP>website only</StyledP>
               )}
-            </StyledList>
-            <StyledList>
+            </StyledListItem>
+            <StyledListItem>
               <StyledH3>Phone:</StyledH3>
               {phone ? (
                 <StyledText href={`tel:${phone}`}>{phone}</StyledText>
               ) : (
                 <StyledP>website only</StyledP>
               )}
-            </StyledList>
-          </ul>
-        </address>
+            </StyledListItem>
+          </StyledList>
+        </StyledAddress>
       </StyledCardWrapper>
     </Wrapper>
   );

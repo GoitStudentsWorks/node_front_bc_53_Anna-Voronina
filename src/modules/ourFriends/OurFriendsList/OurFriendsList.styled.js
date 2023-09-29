@@ -9,9 +9,6 @@ export const StyledList = styled.ul`
   @media only screen and (min-width: 768px) {
     flex-direction: row;
     flex-wrap: wrap;
-
     gap: 32px;
-  }
-  @media only screen and (min-width: 1280px) {
   }
 `;

@@ -42,12 +42,12 @@ const NewsPage = () => {
         <Loader />
       ) : (
         <>
-          <ListNews newsSort={newsSort} />
+          <ListNews newsSort={newsSort?.data} />
           <Pagination
             onPageChange={handlePageChange}
             currentPage={page}
             perPage={6}
-            totalItems={100}
+            totalItems={newsSort?.total}
           />
         </>
       )}

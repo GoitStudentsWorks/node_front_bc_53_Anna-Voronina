@@ -11,7 +11,7 @@ export const LogoutModal = ({ onClose, onMenuClose, variant }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const variantCheck = variant === "menu" || "tabletMenu";
+  const variantCheck = variant === "menu" || variant === "header";
 
   const handleYesClick = () => {
     dispatch(logoutThunk())
@@ -20,7 +20,6 @@ export const LogoutModal = ({ onClose, onMenuClose, variant }) => {
         if (variantCheck) {
           onMenuClose();
         }
-        console.log(onClose);
         onClose();
         navigate("/");
       })

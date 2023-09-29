@@ -1,11 +1,24 @@
-import PropTypes from 'prop-types';
-
 import { transformString } from '../../helpers/transformString';
 import { WrapperCheckButton } from './CheckButton.styled';
 import { ageOptions, genderOptions } from '../../service/optionsService';
 import Button from '@/shared/components/Button/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCheckboxes } from '@/redux/global/globalSelectors';
+import {
+  setSelectCheckboxName,
+  toggleAgeOption,
+  toggleGenderOption,
+} from '@/redux/global/globalSlice';
 
-export const CheckButton = ({ checkboxes, handleCheckboxChange }) => {
+export const CheckButton = () => {
+  const checkboxes = useSelector(selectCheckboxes);
+  const dispatch = useDispatch();
+
+  const toggleCheckBoxOption = (optionType, option) => {
+    const isChecked = !checkboxes[`${optionType}Options`][option];
+    dispatch(optionType === 'age' ? toggleAgeOption(option) : toggleGenderOption(option));
+    dispatch(setSelectCheckboxName(isChecked ? option : null));
+  };
   return (
     <WrapperCheckButton>
       {ageOptions.map(option => (
@@ -15,8 +28,8 @@ export const CheckButton = ({ checkboxes, handleCheckboxChange }) => {
               text={transformString(option.value)}
               variant="filterCheck"
               icon="cross-small"
-              iconVariant="transparent"
-              iconOnClick={() => handleCheckboxChange('ageOptions', option.value)}
+              iconVariant="filterbutton"
+              iconOnClick={() => toggleCheckBoxOption('age', option.value)}
               iconPosition="right"
             />
           )}
@@ -29,8 +42,8 @@ export const CheckButton = ({ checkboxes, handleCheckboxChange }) => {
               text={transformString(option.value)}
               variant="filterCheck"
               icon="cross-small"
-              iconVariant="transparent"
-              iconOnClick={() => handleCheckboxChange('genderOptions', option.value)}
+              iconVariant="filterbutton"
+              iconOnClick={() => toggleCheckBoxOption('gender', option.value)}
               iconPosition="right"
             />
           )}
@@ -38,12 +51,4 @@ export const CheckButton = ({ checkboxes, handleCheckboxChange }) => {
       ))}
     </WrapperCheckButton>
   );
-};
-
-CheckButton.propTypes = {
-  checkboxes: PropTypes.shape({
-    ageOptions: PropTypes.object,
-    genderOptions: PropTypes.object,
-  }).isRequired,
-  handleCheckboxChange: PropTypes.func.isRequired,
 };

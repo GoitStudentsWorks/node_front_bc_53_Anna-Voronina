@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   setToken,
   register,
@@ -8,13 +8,14 @@ import {
   updateUserData,
   updateAvatar,
   fetchUserData,
-} from "../../services/api/api.js";
+} from '../../services/api/api.js';
 
 export const registerThunk = createAsyncThunk(
-  "auth/register",
-  async (credentials, { rejectWithValue }) => {
+  'auth/register',
+  async ({ name, email, password }, { rejectWithValue, dispatch }) => {
     try {
-      const data = await register(credentials);
+      const data = await register({ name, email, password });
+      dispatch(loginThunk({ email, password }));
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
@@ -23,7 +24,7 @@ export const registerThunk = createAsyncThunk(
 );
 
 export const loginThunk = createAsyncThunk(
-  "auth/login",
+  'auth/login',
   async (credentials, { rejectWithValue }) => {
     try {
       const data = await login(credentials);
@@ -34,27 +35,24 @@ export const loginThunk = createAsyncThunk(
   }
 );
 
-export const logoutThunk = createAsyncThunk(
-  "auth/logout",
-  async (_, { rejectWithValue }) => {
-    try {
-      await logout();
-    } catch (error) {
-      return rejectWithValue(error.response.data.message);
-    }
+export const logoutThunk = createAsyncThunk('auth/logout', async (_, { rejectWithValue }) => {
+  try {
+    await logout();
+  } catch (error) {
+    return rejectWithValue(error.response.data.message);
   }
-);
+});
 
 export const refreshThunk = createAsyncThunk(
-  "auth/refresh",
+  'auth/refresh',
   async (_, { rejectWithValue, getState }) => {
     const persistedToken = getState().auth.token;
     if (!persistedToken) {
-      return rejectWithValue("Token is not found!");
+      return rejectWithValue('Token is not found!');
     }
     try {
       setToken(persistedToken);
-      const data = await getCurrentUser("/auth/current");
+      const data = await getCurrentUser('/auth/current');
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
@@ -63,7 +61,7 @@ export const refreshThunk = createAsyncThunk(
 );
 
 export const updateUserDataThunk = createAsyncThunk(
-  "auth/updateUserData",
+  'auth/updateUserData',
   async (credentials, { rejectWithValue }) => {
     try {
       const data = await updateUserData(credentials);
@@ -75,7 +73,7 @@ export const updateUserDataThunk = createAsyncThunk(
 );
 
 export const updateAvatarThunk = createAsyncThunk(
-  "auth/updateAvatar",
+  'auth/updateAvatar',
   async (avatar, { rejectWithValue }) => {
     try {
       const data = await updateAvatar(avatar);
@@ -87,7 +85,7 @@ export const updateAvatarThunk = createAsyncThunk(
 );
 
 export const fetchUserDataThunk = createAsyncThunk(
-  "auth/fetchUserData",
+  'auth/fetchUserData',
   async (_, { rejectWithValue }) => {
     try {
       const data = await fetchUserData();

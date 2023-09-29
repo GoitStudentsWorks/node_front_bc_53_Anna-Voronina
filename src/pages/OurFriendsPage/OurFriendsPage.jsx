@@ -13,7 +13,7 @@ const OurFriendsPage = () => {
     dispatch(
       fetchFriendsThunk({
         page: 1,
-        limit: 9,
+        limit: 10,
       })
     );
   }, [dispatch]);

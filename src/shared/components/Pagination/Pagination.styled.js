@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const PaginationContainer = styled.div`
   color: #111;
   text-align: center;
-  font-family: Inter;
+  font-family: ${({ theme }) => theme.fonts.inter.regular};
   font-size: 16px;
   font-weight: 400;
   line-height: 0.9375;
@@ -15,8 +15,11 @@ export const PaginationContainer = styled.div`
   }
 
   li {
-    width: 35px;
-    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: ${({ theme }) => theme.spacing(10)};
+    height: ${({ theme }) => theme.spacing(10)};
     padding: 10px 10px 10px 10px;
     border-radius: 50%;
     stroke-width: 1px;

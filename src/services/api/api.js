@@ -25,7 +25,7 @@ export const clearToken = () => {
 // Registration new user
 export const register = async (user) => {
   const { data } = await connectionsApi.post("/auth/register", user);
-  setToken(data.token);
+  // setToken(data.token);
   return data;
 };
 

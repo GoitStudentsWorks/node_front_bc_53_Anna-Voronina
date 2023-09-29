@@ -17,8 +17,14 @@ const rejected = (state, action) => {
 };
 
 const initialState = {
-  news: [],
-  friends: [],
+  news: {
+    data: [],
+    total: null,
+  },
+  friends: {
+    data: [],
+    total: null,
+  },
   isSuccess: false,
   isButtonsVisible: false,
   checkboxes: initialCheckboxesState,
@@ -63,13 +69,15 @@ const globalSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchFriendsThunk.fulfilled, (state, action) => {
-        state.friends = action.payload;
+        state.friends.data = action.payload.data;
+        state.friends.total = action.payload.total;
         state.isLoading = false;
       })
       .addMatcher(
         isAnyOf(fetchNewsThunk.fulfilled, fetchNewsBySearchThunk.fulfilled),
         (state, action) => {
-          state.news = action.payload;
+          state.news.data = action.payload.data;
+          state.news.total = action.payload.total;
           state.isLoading = false;
         }
       )

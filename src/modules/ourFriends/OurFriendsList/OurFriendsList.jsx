@@ -8,7 +8,7 @@ export const OurFriendsList = () => {
 
   return (
     <StyledList>
-      {friends.map((res, id) => {
+      {friends?.data.map((res, id) => {
         return <OurFriendsCard key={id} {...res} />;
       })}
     </StyledList>

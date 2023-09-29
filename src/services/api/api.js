@@ -140,7 +140,7 @@ export const fetchNoticesByCategoryAndSearch = async ({
 };
 
 export const fetchNoticeById = async (noticeId) => {
-  const data = connectionsApi.get(`/notices/search/${noticeId}`);
+  const data = connectionsApi.get(`/notices/${noticeId}`);
   return data;
 };
 
@@ -161,13 +161,9 @@ export const fetchFilteredNotices = async ({
 
 // ------- PRIVATE ------- //
 
-export const fetchAllNotices = async ({ page = 1, limit = 12 }) => {
-  const data = connectionsApi.get("/notices/get/all", {
-    params: {
-      page,
-      limit,
-    },
-  });
+export const fetchAllNotices = async () => {
+  const data = connectionsApi.get("/notices/get/all");
+
   return data;
 };
 

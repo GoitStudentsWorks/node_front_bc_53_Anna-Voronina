@@ -75,7 +75,9 @@ export const NoticesInfoTitle = styled.h3`
   letter-spacing: -0.28px;
   color: ${({ theme }) => theme.colors.black};
   margin-bottom: 20px;
-
+  &::first-letter {
+    text-transform: uppercase;
+  }
   /* word-break: break-all; */
   @media screen and (min-width: 768px) {
     width: 268px;

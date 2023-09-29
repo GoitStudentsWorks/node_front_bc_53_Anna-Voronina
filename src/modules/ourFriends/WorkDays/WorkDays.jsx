@@ -1,9 +1,9 @@
+import PropTypes from "prop-types";
 import { StyledDate, StyledItem, StyledList } from "./WorkDays.styled";
 
 const daysOfWeek = ["MN", "TU", "WE", "TH", "FR", "SA", "SU"];
 
 export const WorkDays = ({ days, isActive, toggleActive }) => {
-  console.log(isActive);
   return (
     <StyledDate>
       <StyledList $isActive={isActive} onClick={() => toggleActive(!isActive)}>
@@ -17,4 +17,10 @@ export const WorkDays = ({ days, isActive, toggleActive }) => {
       </StyledList>
     </StyledDate>
   );
+};
+
+WorkDays.propTypes = {
+  days: PropTypes.array,
+  isActive: PropTypes.bool,
+  toggleActive: PropTypes.func,
 };

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 import {
   StyledCardWrapper,
@@ -90,4 +91,15 @@ export const OurFriendsCard = ({
       </StyledCardWrapper>
     </Wrapper>
   );
+};
+
+OurFriendsCard.propTypes = {
+  imageUrl: PropTypes.string,
+  title: PropTypes.string,
+  addressUrl: PropTypes.string,
+  address: PropTypes.string,
+  url: PropTypes.string,
+  email: PropTypes.string,
+  phone: PropTypes.string,
+  workDays: PropTypes.array,
 };

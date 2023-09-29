@@ -1,12 +1,15 @@
-import data from "../ourFriends.json";
+import { useSelector } from "react-redux";
 import { OurFriendsCard } from "../OurFriendsCard/OurFriendsCard";
 import { StyledList } from "./OurFriendsList.styled";
+import { selectFriends } from "../../../redux/global/globalSelectors";
 
 export const OurFriendsList = () => {
+  const friends = useSelector(selectFriends);
+
   return (
     <StyledList>
-      {data.map((res, idx) => {
-        return <OurFriendsCard key={idx} {...res} />;
+      {friends.map((res, id) => {
+        return <OurFriendsCard key={id} {...res} />;
       })}
     </StyledList>
   );

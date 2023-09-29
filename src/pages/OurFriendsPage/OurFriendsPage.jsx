@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchFriendsThunk } from "../../redux/global/globalOperations";
-import { selectFriends } from "../../redux/global/globalSelectors";
+
 import { OurFriendsList } from "../../modules/ourFriends/OurFriendsList/OurFriendsList";
 import { Container } from "../../shared/components/Container/Container";
 import { Title } from "../NewsPage/NewsPage.styled";
@@ -17,8 +17,6 @@ const OurFriendsPage = () => {
       })
     );
   }, [dispatch]);
-
-  const friends = useSelector(selectFriends);
 
   return (
     <Container>

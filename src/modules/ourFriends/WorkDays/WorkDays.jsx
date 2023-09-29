@@ -20,7 +20,7 @@ export const WorkDays = ({ days, isActive, toggleActive }) => {
         </StyledList>
       ) : (
         <StyledP>
-          {days[0].from} - {days[0].to}
+          {days[0]?.from} - {days[0]?.to}
         </StyledP>
       )}
     </StyledDate>

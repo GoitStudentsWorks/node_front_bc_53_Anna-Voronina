@@ -20,6 +20,7 @@ export const LogoutModal = ({ onClose, onMenuClose, variant }) => {
         if (variantCheck) {
           onMenuClose();
         }
+        console.log(onClose);
         onClose();
         navigate("/");
       })

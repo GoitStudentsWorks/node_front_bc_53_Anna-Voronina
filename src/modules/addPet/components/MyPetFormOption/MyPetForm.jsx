@@ -4,6 +4,8 @@ import MyPetSecondStep from "./MyPetSecondStep";
 import { myPetSchema } from "../../validation/myPetSchema";
 import { Form, Formik } from "formik";
 import { StepButton } from "../StepButton/StepButton";
+import { BtnWrapper } from "./MyPetForm.styled";
+import Button from "../../../../shared/components/Button/Button";
 
 const MyPetFormOption = () => {
   const [step, setStep] = useState(1);
@@ -27,7 +29,7 @@ const MyPetFormOption = () => {
       });
     }
 
-    setStep((step) => step + 1);
+    setStep((prevStep) => prevStep + 1);
   };
 
   return (
@@ -54,17 +56,18 @@ const MyPetFormOption = () => {
                     file: file,
                   });
                 }}
+                imageUrl={formData.file && URL.createObjectURL(formData.file)}
               />
             )}
-            <div>
-              <button
+            <BtnWrapper>
+              <StepButton step={step} onSubmit={() => handleSubmit(values)} />
+              <Button
+                variant="cancelBtnAddPet"
+                text="Back"
                 type="button"
                 onClick={() => setStep((prevStep) => prevStep - 1)}
-              >
-                Back
-              </button>
-              <StepButton step={step} onSubmit={() => handleSubmit(values)} />
-            </div>
+              />
+            </BtnWrapper>
           </Form>
         )}
       </Formik>

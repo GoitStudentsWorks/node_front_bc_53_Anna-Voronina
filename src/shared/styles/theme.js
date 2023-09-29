@@ -33,6 +33,7 @@ export const theme = {
   },
 
   fontSizes: {
+    xxs: "10px",
     xs: "12px",
     s: "14px",
     m: "16px",
@@ -58,6 +59,7 @@ export const theme = {
   radii: {
     none: "0",
     round: "50%",
+    xxs: "8px",
     xs: "16px",
     s: "20px",
     m: "24px",

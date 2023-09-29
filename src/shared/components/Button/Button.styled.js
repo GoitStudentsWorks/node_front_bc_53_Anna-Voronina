@@ -106,6 +106,25 @@ export const ButtonStyled = styled.button`
       }
     `}
 
+/* Варіант "cancelBtnAddPet" */
+      ${({ $variant }) =>
+    $variant === "cancelBtnAddPet" &&
+    css`
+      width: 248px;
+      color: ${({ theme }) => theme.colors.blue};
+      background: ${({ theme }) => theme.colors.white};
+      border: ${({ theme }) => theme.borders.none};
+      &:focus,
+      &:hover {
+        border: none;
+        background: ${({ theme }) => theme.colors.white};
+        transform: scale(1.07);
+      }
+      @media only screen and (min-width: 768px) {
+        width: 80px;
+      }
+    `}
+
  /* Варіант "mediumButtonSecond" */
       ${({ $variant }) =>
     $variant === "mediumButtonSecond" &&

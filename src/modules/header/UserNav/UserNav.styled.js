@@ -73,6 +73,10 @@ export const UserName = styled.p`
 
   color: ${({ theme }) => theme.colors.yellow};
 
+  &::first-letter {
+    text-transform: uppercase;
+  }
+
   @media only screen and (min-width: 768px) {
     display: block;
   }

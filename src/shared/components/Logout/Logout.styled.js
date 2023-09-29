@@ -46,7 +46,7 @@ export const LogoutBtn = styled(ButtonStyled)`
       }
     `}
 
-  ${({ $variant }) =>
+  ${({ $variant, $type }) =>
     $variant === "header" &&
     css`
       display: none;
@@ -71,13 +71,18 @@ export const LogoutBtn = styled(ButtonStyled)`
       }
 
       @media only screen and (min-width: 768px) {
+        display: ${$type === "tabletMenu" ? "flex" : "none"};
+      }
+
+      @media only screen and (min-width: 1280px) {
         display: flex;
       }
     `}
 
-    ${({ $variant }) =>
+    ${({ $variant, $type }) =>
     $variant === "menu" &&
     css`
+      display: ${$type === "burger" ? "flex" : "none"};
       position: absolute;
       bottom: 20px;
       left: 20px;

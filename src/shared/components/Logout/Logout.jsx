@@ -4,7 +4,7 @@ import { LogoutBtn } from "./Logout.styled.js";
 import { LogoutModal } from "../../../modules/modals/components/LogoutModal/LogoutModal.jsx";
 import Icons from "../../icons/sprite.svg";
 
-export const Logout = ({ variant, type, onMenuClose }) => {
+export const Logout = ({ variant = "", type, onMenuClose }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {

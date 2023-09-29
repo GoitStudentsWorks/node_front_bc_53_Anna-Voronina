@@ -1,4 +1,6 @@
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../../redux/auth/authSelectors";
 import {
   StyledUserNav,
   UserName,
@@ -8,8 +10,10 @@ import {
 import { Logout } from "../../../shared/components/Logout/Logout";
 import sprite from "@/shared/icons/sprite.svg";
 
-export const UserNav = ({ variant = "", onClick }) => {
-  const variantCheck = variant === "menu" || "tabletMenu";
+export const UserNav = ({ variant = "", onClick, type = "" }) => {
+  const user = useSelector(selectUser);
+
+  const variantCheck = variant === "menu" || variant === "tabletMenu";
 
   return (
     <StyledUserNav $variant={variant}>
@@ -26,14 +30,15 @@ export const UserNav = ({ variant = "", onClick }) => {
         <UserNavIcon width={28} height={28}>
           <use href={sprite + "#user-1"}></use>
         </UserNavIcon>
-        <UserName $variant={variant}>Jackson</UserName>
+        <UserName $variant={variant}>{user?.name}</UserName>
       </UserNavLink>
-      <Logout variant="menu" onMenuClose={onClick} />
+      <Logout variant="menu" type={type} onMenuClose={onClick} />
     </StyledUserNav>
   );
 };
 
 UserNav.propTypes = {
-  variant: PropTypes.string,
   onClick: PropTypes.func,
+  type: PropTypes.string,
+  variant: PropTypes.string,
 };

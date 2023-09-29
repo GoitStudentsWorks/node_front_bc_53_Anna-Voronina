@@ -12,10 +12,10 @@ import {
 
 export const registerThunk = createAsyncThunk(
   'auth/register',
-  async ({ name, email, password }, { rejectWithValue, dispatch }) => {
+  async ({ name, email, password }, { rejectWithValue }) => {
     try {
       const data = await register({ name, email, password });
-      dispatch(loginThunk({ email, password }));
+
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);

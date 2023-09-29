@@ -28,6 +28,7 @@ import {
   WrapperAbsoluteMessages,
   WrapperAbsoluteEye,
 } from '../LoginForm/LoginForm.styled';
+import { loginThunk } from '../../../../redux/auth/authOperations';
 
 export const RegisterForm = () => {
   const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1', 'password2']);
@@ -47,8 +48,16 @@ export const RegisterForm = () => {
     dispatch(registerThunk({ name, email, password }))
       .unwrap()
       .then(() => {
-        dispatch(setIsSuccess(true));
-        navigate('/user');
+        dispatch(loginThunk({ email, password }))
+          .unwrap()
+          .then(() => {
+            dispatch(setIsSuccess(true));
+
+            navigate('/user');
+          })
+          .catch(error => {
+            toast.error(error);
+          });
       })
       .catch(error => {
         toast.error(error);

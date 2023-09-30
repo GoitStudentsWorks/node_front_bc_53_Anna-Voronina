@@ -97,7 +97,7 @@ export const updateUserDataThunk = createAsyncThunk(
   "auth/updateUserData",
   async (credentials, { rejectWithValue, dispatch }) => {
     try {
-      const data = await updateUserData(credentials);
+      const { data } = await updateUserData(credentials);
       return data;
     } catch (error) {
       if (error.response.status === 401) {
@@ -112,7 +112,7 @@ export const updateAvatarThunk = createAsyncThunk(
   "auth/updateAvatar",
   async (avatar, { rejectWithValue, dispatch }) => {
     try {
-      const data = await updateAvatar(avatar);
+      const { data } = await updateAvatar(avatar);
       return data;
     } catch (error) {
       if (error.response.status === 401) {

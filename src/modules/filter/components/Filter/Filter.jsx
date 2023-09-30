@@ -13,7 +13,7 @@ import sprite from "@/shared/icons/sprite.svg";
 
 import Button from "@/shared/components/Button/Button";
 
-import { ageOptions, genderOptions } from "../../service/optionsService";
+import { ageOptions, sexOptions } from "../../service/optionsService";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -30,16 +30,17 @@ import {
 } from "@/redux/global/globalSelectors";
 import { useEffect, useState } from "react";
 import { transformOption } from "../../helpers/transformOption";
-import { useSearchParams } from "react-router-dom";
+import { toggleFilter } from "../../../../redux/global/globalSlice";
 
 export const FIlter = () => {
   const [buttonText, setButtonText] = useState(
     window.innerWidth < 768 ? " " : "Filter"
   );
-  const [searchParams, setSearchParams] = useSearchParams();
-  const dispatch = useDispatch();
+
   const isButtonsVisible = useSelector(selectIsButtonsVisible);
   const checkboxes = useSelector(selectCheckboxes);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleResize = () => {
@@ -65,13 +66,14 @@ export const FIlter = () => {
 
   const toggleCheckBoxOption = (optionType, option) => {
     const isChecked = !checkboxes[`${optionType}Options`][option];
+
     dispatch(
       optionType === "age"
         ? toggleAgeOption(option)
         : toggleGenderOption(option)
     );
-    dispatch(setSelectCheckboxName(isChecked ? transformOption(option) : null));
-    setSearchParams({ age: isChecked ? transformOption(option) : null });
+
+    dispatch(toggleFilter({ optionType, filterName: transformOption(option) }));
   };
 
   return (
@@ -134,23 +136,21 @@ export const FIlter = () => {
               }
               iconVariant="transparent"
               iconPosition="left"
-              onClick={() => toggleSelectByOption("gender")}
+              onClick={() => toggleSelectByOption("sex")}
             />
             {checkboxes.showCheckboxByGender && (
               <Options>
-                {genderOptions.map((option) => (
+                {sexOptions.map((option) => (
                   <CheckboxLabel key={option.value}>
                     <CheckboxInput
                       type="checkbox"
-                      name="gender"
+                      name="sex"
                       value={option.value}
-                      checked={checkboxes.genderOptions[option.value]}
-                      onChange={() =>
-                        toggleCheckBoxOption("gender", option.value)
-                      }
+                      checked={checkboxes.sexOptions[option.value]}
+                      onChange={() => toggleCheckBoxOption("sex", option.value)}
                     />
                     {option.name}
-                    {checkboxes.genderOptions[option.value] ? (
+                    {checkboxes.sexOptions[option.value] ? (
                       <SvgCheck width="24" height="24">
                         <use href={sprite + "#check-round"}></use>
                       </SvgCheck>

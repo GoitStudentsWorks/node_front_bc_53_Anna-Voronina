@@ -71,9 +71,15 @@ export const fetchNoticeByIdThunk = createAsyncThunk(
 
 export const fetchFilteredNoticesThunk = createAsyncThunk(
   "notices/fetchFilteredNotices",
-  async ({ age, sex, category }, { rejectWithValue }) => {
+  async ({ age, sex, category, page, limit }, { rejectWithValue }) => {
     try {
-      const { data } = await fetchFilteredNotices({ age, sex, category });
+      const { data } = await fetchFilteredNotices({
+        age,
+        sex,
+        category,
+        page,
+        limit,
+      });
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);

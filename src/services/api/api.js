@@ -160,15 +160,19 @@ export const fetchNoticeById = async (noticeId) => {
 };
 
 export const fetchFilteredNotices = async ({
-  age = "1",
-  sex = "female",
+  age,
+  sex,
   category = "sell",
+  page = 1,
+  limit = 12,
 }) => {
-  const data = connectionsApi.get("/filter/by", {
+  const data = connectionsApi.get("/notices/filter/by", {
     params: {
       age,
       sex,
       category,
+      page,
+      limit,
     },
   });
   return data;

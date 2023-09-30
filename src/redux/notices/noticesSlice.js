@@ -16,6 +16,8 @@ const initialState = {
     data: [],
     total: 0,
   },
+  ageArray: [],
+  sexArray: [],
   chosenNotice: null,
   petData: {},
   isLoading: false,
@@ -25,6 +27,14 @@ const initialState = {
 const noticesSlice = createSlice({
   name: "notices",
   initialState,
+  reducers: {
+    updateSexArray: (state, action) => {
+      state.sexArray.push(action.payload);
+    },
+    updateAgeArray: (state, action) => {
+      state.ageArray.push(action.payload);
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(addNewPetThunk.fulfilled, (state, action) => {
@@ -55,3 +65,5 @@ const noticesSlice = createSlice({
 });
 
 export const noticesReducer = noticesSlice.reducer;
+
+export const { updateSexArray, updateAgeArray } = noticesSlice.actions;

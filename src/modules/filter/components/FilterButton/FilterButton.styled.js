@@ -1,7 +1,11 @@
-import styled from 'styled-components';
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 
-export const LabelStyled = styled.label`
+export const NavListItemStyled = styled.li`
   position: relative;
+`;
+
+export const NavLinkStyled = styled(NavLink)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,13 +33,14 @@ export const LabelStyled = styled.label`
     transform: scale(1.07);
     color: ${({ theme }) => theme.colors.white};
   }
+
+  &.active {
+    background-color: ${({ theme }) => theme.colors.blue};
+    color: ${({ theme }) => theme.colors.white};
+  }
 `;
 
-export const InputStyled = styled.input`
-  display: none;
-`;
-
-export const FormStyled = styled.form`
+export const NavListStyled = styled.ul`
   display: flex;
   gap: ${({ theme }) => theme.spacing(3)};
   flex-wrap: wrap;

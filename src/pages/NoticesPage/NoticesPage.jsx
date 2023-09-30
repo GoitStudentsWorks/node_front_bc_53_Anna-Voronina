@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { fetchNoticesByCategoryThunk } from "@/redux/notices/noticesOperations";
 import { selectNotices } from "@/redux/notices/noticesSelectors";
 import { fetchNoticesBySearchThunk } from "@/redux/notices/noticesOperations";
@@ -17,6 +17,7 @@ import { NoticesFilters } from "../../modules/filter/components/NoticesFilters/N
 const NoticesPage = () => {
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const dispatch = useDispatch();
   const { category } = useParams();

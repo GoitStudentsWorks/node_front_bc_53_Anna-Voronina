@@ -126,16 +126,31 @@ export const fetchNoticesBySearch = async ({
   return data;
 };
 
-export const fetchNoticesByCategory = async (category) => {
-  const data = connectionsApi.get(`/notices/search/${category}`);
+export const fetchNoticesByCategory = async ({ page, limit, category }) => {
+  const data = connectionsApi.get(`/notices/search/${category}`, {
+    params: {
+      page,
+      limit,
+    },
+  });
   return data;
 };
 
 export const fetchNoticesByCategoryAndSearch = async ({
+  page,
+  limit,
   category,
   searchQuery,
 }) => {
-  const data = connectionsApi.get(`/notices/search/${category}/${searchQuery}`);
+  const data = connectionsApi.get(
+    `/notices/search/${category}/${searchQuery}`,
+    {
+      params: {
+        page,
+        limit,
+      },
+    }
+  );
   return data;
 };
 
@@ -146,7 +161,7 @@ export const fetchNoticeById = async (noticeId) => {
 
 export const fetchFilteredNotices = async ({
   age = "1",
-  sex,
+  sex = "female",
   category = "sell",
 }) => {
   const data = connectionsApi.get("/filter/by", {

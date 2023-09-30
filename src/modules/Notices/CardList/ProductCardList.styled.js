@@ -7,14 +7,20 @@ export const ProductList = styled.ul`
   gap: 32px;
   max-width: 450px;
   margin-top: 40px;
+  margin-bottom: ${({ theme }) => theme.spacing(10)};
+
   @media screen and (min-width: 450px) {
     max-width: initial;
   }
+
   @media screen and (min-width: 768px) {
     grid-template-columns: repeat(2, 4fr);
+    margin-bottom: ${({ theme }) => theme.spacing(15)};
   }
+
   @media screen and (min-width: 1280px) {
     grid-template-columns: repeat(4, 4fr);
+    margin-bottom: ${({ theme }) => theme.spacing(17)};
   }
 `;
 
@@ -113,15 +119,20 @@ export const ContentWrapper = styled.div`
 `;
 
 export const ItemTitle = styled.h3`
+  height: 66px;
+  margin-bottom: 20px;
+
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   font-size: ${({ theme }) => theme.fontSizes.xl};
   line-height: normal;
   letter-spacing: -0.01em;
   color: ${({ theme }) => theme.colors.black};
-  margin-bottom: 20px;
-  &::first-letter {
-    text-transform: uppercase;
-  }
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 `;
 
 export const WrapperBtn = styled.div`

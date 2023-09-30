@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Title = styled.h2`
+export const StyledPageTitle = styled.h1`
   margin-top: ${({ theme }) => theme.spacing(10)};
   margin-bottom: ${({ theme }) => theme.spacing(6)};
 

@@ -1,12 +1,16 @@
-import { FormStyled, InputStyled, LabelStyled } from './FilterButton.styled';
-import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import { FormStyled, InputStyled, LabelStyled } from "./FilterButton.styled";
+import { useState } from "react";
 
 export const FilterButton = () => {
-  const [selectedOption, setSelectedOption] = useState('sell');
+  const [selectedOption, setSelectedOption] = useState("sell");
 
-  const handleOptionChange = value => {
+  const navigate = useNavigate();
+
+  const handleOptionChange = (value) => {
     setSelectedOption(value);
-    console.log('Выбрана радиокнопка:', value);
+    navigate(`/${value}`);
+    console.log("Выбрана радиокнопка:", value);
   };
 
   return (
@@ -16,8 +20,8 @@ export const FilterButton = () => {
           type="radio"
           name="selectedOption"
           value="sell"
-          checked={selectedOption === 'sell'}
-          onChange={() => handleOptionChange('sell')}
+          checked={selectedOption === "sell"}
+          onChange={() => handleOptionChange("sell")}
         />
         sell
       </LabelStyled>
@@ -27,8 +31,8 @@ export const FilterButton = () => {
           type="radio"
           name="selectedOption"
           value="lost-found"
-          checked={selectedOption === 'lost-found'}
-          onChange={() => handleOptionChange('lost-found')}
+          checked={selectedOption === "lost-found"}
+          onChange={() => handleOptionChange("lost-found")}
         />
         lost/found
       </LabelStyled>
@@ -38,8 +42,8 @@ export const FilterButton = () => {
           type="radio"
           name="selectedOption"
           value="in-good-hands"
-          checked={selectedOption === 'in-good-hands'}
-          onChange={() => handleOptionChange('in-good-hands')}
+          checked={selectedOption === "in-good-hands"}
+          onChange={() => handleOptionChange("in-good-hands")}
         />
         in good hands
       </LabelStyled>
@@ -49,8 +53,8 @@ export const FilterButton = () => {
           type="radio"
           name="selectedOption"
           value="favorite"
-          checked={selectedOption === 'favorite'}
-          onChange={() => handleOptionChange('favorite')}
+          checked={selectedOption === "favorite"}
+          onChange={() => handleOptionChange("favorite")}
         />
         favorite ads
       </LabelStyled>
@@ -60,8 +64,8 @@ export const FilterButton = () => {
           type="radio"
           name="selectedOption"
           value="own"
-          checked={selectedOption === 'own'}
-          onChange={() => handleOptionChange('own')}
+          checked={selectedOption === "own"}
+          onChange={() => handleOptionChange("own")}
         />
         my ads
       </LabelStyled>

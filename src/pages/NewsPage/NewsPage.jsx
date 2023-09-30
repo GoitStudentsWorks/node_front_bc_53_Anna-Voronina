@@ -7,20 +7,20 @@ import {
   fetchNewsBySearchThunk,
   fetchNewsThunk,
 } from "../../redux/global/globalOperations";
-import { Title } from "./NewsPage.styled";
 import {
   selectNewsSort,
   selectorIsLoading,
 } from "../../redux/global/globalSelectors";
 import { Loader } from "../../shared/components/Loader/Loader";
 import { Pagination } from "../../shared/components/Pagination/Pagination";
+import { PageTitle } from "../../shared/components/PageTitle/PageTitle";
 
 const NewsPage = () => {
+  const [page, setPage] = useState(1);
+
   const dispatch = useDispatch();
   const isLoading = useSelector(selectorIsLoading);
   const newsSort = useSelector(selectNewsSort);
-  const [page, setPage] = useState(1);
-  console.log(newsSort);
 
   useEffect(() => {
     dispatch(fetchNewsThunk({ page, limit: 6 }));
@@ -36,7 +36,7 @@ const NewsPage = () => {
 
   return (
     <Container>
-      <Title>News</Title>
+      <PageTitle title="News" />
       <Searchbar onSubmit={handleSubmit} />
       {isLoading ? (
         <Loader />

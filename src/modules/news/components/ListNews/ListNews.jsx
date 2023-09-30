@@ -1,14 +1,12 @@
-// import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import OneNews from "../OneNews/OneNews";
 import { ListNewsStyled, PlugStyled } from "./ListNews.styled";
-// import { selectNewsSort } from "../../../../redux/global/globalSelectors";
 
 const ListNews = ({ newsSort }) => {
   return (
     <>
       {newsSort.length === 0 ? (
-        <PlugStyled>News are displayed here...</PlugStyled>
+        <PlugStyled>There are no news matching your search query.</PlugStyled>
       ) : (
         <ListNewsStyled>
           {newsSort.map((item) => {

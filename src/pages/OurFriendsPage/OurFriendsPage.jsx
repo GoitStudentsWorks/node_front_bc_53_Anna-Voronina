@@ -4,7 +4,7 @@ import { fetchFriendsThunk } from "../../redux/global/globalOperations";
 
 import { OurFriendsList } from "../../modules/ourFriends/OurFriendsList/OurFriendsList";
 import { Container } from "../../shared/components/Container/Container";
-import { Title } from "../NewsPage/NewsPage.styled";
+import { PageTitle } from "../../shared/components/PageTitle/PageTitle";
 
 const OurFriendsPage = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const OurFriendsPage = () => {
 
   return (
     <Container>
-      <Title>Our Friends</Title>
+      <PageTitle title="Our Friends" />
       <OurFriendsList />
     </Container>
   );

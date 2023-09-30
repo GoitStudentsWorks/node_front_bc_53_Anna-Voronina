@@ -1,11 +1,13 @@
 import { useState } from "react";
-// import { useDispatch } from "react-redux";
-import { useDispatch, useSelector } from "react-redux";
-
-import { selectNotices } from "@/redux/notices/noticesSelectors";
-
+import { useDispatch } from "react-redux";
 import { transformAge } from "../helpers/transformAge.js";
 
+import Button from "@/shared/components/Button/Button";
+import { ModalProductCart } from "../popups/ModalProductCart";
+import { fetchNoticeByIdThunk } from "@/redux/notices/noticesOperations.js";
+import { transformTitle } from "../helpers/transformTitle.js";
+
+import { PlugStyled } from "../../news/components/ListNews/ListNews.styled.js";
 import {
   ProductList,
   ProductItem,
@@ -22,13 +24,8 @@ import {
   ContentWrapper,
   WrapperLocation,
 } from "./ProductCardList.styled";
-import Button from "@/shared/components/Button/Button";
-import { ModalProductCart } from "../popups/ModalProductCart";
 
-// Photo
-import sprite from "../../../shared/icons/sprite.svg";
-import { fetchNoticeByIdThunk } from "../../../redux/notices/noticesOperations.js";
-// import card from "../img/Rectangle 24.png";
+import sprite from "@/shared/icons/sprite.svg";
 
 const ProductCardList = ({ notices }) => {
   const dispatch = useDispatch();
@@ -41,59 +38,67 @@ const ProductCardList = ({ notices }) => {
 
   return (
     <>
-      <ProductList>
-        {notices?.map(({ category, age, _id, title, location, file, sex }) => (
-          <ProductItem key={_id}>
-            <IconWrapper>
-              <PetCategory>{category}</PetCategory>
+      {notices?.length ? (
+        <ProductList>
+          {notices?.map(
+            ({ category, age, _id, title, location, file, sex }) => (
+              <ProductItem key={_id}>
+                <IconWrapper>
+                  <PetCategory>{category}</PetCategory>
 
-              <FavoriteBtn onClick={() => {}}>
-                <HeartIconPrimal>
-                  <use href={sprite + "#heart"}></use>
-                </HeartIconPrimal>
-              </FavoriteBtn>
+                  <FavoriteBtn onClick={() => {}}>
+                    <HeartIconPrimal>
+                      <use href={sprite + "#heart"}></use>
+                    </HeartIconPrimal>
+                  </FavoriteBtn>
 
-              <NoticesItemImg loading="lazy" src={file} alt="icon" />
+                  <NoticesItemImg loading="lazy" src={file} alt="icon" />
 
-              <WrapperInformation>
-                <InformationMap>
-                  <IconInformation>
-                    <use href={sprite + "#location-1"}></use>
-                  </IconInformation>
-                  <WrapperLocation>{location}</WrapperLocation>
-                </InformationMap>
+                  <WrapperInformation>
+                    <InformationMap>
+                      <IconInformation>
+                        <use href={sprite + "#location-1"}></use>
+                      </IconInformation>
+                      <WrapperLocation>{location}</WrapperLocation>
+                    </InformationMap>
 
-                <InformationMap>
-                  <IconInformation>
-                    <use href={sprite + "#clock"}></use>
-                  </IconInformation>
-                  {transformAge(age)}
-                </InformationMap>
+                    <InformationMap>
+                      <IconInformation>
+                        <use href={sprite + "#clock"}></use>
+                      </IconInformation>
+                      {transformAge(age)}
+                    </InformationMap>
 
-                <InformationMap>
-                  <IconInformation>
-                    <use href={sprite + "#female"}></use>
-                  </IconInformation>
-                  {sex}
-                </InformationMap>
-              </WrapperInformation>
-            </IconWrapper>
+                    <InformationMap>
+                      <IconInformation>
+                        <use href={sprite + "#female"}></use>
+                      </IconInformation>
+                      {sex}
+                    </InformationMap>
+                  </WrapperInformation>
+                </IconWrapper>
 
-            <ContentWrapper>
-              <ItemTitle>{title}</ItemTitle>
+                <ContentWrapper>
+                  <ItemTitle>{transformTitle(title)}</ItemTitle>
 
-              <WrapperBtn>
-                <Button
-                  type="button"
-                  text="Learn more"
-                  variant="bigButtonFirst"
-                  onClick={() => handleModalOpen(_id)}
-                />
-              </WrapperBtn>
-            </ContentWrapper>
-          </ProductItem>
-        ))}
-      </ProductList>
+                  <WrapperBtn>
+                    <Button
+                      type="button"
+                      text="Learn more"
+                      variant="bigButtonFirst"
+                      onClick={() => handleModalOpen(_id)}
+                    />
+                  </WrapperBtn>
+                </ContentWrapper>
+              </ProductItem>
+            )
+          )}
+        </ProductList>
+      ) : (
+        <PlugStyled>
+          There are no notices matching your search query.
+        </PlugStyled>
+      )}
 
       {isModalOpen && <ModalProductCart setIsModalOpen={setIsModalOpen} />}
     </>

@@ -25,6 +25,8 @@ const initialState = {
     data: [],
     total: null,
   },
+  selectedAgeFilters: [],
+  selectedSexFilters: [],
   isSuccess: false,
   isButtonsVisible: false,
   checkboxes: initialCheckboxesState,
@@ -35,6 +37,23 @@ const globalSlice = createSlice({
   name: "global",
   initialState,
   reducers: {
+    toggleFilter: (state, action) => {
+      const { optionType, filterName } = action.payload;
+      const index =
+        optionType === "age"
+          ? state.selectedAgeFilters.indexOf(filterName)
+          : state.selectedSexFilters.indexOf(filterName);
+
+      if (index === -1) {
+        optionType === "age"
+          ? state.selectedAgeFilters.push(filterName)
+          : state.selectedSexFilters.push(filterName);
+      } else {
+        optionType === "age"
+          ? state.selectedAgeFilters.splice(index, 1)
+          : state.selectedSexFilters.splice(index, 1);
+      }
+    },
     setIsSuccess: (state, action) => {
       state.isSuccess = action.payload;
     },
@@ -57,12 +76,11 @@ const globalSlice = createSlice({
     },
     toggleGenderOption: (state, action) => {
       const option = action.payload;
-      state.checkboxes.genderOptions[option] =
-        !state.checkboxes.genderOptions[option];
+      state.checkboxes.sexOptions[option] =
+        !state.checkboxes.sexOptions[option];
     },
     setSelectCheckboxName: (state, action) => {
       const option = action.payload;
-      console.log(option);
       state.checkboxes.selectCheckbox = option;
     },
   },
@@ -101,6 +119,7 @@ const globalSlice = createSlice({
 });
 
 export const {
+  toggleFilter,
   setIsSuccess,
   toggleButtons,
   toggleCheckboxByAge,

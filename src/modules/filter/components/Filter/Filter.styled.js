@@ -1,16 +1,14 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const FilterWrapper = styled.div`
   position: relative;
   display: flex;
   justify-content: end;
-
-  width: ${({ theme }) => theme.spacing(38)};
 `;
 
 export const Filter2 = styled.div`
   z-index: 8;
-  top: 40px;
+  top: 43px;
   position: absolute;
   width: ${({ theme }) => theme.spacing(38)};
   padding: ${({ theme }) => theme.spacing(2)};

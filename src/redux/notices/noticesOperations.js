@@ -29,9 +29,9 @@ export const fetchNoticesBySearchThunk = createAsyncThunk(
 
 export const fetchNoticesByCategoryThunk = createAsyncThunk(
   "notices/fetchNoticesByCategory",
-  async (category, { rejectWithValue }) => {
+  async ({ page, limit, category }, { rejectWithValue }) => {
     try {
-      const { data } = await fetchNoticesByCategory(category);
+      const { data } = await fetchNoticesByCategory({ page, limit, category });
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
@@ -41,9 +41,11 @@ export const fetchNoticesByCategoryThunk = createAsyncThunk(
 
 export const fetchNoticesByCategoryAndSearchThunk = createAsyncThunk(
   "notices/fetchNoticesByCategoryAndSearch",
-  async ({ category, searchQuery }, { rejectWithValue }) => {
+  async ({ page, limit, category, searchQuery }, { rejectWithValue }) => {
     try {
       const { data } = await fetchNoticesByCategoryAndSearch({
+        page,
+        limit,
         category,
         searchQuery,
       });
@@ -69,9 +71,15 @@ export const fetchNoticeByIdThunk = createAsyncThunk(
 
 export const fetchFilteredNoticesThunk = createAsyncThunk(
   "notices/fetchFilteredNotices",
-  async ({ age, sex, category }, { rejectWithValue }) => {
+  async ({ age, sex, category, page, limit }, { rejectWithValue }) => {
     try {
-      const { data } = await fetchFilteredNotices({ age, sex, category });
+      const { data } = await fetchFilteredNotices({
+        age,
+        sex,
+        category,
+        page,
+        limit,
+      });
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);

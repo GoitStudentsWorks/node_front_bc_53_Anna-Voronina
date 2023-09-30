@@ -109,6 +109,7 @@ export const NoticesInfoParameters = styled.li`
 export const ParametersValue = styled.span`
   width: 65%;
 
+  font-family: ${({ theme }) => theme.fonts.manrope.medium};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   font-size: ${({ theme }) => theme.fontSizes.xs};
   line-height: normal;

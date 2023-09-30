@@ -36,7 +36,7 @@ function App() {
             <Route index element={<MainPage />} />
             <Route path="register" element={<RegisterPage />} />
             <Route path="login" element={<LoginPage />} />
-            <Route path="notices" element={<NoticesPage />} />
+            <Route path="notices/:category" element={<NoticesPage />} />
             <Route path="user" element={<UserPage />} />
             <Route path="add-pet" element={<AddPetPage />} />
             <Route path="friends" element={<OurFriendsPage />} />

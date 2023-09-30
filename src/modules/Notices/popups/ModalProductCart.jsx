@@ -1,4 +1,3 @@
-// import { useNavigate } from "react-router";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { selectChosenNotice } from "../../../redux/notices/noticesSelectors";
@@ -21,9 +20,6 @@ import {
 } from "./ModalProductCart.styled";
 import Button from "../../../shared/components/Button/Button";
 
-// Photo
-// import card from "../img/Rectangle 24.png";
-
 export const ModalProductCart = ({ setIsModalOpen }) => {
   const notice = useSelector(selectChosenNotice);
 
@@ -33,7 +29,7 @@ export const ModalProductCart = ({ setIsModalOpen }) => {
         <TopWrapper>
           <PhotoDiv>
             <CategoryName>{notice?.category}</CategoryName>
-            <NoticesInfoImg src={notice?.file} alt="icon" />
+            <NoticesInfoImg src={notice?.file} alt={notice?.title} />
           </PhotoDiv>
 
           <ParamsBox>

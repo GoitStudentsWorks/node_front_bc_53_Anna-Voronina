@@ -1,70 +1,34 @@
-import { FormStyled, InputStyled, LabelStyled } from './FilterButton.styled';
-import { useState } from 'react';
+import { useSelector } from "react-redux";
+import {
+  NavLinkStyled,
+  NavListItemStyled,
+  NavListStyled,
+} from "./FilterButton.styled";
+import { selectLoggedIn } from "@/redux/auth/authSelectors";
+import { allCategories, publicCategories } from "../../data/categories";
 
 export const FilterButton = () => {
-  const [selectedOption, setSelectedOption] = useState('sell');
-
-  const handleOptionChange = value => {
-    setSelectedOption(value);
-    console.log('Выбрана радиокнопка:', value);
-  };
+  const isLoggedIn = useSelector(selectLoggedIn);
 
   return (
-    <FormStyled>
-      <LabelStyled>
-        <InputStyled
-          type="radio"
-          name="selectedOption"
-          value="sell"
-          checked={selectedOption === 'sell'}
-          onChange={() => handleOptionChange('sell')}
-        />
-        sell
-      </LabelStyled>
-
-      <LabelStyled>
-        <InputStyled
-          type="radio"
-          name="selectedOption"
-          value="lost-found"
-          checked={selectedOption === 'lost-found'}
-          onChange={() => handleOptionChange('lost-found')}
-        />
-        lost/found
-      </LabelStyled>
-
-      <LabelStyled>
-        <InputStyled
-          type="radio"
-          name="selectedOption"
-          value="in-good-hands"
-          checked={selectedOption === 'in-good-hands'}
-          onChange={() => handleOptionChange('in-good-hands')}
-        />
-        in good hands
-      </LabelStyled>
-
-      <LabelStyled>
-        <InputStyled
-          type="radio"
-          name="selectedOption"
-          value="favorite"
-          checked={selectedOption === 'favorite'}
-          onChange={() => handleOptionChange('favorite')}
-        />
-        favorite ads
-      </LabelStyled>
-
-      <LabelStyled>
-        <InputStyled
-          type="radio"
-          name="selectedOption"
-          value="own"
-          checked={selectedOption === 'own'}
-          onChange={() => handleOptionChange('own')}
-        />
-        my ads
-      </LabelStyled>
-    </FormStyled>
+    <>
+      {isLoggedIn ? (
+        <NavListStyled>
+          {allCategories.map(({ label, path }) => (
+            <NavListItemStyled key={label}>
+              <NavLinkStyled to={`/notices/${path}`}>{label}</NavLinkStyled>
+            </NavListItemStyled>
+          ))}
+        </NavListStyled>
+      ) : (
+        <NavListStyled>
+          {publicCategories.map(({ label, path }) => (
+            <NavListItemStyled key={label}>
+              <NavLinkStyled to={`/notices/${path}`}>{label}</NavLinkStyled>
+            </NavListItemStyled>
+          ))}
+        </NavListStyled>
+      )}
+    </>
   );
 };

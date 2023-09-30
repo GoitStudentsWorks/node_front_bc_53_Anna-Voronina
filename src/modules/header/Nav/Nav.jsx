@@ -16,7 +16,7 @@ export const Nav = ({ variant = null, onClick }) => {
       </li>
       <li>
         <StyledLink
-          to="/notices"
+          to="/notices/sell"
           $variant={variant}
           onClick={variant === "menu" ? onClick : null}
         >

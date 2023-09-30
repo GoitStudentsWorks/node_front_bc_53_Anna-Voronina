@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const PaginationContainer = styled.div`
-  color: #111;
+  color: ${({ theme }) => theme.color.black};
   text-align: center;
   font-family: ${({ theme }) => theme.fonts.inter.regular};
-  font-size: 16px;
-  font-weight: 400;
+  font-size: ${({ theme }) => theme.fontSizes.m};
+  font-weight: ${({ theme }) => theme.fontWeights.regular};
   line-height: 0.9375;
 
   ul {
@@ -21,22 +21,22 @@ export const PaginationContainer = styled.div`
     width: ${({ theme }) => theme.spacing(10)};
     height: ${({ theme }) => theme.spacing(10)};
     padding: 10px 10px 10px 10px;
-    border-radius: 50%;
+    border-radius: ${({ theme }) => theme.radii.round};
     stroke-width: 1px;
-    border: 1px solid #54adff;
+    border: 1px solid ${({ theme }) => theme.color.blue};
 
     &.active {
-      background-color: #54adff;
-      color: white;
+      background-color: ${({ theme }) => theme.color.blue};
+      color: ${({ theme }) => theme.color.white};
     }
     &.activeLink {
-      background-color: #54adff;
-      color: white;
+      background-color: ${({ theme }) => theme.color.blue};
+      color: ${({ theme }) => theme.color.white};
     }
 
     &.previous {
       margin-right: 15px;
-      color: #54adff;
+      color: ${({ theme }) => theme.color.blue};
 
       @media only screen and (min-width: 1280px) {
         margin-right: 32px;
@@ -50,7 +50,7 @@ export const PaginationContainer = styled.div`
 
     &.next {
       margin-left: 15px;
-      color: #54adff;
+      color: ${({ theme }) => theme.color.blue};
 
       @media only screen and (min-width: 1280px) {
         margin-right: 32px;

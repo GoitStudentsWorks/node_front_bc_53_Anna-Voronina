@@ -12,7 +12,10 @@ import {
 } from "./noticesOperations";
 
 const initialState = {
-  notices: [],
+  notices: {
+    data: [],
+    total: 0,
+  },
   chosenNotice: null,
   petData: {},
   isLoading: false,
@@ -43,7 +46,8 @@ const noticesSlice = createSlice({
           fetchFavoriteNoticesThunk.fulfilled
         ),
         (state, action) => {
-          state.notices = action.payload;
+          state.notices.data = action.payload.data;
+          state.notices.total = action.payload.total;
           state.isLoading = false;
         }
       );

@@ -30,21 +30,19 @@ import sprite from "../../../shared/icons/sprite.svg";
 import { fetchNoticeByIdThunk } from "../../../redux/notices/noticesOperations.js";
 // import card from "../img/Rectangle 24.png";
 
-const ProductCardList = () => {
+const ProductCardList = ({ notices }) => {
   const dispatch = useDispatch();
-
-  const notices = useSelector(selectNotices);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleModalOpen = (id) => {
     setIsModalOpen(true);
     dispatch(fetchNoticeByIdThunk(id));
   };
-  console.log(notices);
+
   return (
     <>
       <ProductList>
-        {notices.map(({ category, age, _id, title, location, file, sex }) => (
+        {notices?.map(({ category, age, _id, title, location, file, sex }) => (
           <ProductItem key={_id}>
             <IconWrapper>
               <PetCategory>{category}</PetCategory>

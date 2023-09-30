@@ -1,11 +1,13 @@
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ProductCardList from "../../modules/Notices/CardList/ProductCardList";
 import { Container } from "../../shared/components/Container/Container";
-import { useDispatch } from "react-redux";
 import { fetchNoticesByCategoryThunk } from "../../redux/notices/noticesOperations";
+import { selectNotices } from "../../redux/notices/noticesSelectors";
 
 const NoticesPage = () => {
   const dispatch = useDispatch();
+  const notices = useSelector(selectNotices);
 
   useEffect(() => {
     dispatch(fetchNoticesByCategoryThunk("sell"));
@@ -14,7 +16,7 @@ const NoticesPage = () => {
   return (
     <Container>
       {/* <NoticesFilters /> */}
-      <ProductCardList />
+      <ProductCardList notices={notices?.data} />
     </Container>
   );
 };

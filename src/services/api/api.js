@@ -44,7 +44,7 @@ export const logout = async () => {
 
 //Current
 export const getCurrentUser = () => {
-  const { data } = connectionsApi.get("/auth/current");
+  const data = connectionsApi.get("/auth/current");
   return data;
 };
 
@@ -59,7 +59,7 @@ export const updateAvatar = async (avatar) => {
 };
 
 export const fetchUserData = async () => {
-  const data = connectionsApi.get("/userInfo");
+  const data = connectionsApi.get("/user-info");
   return data;
 };
 

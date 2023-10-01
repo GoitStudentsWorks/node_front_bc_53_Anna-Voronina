@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { transformAge } from "../helpers/transformAge.js";
 
 import Button from "@/shared/components/Button/Button";
@@ -26,14 +26,33 @@ import {
 } from "./ProductCardList.styled";
 
 import sprite from "@/shared/icons/sprite.svg";
+import { selectLoggedIn } from "@/redux/auth/authSelectors.js";
+import { AttentionModal } from "../../modals/components/AttentionModal/AttentionModal.jsx";
+import { addOrDeleteFavoriteNoticeThunk } from "../../../redux/notices/noticesOperations.js";
+import { selectUser } from "../../../redux/auth/authSelectors.js";
 
 const ProductCardList = ({ notices }) => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAttentionModalOpen, setIsAttentionModalOpen] = useState(false);
+  const isLoggedIn = useSelector(selectLoggedIn);
+  const user = useSelector(selectUser);
 
   const handleModalOpen = (id) => {
     setIsModalOpen(true);
     dispatch(fetchNoticeByIdThunk(id));
+  };
+
+  const handleAttentionModal = () => {
+    setIsAttentionModalOpen((prev) => !prev);
+  };
+
+  const handleToggleFavorite = (id) => {
+    if (isLoggedIn) {
+      dispatch(addOrDeleteFavoriteNoticeThunk(id));
+    } else {
+      setIsAttentionModalOpen(true);
+    }
   };
 
   return (
@@ -46,8 +65,15 @@ const ProductCardList = ({ notices }) => {
                 <IconWrapper>
                   <PetCategory>{category}</PetCategory>
 
-                  <FavoriteBtn onClick={() => {}}>
-                    <HeartIconPrimal>
+                  <FavoriteBtn onClick={() => handleToggleFavorite(_id)}>
+                    <HeartIconPrimal
+                      $variant={
+                        isLoggedIn &&
+                        user?.favorites.some((ad) => ad._id === _id)
+                          ? "favorite"
+                          : "default"
+                      }
+                    >
                       <use href={sprite + "#heart"}></use>
                     </HeartIconPrimal>
                   </FavoriteBtn>
@@ -100,7 +126,15 @@ const ProductCardList = ({ notices }) => {
         </PlugStyled>
       )}
 
-      {isModalOpen && <ModalProductCart setIsModalOpen={setIsModalOpen} />}
+      {isModalOpen && (
+        <ModalProductCart
+          setIsModalOpen={setIsModalOpen}
+          handleToggleFavorite={handleToggleFavorite}
+        />
+      )}
+      {isAttentionModalOpen && (
+        <AttentionModal onClose={handleAttentionModal} />
+      )}
     </>
   );
 };

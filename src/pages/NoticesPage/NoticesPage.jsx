@@ -39,9 +39,6 @@ const NoticesPage = () => {
   const age = searchParams.get("age");
   const sex = searchParams.get("sex");
 
-  console.log(ageFilters);
-  console.log(sexFilters);
-
   useEffect(() => {
     const newSearchParams = new URLSearchParams();
 
@@ -75,10 +72,6 @@ const NoticesPage = () => {
   //       searchQuery,
   //     })
   //   );
-
-  //   const params = filters.length ? { age: filters.join(",") } : {};
-
-  //   setSearchParams(params);
 
   //   dispatch(
   //     fetchFilteredNoticesThunk({

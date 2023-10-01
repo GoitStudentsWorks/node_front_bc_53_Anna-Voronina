@@ -63,10 +63,9 @@ export const fetchUserData = async () => {
 };
 
 export const updateToken = async (refreshToken) => {
-  const { data } = await connectionsApi.post(
-    "/auth/refresh-token",
-    refreshToken
-  );
+  const { data } = await connectionsApi.post("/auth/refresh-token", {
+    refreshToken,
+  });
   setToken(data.token);
   return data;
 };

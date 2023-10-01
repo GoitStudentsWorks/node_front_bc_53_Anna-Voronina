@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   setToken,
@@ -11,7 +10,6 @@ import {
   fetchUserData,
   updateToken,
 } from "../../services/api/api.js";
-import { selectRefreshToken } from "./authSelectors.js";
 
 export const registerThunk = createAsyncThunk(
   "auth/register",
@@ -49,29 +47,13 @@ export const logoutThunk = createAsyncThunk(
   }
 );
 
-export const refreshThunk = createAsyncThunk(
-  "auth/refresh",
-  async (_, { rejectWithValue, getState, dispatch }) => {
-    const persistedToken = getState().auth.token;
-    if (!persistedToken) {
-      return rejectWithValue("Token is not found!");
-    }
-    try {
-      setToken(persistedToken);
-      const { data } = await getCurrentUser();
-      dispatch(updateTokenThunk());
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.response.data.message);
-    }
-  }
-);
-
 export const updateTokenThunk = createAsyncThunk(
   "auth/updateToken",
   async (_, { rejectWithValue, getState }) => {
     const persistedToken = getState().auth.token;
-    const refreshToken = useSelector(selectRefreshToken);
+    const refreshToken = getState().auth.refreshToken;
+
+    console.log(refreshToken);
 
     if (!persistedToken) {
       return rejectWithValue("Token is not found!");
@@ -84,9 +66,29 @@ export const updateTokenThunk = createAsyncThunk(
     try {
       setToken(persistedToken);
       const { data } = await updateToken(refreshToken);
-      console.log(data);
       return data;
     } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const refreshThunk = createAsyncThunk(
+  "auth/refresh",
+  async (_, { rejectWithValue, getState, dispatch }) => {
+    const persistedToken = getState().auth.token;
+
+    if (!persistedToken) {
+      return rejectWithValue("Token is not found!");
+    }
+    try {
+      setToken(persistedToken);
+      const { data } = await getCurrentUser();
+      return data;
+    } catch (error) {
+      if (error.response.status === 401) {
+        dispatch(updateTokenThunk());
+      }
       return rejectWithValue(error.response.data.message);
     }
   }

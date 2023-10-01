@@ -9,20 +9,23 @@ import {
   toggleAgeOption,
   toggleGenderOption,
 } from "@/redux/global/globalSlice";
+import { toggleFilter } from "@/redux/global/globalSlice";
+import { transformOption } from "../../helpers/transformOption";
 
 export const CheckButton = () => {
   const checkboxes = useSelector(selectCheckboxes);
   const dispatch = useDispatch();
 
   const toggleCheckBoxOption = (optionType, option) => {
-    const isChecked = !checkboxes[`${optionType}Options`][option];
     dispatch(
       optionType === "age"
         ? toggleAgeOption(option)
         : toggleGenderOption(option)
     );
-    dispatch(setSelectCheckboxName(isChecked ? option : null));
+
+    dispatch(toggleFilter({ optionType, filterName: transformOption(option) }));
   };
+
   return (
     <WrapperCheckButton>
       {ageOptions.map((option) => (
@@ -47,7 +50,7 @@ export const CheckButton = () => {
               variant="filterCheck"
               icon="cross-small"
               iconVariant="filterbutton"
-              iconOnClick={() => toggleCheckBoxOption("gender", option.value)}
+              iconOnClick={() => toggleCheckBoxOption("sex", option.value)}
               iconPosition="right"
             />
           )}

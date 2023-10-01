@@ -6,6 +6,7 @@ import {
   refreshThunk,
   registerThunk,
   updateAvatarThunk,
+  updateTokenThunk,
   updateUserDataThunk,
 } from "./authOperations";
 
@@ -60,6 +61,13 @@ const authSlice = createSlice({
       .addCase(refreshThunk.rejected, (state) => {
         state.isRefreshing = false;
       })
+      .addCase(updateTokenThunk.fulfilled, (state, action) => {
+        console.log(action);
+        state.token = action.payload.token;
+        state.user = { ...state.user, ...action.payload.data };
+        state.isLoggedIn = true;
+        state.isLoading = false;
+      })
       .addCase(updateAvatarThunk.fulfilled, (state, action) => {
         state.user.avatarURL = action.payload;
         state.isLoading = false;
@@ -87,6 +95,7 @@ const authSlice = createSlice({
         isAnyOf(
           loginThunk.pending,
           registerThunk.pending,
+          updateTokenThunk.pending,
           updateAvatarThunk.pending,
           updateUserDataThunk.pending,
           fetchUserDataThunk.pending
@@ -97,6 +106,7 @@ const authSlice = createSlice({
         isAnyOf(
           loginThunk.rejected,
           registerThunk.rejected,
+          updateTokenThunk.rejected,
           updateAvatarThunk.rejected,
           updateUserDataThunk.rejected,
           fetchUserDataThunk.rejected

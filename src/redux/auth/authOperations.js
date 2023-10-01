@@ -53,8 +53,6 @@ export const updateTokenThunk = createAsyncThunk(
     const persistedToken = getState().auth.token;
     const refreshToken = getState().auth.refreshToken;
 
-    console.log(refreshToken);
-
     if (!persistedToken) {
       return rejectWithValue("Token is not found!");
     }
@@ -65,8 +63,9 @@ export const updateTokenThunk = createAsyncThunk(
 
     try {
       setToken(persistedToken);
-      const { data } = await updateToken(refreshToken);
-      return data;
+      const { token } = await updateToken(refreshToken);
+      const { data } = await getCurrentUser();
+      return { token, data };
     } catch (error) {
       return rejectWithValue(error.response.data.message);
     }
@@ -96,11 +95,14 @@ export const refreshThunk = createAsyncThunk(
 
 export const updateUserDataThunk = createAsyncThunk(
   "auth/updateUserData",
-  async (credentials, { rejectWithValue }) => {
+  async (credentials, { rejectWithValue, dispatch }) => {
     try {
       const data = await updateUserData(credentials);
       return data;
     } catch (error) {
+      if (error.response.status === 401) {
+        dispatch(updateTokenThunk());
+      }
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -108,11 +110,14 @@ export const updateUserDataThunk = createAsyncThunk(
 
 export const updateAvatarThunk = createAsyncThunk(
   "auth/updateAvatar",
-  async (avatar, { rejectWithValue }) => {
+  async (avatar, { rejectWithValue, dispatch }) => {
     try {
       const data = await updateAvatar(avatar);
       return data;
     } catch (error) {
+      if (error.response.status === 401) {
+        dispatch(updateTokenThunk());
+      }
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -120,12 +125,15 @@ export const updateAvatarThunk = createAsyncThunk(
 
 export const fetchUserDataThunk = createAsyncThunk(
   "auth/fetchUserData",
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await fetchUserData();
 
       return data;
     } catch (error) {
+      if (error.response.status === 401) {
+        dispatch(updateTokenThunk());
+      }
       return rejectWithValue(error.response.data.message);
     }
   }

@@ -14,15 +14,18 @@ import {
   fetchOwnNotices,
   fetchFavoriteNotices,
 } from "../../services/api/api";
-import { fetchUserDataThunk } from "../auth/authOperations";
+import { fetchUserDataThunk, updateTokenThunk } from "../auth/authOperations";
 
 export const fetchNoticesBySearchThunk = createAsyncThunk(
   "notices/fetchNoticesBySearch",
-  async ({ page, limit, searchQuery }, { rejectWithValue }) => {
+  async ({ page, limit, searchQuery }, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await fetchNoticesBySearch({ page, limit, searchQuery });
       return data;
     } catch (error) {
+      if (error.response.status === 401) {
+        dispatch(updateTokenThunk());
+      }
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -30,11 +33,14 @@ export const fetchNoticesBySearchThunk = createAsyncThunk(
 
 export const fetchNoticesByCategoryThunk = createAsyncThunk(
   "notices/fetchNoticesByCategory",
-  async ({ page, limit, category }, { rejectWithValue }) => {
+  async ({ page, limit, category }, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await fetchNoticesByCategory({ page, limit, category });
       return data;
     } catch (error) {
+      if (error.response.status === 401) {
+        dispatch(updateTokenThunk());
+      }
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -42,7 +48,10 @@ export const fetchNoticesByCategoryThunk = createAsyncThunk(
 
 export const fetchNoticesByCategoryAndSearchThunk = createAsyncThunk(
   "notices/fetchNoticesByCategoryAndSearch",
-  async ({ page, limit, category, searchQuery }, { rejectWithValue }) => {
+  async (
+    { page, limit, category, searchQuery },
+    { rejectWithValue, dispatch }
+  ) => {
     try {
       const { data } = await fetchNoticesByCategoryAndSearch({
         page,
@@ -52,6 +61,9 @@ export const fetchNoticesByCategoryAndSearchThunk = createAsyncThunk(
       });
       return data;
     } catch (error) {
+      if (error.response.status === 401) {
+        dispatch(updateTokenThunk());
+      }
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -59,12 +71,14 @@ export const fetchNoticesByCategoryAndSearchThunk = createAsyncThunk(
 
 export const fetchNoticeByIdThunk = createAsyncThunk(
   "notices/fetchNoticeById",
-  async (noticeId, { rejectWithValue }) => {
+  async (noticeId, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await fetchNoticeById(noticeId);
-      console.log(data);
       return data;
     } catch (error) {
+      if (error.response.status === 401) {
+        dispatch(updateTokenThunk());
+      }
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -72,7 +86,10 @@ export const fetchNoticeByIdThunk = createAsyncThunk(
 
 export const fetchFilteredNoticesThunk = createAsyncThunk(
   "notices/fetchFilteredNotices",
-  async ({ age, sex, category, page, limit }, { rejectWithValue }) => {
+  async (
+    { age, sex, category, page, limit, searchQuery },
+    { rejectWithValue, dispatch }
+  ) => {
     try {
       const { data } = await fetchFilteredNotices({
         age,
@@ -80,9 +97,13 @@ export const fetchFilteredNoticesThunk = createAsyncThunk(
         category,
         page,
         limit,
+        searchQuery,
       });
       return data;
     } catch (error) {
+      if (error.response.status === 401) {
+        dispatch(updateTokenThunk());
+      }
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -90,12 +111,15 @@ export const fetchFilteredNoticesThunk = createAsyncThunk(
 
 export const fetchAllNoticesThunk = createAsyncThunk(
   "notices/fetchAllNotices",
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await fetchAllNotices();
       console.log(data);
       return data;
     } catch (error) {
+      if (error.response.status === 401) {
+        dispatch(updateTokenThunk());
+      }
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -103,11 +127,23 @@ export const fetchAllNoticesThunk = createAsyncThunk(
 
 export const fetchOwnNoticesThunk = createAsyncThunk(
   "notices/fetchOwnNotices",
-  async ({ page, limit }, { rejectWithValue }) => {
+  async (
+    { age, sex, page, limit, searchQuery },
+    { rejectWithValue, dispatch }
+  ) => {
     try {
-      const { data } = await fetchOwnNotices({ page, limit });
+      const { data } = await fetchOwnNotices({
+        page,
+        limit,
+        age,
+        sex,
+        searchQuery,
+      });
       return data;
     } catch (error) {
+      if (error.response.status === 401) {
+        dispatch(updateTokenThunk());
+      }
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -115,11 +151,23 @@ export const fetchOwnNoticesThunk = createAsyncThunk(
 
 export const fetchFavoriteNoticesThunk = createAsyncThunk(
   "notices/fetchFavoriteNotices",
-  async (_, { rejectWithValue }) => {
+  async (
+    { age, sex, page, limit, searchQuery },
+    { rejectWithValue, dispatch }
+  ) => {
     try {
-      const { data } = await fetchFavoriteNotices();
+      const { data } = await fetchFavoriteNotices({
+        age,
+        sex,
+        page,
+        limit,
+        searchQuery,
+      });
       return data;
     } catch (error) {
+      if (error.response.status === 401) {
+        dispatch(updateTokenThunk());
+      }
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -127,11 +175,14 @@ export const fetchFavoriteNoticesThunk = createAsyncThunk(
 
 export const addNewPetThunk = createAsyncThunk(
   "pet/addNewPet",
-  async (pet, { rejectWithValue }) => {
+  async (pet, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await addNewPet(pet);
       return data;
     } catch (error) {
+      if (error.response.status === 401) {
+        dispatch(updateTokenThunk());
+      }
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -139,11 +190,14 @@ export const addNewPetThunk = createAsyncThunk(
 
 export const deletePetThunk = createAsyncThunk(
   "pet/deletePet",
-  async (petId, { rejectWithValue }) => {
+  async (petId, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await deletePet(petId);
       return data;
     } catch (error) {
+      if (error.response.status === 401) {
+        dispatch(updateTokenThunk());
+      }
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -151,11 +205,14 @@ export const deletePetThunk = createAsyncThunk(
 
 export const deleteOwnNoticeThunk = createAsyncThunk(
   "notices/deleteOwnNotice",
-  async (noticeId, { rejectWithValue }) => {
+  async (noticeId, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await deleteOwnNotice(noticeId);
       return data;
     } catch (error) {
+      if (error.response.status === 401) {
+        dispatch(updateTokenThunk());
+      }
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -169,6 +226,9 @@ export const addOrDeleteFavoriteNoticeThunk = createAsyncThunk(
       dispatch(fetchUserDataThunk());
       return data;
     } catch (error) {
+      if (error.response.status === 401) {
+        dispatch(updateTokenThunk());
+      }
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -176,11 +236,14 @@ export const addOrDeleteFavoriteNoticeThunk = createAsyncThunk(
 
 export const addNewNoticeThunk = createAsyncThunk(
   "notices/addNewNotice",
-  async (notice, { rejectWithValue }) => {
+  async (notice, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await addNewNotice(notice);
       return data;
     } catch (error) {
+      if (error.response.status === 401) {
+        dispatch(updateTokenThunk());
+      }
       return rejectWithValue(error.response.data.message);
     }
   }

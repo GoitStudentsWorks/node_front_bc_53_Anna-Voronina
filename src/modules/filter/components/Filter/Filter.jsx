@@ -65,8 +65,6 @@ export const FIlter = () => {
   };
 
   const toggleCheckBoxOption = (optionType, option) => {
-    const isChecked = !checkboxes[`${optionType}Options`][option];
-
     dispatch(
       optionType === "age"
         ? toggleAgeOption(option)

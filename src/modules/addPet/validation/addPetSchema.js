@@ -6,6 +6,7 @@ import {
 } from "@/shared/constants/regexp";
 
 export const sellPetSchema = yup.object().shape({
+  choice: yup.string().required("Choose one of the options"),
   title: yup
     .string()
     .test("trim", "The field must not start or end with spaces", (value) => {
@@ -44,6 +45,7 @@ export const sellPetSchema = yup.object().shape({
     .required("required field")
     .min(2, "the name must contain a minimum of 2 characters")
     .max(16, "the name must contain a maximum of 16 characters"),
+  sex: yup.string().required("Choose one of the options"),
   location: yup
     .string()
     .matches(

@@ -1,3 +1,4 @@
+import { Field } from "formik";
 import styled from "styled-components";
 
 export const RadioContainer = styled.div``;
@@ -7,14 +8,14 @@ export const RadioWrapper = styled.div`
   flex-direction: column;
   gap: 24px;
   margin-top: 34px;
+  margin-bottom: 91px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 137px;
+  }
 `;
 
 export const StyledRadio = styled.input`
   display: none;
-  &:checked + label {
-    background: ${({ theme }) => theme.colors.blueGradient};
-    color: ${({ theme }) => theme.colors.white};
-  }
 `;
 
 export const SelectRadio = styled.label`
@@ -35,6 +36,20 @@ export const SelectRadio = styled.label`
   transition: transform ${({ theme }) => theme.transitions.regular};
   cursor: pointer;
 
+  input[type="radio"]:checked + & {
+    background: ${({ theme }) => theme.colors.blueGradient};
+    color: ${({ theme }) => theme.colors.white};
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 10px; /* Розмір квадрата для радіокнопки */
+      height: 10px;
+      background-color: ${({ theme }) => theme.colors.white};
+      border-radius: 50%; /* Зробити квадрат круглим */
+      margin-right: 5px; /* Відступ між кругом і текстом */
+    }
+  }
+
   &:focus,
   &:hover {
     background: ${({ theme }) => theme.colors.blueGradient};
@@ -43,5 +58,11 @@ export const SelectRadio = styled.label`
   &:focus svg,
   &:hover svg {
     stroke: ${({ theme }) => theme.colors.white};
+  }
+
+  /* Додайте стилі для вибраної радіокнопки тут */
+  &.checked {
+    background: ${({ theme }) => theme.colors.blueGradient};
+    color: ${({ theme }) => theme.colors.white};
   }
 `;

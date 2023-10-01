@@ -2,12 +2,24 @@ import {
   FieldStyled,
   StyledLabel,
   WrapperField,
-} from "./MyPetFirstStep.styled";
+} from "./PersonalDetails.styled";
 
-const MyPetFirstStep = (formikProps) => {
+const PersonalDetails = (formikProps) => {
   const { errors, touched } = formikProps;
   return (
     <>
+      <WrapperField>
+        <StyledLabel>Title of add:</StyledLabel>
+        <FieldStyled
+          type="text"
+          name="title"
+          placeholder="Title of add"
+          required
+        />
+        {touched.name && errors.name && (
+          <div className="error">{errors.name}</div>
+        )}
+      </WrapperField>
       <WrapperField>
         <StyledLabel>Pet's name:</StyledLabel>
         <FieldStyled
@@ -48,4 +60,4 @@ const MyPetFirstStep = (formikProps) => {
   );
 };
 
-export default MyPetFirstStep;
+export default PersonalDetails;

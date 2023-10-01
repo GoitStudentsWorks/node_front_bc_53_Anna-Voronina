@@ -1,18 +1,34 @@
-import { useState, useRef } from "react";
-import MyPetFirstStep from "./MyPetFirstStep";
-import MyPetSecondStep from "./MyPetSecondStep";
-import { myPetSchema } from "../../validation/myPetSchema";
 import { Form, Formik } from "formik";
+import { useState } from "react";
+import { useRef } from "react";
+import ProgressBar from "../ProgressBar/ProgressBar";
+import Title from "../Title/Title";
+import { WrapperForm } from "./AddPetForm.styled";
+import ChooseOption from "../ChooseOption/ChooseOption";
 import { StepButton } from "../StepButton/StepButton";
-import { BtnWrapper } from "./MyPetForm.styled";
 import Button from "../../../../shared/components/Button/Button";
+import { BtnWrapper } from "../Buttons/BtnComponent.styled";
+import PersonalDetails from "../PersonalDetails/PersonalDetails";
+import MoreInfo from "../MoreInfo/MoreInfo";
 
-const MyPetFormOption = () => {
+const optionTitles = {
+  option1: "Add Your Pet",
+  option2: "Add Pet For Sale",
+  option3: "Lost/Found Pet",
+  option4: "In Good Hands",
+};
+
+const AddPetForm = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
+    choice: "",
+    title: "",
     name: "",
     date: "",
     type: "",
+    sex: "",
+    location: "",
+    price: "",
     file: null,
     comments: "",
   });
@@ -20,9 +36,9 @@ const MyPetFormOption = () => {
   const fileInputRef = useRef(null);
 
   const handleSubmit = (values) => {
-    if (step === 2) {
+    if (step === 3) {
       console.log("Data send:", values);
-    } else if (step === 1) {
+    } else if (step === 1 || step === 2) {
       setFormData({
         ...formData,
         ...values,
@@ -32,20 +48,36 @@ const MyPetFormOption = () => {
     setStep((prevStep) => prevStep + 1);
   };
 
+  // обираємо опцію в радіо
+  const handleOptionChange = (selectedOption) => {
+    setFormData({
+      ...formData,
+      choice: selectedOption,
+    });
+  };
+
   return (
-    <>
+    <WrapperForm>
+      <Title text={optionTitles[formData.choice]} />
+      <ProgressBar step={step} />
       <Formik
         enableReinitialize
         initialValues={{ ...formData }}
         onSubmit={handleSubmit}
-        validationSchema={myPetSchema}
       >
         {({ values, errors, touched }) => (
           <Form encType="multipart/form-data">
             {step === 1 ? (
-              <MyPetFirstStep errors={errors} touched={touched} />
+              <ChooseOption
+                errors={errors}
+                touched={touched}
+                selectedOption={formData.choice}
+                handleOptionChange={handleOptionChange}
+              />
+            ) : step === 2 ? (
+              <PersonalDetails errors={errors} touched={touched} />
             ) : (
-              <MyPetSecondStep
+              <MoreInfo
                 errors={errors}
                 touched={touched}
                 fileInputRef={fileInputRef}
@@ -71,8 +103,8 @@ const MyPetFormOption = () => {
           </Form>
         )}
       </Formik>
-    </>
+    </WrapperForm>
   );
 };
 
-export default MyPetFormOption;
+export default AddPetForm;

@@ -8,13 +8,6 @@ import {
 } from "../../../shared/constants/regexp";
 
 export const userValidationSchema = Yup.object().shape({
-  avatar: Yup.mixed()
-    .required("Download avatar is required")
-    .test("fileSize", "Avatar size must not exceed 3 MB", (value) => {
-      if (!value) return true;
-      return value.size <= 3000000;
-    }),
-
   name: Yup.string()
     .required("The 'Name' field is required")
     .matches(nameValidator, "Name must contain only letters and spaces"),
@@ -34,8 +27,19 @@ export const userValidationSchema = Yup.object().shape({
     .required("The 'Phone' field is required")
     .matches(phoneValidator, "Incorrect phone format. Example: +380671234567"),
 
-  city: Yup.string().matches(
-    cityValidator,
-    "Incorrect city format. Example: Brovary, Kyiv, Akhtyrka, Sumy"
-  ),
+  city: Yup.string()
+    .matches(
+      cityValidator,
+      "Incorrect city format. Example: Brovary, Kyiv, Akhtyrka, Sumy"
+    )
+    .required("The 'City' field is required"),
+});
+
+export const userAvatarValidationSchema = Yup.object().shape({
+  avatar: Yup.mixed()
+    .required("Download avatar is required")
+    .test("fileSize", "Avatar size must not exceed 3 MB", (value) => {
+      if (!value) return true;
+      return value.size <= 3000000;
+    }),
 });

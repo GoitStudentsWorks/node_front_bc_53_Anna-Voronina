@@ -39,9 +39,13 @@ export const LogoutBtn = styled(ButtonStyled)`
 
       @media only screen and (min-width: 768px) {
         margin-top: 6px;
+        position: absolute;
+        bottom: 10px;
+        left: 23px;
       }
 
       @media only screen and (min-width: 1280px) {
+        position: static;
         margin-top: 14px;
       }
     `}

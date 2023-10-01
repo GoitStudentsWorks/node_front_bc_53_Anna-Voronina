@@ -67,7 +67,7 @@ export const updateUserDataThunk = createAsyncThunk(
   "auth/updateUserData",
   async (credentials, { rejectWithValue }) => {
     try {
-      const data = await updateUserData(credentials);
+      const { data } = await updateUserData(credentials);
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
@@ -79,7 +79,7 @@ export const updateAvatarThunk = createAsyncThunk(
   "auth/updateAvatar",
   async (avatar, { rejectWithValue }) => {
     try {
-      const data = await updateAvatar(avatar);
+      const { data } = await updateAvatar(avatar);
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);

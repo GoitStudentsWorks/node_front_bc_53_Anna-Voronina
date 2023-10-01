@@ -7,12 +7,14 @@ export const StepButton = ({ step, onSubmit, values }) => {
       onSubmit();
     } else if (step === 2) {
       onSubmit();
+    } else if (step === 3) {
+      onSubmit();
     }
   };
 
   return (
     <Button
-      text={step === 1 ? "Next" : step === 2 ? "Done" : ""}
+      text={step < 3 ? "Next" : step === 3 ? "Done" : ""}
       type="button"
       icon="paws"
       iconPosition="right"

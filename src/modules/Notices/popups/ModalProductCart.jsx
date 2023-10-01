@@ -88,7 +88,11 @@ export const ModalProductCart = ({ setIsModalOpen, handleToggleFavorite }) => {
 
         <WrapperBtn>
           <Button
-            text="Add to"
+            text={
+              isLoggedIn && user?.favorites.some((ad) => ad._id === notice?._id)
+                ? "Remove"
+                : "Add to"
+            }
             variant="logoutButton"
             iconVariant={
               isLoggedIn && user?.favorites.some((ad) => ad._id === notice?._id)

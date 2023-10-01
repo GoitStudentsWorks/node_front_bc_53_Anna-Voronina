@@ -13,7 +13,6 @@ const Button = ({
   iconPosition = null,
   isButtonsVisible,
 }) => {
-  console.log(iconVariant);
   return (
     <ButtonStyled
       type={type}

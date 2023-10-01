@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const ProductList = styled.ul`
   display: grid;
@@ -101,6 +101,12 @@ export const HeartIconPrimal = styled.svg`
     color: inherit;
     fill: inherit;
   }
+
+  ${({ $variant }) =>
+    $variant === "favorite" &&
+    css`
+      fill: ${({ theme }) => theme.colors.blue};
+    `}
 `;
 
 export const NoticesItemImg = styled.img`

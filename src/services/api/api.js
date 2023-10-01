@@ -44,7 +44,7 @@ export const logout = async () => {
 
 //Current
 export const getCurrentUser = () => {
-  const { data } = connectionsApi.get("/auth/current");
+  const data = connectionsApi.get("/auth/current");
   return data;
 };
 

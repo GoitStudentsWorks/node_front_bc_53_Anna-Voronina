@@ -8,6 +8,7 @@ import {
   updateUserData,
   updateAvatar,
   fetchUserData,
+  updateToken,
 } from "../../services/api/api.js";
 
 export const registerThunk = createAsyncThunk(
@@ -46,18 +47,47 @@ export const logoutThunk = createAsyncThunk(
   }
 );
 
-export const refreshThunk = createAsyncThunk(
-  "auth/refresh",
+export const updateTokenThunk = createAsyncThunk(
+  "auth/updateToken",
   async (_, { rejectWithValue, getState }) => {
     const persistedToken = getState().auth.token;
+    const refreshToken = getState().auth.refreshToken;
+
+    if (!persistedToken) {
+      return rejectWithValue("Token is not found!");
+    }
+
+    if (!refreshToken) {
+      return rejectWithValue("Refresh token is not found!");
+    }
+
+    try {
+      setToken(persistedToken);
+      const { token } = await updateToken(refreshToken);
+      const { data } = await getCurrentUser();
+      return { token, data };
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const refreshThunk = createAsyncThunk(
+  "auth/refresh",
+  async (_, { rejectWithValue, getState, dispatch }) => {
+    const persistedToken = getState().auth.token;
+
     if (!persistedToken) {
       return rejectWithValue("Token is not found!");
     }
     try {
       setToken(persistedToken);
-      const { data } = await getCurrentUser("/auth/current");
+      const { data } = await getCurrentUser();
       return data;
     } catch (error) {
+      if (error.response.status === 401) {
+        dispatch(updateTokenThunk());
+      }
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -65,11 +95,14 @@ export const refreshThunk = createAsyncThunk(
 
 export const updateUserDataThunk = createAsyncThunk(
   "auth/updateUserData",
-  async (credentials, { rejectWithValue }) => {
+  async (credentials, { rejectWithValue, dispatch }) => {
     try {
       const data = await updateUserData(credentials);
       return data;
     } catch (error) {
+      if (error.response.status === 401) {
+        dispatch(updateTokenThunk());
+      }
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -77,11 +110,14 @@ export const updateUserDataThunk = createAsyncThunk(
 
 export const updateAvatarThunk = createAsyncThunk(
   "auth/updateAvatar",
-  async (avatar, { rejectWithValue }) => {
+  async (avatar, { rejectWithValue, dispatch }) => {
     try {
       const data = await updateAvatar(avatar);
       return data;
     } catch (error) {
+      if (error.response.status === 401) {
+        dispatch(updateTokenThunk());
+      }
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -89,12 +125,15 @@ export const updateAvatarThunk = createAsyncThunk(
 
 export const fetchUserDataThunk = createAsyncThunk(
   "auth/fetchUserData",
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await fetchUserData();
 
       return data;
     } catch (error) {
+      if (error.response.status === 401) {
+        dispatch(updateTokenThunk());
+      }
       return rejectWithValue(error.response.data.message);
     }
   }

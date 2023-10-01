@@ -6,6 +6,7 @@ import {
   refreshThunk,
   registerThunk,
   updateAvatarThunk,
+  updateTokenThunk,
   updateUserDataThunk,
 } from "./authOperations";
 
@@ -31,6 +32,7 @@ const initialState = {
     pets: [],
   },
   token: null,
+  refreshToken: null,
   isLoading: false,
   error: null,
   isLoggedIn: false,
@@ -43,7 +45,9 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(logoutThunk.fulfilled, (state) => {
-        (state.user = initialState.user), (state.token = null);
+        state.user = initialState.user;
+        state.token = null;
+        state.refreshToken = null;
         state.isLoggedIn = false;
       })
       .addCase(refreshThunk.fulfilled, (state, action) => {
@@ -57,19 +61,29 @@ const authSlice = createSlice({
       .addCase(refreshThunk.rejected, (state) => {
         state.isRefreshing = false;
       })
+      .addCase(updateTokenThunk.fulfilled, (state, action) => {
+        console.log(action);
+        state.token = action.payload.token;
+        state.user = { ...state.user, ...action.payload.data };
+        state.isLoggedIn = true;
+        state.isLoading = false;
+      })
       .addCase(updateAvatarThunk.fulfilled, (state, action) => {
         state.user.avatarURL = action.payload;
         state.isLoading = false;
       })
-      .addMatcher(
-        isAnyOf(loginThunk.fulfilled, registerThunk.fulfilled),
-        (state, { payload }) => {
-          state.user = { ...state.user, ...payload.user };
-          state.token = payload.token;
-          state.isLoggedIn = true;
-          state.isLoading = false;
-        }
-      )
+      .addCase(registerThunk.fulfilled, (state, action) => {
+        state.user = { ...state.user, ...action.payload.user };
+        state.isLoggedIn = true;
+        state.isLoading = false;
+      })
+      .addCase(loginThunk.fulfilled, (state, action) => {
+        state.user = { ...state.user, ...action.payload.user };
+        state.token = action.payload.token;
+        state.refreshToken = action.payload.refreshToken;
+        state.isLoggedIn = true;
+        state.isLoading = false;
+      })
       .addMatcher(
         isAnyOf(fetchUserDataThunk.fulfilled, updateUserDataThunk.fulfilled),
         (state, action) => {
@@ -81,6 +95,7 @@ const authSlice = createSlice({
         isAnyOf(
           loginThunk.pending,
           registerThunk.pending,
+          updateTokenThunk.pending,
           updateAvatarThunk.pending,
           updateUserDataThunk.pending,
           fetchUserDataThunk.pending
@@ -91,6 +106,7 @@ const authSlice = createSlice({
         isAnyOf(
           loginThunk.rejected,
           registerThunk.rejected,
+          updateTokenThunk.rejected,
           updateAvatarThunk.rejected,
           updateUserDataThunk.rejected,
           fetchUserDataThunk.rejected

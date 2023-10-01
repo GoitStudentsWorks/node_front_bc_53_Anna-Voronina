@@ -42,11 +42,11 @@ export const SelectRadio = styled.label`
     &::before {
       content: "";
       display: inline-block;
-      width: 10px; /* Розмір квадрата для радіокнопки */
+      width: 10px;
       height: 10px;
       background-color: ${({ theme }) => theme.colors.white};
-      border-radius: 50%; /* Зробити квадрат круглим */
-      margin-right: 5px; /* Відступ між кругом і текстом */
+      border-radius: 50%;
+      margin-right: 5px;
     }
   }
 
@@ -60,7 +60,6 @@ export const SelectRadio = styled.label`
     stroke: ${({ theme }) => theme.colors.white};
   }
 
-  /* Додайте стилі для вибраної радіокнопки тут */
   &.checked {
     background: ${({ theme }) => theme.colors.blueGradient};
     color: ${({ theme }) => theme.colors.white};

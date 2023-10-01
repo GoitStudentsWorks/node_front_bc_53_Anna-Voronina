@@ -8,6 +8,7 @@ export const Pagination = ({
   totalItems,
   currentPage,
   perPage,
+  variant,
 }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
@@ -17,6 +18,7 @@ export const Pagination = ({
 
   const handlePageClick = (event) => {
     const selectedPage = event.selected + 1;
+    console.log(selectedPage);
 
     onPageChange(selectedPage);
   };
@@ -26,7 +28,7 @@ export const Pagination = ({
   }
 
   return (
-    <PaginationContainer>
+    <PaginationContainer $variant={variant}>
       <ReactPaginate
         breakLabel={"..."}
         onPageChange={handlePageClick}
@@ -50,4 +52,5 @@ Pagination.propTypes = {
   currentPage: PropTypes.number,
   totalItems: PropTypes.number,
   onPageChange: PropTypes.func,
+  variant: PropTypes.string,
 };

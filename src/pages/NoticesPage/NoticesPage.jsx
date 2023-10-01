@@ -18,8 +18,10 @@ import { NoticesFilters } from "../../modules/filter/components/NoticesFilters/N
 import {
   selectAgeFilters,
   selectSexFilters,
+  selectorIsLoading,
 } from "../../redux/global/globalSelectors";
 import { selectLoggedIn } from "../../redux/auth/authSelectors";
+import { Loader } from "../../shared/components/Loader/Loader";
 
 const NoticesPage = () => {
   const [page, setPage] = useState(1);
@@ -32,6 +34,7 @@ const NoticesPage = () => {
   const ageFilters = useSelector(selectAgeFilters);
   const sexFilters = useSelector(selectSexFilters);
   const isLoggedIn = useSelector(selectLoggedIn);
+  const isLoading = useSelector(selectorIsLoading);
 
   const age = searchParams.get("age");
   const sex = searchParams.get("sex");
@@ -101,12 +104,13 @@ const NoticesPage = () => {
       <PageTitle title="Find your favorite pet" />
       <Searchbar onSubmit={setSearchQuery} />
       <NoticesFilters />
-      <ProductCardList notices={notices?.data} />
+      {isLoading ? <Loader /> : <ProductCardList notices={notices?.data} />}
       <Pagination
         onPageChange={handlePageChange}
         currentPage={page}
         perPage={12}
         totalItems={notices?.total}
+        variant={isLoading ? "hidden" : "visible"}
       />
     </Container>
   );

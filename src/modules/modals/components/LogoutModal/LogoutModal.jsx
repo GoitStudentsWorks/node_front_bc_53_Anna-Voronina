@@ -17,11 +17,11 @@ export const LogoutModal = ({ onClose, onMenuClose, variant }) => {
     dispatch(logoutThunk())
       .unwrap()
       .then(() => {
+        onClose();
+        navigate("/");
         if (variantCheck) {
           onMenuClose();
         }
-        onClose();
-        navigate("/");
       })
       .catch((error) => toast.error(error));
   };

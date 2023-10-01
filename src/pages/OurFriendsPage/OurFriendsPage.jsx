@@ -1,13 +1,16 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchFriendsThunk } from "../../redux/global/globalOperations";
 
 import { OurFriendsList } from "../../modules/ourFriends/OurFriendsList/OurFriendsList";
 import { Container } from "../../shared/components/Container/Container";
 import { PageTitle } from "../../shared/components/PageTitle/PageTitle";
+import { selectorIsLoading } from "../../redux/global/globalSelectors";
+import { Loader } from "../../shared/components/Loader/Loader";
 
 const OurFriendsPage = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectorIsLoading);
 
   useEffect(() => {
     dispatch(
@@ -21,7 +24,7 @@ const OurFriendsPage = () => {
   return (
     <Container>
       <PageTitle title="Our Friends" />
-      <OurFriendsList />
+      {isLoading ? <Loader /> : <OurFriendsList />}
     </Container>
   );
 };

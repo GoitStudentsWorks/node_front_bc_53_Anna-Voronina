@@ -5,7 +5,7 @@ import MainPage from "./pages/MainPage/MainPage";
 import { useDispatch, useSelector } from "react-redux";
 import { selectRefresh } from "./redux/auth/authSelectors";
 import { refreshThunk } from "./redux/auth/authOperations";
-import LoadingPage from "./pages/LoadingPage/LoadingPage";
+import { Loader } from "./shared/components/Loader/Loader";
 
 const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
@@ -29,7 +29,7 @@ function App() {
   return (
     <>
       {isRefreshing ? (
-        <LoadingPage />
+        <Loader />
       ) : (
         <Routes>
           <Route path="/" element={<SharedLayout />}>

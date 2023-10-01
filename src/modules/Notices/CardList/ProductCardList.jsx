@@ -29,10 +29,7 @@ import sprite from "@/shared/icons/sprite.svg";
 import { selectLoggedIn } from "@/redux/auth/authSelectors.js";
 import { AttentionModal } from "../../modals/components/AttentionModal/AttentionModal.jsx";
 import { addOrDeleteFavoriteNoticeThunk } from "../../../redux/notices/noticesOperations.js";
-import {
-  selectFavorites,
-  selectUser,
-} from "../../../redux/auth/authSelectors.js";
+import { selectUser } from "../../../redux/auth/authSelectors.js";
 
 const ProductCardList = ({ notices }) => {
   const dispatch = useDispatch();
@@ -40,8 +37,6 @@ const ProductCardList = ({ notices }) => {
   const [isAttentionModalOpen, setIsAttentionModalOpen] = useState(false);
   const isLoggedIn = useSelector(selectLoggedIn);
   const user = useSelector(selectUser);
-
-  console.log(user?.favorites);
 
   const handleModalOpen = (id) => {
     setIsModalOpen(true);
@@ -60,13 +55,6 @@ const ProductCardList = ({ notices }) => {
     }
   };
 
-  const defineFavorite = (id) => {
-    console.log(user?.favorites.some((ad) => ad._id === id));
-    const isFavorite =
-      isLoggedIn && user?.favorites.some((ad) => ad._id === id);
-    return isFavorite;
-  };
-
   return (
     <>
       {notices?.length ? (
@@ -83,7 +71,7 @@ const ProductCardList = ({ notices }) => {
                         isLoggedIn &&
                         user?.favorites.some((ad) => ad._id === _id)
                           ? "favorite"
-                          : ""
+                          : "default"
                       }
                     >
                       <use href={sprite + "#heart"}></use>
@@ -138,7 +126,12 @@ const ProductCardList = ({ notices }) => {
         </PlugStyled>
       )}
 
-      {isModalOpen && <ModalProductCart setIsModalOpen={setIsModalOpen} />}
+      {isModalOpen && (
+        <ModalProductCart
+          setIsModalOpen={setIsModalOpen}
+          handleToggleFavorite={handleToggleFavorite}
+        />
+      )}
       {isAttentionModalOpen && (
         <AttentionModal onClose={handleAttentionModal} />
       )}

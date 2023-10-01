@@ -1,18 +1,19 @@
-import PropTypes from 'prop-types';
-import { ButtonStyled, SvgStyled } from './Button.styled';
-import sprite from '../../icons/sprite.svg';
+import PropTypes from "prop-types";
+import { ButtonStyled, SvgStyled } from "./Button.styled";
+import sprite from "../../icons/sprite.svg";
 
 const Button = ({
   onClick = null,
   text,
-  type = 'button',
+  type = "button",
   icon = null,
-  iconVariant = '',
+  iconVariant = "",
   iconOnClick = null,
-  variant = 'bigButtonFirst',
+  variant = "bigButtonFirst",
   iconPosition = null,
   isButtonsVisible,
 }) => {
+  console.log(iconVariant);
   return (
     <ButtonStyled
       type={type}
@@ -20,14 +21,24 @@ const Button = ({
       $variant={variant}
       $isButtonsVisible={isButtonsVisible}
     >
-      {iconPosition === 'left' && (
-        <SvgStyled width="24" height="24" $iconVariant={iconVariant} onClick={iconOnClick}>
+      {iconPosition === "left" && (
+        <SvgStyled
+          width="24"
+          height="24"
+          $iconVariant={iconVariant}
+          onClick={iconOnClick}
+        >
           <use href={`${sprite}#${icon}`}></use>
         </SvgStyled>
       )}
       {text}
-      {iconPosition === 'right' && (
-        <SvgStyled width="24" height="24" $iconVariant={iconVariant} onClick={iconOnClick}>
+      {iconPosition === "right" && (
+        <SvgStyled
+          width="24"
+          height="24"
+          $iconVariant={iconVariant}
+          onClick={iconOnClick}
+        >
           <use href={`${sprite}#${icon}`}></use>
         </SvgStyled>
       )}

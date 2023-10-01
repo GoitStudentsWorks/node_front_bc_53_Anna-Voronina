@@ -19,9 +19,12 @@ import {
   NavValue,
 } from "./ModalProductCart.styled";
 import Button from "../../../shared/components/Button/Button";
+import { selectLoggedIn, selectUser } from "../../../redux/auth/authSelectors";
 
-export const ModalProductCart = ({ setIsModalOpen }) => {
+export const ModalProductCart = ({ setIsModalOpen, handleToggleFavorite }) => {
   const notice = useSelector(selectChosenNotice);
+  const isLoggedIn = useSelector(selectLoggedIn);
+  const user = useSelector(selectUser);
 
   return (
     <Modal onClose={() => setIsModalOpen(false)} variant="petsModal">
@@ -87,9 +90,14 @@ export const ModalProductCart = ({ setIsModalOpen }) => {
           <Button
             text="Add to"
             variant="logoutButton"
-            iconVariant="transparent"
+            iconVariant={
+              isLoggedIn && user?.favorites.some((ad) => ad._id === notice?._id)
+                ? "favorite"
+                : "transparent"
+            }
             iconPosition="right"
             icon="heart"
+            onClick={() => handleToggleFavorite(notice?._id)}
           />
           <Button text="Contact" variant="cancel" />
         </WrapperBtn>
@@ -99,5 +107,6 @@ export const ModalProductCart = ({ setIsModalOpen }) => {
 };
 
 ModalProductCart.propTypes = {
+  handleToggleFavorite: PropTypes.func,
   setIsModalOpen: PropTypes.func,
 };

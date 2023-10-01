@@ -24,9 +24,10 @@ export const registerThunk = createAsyncThunk(
 
 export const loginThunk = createAsyncThunk(
   "auth/login",
-  async (credentials, { rejectWithValue }) => {
+  async (credentials, { rejectWithValue, dispatch }) => {
     try {
       const data = await login(credentials);
+      dispatch(fetchUserDataThunk());
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
@@ -90,7 +91,7 @@ export const fetchUserDataThunk = createAsyncThunk(
   "auth/fetchUserData",
   async (_, { rejectWithValue }) => {
     try {
-      const data = await fetchUserData();
+      const { data } = await fetchUserData();
 
       return data;
     } catch (error) {

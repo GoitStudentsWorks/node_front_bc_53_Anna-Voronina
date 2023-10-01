@@ -8,9 +8,9 @@ export const SvgStyled = styled.svg`
     $iconVariant === "transparent" &&
     css`
       fill: transparent;
-
       cursor: pointer;
     `}
+
   ${({ $iconVariant }) =>
     $iconVariant === "filterbutton" &&
     css`
@@ -18,6 +18,12 @@ export const SvgStyled = styled.svg`
       width: 16px;
       height: 16px;
       cursor: pointer;
+    `}
+
+      ${({ $iconVariant }) =>
+    $iconVariant === "favorite" &&
+    css`
+      fill: ${({ theme }) => theme.colors.white};
     `}
 `;
 

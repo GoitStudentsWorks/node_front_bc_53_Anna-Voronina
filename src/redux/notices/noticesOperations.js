@@ -14,7 +14,7 @@ import {
   fetchOwnNotices,
   fetchFavoriteNotices,
 } from "../../services/api/api";
-import { refreshThunk } from "../auth/authOperations";
+import { fetchUserDataThunk } from "../auth/authOperations";
 
 export const fetchNoticesBySearchThunk = createAsyncThunk(
   "notices/fetchNoticesBySearch",
@@ -166,7 +166,7 @@ export const addOrDeleteFavoriteNoticeThunk = createAsyncThunk(
   async (noticeId, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await addOrDeleteFavoriteNotice(noticeId);
-      dispatch(refreshThunk());
+      dispatch(fetchUserDataThunk());
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);

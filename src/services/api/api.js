@@ -59,7 +59,7 @@ export const updateAvatar = async (avatar) => {
 };
 
 export const fetchUserData = async () => {
-  const data = connectionsApi.get("/userInfo");
+  const data = connectionsApi.get("/user-info");
   return data;
 };
 

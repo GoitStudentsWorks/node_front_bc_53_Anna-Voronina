@@ -96,16 +96,17 @@ export const HeartIconPrimal = styled.svg`
   height: 28px;
   width: 28px;
   stroke: ${({ theme }) => theme.colors.blue};
-  fill: inherit;
-  * {
-    color: inherit;
-    fill: inherit;
-  }
 
   ${({ $variant }) =>
     $variant === "favorite" &&
     css`
       fill: ${({ theme }) => theme.colors.blue};
+    `}
+
+  ${({ $variant }) =>
+    $variant === "default" &&
+    css`
+      fill: transparent;
     `}
 `;
 

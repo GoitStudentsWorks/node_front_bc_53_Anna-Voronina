@@ -31,6 +31,7 @@ const initialState = {
     pets: [],
   },
   token: null,
+  refreshToken: null,
   isLoading: false,
   error: null,
   isLoggedIn: false,
@@ -61,15 +62,21 @@ const authSlice = createSlice({
         state.user.avatarURL = action.payload;
         state.isLoading = false;
       })
-      .addMatcher(
-        isAnyOf(loginThunk.fulfilled, registerThunk.fulfilled),
-        (state, { payload }) => {
-          state.user = { ...state.user, ...payload.user };
-          state.token = payload.token;
-          state.isLoggedIn = true;
-          state.isLoading = false;
-        }
-      )
+      .addCase(registerThunk.fulfilled, (state, action) => {
+        state.user = { ...state.user, ...action.payload.user };
+        state.isLoggedIn = true;
+        state.isLoading = false;
+        state.isLoading = false;
+      })
+      .addCase(loginThunk.fulfilled, (state, action) => {
+        console.log(action);
+        state.user = { ...state.user, ...action.payload.user };
+        state.token = action.payload.token;
+        state.refreshToken = action.payload.refreshToken;
+        state.isLoggedIn = true;
+        state.isLoading = false;
+        state.isLoading = false;
+      })
       .addMatcher(
         isAnyOf(fetchUserDataThunk.fulfilled, updateUserDataThunk.fulfilled),
         (state, action) => {

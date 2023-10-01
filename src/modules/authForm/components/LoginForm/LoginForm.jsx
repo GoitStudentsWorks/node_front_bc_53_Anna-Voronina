@@ -1,19 +1,19 @@
-import { Formik } from 'formik';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { Formik } from "formik";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-import { Title } from '../Title/Title';
-import { FormError } from '../FormError/FormError';
-import { TogglePasswordIcon } from '../TogglePasswordVisibility/TogglePasswordVisibility';
-import { TextWithRouterLink } from '../TextWithRouterLink/TextWithRouterLink';
-import { FormFieldIcon } from '../FormFieldIcon/FormFieldIcon';
-import Button from '@/shared/components/Button/Button';
+import { Title } from "../Title/Title";
+import { FormError } from "../FormError/FormError";
+import { TogglePasswordIcon } from "../TogglePasswordVisibility/TogglePasswordVisibility";
+import { TextWithRouterLink } from "../TextWithRouterLink/TextWithRouterLink";
+import { FormFieldIcon } from "../FormFieldIcon/FormFieldIcon";
+import Button from "@/shared/components/Button/Button";
 
-import { loginSchema } from '../../validations/loginSchema';
-import { getClassName } from '../../helpers/getClassName';
-import { loginThunk } from '@/redux/auth/authOperations';
-import { usePasswordToggle } from '@/hooks/usePasswordToggle';
+import { loginSchema } from "../../validations/loginSchema";
+import { getClassName } from "../../helpers/getClassName";
+import { loginThunk } from "@/redux/auth/authOperations";
+import { usePasswordToggle } from "@/hooks/usePasswordToggle";
 
 import {
   WrapperМessages,
@@ -24,17 +24,19 @@ import {
   WrapperButton,
   WrapperField,
   WrapperForm,
-} from './LoginForm.styled';
+} from "./LoginForm.styled";
 
 export const LoginForm = () => {
-  const { showPasswords, togglePasswordVisibility } = usePasswordToggle(['password1']);
+  const { showPasswords, togglePasswordVisibility } = usePasswordToggle([
+    "password1",
+  ]);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const initialValues = {
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   };
 
   const handleSubmit = (value, { resetForm }) => {
@@ -42,9 +44,9 @@ export const LoginForm = () => {
     dispatch(loginThunk({ email, password }))
       .unwrap()
       .then(() => {
-        navigate('/user');
+        navigate("/user");
       })
-      .catch(error => {
+      .catch((error) => {
         toast.error(error);
       });
     resetForm();
@@ -53,7 +55,11 @@ export const LoginForm = () => {
   return (
     <WrapperForm>
       <Title text="Login" />
-      <Formik initialValues={initialValues} validationSchema={loginSchema} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={loginSchema}
+        onSubmit={handleSubmit}
+      >
         {({ values, handleChange, handleBlur, touched, errors }) => (
           <FormStyled autoComplete="off">
             <WrapperField>
@@ -76,7 +82,7 @@ export const LoginForm = () => {
               <WrapperAbsoluteMessages>
                 <WrapperAbsoluteEye>
                   <FieldStyled
-                    type={showPasswords.password1 ? 'text' : 'password'}
+                    type={showPasswords.password1 ? "text" : "password"}
                     name="password"
                     title="Enter the password more difficult, letter, digit, capital letter."
                     placeholder="Password"
@@ -87,14 +93,22 @@ export const LoginForm = () => {
                     autoComplete="off"
                     className={getClassName(touched.password, errors.password)}
                   />
-                  <FormFieldIcon touched={touched.password} error={errors.password} right="52px" />
+                  <FormFieldIcon
+                    touched={touched.password}
+                    error={errors.password}
+                    right="52px"
+                  />
                   <TogglePasswordIcon
                     showPassword={showPasswords.password1}
-                    onToggle={() => togglePasswordVisibility('password1')}
+                    onToggle={() => togglePasswordVisibility("password1")}
                   />
                 </WrapperAbsoluteEye>
                 <WrapperМessages>
-                  <FormError name="password" touched={touched} errors={errors} />
+                  <FormError
+                    name="password"
+                    touched={touched}
+                    errors={errors}
+                  />
                 </WrapperМessages>
               </WrapperAbsoluteMessages>
             </WrapperField>

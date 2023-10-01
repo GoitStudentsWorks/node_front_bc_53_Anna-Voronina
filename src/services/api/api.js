@@ -25,7 +25,6 @@ export const clearToken = () => {
 // Registration new user
 export const register = async (user) => {
   const { data } = await connectionsApi.post("/auth/register", user);
-  // setToken(data.token);
   return data;
 };
 
@@ -60,6 +59,15 @@ export const updateAvatar = async (avatar) => {
 
 export const fetchUserData = async () => {
   const data = connectionsApi.get("/user-info");
+  return data;
+};
+
+export const updateToken = async (refreshToken) => {
+  const { data } = await connectionsApi.post(
+    "/auth/refresh-token",
+    refreshToken
+  );
+  setToken(data.token);
   return data;
 };
 

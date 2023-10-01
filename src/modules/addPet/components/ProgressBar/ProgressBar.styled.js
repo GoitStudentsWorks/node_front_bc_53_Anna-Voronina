@@ -16,7 +16,7 @@ export const ProgressText = styled.div`
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   line-height: normal;
 
-  color: ${({ theme }) => theme.colors.blue};
+  color: ${({ theme, color }) => theme.colors[color]};
 
   &::after {
     margin-top: 12px;
@@ -27,7 +27,8 @@ export const ProgressText = styled.div`
     right: 0, position absolute;
     width: 80px;
     height: 8px;
-    background-color: currentColor;
+    background-color: ${({ theme, color }) =>
+      color === "grey" ? theme.colors.lightBlue : theme.colors[color]};
     border-radius: ${({ theme }) => theme.radii.xxs};
   }
   @media only screen and (min-width: 768px) {
@@ -46,7 +47,8 @@ export const ProgressText = styled.div`
       right: 0, position absolute;
       width: 120px;
       height: 8px;
-      background-color: currentColor;
+      background-color: ${({ theme, color }) =>
+        color === "grey" ? theme.colors.lightBlue : theme.colors[color]};
       border-radius: ${({ theme }) => theme.radii.xxs};
     }
   }

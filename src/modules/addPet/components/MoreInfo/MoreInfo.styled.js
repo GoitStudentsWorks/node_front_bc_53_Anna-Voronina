@@ -6,6 +6,52 @@ export const WrapperField = styled.div`
   margin-bottom: 24px;
 `;
 
+export const RadioContainer = styled.div`
+  margin-top: 16px;
+`;
+
+export const RadioParag = styled.p`
+  color: ${({ theme }) => theme.colors.black};
+  font-family: ${({ theme }) => theme.fonts.manrope.medium};
+  font-size: ${({ theme }) => theme.spacing(3.5)};
+  font-style: normal;
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
+  line-height: normal;
+  margin-bottom: 8px;
+  /* letter-spacing: 1.44px; */
+
+  @media screen and (min-width: 768px) {
+    font-size: ${({ theme }) => theme.spacing(5)};
+  }
+`;
+
+export const RadioWrapper = styled.div`
+  display: flex;
+  gap: 16px;
+`;
+
+export const StyledRadio = styled(Field)`
+  /* display: none; */
+  &:checked + label {
+    background: ${({ theme }) => theme.colors.blueGradient};
+    color: ${({ theme }) => theme.colors.white};
+  }
+`;
+
+export const RadioLabel = styled.label`
+  color: ${({ theme }) => theme.colors.gray};
+  font-family: ${({ theme }) => theme.fonts.manrope.normal};
+  font-size: ${({ theme }) => theme.spacing(4)};
+  font-style: normal;
+  font-weight: ${({ theme }) => theme.fontWeights.regular};
+  line-height: normal;
+  letter-spacing: 0.64px;
+
+  @media screen and (min-width: 768px) {
+    font-size: ${({ theme }) => theme.spacing(5)};
+  }
+`;
+
 export const FileWrapper = styled.div`
   display: flex;
   gap: 14px;

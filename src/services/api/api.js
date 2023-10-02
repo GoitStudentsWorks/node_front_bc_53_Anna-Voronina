@@ -62,6 +62,14 @@ export const fetchUserData = async () => {
   return data;
 };
 
+export const updateToken = async (refreshToken) => {
+  const { data } = await connectionsApi.post("/auth/refresh-token", {
+    refreshToken,
+  });
+  setToken(data.token);
+  return data;
+};
+
 /**
   |============================
   | News and Friends Controllers

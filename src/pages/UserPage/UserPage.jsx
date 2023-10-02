@@ -14,7 +14,6 @@ import {
   TitleUserPets,
   UserFormContainer,
 } from "./UserPage.styled";
-import { selectIsSuccess } from "../../redux/global/globalSelectors";
 import { ModalAuth } from "../../modules/authForm/components/ModalAuth/ModalAuth";
 import Button from "../../shared/components/Button/Button";
 

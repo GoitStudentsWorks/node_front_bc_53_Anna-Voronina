@@ -27,8 +27,6 @@ export const PetsData = () => {
   const user = useSelector(selectUser);
   const isLoading = useSelector(selectLoggedIn);
 
-  const user = useSelector(selectUser);
-
   const handleClickRemove = () => {
     setIsModalOpen(true);
   };

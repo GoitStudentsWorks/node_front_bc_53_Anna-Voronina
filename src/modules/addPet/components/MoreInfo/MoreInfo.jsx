@@ -53,6 +53,10 @@ const MoreInfo = () => {
 
   const handleSubmit = (values) => {
     console.log(values);
+
+    const formData = new FormData();
+    formData.append("file", values?.file);
+
     dispatch(addNewNoticeThunk({ ...petFormData, ...values }))
       .unwrap()
       .then(() => {

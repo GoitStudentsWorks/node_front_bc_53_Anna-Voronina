@@ -318,7 +318,7 @@ export const ButtonStyled = styled.button`
       }
       @media only screen and (min-width: 1280px) {
         max-height: 34px;
-        margin: 10px auto 23px 100px;
+        margin: 10px auto 2px 100px;
         padding: 6px 108px;
         font-size: ${({ theme }) => theme.fontSizes.m};
         letter-spacing: 0.64px;

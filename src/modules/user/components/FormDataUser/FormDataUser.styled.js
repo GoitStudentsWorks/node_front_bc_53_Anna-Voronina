@@ -45,17 +45,26 @@ export const FormTitle = styled.p`
 `;
 
 export const UserInput = styled.input`
-  width: 190px;
+  width: 70%;
   height: 24px;
   padding: 4px 12px;
   border-radius: ${({ theme }) => theme.radii.l};
   border: 1px solid ${({ theme }) => theme.colors.blue};
+
+  color: ${({ theme }) => theme.colors.black};
+  font-family: ${({ theme }) => theme.fonts.manrope.regular};
+  font-size: ${({ theme }) => theme.fontSizes.xs};
+  font-weight: ${({ theme }) => theme.fontWeights.regular};
+  letter-spacing: 0.48px;
 
   @media only screen and (min-width: 768px) {
     width: 255px;
     height: 30px;
     padding: 4px 12px;
     border-radius: ${({ theme }) => theme.radii.s};
+
+    font-size: ${({ theme }) => theme.fontSizes.m};
+    letter-spacing: 0.64px;
   }
 `;
 

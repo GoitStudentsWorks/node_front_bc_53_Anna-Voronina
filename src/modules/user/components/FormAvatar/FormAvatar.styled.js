@@ -12,7 +12,7 @@ export const Avatar = styled.div`
   }
 
   @media only screen and (min-width: 768px) {
-    margin: 0;
+    margin: 0 0 0 71px;
   }
   @media only screen and (min-width: 1280px) {
     margin: 0 auto 63px;

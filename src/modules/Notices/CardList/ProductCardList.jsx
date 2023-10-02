@@ -97,7 +97,13 @@ const ProductCardList = ({ notices }) => {
 
                     <InformationMap>
                       <IconInformation>
-                        <use href={sprite + "#female"}></use>
+                        <use
+                          href={
+                            sex === "female"
+                              ? sprite + "#female"
+                              : sprite + "#male"
+                          }
+                        ></use>
                       </IconInformation>
                       {sex}
                     </InformationMap>

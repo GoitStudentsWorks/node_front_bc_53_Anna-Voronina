@@ -13,6 +13,7 @@ export const ContainerUserPage = styled.div`
 
     @media only screen and (min-width: 768px) {
       font-size: 28px;
+      letter-spacing: normal;
       color: ${({ theme }) => theme.colors.black};
     }
     @media only screen and (min-width: 1280px) {
@@ -45,21 +46,23 @@ export const TitleUserPets = styled.h2`
 
 export const UserFormContainer = styled.div`
   position: relative;
-  height: 517px;
-  padding: 0 8px;
+  padding: 20px 8px 20px;
   border-radius: ${({ theme }) => theme.radii.s};
   background-color: ${({ theme }) => theme.colors.white};
   box-shadow: ${({ theme }) => theme.shadows.primary};
 
   @media only screen and (min-width: 768px) {
-    height: 268px;
-    padding: 20px 76px 0 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    padding: 20px 76px 16px 20px;
     border-radius: ${({ theme }) => theme.radii.l};
   }
   @media only screen and (min-width: 1280px) {
+    display: block;
     width: 395px;
-    height: 520px;
-    padding: 20px 24px 0 16px;
+    padding: 20px 24px 19px 16px;
   }
 `;
 

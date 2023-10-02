@@ -27,7 +27,7 @@ export const LogoutBtn = styled(ButtonStyled)`
   ${({ $variant }) =>
     $variant === "profile" &&
     css`
-      padding: 8px 0;
+      padding: 0;
       margin-top: 16px;
       flex-direction: row-reverse;
       gap: 12px;
@@ -38,11 +38,12 @@ export const LogoutBtn = styled(ButtonStyled)`
       color: ${({ theme }) => theme.colors.grey};
 
       @media only screen and (min-width: 768px) {
-        margin-top: 6px;
+        margin: 14px 0 4px;
       }
 
       @media only screen and (min-width: 1280px) {
-        margin-top: 14px;
+        position: static;
+        margin: 6px 0 0 0;
       }
     `}
 

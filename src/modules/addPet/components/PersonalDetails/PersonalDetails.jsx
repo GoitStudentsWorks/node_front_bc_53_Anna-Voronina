@@ -1,28 +1,33 @@
 import { FieldStyled, StyledLabel, WrapperField } from './PersonalDetails.styled';
 
-const PersonalDetails = formikProps => {
-  const { errors, touched, isValid } = formikProps;
+import { FormError } from '../../../authForm/components/FormError/FormError';
+
+const PersonalDetails = ({ handleChange, handleBlur, errors, touched }) => {
   return (
     <>
       <WrapperField>
         <StyledLabel>Title of add:</StyledLabel>
-        <FieldStyled type="text" name="title" placeholder="Title of add" required />
-        {touched.title && errors.title && <div className="error">{errors.title}</div>}
+        <FieldStyled
+          type="text"
+          name="title"
+          placeholder="Title of add"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          required
+        />
       </WrapperField>
       <WrapperField>
-        <StyledLabel>Pets name:</StyledLabel>
+        <StyledLabel>Pet's name:</StyledLabel>
         <FieldStyled type="text" name="name" placeholder="Type name pet" required />
-        {touched.name && errors.name && <div className="error">{errors.name}</div>}
       </WrapperField>
       <WrapperField>
         <StyledLabel>Date of Birth:</StyledLabel>
         <FieldStyled type="text" name="date" placeholder="Type date of birth" required />
-        {touched.date && errors.date && <div className="error">{errors.date}</div>}
       </WrapperField>
       <WrapperField>
         <StyledLabel>Type of Pet:</StyledLabel>
         <FieldStyled type="text" name="type" placeholder="Type of pet" required />
-        {touched.type && errors.type && <div className="error">{errors.type}</div>}
+        <FormError name="choice" errors={errors} touched={touched} />
       </WrapperField>
     </>
   );

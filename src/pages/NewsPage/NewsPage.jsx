@@ -38,19 +38,14 @@ const NewsPage = () => {
     <Container>
       <PageTitle title="News" />
       <Searchbar onSubmit={handleSubmit} />
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <>
-          <ListNews newsSort={newsSort?.data} />
-          <Pagination
-            onPageChange={handlePageChange}
-            currentPage={page}
-            perPage={6}
-            totalItems={newsSort?.total}
-          />
-        </>
-      )}
+      {isLoading ? <Loader /> : <ListNews newsSort={newsSort?.data} />}
+      <Pagination
+        onPageChange={handlePageChange}
+        currentPage={page}
+        perPage={6}
+        totalItems={newsSort?.total}
+        variant={isLoading ? "hidden" : "visible"}
+      />
     </Container>
   );
 };

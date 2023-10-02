@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 import { nameValidator, birthdayValidator, cityValidator } from '@/shared/constants/regexp';
 
-export const sellPetSchema = yup.object().shape({
+export const addPetSchema = yup.object().shape({
   choice: yup.string().required('Choose one of the options'),
   title: yup
     .string()

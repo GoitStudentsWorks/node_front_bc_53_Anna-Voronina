@@ -3,14 +3,13 @@ import { useState } from 'react';
 import { useRef } from 'react';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import Title from '../Title/Title';
-import { WrapperForm } from './AddPetForm.styled';
+import { BtnWrapper, WrapperForm } from './AddPetForm.styled';
 import ChooseOption from '../ChooseOption/ChooseOption';
 import { StepButton } from '../StepButton/StepButton';
 import Button from '../../../../shared/components/Button/Button';
-import { BtnWrapper } from '../Buttons/BtnComponent.styled';
 import PersonalDetails from '../PersonalDetails/PersonalDetails';
 import MoreInfo from '../MoreInfo/MoreInfo';
-import { sellPetSchema } from '../../validation/addPetSchema';
+import { addPetSchema } from '../../validation/addPetSchema';
 
 const optionTitles = {
   option1: 'Add Your Pet',
@@ -62,16 +61,16 @@ const AddPetForm = () => {
   };
 
   return (
-    <WrapperForm>
-      <Title text={optionTitles[formData.choice]} />
+    <WrapperForm step={step}>
+      <Title step={step} text={optionTitles[formData.choice]} />
       <ProgressBar step={step} />
       <Formik
         enableReinitialize
         initialValues={{ ...formData }}
-        validationSchema={sellPetSchema}
         onSubmit={handleSubmit}
+        validationSchema={addPetSchema}
       >
-        {({ values, errors, touched, isValid }) => (
+        {({ values, errors, touched, handleBlur, handleChange }) => (
           <Form encType="multipart/form-data">
             {step === 1 ? (
               <ChooseOption
@@ -81,7 +80,12 @@ const AddPetForm = () => {
                 handleOptionChange={handleOptionChange}
               />
             ) : step === 2 ? (
-              <PersonalDetails errors={errors} touched={touched} />
+              <PersonalDetails
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+                errors={errors}
+                touched={touched}
+              />
             ) : (
               <MoreInfo
                 errors={errors}
@@ -94,17 +98,29 @@ const AddPetForm = () => {
                     file: file,
                   });
                 }}
+                formData={formData}
                 imageUrl={formData.file && URL.createObjectURL(formData.file)}
               />
             )}
             <BtnWrapper>
-              <StepButton disabled={!isValid} step={step} onSubmit={() => handleSubmit(values)} />
-              <Button
-                variant="cancelBtnAddPet"
-                text="Back"
-                type="button"
-                onClick={() => setStep(prevStep => prevStep - 1)}
-              />
+              <StepButton step={step} onSubmit={() => handleSubmit(values)} />
+              {step === 1 ? (
+                <Button
+                  variant="cancelBtnAddPet"
+                  text="Cancel"
+                  type="button"
+                  onClick={() => {
+                    window.history.back();
+                  }}
+                />
+              ) : (
+                <Button
+                  variant="cancelBtnAddPet"
+                  text="Back"
+                  type="button"
+                  onClick={() => setStep(prevStep => prevStep - 1)}
+                />
+              )}
             </BtnWrapper>
           </Form>
         )}

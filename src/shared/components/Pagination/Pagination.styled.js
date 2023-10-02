@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const PaginationContainer = styled.div`
   color: #111;
@@ -7,6 +7,16 @@ export const PaginationContainer = styled.div`
   font-size: 16px;
   font-weight: 400;
   line-height: 0.9375;
+  padding-bottom: ${({ theme }) => theme.spacing(5)};
+
+  ${({ $variant }) =>
+    $variant === "hidden"
+      ? css`
+          display: none;
+        `
+      : css`
+          display: block;
+        `}
 
   ul {
     display: flex;
@@ -18,8 +28,8 @@ export const PaginationContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: ${({ theme }) => theme.spacing(10)};
-    height: ${({ theme }) => theme.spacing(10)};
+    width: ${({ theme }) => theme.spacing(8.75)};
+    height: ${({ theme }) => theme.spacing(8.75)};
     padding: 10px 10px 10px 10px;
     border-radius: 50%;
     stroke-width: 1px;
@@ -53,7 +63,7 @@ export const PaginationContainer = styled.div`
       color: #54adff;
 
       @media only screen and (min-width: 1280px) {
-        margin-right: 32px;
+        margin-left: 32px;
       }
 
       &.disabled {

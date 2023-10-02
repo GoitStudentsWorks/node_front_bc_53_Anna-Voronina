@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { RadioWrapper, SelectRadio, StyledRadio } from './ChooseOption.styled';
 import { useState } from 'react';
+import { FormError } from '../../../authForm/components/FormError/FormError';
 
 //
 //
@@ -18,6 +19,8 @@ const ChooseOption = ({ selectedOption, handleOptionChange, touched, errors }) =
       setIsOptionSelected(true);
     }
   };
+  console.log(errors);
+  console.log(touched);
   return (
     <RadioWrapper>
       <div>

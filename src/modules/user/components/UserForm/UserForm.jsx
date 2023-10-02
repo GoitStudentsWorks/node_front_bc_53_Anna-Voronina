@@ -12,6 +12,6 @@ export const UserForm = ({ editing, handleEditClick }) => {
 };
 
 UserForm.propTypes = {
-  editing: PropTypes.any,
-  handleEditClick: PropTypes.any,
+  editing: PropTypes.bool.isRequired,
+  handleEditClick: PropTypes.func.isRequired,
 };

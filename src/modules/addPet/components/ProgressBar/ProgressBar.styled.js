@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const ProgressWrapper = styled.div`
   white-space: nowrap;
+  margin: 0 auto;
 `;
 
 export const ProgressText = styled.div`

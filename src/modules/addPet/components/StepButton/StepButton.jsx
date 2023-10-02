@@ -15,7 +15,7 @@ export const StepButton = ({ step, onSubmit, values }) => {
   return (
     <Button
       text={step < 3 ? "Next" : step === 3 ? "Done" : ""}
-      type="button"
+      type="submit"
       icon="paws"
       iconPosition="right"
       variant="bigButtonSecond"

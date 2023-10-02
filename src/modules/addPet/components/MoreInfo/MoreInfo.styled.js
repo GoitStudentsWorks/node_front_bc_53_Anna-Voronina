@@ -18,7 +18,6 @@ export const RadioParag = styled.p`
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   line-height: normal;
   margin-bottom: 8px;
-  /* letter-spacing: 1.44px; */
 
   @media screen and (min-width: 768px) {
     font-size: ${({ theme }) => theme.spacing(5)};
@@ -31,32 +30,58 @@ export const RadioWrapper = styled.div`
 `;
 
 export const StyledRadio = styled(Field)`
-  /* display: none; */
-  &:checked + label {
-    background: ${({ theme }) => theme.colors.blueGradient};
-    color: ${({ theme }) => theme.colors.white};
-  }
+  display: none;
 `;
 
 export const RadioLabel = styled.label`
-  color: ${({ theme }) => theme.colors.gray};
-  font-family: ${({ theme }) => theme.fonts.manrope.normal};
-  font-size: ${({ theme }) => theme.spacing(4)};
-  font-style: normal;
+  display: flex;
+  align-items: center;
   font-weight: ${({ theme }) => theme.fontWeights.regular};
+  font-size: ${({ theme }) => theme.fontSizes.m};
   line-height: normal;
+  justify-content: center;
+  align-items: center;
   letter-spacing: 0.64px;
+  color: ${({ theme }) => theme.colors.grey};
+  backdrop-filter: blur(2px);
+  padding: 8px 16px;
+  border-radius: ${({ theme }) => theme.radii.l};
+  border-color: ${({ theme }) => theme.colors.blue};
+  outline: none;
+  transition: transform ${({ theme }) => theme.transitions.regular};
+  cursor: pointer;
+  &:hover {
+    background: ${({ theme }) => theme.colors.blueGradient};
+    color: ${({ theme }) => theme.colors.white};
+  }
+  input[type="radio"]:checked + & {
+    background: ${({ theme }) => theme.colors.blueGradient};
+    color: ${({ theme }) => theme.colors.white};
+  }
+  &:focus svg,
+  &:hover svg {
+    stroke: ${({ theme }) => theme.colors.white};
+  }
+
+  &.checked {
+    background: ${({ theme }) => theme.colors.blueGradient};
+    color: ${({ theme }) => theme.colors.white};
+  }
 
   @media screen and (min-width: 768px) {
-    font-size: ${({ theme }) => theme.spacing(5)};
   }
 `;
 
 export const FileWrapper = styled.div`
   display: flex;
-  gap: 14px;
   align-items: center;
-  margin-top: 16px;
+  margin-top: 10px;
+  gap: 14px;
+  @media screen and (min-width: 768px) {
+    display: block;
+    margin-bottom: 60px;
+    margin-top: 30px;
+  }
 `;
 
 export const FieldComentStyled = styled(Field)`
@@ -97,10 +122,8 @@ export const FieldComentStyled = styled(Field)`
   }
 `;
 
-//
-//
-
 export const FileInputContainer = styled.div`
+  /* margin-right: 55px; */
   width: 112px;
   height: 112px;
   background-color: ${({ theme }) => theme.colors.lightBlue};
@@ -118,30 +141,15 @@ export const FileInputContainer = styled.div`
   }
 `;
 
-// export const FileInputContainer = styled.div.attrs((props) => ({
-//   style: {
-//     backgroundImage: `url(${props.imageUrl || ""})`,
-//   },
-// }))(
-//   css`
-//     width: 112px;
-//     height: 112px;
-//     background-color: ${({ theme }) => theme.colors.lightBlue};
-//     border: none;
-//     border-radius: 20px;
-//     outline: none;
-//     cursor: pointer;
-//     background-size: cover; // Залежно від ваших потреб
-//     background-repeat: no-repeat;
-//     background-position: center;
-//   `
-// );
-
 export const FileInput = styled.input`
   opacity: 0;
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 112px;
+  height: 112px;
+  @media screen and (min-width: 768px) {
+    width: 182px;
+    height: 182px;
+  }
 `;
 
 export const StyledLabel = styled.label`
@@ -151,9 +159,47 @@ export const StyledLabel = styled.label`
   font-style: normal;
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   line-height: normal;
-  /* letter-spacing: 1.44px; */
+  letter-spacing: 0.64px;
+  max-width: 90px;
 
   @media screen and (min-width: 768px) {
+    max-width: 220px;
     font-size: ${({ theme }) => theme.spacing(5)};
   }
+`;
+
+export const ImgSexContainer = styled.div``;
+
+export const FieldContainer = styled.div``;
+
+export const FlexContainer = styled.div`
+  @media screen and (min-width: 768px) {
+    display: flex;
+    gap: 15px;
+  }
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    gap: 50px;
+  }
+`;
+
+export const IconFemale = styled.svg`
+  height: 24px;
+  width: 24px;
+  stroke: ${({ theme }) => theme.colors.red};
+  fill: transparent;
+`;
+
+export const IconMale = styled.svg`
+  height: 24px;
+  width: 24px;
+  stroke: ${({ theme }) => theme.colors.blue};
+  fill: transparent;
+`;
+
+export const IconPlus = styled.svg`
+  height: 80px;
+  width: 80px;
+  stroke: ${({ theme }) => theme.colors.blue};
+  fill: transparent;
 `;

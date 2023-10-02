@@ -18,7 +18,6 @@ import Button from '../../shared/components/Button/Button';
 const UserPage = () => {
   const [editing, setEditing] = useState(false);
   const isSuccess = useSelector(selectIsSuccess);
-  
 
   const handleEditClick = () => {
     setEditing(prevState => !prevState);
@@ -35,13 +34,8 @@ const UserPage = () => {
           </UserFormContainer>
         </div>
         <div>
-          <AddBtn to="/add-pet">
-            <Button
-              text="Add&nbsp;pet"
-              icon="plus"
-              iconPosition="right"
-              variant="addButton"
-            />
+          <AddBtn to="/add-pet/category">
+            <Button text="Add&nbsp;pet" icon="plus" iconPosition="right" variant="addButton" />
           </AddBtn>
           <TitleUserPets>My pets:</TitleUserPets>
           <PetsData />

@@ -63,3 +63,7 @@ export const addPetSchema = yup.object().shape({
     })
     .max(120, 'the name must contain a maximum of 120 characters'),
 });
+
+export const categorySchema = yup.object().shape({
+  category: yup.string().required('Choose one of the options'),
+});

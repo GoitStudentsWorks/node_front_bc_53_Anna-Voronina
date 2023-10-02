@@ -14,7 +14,11 @@ import {
   fetchOwnNotices,
   fetchFavoriteNotices,
 } from "../../services/api/api";
-import { fetchUserDataThunk, updateTokenThunk } from "../auth/authOperations";
+import {
+  fetchUserDataThunk,
+  refreshThunk,
+  updateTokenThunk,
+} from "../auth/authOperations";
 
 export const fetchNoticesBySearchThunk = createAsyncThunk(
   "notices/fetchNoticesBySearch",
@@ -178,6 +182,7 @@ export const addNewPetThunk = createAsyncThunk(
   async (pet, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await addNewPet(pet);
+      dispatch(fetchUserDataThunk());
       return data;
     } catch (error) {
       if (error.response.status === 401) {
@@ -193,6 +198,7 @@ export const deletePetThunk = createAsyncThunk(
   async (petId, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await deletePet(petId);
+      dispatch(fetchUserDataThunk());
       return data;
     } catch (error) {
       if (error.response.status === 401) {
@@ -208,6 +214,7 @@ export const deleteOwnNoticeThunk = createAsyncThunk(
   async (noticeId, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await deleteOwnNotice(noticeId);
+      dispatch(refreshThunk());
       return data;
     } catch (error) {
       if (error.response.status === 401) {
@@ -239,6 +246,7 @@ export const addNewNoticeThunk = createAsyncThunk(
   async (notice, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await addNewNotice(notice);
+      dispatch(fetchUserDataThunk());
       return data;
     } catch (error) {
       if (error.response.status === 401) {

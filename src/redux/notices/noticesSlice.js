@@ -11,6 +11,19 @@ import {
   fetchOwnNoticesThunk,
 } from "./noticesOperations";
 
+export const petFormDataInitialState = {
+  category: "",
+  title: "",
+  name: "",
+  date: "",
+  type: "",
+  sex: "",
+  location: "",
+  price: "",
+  file: null,
+  comments: "",
+};
+
 const initialState = {
   notices: {
     data: [],

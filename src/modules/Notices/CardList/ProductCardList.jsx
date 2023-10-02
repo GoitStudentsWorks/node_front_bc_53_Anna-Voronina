@@ -13,7 +13,6 @@ import {
   ProductItem,
   PetCategory,
   FavoriteBtn,
-  HeartIconPrimal,
   NoticesItemImg,
   ItemTitle,
   WrapperBtn,
@@ -23,6 +22,8 @@ import {
   IconWrapper,
   ContentWrapper,
   WrapperLocation,
+  DeleteBtn,
+  IconPrimal,
 } from "./ProductCardList.styled";
 
 import sprite from "@/shared/icons/sprite.svg";
@@ -30,11 +31,16 @@ import { selectLoggedIn } from "@/redux/auth/authSelectors.js";
 import { AttentionModal } from "../../modals/components/AttentionModal/AttentionModal.jsx";
 import { addOrDeleteFavoriteNoticeThunk } from "../../../redux/notices/noticesOperations.js";
 import { selectUser } from "../../../redux/auth/authSelectors.js";
+import { DeleteModal } from "../../modals/components/DeleteModal/DeleteModal.jsx";
 
-const ProductCardList = ({ notices }) => {
+const ProductCardList = ({ notices, categoryType }) => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isAttentionModalOpen, setIsAttentionModalOpen] = useState(false);
+  const [idToDelete, setIdToDelete] = useState("");
+  const [titleToDelete, setTitleToDelete] = useState("");
+
   const isLoggedIn = useSelector(selectLoggedIn);
   const user = useSelector(selectUser);
 
@@ -55,6 +61,16 @@ const ProductCardList = ({ notices }) => {
     }
   };
 
+  const handleDeleteModalOpen = ({ id, title }) => {
+    setIsDeleteModalOpen((prev) => !prev);
+    setIdToDelete(id);
+    setTitleToDelete(title);
+  };
+
+  const handleDelete = () => {
+    setIsDeleteModalOpen((prev) => !prev);
+  };
+
   return (
     <>
       {notices?.length ? (
@@ -66,7 +82,7 @@ const ProductCardList = ({ notices }) => {
                   <PetCategory>{category}</PetCategory>
 
                   <FavoriteBtn onClick={() => handleToggleFavorite(_id)}>
-                    <HeartIconPrimal
+                    <IconPrimal
                       $variant={
                         isLoggedIn &&
                         user?.favorites.some((ad) => ad._id === _id)
@@ -75,8 +91,18 @@ const ProductCardList = ({ notices }) => {
                       }
                     >
                       <use href={sprite + "#heart"}></use>
-                    </HeartIconPrimal>
+                    </IconPrimal>
                   </FavoriteBtn>
+
+                  {categoryType === "own" && (
+                    <DeleteBtn
+                      onClick={() => handleDeleteModalOpen({ id: _id, title })}
+                    >
+                      <IconPrimal $variant="default">
+                        <use href={sprite + "#trash-2"}></use>
+                      </IconPrimal>
+                    </DeleteBtn>
+                  )}
 
                   <NoticesItemImg loading="lazy" src={file} alt="icon" />
 
@@ -134,6 +160,14 @@ const ProductCardList = ({ notices }) => {
       )}
       {isAttentionModalOpen && (
         <AttentionModal onClose={handleAttentionModal} />
+      )}
+
+      {isDeleteModalOpen && (
+        <DeleteModal
+          onClose={handleDelete}
+          title={titleToDelete}
+          id={idToDelete}
+        />
       )}
     </>
   );

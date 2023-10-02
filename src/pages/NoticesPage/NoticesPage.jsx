@@ -36,9 +36,6 @@ const NoticesPage = () => {
   const isLoggedIn = useSelector(selectLoggedIn);
   const isLoading = useSelector(selectorIsLoading);
 
-  const age = searchParams.get("age");
-  const sex = searchParams.get("sex");
-
   useEffect(() => {
     const newSearchParams = new URLSearchParams();
 
@@ -99,12 +96,20 @@ const NoticesPage = () => {
     setPage(selectedPage);
   };
 
+  const handleSubmit = (query) => {
+    setSearchQuery(query);
+  };
+
   return (
     <Container>
       <PageTitle title="Find your favorite pet" />
-      <Searchbar page={`notices/${category}`} />
+      <Searchbar onSubmit={handleSubmit} />
       <NoticesFilters />
-      {isLoading ? <Loader /> : <ProductCardList notices={notices?.data} />}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <ProductCardList notices={notices?.data} categoryType={category} />
+      )}
       <Pagination
         onPageChange={handlePageChange}
         currentPage={page}

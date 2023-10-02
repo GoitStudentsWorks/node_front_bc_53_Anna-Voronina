@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 import { Modal } from "../../../../shared/components/Modal/Modal";
 import Button from "../../../../shared/components/Button/Button";
 import {
@@ -9,16 +10,49 @@ import {
   BoldText,
   BlockButton,
 } from "./DeleteModal.styled";
+import { useDispatch } from "react-redux";
+import {
+  deleteOwnNoticeThunk,
+  deletePetThunk,
+} from "../../../../redux/notices/noticesOperations";
 
-export const DeleteModal = ({ onClose }) => {
+export const DeleteModal = ({ onClose, title, type, id }) => {
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    if (type === "own") {
+      dispatch(deletePetThunk(id))
+        .unwrap()
+        .then(() => {
+          onClose();
+          toast.success("Deleting completed successfully");
+        })
+        .catch((error) => {
+          toast.error(error);
+        });
+    } else {
+      dispatch(deleteOwnNoticeThunk(id))
+        .unwrap()
+        .then(() => {
+          onClose();
+          toast.success("Deleting completed successfully");
+        })
+        .catch((error) => {
+          toast.error(error);
+        });
+    }
+  };
+
   return (
     <Modal onClose={onClose}>
       <Filling>
-        <Title>Delete adverstiment&#63;</Title>
+        <Title>
+          Delete {type === "own" ? "your pet" : "advertisement"}&#63;
+        </Title>
         <BlockText>
           <TextStyled>
             Are you sure you want to delete
-            <BoldText> “Cute dog looking for a home”&#63; </BoldText>
+            <BoldText> “{title}”&#63; </BoldText>
           </TextStyled>
           <TextStyled>You can`t undo this action.</TextStyled>
         </BlockText>
@@ -31,6 +65,7 @@ export const DeleteModal = ({ onClose }) => {
             icon="trash-2"
             iconPosition="right"
             iconVariant="transparent"
+            onClick={handleDelete}
           />
         </BlockButton>
       </Filling>
@@ -39,5 +74,8 @@ export const DeleteModal = ({ onClose }) => {
 };
 
 DeleteModal.propTypes = {
+  id: PropTypes.string,
   onClose: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  type: PropTypes.string,
 };

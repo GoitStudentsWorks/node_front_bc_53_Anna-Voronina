@@ -16,6 +16,8 @@ import {
   SelectRadio,
   StyledRadio,
 } from "./ChooseOption.styled";
+import { updateBackLocation } from "../../../../redux/global/globalSlice";
+import { useEffect } from "react";
 
 const ChooseOption = () => {
   const dispatch = useDispatch();
@@ -26,6 +28,10 @@ const ChooseOption = () => {
   const location = useLocation();
   const locationRef = useRef(location?.state?.from);
   const cancelLinkLocation = locationRef?.current?.pathname || "/";
+
+  useEffect(() => {
+    dispatch(updateBackLocation(cancelLinkLocation));
+  }, [cancelLinkLocation, dispatch]);
 
   const initialValues = {
     category: selectedCategory ? selectedCategory : "",

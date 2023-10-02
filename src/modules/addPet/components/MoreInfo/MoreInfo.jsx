@@ -35,13 +35,23 @@ import { FieldStyled } from "../PersonalDetails/PersonalDetails.styled";
 import sprite from "@/shared/icons/sprite.svg";
 import { PetFormButtons } from "../PetFormButtons/PetFormButtons";
 import { FormError } from "../../../authForm/components/FormError/FormError";
-import { addNewNoticeThunk } from "../../../../redux/notices/noticesOperations";
+import {
+  addNewNoticeThunk,
+  addNewPetThunk,
+} from "@/redux/notices/noticesOperations";
+import { toast } from "react-toastify";
+import { petFormDataInitialState } from "@/redux/notices/noticesSlice";
+import { selectBackLocation } from "@/redux/global/globalSelectors";
+import { updateBackLocation } from "../../../../redux/global/globalSlice";
 
 const MoreInfo = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const petFormData = useSelector(selectPetFormData);
+  const backLocation = useSelector(selectBackLocation);
+
+  console.log(backLocation);
 
   const initialValues = {
     sex: petFormData?.sex ? petFormData?.sex : "",
@@ -52,18 +62,45 @@ const MoreInfo = () => {
   };
 
   const handleSubmit = (values) => {
-    console.log(values);
+    const formDataToSend = {
+      ...petFormData,
+      ...values,
+    };
 
     const formData = new FormData();
-    formData.append("file", values?.file);
 
-    dispatch(addNewNoticeThunk({ ...petFormData, ...values }))
-      .unwrap()
-      .then(() => {
-        dispatch(addPetFormData({}));
-        dispatch(updateStep(1));
-        navigate(`/`);
-      });
+    Object.keys(formDataToSend).forEach((key) => {
+      if (formDataToSend[key] !== "") {
+        formData.append(key, formDataToSend[key]);
+      }
+
+      if (key === "category" && petFormData?.category === "own") {
+        formData.append(key, formDataToSend[key]);
+        formData.delete("category", formDataToSend[key]);
+      }
+    });
+
+    if (petFormData?.category === "own") {
+      dispatch(addNewPetThunk(formData))
+        .unwrap()
+        .then(() => {
+          dispatch(addPetFormData(petFormDataInitialState));
+          dispatch(updateStep(1));
+          dispatch(updateBackLocation(""));
+          navigate(`${backLocation}`);
+        })
+        .catch((error) => toast.error(error));
+    } else {
+      dispatch(addNewNoticeThunk(formData))
+        .unwrap()
+        .then(() => {
+          dispatch(addPetFormData(petFormDataInitialState));
+          dispatch(updateStep(1));
+          dispatch(updateBackLocation(""));
+          navigate(`${backLocation}`);
+        })
+        .catch((error) => toast.error(error));
+    }
   };
 
   const determineSchema = (category) => {
@@ -90,8 +127,8 @@ const MoreInfo = () => {
       {({ values, handleChange, setFieldValue, touched, errors }) => (
         <FormContainer>
           <FlexContainer>
-            {petFormData?.category !== "own" && (
-              <ImgSexContainer>
+            <ImgSexContainer>
+              {petFormData?.category !== "own" && (
                 <RadioContainer>
                   <RadioParag>Sex</RadioParag>
                   <RadioWrapper>
@@ -129,30 +166,31 @@ const MoreInfo = () => {
                   </RadioWrapper>
                   <FormError name="sex" touched={touched} errors={errors} />
                 </RadioContainer>
-                <FileWrapper>
-                  <StyledLabel>Load the pet&apos;s image:</StyledLabel>
-                  <FileInputContainer
-                    $imageUrl={
-                      values?.file ? URL.createObjectURL(values?.file) : ""
-                    }
-                  >
-                    <FileInput
-                      type="file"
-                      name="file"
-                      accept=".jpg, .jpeg, .png"
-                      onChange={(event) => {
-                        setFieldValue("file", event.target.files[0]);
-                      }}
-                      autoComplete="off"
-                    />
-                    <IconPlus $visible={values?.file ? "no" : "yes"}>
-                      <use href={sprite + "#plus"}></use>
-                    </IconPlus>
-                  </FileInputContainer>
-                  <FormError name="file" touched={touched} errors={errors} />
-                </FileWrapper>
-              </ImgSexContainer>
-            )}
+              )}
+              <FileWrapper>
+                <StyledLabel>Load the pet&apos;s image:</StyledLabel>
+                <FileInputContainer
+                  $imageUrl={
+                    values?.file ? URL.createObjectURL(values?.file) : ""
+                  }
+                >
+                  <FileInput
+                    type="file"
+                    name="file"
+                    accept=".jpg, .jpeg, .png"
+                    onChange={(event) => {
+                      setFieldValue("file", event.target.files[0]);
+                    }}
+                    autoComplete="off"
+                  />
+                  <IconPlus $visible={values?.file ? "no" : "yes"}>
+                    <use href={sprite + "#plus"}></use>
+                  </IconPlus>
+                </FileInputContainer>
+                <FormError name="file" touched={touched} errors={errors} />
+              </FileWrapper>
+            </ImgSexContainer>
+
             <FieldContainer>
               {petFormData?.category !== "own" && (
                 <WrapperField>

@@ -77,3 +77,7 @@ export const AddBtn = styled(Link)`
     top: 0;
   }
 `;
+
+export const UserPetsWrapper = styled.div`
+  width: 100%;
+`;

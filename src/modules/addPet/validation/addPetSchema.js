@@ -103,7 +103,7 @@ export const sellSchema = yup.object().shape({
     .required("required field")
     .matches(nameValidator, "the name must contain only letters")
     .min(2, "the name must contain a minimum of 2 characters")
-    .max(16, "the name must contain a maximum of 16 characters"),
+    .max(30, "the name must contain a maximum of 30 characters"),
   date: yup
     .string()
     .matches(birthdayValidator, "incorrect date format")
@@ -133,7 +133,7 @@ export const detailsSchema = yup.object().shape({
     .required("required field")
     .matches(nameValidator, "the name must contain only letters")
     .min(2, "the name must contain a minimum of 2 characters")
-    .max(16, "the name must contain a maximum of 16 characters"),
+    .max(30, "the name must contain a maximum of 30 characters"),
   date: yup
     .string()
     .matches(birthdayValidator, "incorrect date format")

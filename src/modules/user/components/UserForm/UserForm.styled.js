@@ -49,7 +49,6 @@ export const Avatar = styled.div`
 
 export const SelectedPhoto = styled.label`
   position: absolute;
-  position: absolute;
   top: 225px;
   left: 50%;
   transform: translate(-50%, -50%);

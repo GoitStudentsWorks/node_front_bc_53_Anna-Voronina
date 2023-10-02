@@ -1,5 +1,11 @@
-import styled from "styled-components";
-import { Field } from "formik";
+import styled, { css } from "styled-components";
+import { Field, Form } from "formik";
+
+export const FormContainer = styled(Form)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 export const WrapperField = styled.div`
   margin-top: 16px;
@@ -123,7 +129,9 @@ export const FieldComentStyled = styled(Field)`
 `;
 
 export const FileInputContainer = styled.div`
-  /* margin-right: 55px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 112px;
   height: 112px;
   background-color: ${({ theme }) => theme.colors.lightBlue};
@@ -131,10 +139,17 @@ export const FileInputContainer = styled.div`
   border-radius: 20px;
   outline: none;
   cursor: pointer;
-  background-image: url(${(props) => props.imageUrl || ""});
+
+  ${(props) =>
+    props.$imageUrl &&
+    css`
+      background-image: url(${props.$imageUrl});
+    `}
+
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+
   @media screen and (min-width: 768px) {
     width: 182px;
     height: 182px;
@@ -198,6 +213,7 @@ export const IconMale = styled.svg`
 `;
 
 export const IconPlus = styled.svg`
+  display: ${({ $visible }) => ($visible === "yes" ? "block" : "none")};
   height: 80px;
   width: 80px;
   stroke: ${({ theme }) => theme.colors.blue};

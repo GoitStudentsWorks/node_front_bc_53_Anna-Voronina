@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { selectUser } from "../../../../redux/auth/authSelectors";
+import {
+  selectLoggedIn,
+  selectUser,
+} from "../../../../redux/auth/authSelectors";
 import { Modal } from "../../../../shared/components/Modal/Modal";
 import Button from "../../../../shared/components/Button/Button";
+import { EmptyPetsList } from "../EmptyPetsList/EmptyPetsList";
+import { Pagination } from "@/shared/components/Pagination/Pagination";
 import {
   PetsList,
   PetsCardContainer,
@@ -14,18 +19,23 @@ import {
   PetsModalBtnContainer,
 } from "./PetsData.styled";
 import Icon from "../../../../shared/icons/sprite.svg";
-import { EmptyPetsList } from "../EmptyPetsList/EmptyPetsList";
 
 export const PetsData = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [page, setPage] = useState(1);
 
   const user = useSelector(selectUser);
+  const isLoading = useSelector(selectLoggedIn);
 
   const handleClickRemove = () => {
     setIsModalOpen(true);
   };
 
   const pets = user?.pets;
+
+  const handlePageChange = (selectedPage) => {
+    setPage(selectedPage);
+  };
 
   return (
     <>
@@ -62,6 +72,7 @@ export const PetsData = () => {
             </button>
           </PetsCardContainer>
         ))}
+
         {isModalOpen && (
           <Modal onClose={() => setIsModalOpen(false)} variant="remove">
             <PetsModalTitle>Delete adverstiment?</PetsModalTitle>
@@ -80,6 +91,14 @@ export const PetsData = () => {
             </PetsModalBtnContainer>
           </Modal>
         )}
+
+        <Pagination
+          onPageChange={handlePageChange}
+          currentPage={page}
+          perPage={4}
+          totalItems={pets?.length}
+          variant={isLoading ? "hidden" : "visible"}
+        />
       </PetsList>
 
       {pets?.length === 0 && <EmptyPetsList />}

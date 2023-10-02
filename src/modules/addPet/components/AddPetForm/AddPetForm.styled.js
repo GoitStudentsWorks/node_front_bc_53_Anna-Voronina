@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Button from "../../../../shared/components/Button/Button";
 
 export const WrapperForm = styled.div`
   margin-top: 20px;
@@ -18,59 +19,37 @@ export const WrapperForm = styled.div`
 
   @media screen and (min-width: 768px) {
     margin-top: 68px;
-    width: ${({ theme }) => theme.spacing(115)};
     padding: 20px 33px;
+    width: ${({ step }) => (step === 3 ? "704px" : "458px")};
     border-radius: ${({ theme }) => theme.radii.l};
     background-color: ${({ theme }) => theme.colors.white};
   }
   @media screen and (min-width: 1280px) {
-    width: ${({ theme }) => theme.spacing(115)};
+    width: ${({ step }) => (step === 3 ? "822px" : "458px")};
+    padding: ${({ step }) => (step === 3 ? "20px 73px" : "20px 33px")};
     background-color: ${({ theme }) => theme.colors.white};
   }
 `;
 
-// export const RadioContainer = styled.div``;
+export const BtnWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  margin-right: auto;
+  margin-left: auto;
+  @media screen and (min-width: 768px) {
+    flex-direction: row-reverse;
+    justify-content: center;
+  }
+`;
 
-// export const RadioWrapper = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   gap: 24px;
-//   margin-left: 8px;
-// `;
+export const StyledBtnNext = styled(Button)``;
 
-// export const StyledRadio = styled.input`
-//   display: none;
-//   &:checked + label {
-//     background: ${({ theme }) => theme.colors.blueGradient};
-//     color: ${({ theme }) => theme.colors.white};
-//   }
-// `;
-
-// export const SelectRadio = styled.label`
-//   font-weight: ${({ theme }) => theme.fontWeights.normal};
-//   font-size: ${({ theme }) => theme.fontSizes.s};
-//   line-height: normal;
-
-//   align-items: center;
-//   letter-spacing: 0.56px;
-
-//   color: ${({ theme }) => theme.colors.blue};
-//   background: ${({ theme }) => theme.colors.lightBlue};
-//   backdrop-filter: blur(2px);
-//   padding: 8px 16px;
-//   border-radius: ${({ theme }) => theme.radii.l};
-//   border-color: ${({ theme }) => theme.colors.blue};
-//   outline: none;
-//   transition: transform ${({ theme }) => theme.transitions.regular};
-//   cursor: pointer;
-
-//   &:focus,
-//   &:hover {
-//     background: ${({ theme }) => theme.colors.blueGradient};
-//     color: ${({ theme }) => theme.colors.white};
-//   }
-//   &:focus svg,
-//   &:hover svg {
-//     stroke: ${({ theme }) => theme.colors.white};
-//   }
-// `;
+export const StyledBtnCancel = styled(Button)`
+  width: 248px;
+  border: ${({ theme }) => theme.borders.none};
+  @media screen and (min-width: 768px) {
+    width: 80px;
+  }
+`;

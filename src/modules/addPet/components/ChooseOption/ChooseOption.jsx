@@ -1,14 +1,19 @@
 import PropTypes from "prop-types";
 import { RadioWrapper, SelectRadio, StyledRadio } from "./ChooseOption.styled";
+import { FormError } from "../../../authForm/components/FormError/FormError";
 
-//
-//
-
-const ChooseOption = ({ selectedOption, handleOptionChange }) => {
+const ChooseOption = ({
+  selectedOption,
+  handleOptionChange,
+  errors,
+  touched,
+}) => {
   const handleChange = (e) => {
     const selectedValue = e.target.value;
     handleOptionChange(selectedValue);
   };
+  console.log(errors);
+  console.log(touched);
   return (
     <RadioWrapper>
       <div>
@@ -59,6 +64,7 @@ const ChooseOption = ({ selectedOption, handleOptionChange }) => {
           in good hands
         </SelectRadio>
       </div>
+      <FormError name="choice" errors={errors} touched={touched} />
     </RadioWrapper>
   );
 };
@@ -66,8 +72,8 @@ const ChooseOption = ({ selectedOption, handleOptionChange }) => {
 ChooseOption.propTypes = {
   selectedOption: PropTypes.string,
   handleOptionChange: PropTypes.func.isRequired,
-  // hideOptions: PropTypes.bool.isRequired,
-  // submitButtonClicked: PropTypes.bool.isRequired,
+  errors: PropTypes.object,
+  touched: PropTypes.object,
 };
 
 export default ChooseOption;

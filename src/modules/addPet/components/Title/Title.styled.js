@@ -9,8 +9,12 @@ export const StyledTitle = styled.h1`
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   line-height: normal;
   letter-spacing: 1.44px;
+  text-align: left;
 
   @media screen and (min-width: 768px) {
     font-size: ${({ theme }) => theme.spacing(7)};
+    &.centered {
+      text-align: center;
+    }
   }
 `;

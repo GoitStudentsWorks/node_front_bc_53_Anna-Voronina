@@ -8,6 +8,7 @@ export const selectFriends = (state) => state.global.friends;
 export const selectorIsLoading = (state) => state.global.isLoading;
 export const selectAgeFilters = (state) => state.global.selectedAgeFilters;
 export const selectSexFilters = (state) => state.global.selectedSexFilters;
+export const selectBackLocation = (state) => state.global.backLocation;
 
 export const selectNewsSort = createSelector(
   [selectNews],

@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 import sprite from "../../icons/sprite.svg";
 import {
   SearchForm,
@@ -12,8 +11,7 @@ import {
   DeleteIcon,
 } from "../Searchbar/Searchbar.styled";
 
-export const Searchbar = ({ page }) => {
-  const navigate = useNavigate();
+export const Searchbar = ({ onSubmit }) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleInput = (e) => {
@@ -25,7 +23,8 @@ export const Searchbar = ({ page }) => {
     if (inputValue.trim() === "") {
       return toast.warning("Please fill out the search field!");
     }
-    navigate(`/${page}?search=${inputValue.trim()}`);
+
+    onSubmit(inputValue.trim());
   };
 
   const handleDelete = () => {
@@ -63,5 +62,5 @@ export const Searchbar = ({ page }) => {
 };
 
 Searchbar.propTypes = {
-  page: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };

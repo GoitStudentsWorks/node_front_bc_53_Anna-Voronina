@@ -19,16 +19,25 @@ import {
   PetsModalBtnContainer,
 } from "./PetsData.styled";
 import Icon from "../../../../shared/icons/sprite.svg";
+import { DeleteModal } from "../../../modals/components/DeleteModal/DeleteModal";
 
 export const PetsData = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [page, setPage] = useState(1);
+  const [selectedPetName, setSelectedPetName] = useState("");
+  const [selectedPetId, setSelectedPetId] = useState("");
 
   const user = useSelector(selectUser);
   const isLoading = useSelector(selectLoggedIn);
 
-  const handleClickRemove = () => {
-    setIsModalOpen(true);
+  const handleModalOpen = ({ id, name }) => {
+    setIsModalOpen((prev) => !prev);
+    setSelectedPetName(name);
+    setSelectedPetId(id);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen((prev) => !prev);
   };
 
   const pets = user?.pets;
@@ -41,8 +50,8 @@ export const PetsData = () => {
     <>
       <PetsList>
         {pets?.map((el) => (
-          <PetsCardContainer key={el.id}>
-            <PetsCardImg src={el.img} alt="default" />
+          <PetsCardContainer key={el._id}>
+            <PetsCardImg src={el.file} alt="default" />
             <ul>
               <PetsCardText>
                 <h3>Name: </h3>
@@ -50,7 +59,7 @@ export const PetsData = () => {
               </PetsCardText>
               <PetsCardText>
                 <h3>Date of birth: </h3>
-                <p>{el.birth}</p>
+                <p>{el.date}</p>
               </PetsCardText>
               <PetsCardText>
                 <h3>Type: </h3>
@@ -64,7 +73,7 @@ export const PetsData = () => {
             <button
               type="button"
               aria-label="Remove the card"
-              onClick={handleClickRemove}
+              onClick={() => handleModalOpen({ name: el.name, id: el._id })}
             >
               <PetsCardIcon width="24px" height="24px">
                 <use href={Icon + "#trash-2"}></use>
@@ -72,33 +81,24 @@ export const PetsData = () => {
             </button>
           </PetsCardContainer>
         ))}
-        {isModalOpen && (
-          <Modal onClose={() => setIsModalOpen(false)} variant="remove">
-            <PetsModalTitle>Delete adverstiment?</PetsModalTitle>
-            <PetsModalText>
-              Are you sure you want to delete
-              <span> “Cute dog looking for a home”</span>? <br />
-              You can`t undo this action.
-            </PetsModalText>
-            <PetsModalBtnContainer>
-              <Button
-                text="Cancel"
-                onClick={() => setIsModalOpen(false)}
-                variant="Cancel"
-              />
-              <Button text="Yes" icon="trash-2" variant="logoutButton" />
-            </PetsModalBtnContainer>
-          </Modal>
-        )}
-
-        <Pagination
-          onPageChange={handlePageChange}
-          currentPage={page}
-          perPage={4}
-          totalItems={pets?.length}
-          variant={isLoading ? "hidden" : "visible"}
-        />
       </PetsList>
+
+      {isModalOpen && (
+        <DeleteModal
+          onClose={handleModalClose}
+          type="own"
+          title={selectedPetName}
+          id={selectedPetId}
+        />
+      )}
+
+      <Pagination
+        onPageChange={handlePageChange}
+        currentPage={page}
+        perPage={4}
+        totalItems={pets?.length}
+        variant={isLoading ? "hidden" : "visible"}
+      />
 
       {pets?.length === 0 && <EmptyPetsList />}
     </>

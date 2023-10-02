@@ -85,6 +85,7 @@ export const FavoriteBtn = styled.button`
   border-radius: 50%;
   color: ${({ theme }) => theme.colors.blue};
   fill: transparent;
+
   &:hover,
   &:focus {
     color: ${({ theme }) => theme.colors.blue};
@@ -92,10 +93,26 @@ export const FavoriteBtn = styled.button`
   }
 `;
 
-export const HeartIconPrimal = styled.svg`
+export const DeleteBtn = styled(FavoriteBtn)`
+  top: 68px;
+
+  &:hover,
+  &:focus {
+    fill: ${({ theme }) => theme.colors.blue};
+  }
+`;
+
+export const IconPrimal = styled.svg`
   height: 28px;
   width: 28px;
   stroke: ${({ theme }) => theme.colors.blue};
+
+  transition: fill ${({ theme }) => theme.transitions.regular};
+
+  &:hover,
+  &:focus {
+    fill: ${({ theme }) => theme.colors.blue};
+  }
 
   ${({ $variant }) =>
     $variant === "favorite" &&

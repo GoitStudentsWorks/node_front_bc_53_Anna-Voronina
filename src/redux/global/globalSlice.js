@@ -29,6 +29,7 @@ const initialState = {
   selectedSexFilters: [],
   isSuccess: false,
   isButtonsVisible: false,
+  backLocation: "",
   checkboxes: initialCheckboxesState,
   isLoading: false,
 };
@@ -83,6 +84,9 @@ const globalSlice = createSlice({
       const option = action.payload;
       state.checkboxes.selectCheckbox = option;
     },
+    updateBackLocation: (state, action) => {
+      state.backLocation = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -127,5 +131,6 @@ export const {
   toggleAgeOption,
   toggleGenderOption,
   setSelectCheckboxName,
+  updateBackLocation,
 } = globalSlice.actions;
 export const globalReducer = globalSlice.reducer;

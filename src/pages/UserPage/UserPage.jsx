@@ -13,6 +13,7 @@ import {
   TitleUserInf,
   TitleUserPets,
   UserFormContainer,
+  UserPetsWrapper,
 } from "./UserPage.styled";
 import { ModalAuth } from "../../modules/authForm/components/ModalAuth/ModalAuth";
 import Button from "../../shared/components/Button/Button";
@@ -41,7 +42,7 @@ const UserPage = () => {
             {!editing ? <Logout variant="profile" /> : null}
           </UserFormContainer>
         </div>
-        <div>
+        <UserPetsWrapper>
           <AddBtn to="/add-pet" state={{ from: location }}>
             <Button
               text="Add&nbsp;pet"
@@ -52,7 +53,7 @@ const UserPage = () => {
           </AddBtn>
           <TitleUserPets>My pets:</TitleUserPets>
           <PetsData />
-        </div>
+        </UserPetsWrapper>
       </ContainerUserPage>
       {isSuccess && <ModalAuth />}
     </Container>

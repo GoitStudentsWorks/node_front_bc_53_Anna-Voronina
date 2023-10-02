@@ -1,14 +1,18 @@
-import Button from '@/shared/components/Button/Button';
-import { CheckButton } from '../CheckButton/CheckButton';
-import { FIlter } from '../Filter/Filter';
+import { useLocation } from "react-router-dom";
+import { CheckButton } from "../CheckButton/CheckButton";
+import { FIlter } from "../Filter/Filter";
 import {
   WrapperNoticesFilter,
   WrapperRightSide,
   WrapperRightFilterButton,
-} from './NoticesFilters.styled';
-import { FilterButton } from '../FilterButton/FilterButton';
+  AddPetLink,
+} from "./NoticesFilters.styled";
+import { FilterButton } from "../FilterButton/FilterButton";
+import sprite from "../../../../shared/icons/sprite.svg";
 
 export const NoticesFilters = () => {
+  const location = useLocation();
+
   return (
     <WrapperNoticesFilter>
       <FilterButton />
@@ -16,13 +20,12 @@ export const NoticesFilters = () => {
         <CheckButton />
         <WrapperRightFilterButton>
           <FIlter />
-          <Button
-            variant="addPet"
-            text="Add Pet"
-            icon="plus-small"
-            iconVariant="transparent"
-            iconPosition="right"
-          />
+          <AddPetLink to="/add-pet" state={{ from: location }}>
+            <span>Add Pet</span>
+            <svg width={24} height={24}>
+              <use href={sprite + "#plus-small"}></use>
+            </svg>
+          </AddPetLink>
         </WrapperRightFilterButton>
       </WrapperRightSide>
     </WrapperNoticesFilter>

@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { fetchUserDataThunk } from "../../redux/auth/authOperations";
 import { selectIsSuccess } from "../../redux/global/globalSelectors";
 import { Container } from "../../shared/components/Container/Container";
@@ -14,6 +14,7 @@ import {
   TitleUserPets,
   UserFormContainer,
 } from "./UserPage.styled";
+import { selectIsSuccess } from "../../redux/global/globalSelectors";
 import { ModalAuth } from "../../modules/authForm/components/ModalAuth/ModalAuth";
 import Button from "../../shared/components/Button/Button";
 
@@ -21,6 +22,7 @@ const UserPage = () => {
   const [editing, setEditing] = useState(false);
   const isSuccess = useSelector(selectIsSuccess);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     dispatch(fetchUserDataThunk());
@@ -41,7 +43,7 @@ const UserPage = () => {
           </UserFormContainer>
         </div>
         <div>
-          <AddBtn to="/add-pet/category">
+          <AddBtn to="/add-pet" state={{ from: location }}>
             <Button
               text="Add&nbsp;pet"
               icon="plus"

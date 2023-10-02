@@ -1,14 +1,16 @@
-import { Field } from "formik";
+import { Form } from "formik";
 import styled from "styled-components";
 
-export const RadioContainer = styled.div``;
+export const RadioWrapper = styled(Form)`
+  margin-top: 34px;
+`;
 
-export const RadioWrapper = styled.div`
+export const OptionsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
-  margin-top: 34px;
   margin-bottom: 91px;
+
   @media screen and (min-width: 768px) {
     margin-bottom: 137px;
   }

@@ -34,6 +34,7 @@ export const PaginationContainer = styled.div`
     border-radius: ${({ theme }) => theme.radii.round};
     stroke-width: 1px;
     border: 1px solid ${({ theme }) => theme.colors.blue};
+    cursor: pointer;
 
     &.active {
       background-color: ${({ theme }) => theme.colors.blue};

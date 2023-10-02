@@ -54,10 +54,14 @@ export const FormAvatar = ({ editing, handleEditClick }) => {
     <>
       <form onSubmit={handleAvatarSubmit}>
         <Avatar htmlFor="avatarURL">
-          {!avatarURL ? (
-            <img src={user?.avatarURL} alt="User Avatar" />
+          {editing ? (
+            !avatarURL ? (
+              <img src={user?.avatarURL} alt="User Avatar" />
+            ) : (
+              <img src={URL.createObjectURL(avatarURL)} alt="User photo" />
+            )
           ) : (
-            <img src={URL.createObjectURL(avatarURL)} alt="User photo" />
+            <img src={user?.avatarURL} alt="User Avatar" />
           )}
 
           {editing ? (

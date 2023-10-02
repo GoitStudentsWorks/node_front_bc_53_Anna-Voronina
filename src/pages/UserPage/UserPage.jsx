@@ -41,7 +41,7 @@ const UserPage = () => {
           </UserFormContainer>
         </div>
         <div>
-          <AddBtn to="/add-pet">
+          <AddBtn to="/add-pet/category">
             <Button
               text="Add&nbsp;pet"
               icon="plus"

@@ -86,8 +86,17 @@ export const fetchNews = ({ page = 1, limit = 6 }) => {
   return data;
 };
 
-export const fetchNewsBySearch = async (searchQuery) => {
-  const data = connectionsApi.get(`/news/${searchQuery}`);
+export const fetchNewsBySearch = async ({
+  page = 1,
+  limit = 6,
+  searchQuery,
+}) => {
+  const data = connectionsApi.get(`/news/${searchQuery}`, {
+    params: {
+      page,
+      limit,
+    },
+  });
   return data;
 };
 

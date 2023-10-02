@@ -1,17 +1,41 @@
-import PropTypes from "prop-types";
 import { StyledTitle } from "./Title.styled";
+import { useSelector } from "react-redux";
+import {
+  selectPetFormData,
+  selectStep,
+} from "@/redux/notices/noticesSelectors";
 
-const Title = ({ step, text = "Add Pet" }) => {
+const Title = () => {
+  const petFormData = useSelector(selectPetFormData);
+  const step = useSelector(selectStep);
+
+  const category = petFormData?.category;
   const isStep3 = step === 3;
 
-  return (
-    <StyledTitle className={isStep3 ? "centered" : ""}>{text}</StyledTitle>
-  );
-};
+  const getTitle = (category) => {
+    switch (category) {
+      case "own":
+        return "Add Your Pet";
 
-Title.propTypes = {
-  text: PropTypes.string,
-  step: PropTypes.number,
+      case "sell":
+        return "Add Pet For Sell";
+
+      case "lost-found":
+        return "Lost/Found Pet";
+
+      case "in-good-hands":
+        return "In Good Hands";
+
+      default:
+        return "Add Pet";
+    }
+  };
+
+  return (
+    <StyledTitle className={isStep3 ? "centered" : ""}>
+      {getTitle(category)}
+    </StyledTitle>
+  );
 };
 
 export default Title;

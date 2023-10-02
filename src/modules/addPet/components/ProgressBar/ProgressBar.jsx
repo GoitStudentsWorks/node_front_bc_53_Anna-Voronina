@@ -1,7 +1,10 @@
-import PropTypes from "prop-types";
 import { ProgressText, ProgressWrapper } from "./ProgressBar.styled";
+import { useSelector } from "react-redux";
+import { selectStep } from "@/redux/notices/noticesSelectors";
 
-const ProgressBar = ({ step }) => {
+const ProgressBar = () => {
+  const step = useSelector(selectStep);
+
   const getColor = (index) => {
     if (step === 1) {
       return index === 0 ? "blue" : "grey";
@@ -19,10 +22,6 @@ const ProgressBar = ({ step }) => {
       <ProgressText color={getColor(2)}>More info</ProgressText>
     </ProgressWrapper>
   );
-};
-
-ProgressBar.propTypes = {
-  step: PropTypes.number.isRequired,
 };
 
 export default ProgressBar;

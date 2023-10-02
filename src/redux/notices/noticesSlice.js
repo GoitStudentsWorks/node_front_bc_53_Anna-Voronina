@@ -20,6 +20,8 @@ const initialState = {
   sexArray: [],
   chosenNotice: null,
   petData: {},
+  petFormData: null,
+  step: 1,
   isLoading: false,
   error: null,
 };
@@ -33,6 +35,12 @@ const noticesSlice = createSlice({
     },
     updateAgeArray: (state, action) => {
       state.ageArray.push(action.payload);
+    },
+    updateStep: (state, action) => {
+      state.step = action.payload;
+    },
+    addPetFormData: (state, action) => {
+      state.petFormData = { ...state.petFormData, ...action.payload };
     },
   },
   extraReducers: (builder) => {
@@ -66,4 +74,5 @@ const noticesSlice = createSlice({
 
 export const noticesReducer = noticesSlice.reducer;
 
-export const { updateSexArray, updateAgeArray } = noticesSlice.actions;
+export const { updateSexArray, updateAgeArray, updateStep, addPetFormData } =
+  noticesSlice.actions;

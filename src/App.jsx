@@ -1,21 +1,25 @@
-import { lazy, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import SharedLayout from './shared/components/SharedLayout/SharedLayout';
-import MainPage from './pages/MainPage/MainPage';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectRefresh } from './redux/auth/authSelectors';
-import { refreshThunk } from './redux/auth/authOperations';
-import { Loader } from './shared/components/Loader/Loader';
-import ChooseOption from './modules/addPet/components/ChooseOption/ChooseOption';
+import { lazy, useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import SharedLayout from "./shared/components/SharedLayout/SharedLayout";
+import MainPage from "./pages/MainPage/MainPage";
+import { useDispatch, useSelector } from "react-redux";
+import { selectRefresh } from "./redux/auth/authSelectors";
+import { refreshThunk } from "./redux/auth/authOperations";
+import { Loader } from "./shared/components/Loader/Loader";
+import ChooseOption from "./modules/addPet/components/ChooseOption/ChooseOption";
+import PersonalDetails from "./modules/addPet/components/PersonalDetails/PersonalDetails";
+import MoreInfo from "./modules/addPet/components/MoreInfo/MoreInfo";
 
-const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
-const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
-const NoticesPage = lazy(() => import('./pages/NoticesPage/NoticesPage'));
-const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
-const AddPetPage = lazy(() => import('./pages/AddPetPage/AddPetPage'));
-const OurFriendsPage = lazy(() => import('./pages/OurFriendsPage/OurFriendsPage'));
-const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
-const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
+const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
+const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
+const NoticesPage = lazy(() => import("./pages/NoticesPage/NoticesPage"));
+const UserPage = lazy(() => import("./pages/UserPage/UserPage"));
+const AddPetPage = lazy(() => import("./pages/AddPetPage/AddPetPage"));
+const OurFriendsPage = lazy(() =>
+  import("./pages/OurFriendsPage/OurFriendsPage")
+);
+const NewsPage = lazy(() => import("./pages/NewsPage/NewsPage"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
 
 function App() {
   const dispatch = useDispatch();
@@ -38,7 +42,9 @@ function App() {
             <Route path="notices/:category" element={<NoticesPage />} />
             <Route path="user" element={<UserPage />} />
             <Route path="add-pet" element={<AddPetPage />}>
-              <Route path="category" element={<ChooseOption />} />
+              <Route index element={<ChooseOption />} />
+              <Route path="details" element={<PersonalDetails />} />
+              <Route path="more-info" element={<MoreInfo />} />
             </Route>
             <Route path="friends" element={<OurFriendsPage />} />
             <Route path="news" element={<NewsPage />} />

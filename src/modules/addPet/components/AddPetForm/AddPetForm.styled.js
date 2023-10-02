@@ -1,18 +1,5 @@
-import styled from 'styled-components';
-import Button from '../../../../shared/components/Button/Button';
-
-export const BtnWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: center;
-  margin-right: auto;
-  margin-left: auto;
-  @media screen and (min-width: 768px) {
-    flex-direction: row-reverse;
-    justify-content: center;
-  }
-`;
+import styled from "styled-components";
+import Button from "../../../../shared/components/Button/Button";
 
 export const StyledBtnNext = styled(Button)``;
 

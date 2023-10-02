@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import { Field } from "formik";
+import { Field, Form } from "formik";
+
+export const SellForm = styled(Form)``;
 
 export const WrapperField = styled.div`
   margin-top: 16px;

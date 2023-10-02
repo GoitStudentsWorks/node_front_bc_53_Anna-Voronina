@@ -102,7 +102,7 @@ const NoticesPage = () => {
   return (
     <Container>
       <PageTitle title="Find your favorite pet" />
-      <Searchbar onSubmit={setSearchQuery} />
+      <Searchbar page={`notices/${category}`} />
       <NoticesFilters />
       {isLoading ? <Loader /> : <ProductCardList notices={notices?.data} />}
       <Pagination

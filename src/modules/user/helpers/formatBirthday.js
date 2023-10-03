@@ -1,8 +1,8 @@
-import { format } from "date-fns";
+import { parse, format } from "date-fns";
 
 export const formatBirthday = (date) => {
   if (date) {
-    return format(new Date(date), "yyyy-MM-dd");
+    return format(parse(date, "dd-MM-yyyy", new Date()), "yyyy-MM-dd");
   }
 };
 

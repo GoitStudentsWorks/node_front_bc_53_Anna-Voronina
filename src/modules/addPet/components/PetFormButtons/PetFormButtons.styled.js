@@ -23,8 +23,8 @@ export const CancelBackLink = styled(Link)`
 
   transition: transform ${({ theme }) => theme.transitions.regular};
 
-  &.hover,
-  &.focus {
+  &:hover,
+  &:focus {
     transform: scale(1.07);
   }
 `;

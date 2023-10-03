@@ -50,8 +50,6 @@ const MoreInfo = () => {
   const petFormData = useSelector(selectPetFormData);
   const backLocation = useSelector(selectBackLocation);
 
-  console.log(backLocation);
-
   const initialValues = {
     sex: petFormData?.sex ? petFormData?.sex : "",
     location: petFormData?.location ? petFormData?.location : "",
@@ -114,8 +112,6 @@ const MoreInfo = () => {
         return notForSellSchema;
     }
   };
-
-  console.log(petFormData?.category);
 
   return (
     <Formik

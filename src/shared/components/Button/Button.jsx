@@ -12,6 +12,7 @@ const Button = ({
   variant = "bigButtonFirst",
   iconPosition = null,
   isButtonsVisible,
+  disabled = false,
 }) => {
   return (
     <ButtonStyled
@@ -19,6 +20,8 @@ const Button = ({
       onClick={onClick}
       $variant={variant}
       $isButtonsVisible={isButtonsVisible}
+      $loading={disabled}
+      disabled={disabled}
     >
       {iconPosition === "left" && (
         <SvgStyled
@@ -48,13 +51,14 @@ const Button = ({
 export default Button;
 
 Button.propTypes = {
+  disabled: PropTypes.bool,
+  icon: PropTypes.string,
+  iconOnClick: PropTypes.func,
+  iconPosition: PropTypes.string,
+  iconVariant: PropTypes.string,
+  isButtonsVisible: PropTypes.bool,
   onClick: PropTypes.func,
   text: PropTypes.string.isRequired,
-  icon: PropTypes.string,
-  iconPosition: PropTypes.string,
   type: PropTypes.string,
   variant: PropTypes.string,
-  iconVariant: PropTypes.string,
-  iconOnClick: PropTypes.func,
-  isButtonsVisible: PropTypes.bool,
 };

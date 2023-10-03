@@ -5,3 +5,4 @@ export const selectAgeArray = (state) => state.notices.ageArray;
 export const selectSexArray = (state) => state.notices.sexArray;
 export const selectPetFormData = (state) => state.notices.petFormData;
 export const selectStep = (state) => state.notices.step;
+export const selectIsNoticesLoading = (state) => state.notices.isLoading;

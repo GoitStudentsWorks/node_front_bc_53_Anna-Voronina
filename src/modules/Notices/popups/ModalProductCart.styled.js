@@ -135,6 +135,8 @@ export const NavValue = styled.a`
     font-size: ${({ theme }) => theme.fontSizes.m};
   }
 
+  transition: color ${({ theme }) => theme.transitions.regular};
+
   ${({ $variant }) =>
     $variant === "yellow" &&
     css`
@@ -181,5 +183,62 @@ export const WrapperBtn = styled.div`
     gap: 17px;
     justify-content: flex-end;
     flex-direction: row;
+  }
+`;
+
+export const ContactLink = styled.a`
+  position: relative;
+  width: ${({ theme }) => theme.spacing(64)};
+  height: ${({ theme }) => theme.spacing(10)};
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: ${({ theme }) => theme.spacing(2)};
+
+  text-align: center;
+  font-family: ${({ theme }) => theme.fonts.manrope.bold};
+  font-size: ${({ theme }) => theme.fontSizes.m};
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
+
+  letter-spacing: 0.64px;
+
+  border: ${({ theme }) => theme.borders.medium};
+  color: ${({ theme }) => theme.colors.blue};
+
+  border-radius: ${({ theme }) => theme.radii.l};
+  padding: 8px 20px;
+
+  z-index: 1;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: ${({ theme }) => theme.colors.blueGradient};
+    border-radius: ${({ theme }) => theme.radii.l};
+    opacity: 0;
+    z-index: -1;
+
+    transition: opacity ${({ theme }) => theme.transitions.regular};
+  }
+
+  cursor: pointer;
+  transition: color ${({ theme }) => theme.transitions.regular},
+    border-color ${({ theme }) => theme.transitions.regular};
+
+  &:focus,
+  &:hover {
+    border-color: transparent;
+    color: ${({ theme }) => theme.colors.white};
+  }
+
+  &:hover::before,
+  &:focus::before {
+    opacity: 1;
+  }
+
+  @media only screen and (min-width: 768px) {
+    width: ${({ theme }) => theme.spacing(32.25)};
   }
 `;

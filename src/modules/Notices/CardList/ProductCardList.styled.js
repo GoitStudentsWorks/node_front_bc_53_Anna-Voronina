@@ -92,6 +92,10 @@ export const FavoriteBtn = styled.button`
     color: ${({ theme }) => theme.colors.blue};
     fill: ${({ theme }) => theme.colors.blue};
   }
+
+  &:disabled {
+    opacity: 0.7;
+  }
 `;
 
 export const DeleteBtn = styled(FavoriteBtn)`
@@ -201,19 +205,42 @@ export const InformationMap = styled.li`
   padding: 2px 3px;
   border-radius: ${({ theme }) => theme.radii.xs};
   border-color: ${({ theme }) => theme.colors.blue};
-  outline: none;
   transition: transform ${({ theme }) => theme.transitions.regular};
-  cursor: pointer;
+  cursor: default;
 
-  &:focus,
-  &:hover {
-    background: ${({ theme }) => theme.colors.blueGradient};
-    color: ${({ theme }) => theme.colors.white};
-  }
-  &:focus svg,
-  &:hover svg {
-    stroke: ${({ theme }) => theme.colors.white};
-  }
+  ${({ $filtered }) =>
+    $filtered === "yes" &&
+    css`
+      background: ${({ theme }) => theme.colors.blueGradient};
+      color: ${({ theme }) => theme.colors.white};
+
+      svg {
+        stroke: ${({ theme }) => theme.colors.white};
+      }
+    `};
+
+  ${({ $type }) =>
+    $type === "location" &&
+    css`
+      cursor: pointer;
+
+      &:hover,
+      &:focus {
+        background: ${({ theme }) => theme.colors.blueGradient};
+        color: ${({ theme }) => theme.colors.white};
+
+        svg {
+          stroke: ${({ theme }) => theme.colors.white};
+        }
+      }
+    `};
+`;
+
+export const LocationLink = styled.a`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing(1)};
 `;
 
 export const IconInformation = styled.svg`

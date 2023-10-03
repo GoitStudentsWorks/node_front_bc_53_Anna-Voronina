@@ -11,3 +11,15 @@ export const transformAge = (age) => {
     return age + " " + "years";
   }
 };
+
+export const transformFilteredAge = (age) => {
+  if (age <= 1) {
+    return "1";
+  } else if (age <= 2) {
+    return "2";
+  } else if (age > 2) {
+    return ">2";
+  } else {
+    return;
+  }
+};

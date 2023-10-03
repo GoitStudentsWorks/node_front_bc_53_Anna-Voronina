@@ -11,8 +11,6 @@ const AddPetPage = () => {
   const step = useSelector(selectStep);
   const formData = useSelector(selectPetFormData);
 
-  console.log(step);
-
   return (
     <>
       <WrapperForm step={step} categoryWidth={formData?.category}>

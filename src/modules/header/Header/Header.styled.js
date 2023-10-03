@@ -1,4 +1,9 @@
 import styled from "styled-components";
+import { StyledContainer } from "../../../shared/components/Container/Container.styled";
+
+export const HeaderContainer = styled(StyledContainer)`
+  padding-bottom: 0;
+`;
 
 export const Headers = styled.header`
   padding-top: 20px;

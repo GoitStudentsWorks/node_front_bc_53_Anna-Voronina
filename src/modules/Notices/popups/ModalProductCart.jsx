@@ -17,6 +17,7 @@ import {
   TopWrapper,
   WrapperBtn,
   NavValue,
+  ContactLink,
 } from "./ModalProductCart.styled";
 import Button from "../../../shared/components/Button/Button";
 import { selectLoggedIn, selectUser } from "../../../redux/auth/authSelectors";
@@ -67,13 +68,13 @@ export const ModalProductCart = ({ setIsModalOpen, handleToggleFavorite }) => {
               </NoticesInfoParameters>
               <NoticesInfoParameters>
                 Email:
-                <NavValue href="mailto:user001@gmail.com" $variant="yellow">
+                <NavValue href={`mailto:${notice?.email}`} $variant="yellow">
                   {notice?.email}
                 </NavValue>
               </NoticesInfoParameters>
               <NoticesInfoParameters>
                 Phone:
-                <NavValue href="tel:+380981234567" $variant="yellow">
+                <NavValue href={`tel:${notice?.phone}`} $variant="yellow">
                   {notice?.phone}
                 </NavValue>
               </NoticesInfoParameters>
@@ -103,7 +104,7 @@ export const ModalProductCart = ({ setIsModalOpen, handleToggleFavorite }) => {
             icon="heart"
             onClick={() => handleToggleFavorite(notice?._id)}
           />
-          <Button text="Contact" variant="cancel" />
+          <ContactLink href={`tel:${notice?.phone}`}>Contact</ContactLink>
         </WrapperBtn>
       </ModalWrapper>
     </Modal>

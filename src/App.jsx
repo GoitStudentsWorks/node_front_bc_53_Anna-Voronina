@@ -9,6 +9,8 @@ import { Loader } from "./shared/components/Loader/Loader";
 import ChooseOption from "./modules/addPet/components/ChooseOption/ChooseOption";
 import PersonalDetails from "./modules/addPet/components/PersonalDetails/PersonalDetails";
 import MoreInfo from "./modules/addPet/components/MoreInfo/MoreInfo";
+import { PublicRoute } from "./shared/routes/PublicRoute";
+import { ProtectedRoute } from "./shared/routes/ProtectedRoute";
 
 const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
@@ -37,14 +39,69 @@ function App() {
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<MainPage />} />
-            <Route path="register" element={<RegisterPage />} />
-            <Route path="login" element={<LoginPage />} />
+            <Route
+              path="register"
+              element={
+                <PublicRoute
+                  component={<RegisterPage />}
+                  restricted
+                  redirectTo="/"
+                />
+              }
+            />
+            <Route
+              path="login"
+              element={
+                <PublicRoute
+                  component={<LoginPage />}
+                  restricted
+                  redirectTo="/"
+                />
+              }
+            />
             <Route path="notices/:category" element={<NoticesPage />} />
-            <Route path="user" element={<UserPage />} />
-            <Route path="add-pet" element={<AddPetPage />}>
-              <Route index element={<ChooseOption />} />
-              <Route path="details" element={<PersonalDetails />} />
-              <Route path="more-info" element={<MoreInfo />} />
+            <Route
+              path="user"
+              element={
+                <ProtectedRoute component={<UserPage />} redirectTo="/login" />
+              }
+            />
+            <Route
+              path="add-pet"
+              element={
+                <ProtectedRoute
+                  component={<AddPetPage />}
+                  redirectTo="/login"
+                />
+              }
+            >
+              <Route
+                index
+                element={
+                  <ProtectedRoute
+                    component={<ChooseOption />}
+                    redirectTo="/login"
+                  />
+                }
+              />
+              <Route
+                path="details"
+                element={
+                  <ProtectedRoute
+                    component={<PersonalDetails />}
+                    redirectTo="/login"
+                  />
+                }
+              />
+              <Route
+                path="more-info"
+                element={
+                  <ProtectedRoute
+                    component={<MoreInfo />}
+                    redirectTo="/login"
+                  />
+                }
+              />
             </Route>
             <Route path="friends" element={<OurFriendsPage />} />
             <Route path="news" element={<NewsPage />} />

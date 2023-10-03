@@ -18,7 +18,7 @@ const OneNews = ({ imgUrl, title, text, date, url }) => {
     <Card>
       <BeforeDiv></BeforeDiv>
       <Article>
-        <Img src={imgUrl} alt={title} />
+        <Img src={imgUrl} alt={title} width={395} height={252} />
 
         <BlockInfo>
           <Title>{title}</Title>

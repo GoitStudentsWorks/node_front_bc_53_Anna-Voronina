@@ -137,7 +137,13 @@ const ProductCardList = ({ notices, categoryType }) => {
                     </DeleteBtn>
                   )}
 
-                  <NoticesItemImg loading="lazy" src={file} alt="icon" />
+                  <NoticesItemImg
+                    loading="lazy"
+                    src={file}
+                    alt={title}
+                    width={288}
+                    height={288}
+                  />
 
                   <WrapperInformation>
                     <InformationMap $type="location">

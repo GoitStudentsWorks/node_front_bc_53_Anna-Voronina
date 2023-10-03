@@ -32,8 +32,6 @@ export const OurFriendsCard = ({
     setIsListOpen((prev) => !prev);
   };
 
-  console.log(isListOpen);
-
   const openDay = workDays?.filter((day) => day.isOpen);
 
   return (

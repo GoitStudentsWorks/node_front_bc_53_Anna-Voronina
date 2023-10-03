@@ -9,16 +9,7 @@ import {
   updateTokenThunk,
   updateUserDataThunk,
 } from "./authOperations";
-
-const pending = (state) => {
-  state.isLoading = true;
-  state.error = null;
-};
-
-const rejected = (state, action) => {
-  state.isLoading = false;
-  state.error = action.payload;
-};
+import { pending, rejected } from "../helpers/stateFunctions";
 
 const initialState = {
   user: {
@@ -62,7 +53,6 @@ const authSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(updateTokenThunk.fulfilled, (state, action) => {
-        console.log(action);
         state.token = action.payload.token;
         state.user = { ...state.user, ...action.payload.data };
         state.isLoggedIn = true;

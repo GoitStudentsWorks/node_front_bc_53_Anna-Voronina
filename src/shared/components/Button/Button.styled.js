@@ -377,4 +377,10 @@ export const ButtonStyled = styled.button`
         letter-spacing: 0.64px;
       }
     `}
+
+    ${({ $loading }) =>
+    $loading &&
+    css`
+      opacity: 0.5;
+    `};
 `;

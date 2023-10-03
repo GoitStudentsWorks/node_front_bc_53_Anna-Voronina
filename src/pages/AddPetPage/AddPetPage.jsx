@@ -8,7 +8,6 @@ import { selectStep } from "@/redux/notices/noticesSelectors";
 
 const AddPetPage = () => {
   const step = useSelector(selectStep);
-  console.log(step);
 
   return (
     <>

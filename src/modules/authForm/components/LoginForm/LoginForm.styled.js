@@ -1,6 +1,6 @@
-import { Field, Form } from 'formik';
+import { Field, Form } from "formik";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const WrapperForm = styled.div`
   padding: 40px 12px;
@@ -80,11 +80,13 @@ export const FieldStyled = styled(Field)`
   letter-spacing: 0.64px;
 
   &.error {
-    border-color: ${({ theme }) => theme.colors.red}; // Красный бордер при ошибке
+    border-color: ${({ theme }) =>
+      theme.colors.red}; // Красный бордер при ошибке
   }
 
   &.success {
-    border-color: ${({ theme }) => theme.colors.green}; // Зеленый бордер при успешной валидации
+    border-color: ${({ theme }) =>
+      theme.colors.green}; // Зеленый бордер при успешной валидации
   }
 `;
 

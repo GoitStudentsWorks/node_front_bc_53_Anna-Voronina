@@ -10,10 +10,13 @@ import {
 
 import { FormError } from "../../../authForm/components/FormError/FormError";
 import { detailsSchema, sellSchema } from "../../validation/addPetSchema";
+
 import { addPetFormData } from "@/redux/notices/noticesSlice";
 import { PetFormButtons } from "../PetFormButtons/PetFormButtons";
 import { selectPetFormData } from "@/redux/notices/noticesSelectors";
-import { updateStep } from "../../../../redux/notices/noticesSlice";
+import { updateStep } from "@/redux/notices/noticesSlice";
+
+import { formatDate } from "../../helpers/formatDate";
 
 const PersonalDetails = () => {
   const dispatch = useDispatch();
@@ -28,7 +31,12 @@ const PersonalDetails = () => {
   };
 
   const handleSubmit = (values) => {
-    dispatch(addPetFormData(values));
+    const updatedValues = {
+      ...values,
+      date: formatDate(values?.date),
+    };
+
+    dispatch(addPetFormData(updatedValues));
     dispatch(updateStep(3));
     navigate("/add-pet/more-info");
   };
@@ -52,7 +60,6 @@ const PersonalDetails = () => {
                 placeholder="Title of add"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                required
               />
               <FormError name="title" touched={touched} errors={errors} />
             </WrapperField>
@@ -63,7 +70,8 @@ const PersonalDetails = () => {
               type="text"
               name="name"
               placeholder="Type name pet"
-              required
+              onChange={handleChange}
+              onBlur={handleBlur}
             />
             <FormError name="name" touched={touched} errors={errors} />
           </WrapperField>
@@ -73,7 +81,9 @@ const PersonalDetails = () => {
               type="text"
               name="date"
               placeholder="Type date of birth"
-              required
+              onFocus={(e) => (e.target.type = "date")}
+              onBlur={(e) => (e.target.type = "text")}
+              onChange={handleChange}
             />
             <FormError name="date" touched={touched} errors={errors} />
           </WrapperField>
@@ -83,7 +93,8 @@ const PersonalDetails = () => {
               type="text"
               name="type"
               placeholder="Type of pet"
-              required
+              onChange={handleChange}
+              onBlur={handleBlur}
             />
             <FormError name="type" touched={touched} errors={errors} />
             <FormError name="choice" errors={errors} touched={touched} />

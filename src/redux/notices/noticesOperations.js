@@ -118,7 +118,6 @@ export const fetchAllNoticesThunk = createAsyncThunk(
   async (_, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await fetchAllNotices();
-      console.log(data);
       return data;
     } catch (error) {
       if (error.response.status === 401) {

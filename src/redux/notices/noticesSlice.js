@@ -1,6 +1,7 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
   addNewPetThunk,
+  addOrDeleteFavoriteNoticeThunk,
   fetchAllNoticesThunk,
   fetchFavoriteNoticesThunk,
   fetchFilteredNoticesThunk,
@@ -10,6 +11,7 @@ import {
   fetchNoticesBySearchThunk,
   fetchOwnNoticesThunk,
 } from "./noticesOperations";
+import { pending, rejected } from "../helpers/stateFunctions";
 
 export const petFormDataInitialState = {
   category: "",
@@ -81,6 +83,42 @@ const noticesSlice = createSlice({
           state.notices.total = action.payload.total;
           state.isLoading = false;
         }
+      )
+      .addMatcher(
+        isAnyOf(addOrDeleteFavoriteNoticeThunk.fulfilled),
+        (state) => {
+          state.isLoading = false;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          fetchNoticesBySearchThunk.pending,
+          fetchNoticesByCategoryThunk.pending,
+          fetchNoticesByCategoryAndSearchThunk.pending,
+          fetchFilteredNoticesThunk.pending,
+          fetchAllNoticesThunk.pending,
+          fetchOwnNoticesThunk.pending,
+          fetchFavoriteNoticesThunk.pending,
+          fetchNoticeByIdThunk.pending,
+          addNewPetThunk.pending,
+          addOrDeleteFavoriteNoticeThunk.pending
+        ),
+        pending
+      )
+      .addMatcher(
+        isAnyOf(
+          fetchNoticesBySearchThunk.rejected,
+          fetchNoticesByCategoryThunk.rejected,
+          fetchNoticesByCategoryAndSearchThunk.rejected,
+          fetchFilteredNoticesThunk.rejected,
+          fetchAllNoticesThunk.rejected,
+          fetchOwnNoticesThunk.rejected,
+          fetchFavoriteNoticesThunk.rejected,
+          fetchNoticeByIdThunk.rejected,
+          addNewPetThunk.rejected,
+          addOrDeleteFavoriteNoticeThunk.rejected
+        ),
+        rejected
       );
   },
 });

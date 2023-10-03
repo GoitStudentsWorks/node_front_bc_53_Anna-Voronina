@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { transformAge } from "../helpers/transformAge.js";
+import { transformAge, transformFilteredAge } from "../helpers/transformAge.js";
 import { transformTitle } from "../helpers/transformTitle.js";
 
 import Button from "@/shared/components/Button/Button";
@@ -14,6 +14,7 @@ import { fetchNoticeByIdThunk } from "@/redux/notices/noticesOperations.js";
 import { selectLoggedIn } from "@/redux/auth/authSelectors.js";
 import { addOrDeleteFavoriteNoticeThunk } from "@/redux/notices/noticesOperations.js";
 import { selectUser } from "@/redux/auth/authSelectors.js";
+import { selectIsNoticesLoading } from "@/redux/notices/noticesSelectors.js";
 
 import { PlugStyled } from "../../news/components/ListNews/ListNews.styled.js";
 import {
@@ -33,14 +34,17 @@ import {
   DeleteBtn,
   IconPrimal,
   AddPetLink,
+  LocationLink,
 } from "./ProductCardList.styled";
 import sprite from "@/shared/icons/sprite.svg";
+import { selectSexFilters } from "@/redux/global/globalSelectors.js";
+import { selectAgeFilters } from "@/redux/global/globalSelectors.js";
 
 const ProductCardList = ({ notices, categoryType }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isAttentionModalOpen, setIsAttentionModalOpen] = useState(false);
-  const [idToDelete, setIdToDelete] = useState("");
+  const [selectedId, setSelectedId] = useState("");
   const [titleToDelete, setTitleToDelete] = useState("");
 
   const dispatch = useDispatch();
@@ -48,6 +52,9 @@ const ProductCardList = ({ notices, categoryType }) => {
 
   const isLoggedIn = useSelector(selectLoggedIn);
   const user = useSelector(selectUser);
+  const isLoading = useSelector(selectIsNoticesLoading);
+  const sexFilters = useSelector(selectSexFilters);
+  const ageFilters = useSelector(selectAgeFilters);
 
   const handleModalOpen = (id) => {
     setIsModalOpen(true);
@@ -60,6 +67,7 @@ const ProductCardList = ({ notices, categoryType }) => {
 
   const handleToggleFavorite = (id) => {
     if (isLoggedIn) {
+      setSelectedId(id);
       dispatch(addOrDeleteFavoriteNoticeThunk(id));
     } else {
       setIsAttentionModalOpen(true);
@@ -68,7 +76,7 @@ const ProductCardList = ({ notices, categoryType }) => {
 
   const handleDeleteModalOpen = ({ id, title }) => {
     setIsDeleteModalOpen((prev) => !prev);
-    setIdToDelete(id);
+    setSelectedId(id);
     setTitleToDelete(title);
   };
 
@@ -92,7 +100,10 @@ const ProductCardList = ({ notices, categoryType }) => {
                 <IconWrapper>
                   <PetCategory>{category}</PetCategory>
 
-                  <FavoriteBtn onClick={() => handleToggleFavorite(_id)}>
+                  <FavoriteBtn
+                    onClick={() => handleToggleFavorite(_id)}
+                    disabled={isLoading && selectedId === _id}
+                  >
                     <IconPrimal
                       $variant={
                         isLoggedIn &&
@@ -118,21 +129,35 @@ const ProductCardList = ({ notices, categoryType }) => {
                   <NoticesItemImg loading="lazy" src={file} alt="icon" />
 
                   <WrapperInformation>
-                    <InformationMap>
-                      <IconInformation>
-                        <use href={sprite + "#location-1"}></use>
-                      </IconInformation>
-                      <WrapperLocation>{location}</WrapperLocation>
+                    <InformationMap $type="location">
+                      <LocationLink
+                        href={`https://www.google.com/maps/place/${location}`}
+                        target="_blank"
+                        rel="noopener noreferrer nofollow"
+                      >
+                        <IconInformation>
+                          <use href={sprite + "#location-1"}></use>
+                        </IconInformation>
+                        <WrapperLocation>{location}</WrapperLocation>
+                      </LocationLink>
                     </InformationMap>
 
-                    <InformationMap>
+                    <InformationMap
+                      $filtered={
+                        ageFilters?.includes(transformFilteredAge(age))
+                          ? "yes"
+                          : "no"
+                      }
+                    >
                       <IconInformation>
                         <use href={sprite + "#clock"}></use>
                       </IconInformation>
                       {transformAge(age)}
                     </InformationMap>
 
-                    <InformationMap>
+                    <InformationMap
+                      $filtered={sexFilters?.includes(sex) ? "yes" : "no"}
+                    >
                       <IconInformation>
                         <use
                           href={
@@ -195,7 +220,7 @@ const ProductCardList = ({ notices, categoryType }) => {
         <DeleteModal
           onClose={handleDelete}
           title={titleToDelete}
-          id={idToDelete}
+          id={selectedId}
         />
       )}
     </>

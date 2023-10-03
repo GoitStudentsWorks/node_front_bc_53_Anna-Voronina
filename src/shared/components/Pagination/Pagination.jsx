@@ -18,7 +18,6 @@ export const Pagination = ({
 
   const handlePageClick = (event) => {
     const selectedPage = event.selected + 1;
-    console.log(selectedPage);
 
     onPageChange(selectedPage);
   };

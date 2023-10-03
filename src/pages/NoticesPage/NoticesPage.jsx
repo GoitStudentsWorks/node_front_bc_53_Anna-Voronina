@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import { useParams, useSearchParams } from "react-router-dom";
 import { selectNotices } from "@/redux/notices/noticesSelectors";
 
@@ -52,23 +53,27 @@ const NoticesPage = () => {
     if (isLoggedIn && category === "favorite") {
       dispatch(
         fetchFavoriteNoticesThunk({
-          page,
+          page: 1,
           limit: 12,
           age: ageFilters,
           sex: sexFilters,
           searchQuery,
         })
-      );
+      )
+        .unwrap()
+        .catch((error) => toast.error(error));
     } else if (isLoggedIn && category === "own") {
       dispatch(
         fetchOwnNoticesThunk({
-          page,
+          page: 1,
           limit: 12,
           age: ageFilters,
           sex: sexFilters,
           searchQuery,
         })
-      );
+      )
+        .unwrap()
+        .catch((error) => toast.error(error));
     } else {
       dispatch(
         fetchFilteredNoticesThunk({
@@ -79,7 +84,9 @@ const NoticesPage = () => {
           category,
           searchQuery,
         })
-      );
+      )
+        .unwrap()
+        .catch((error) => toast.error(error));
     }
   }, [
     ageFilters,

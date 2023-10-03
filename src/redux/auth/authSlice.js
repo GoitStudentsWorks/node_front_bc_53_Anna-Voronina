@@ -13,12 +13,12 @@ import { pending, rejected } from "../helpers/stateFunctions";
 
 const initialState = {
   user: {
-    name: null,
-    email: null,
-    avatarURL: null,
-    phone: null,
-    birthday: null,
-    city: null,
+    name: "",
+    email: "",
+    avatarURL: "",
+    phone: "",
+    birthday: "",
+    city: "",
     favorites: [],
     pets: [],
   },
@@ -40,11 +40,13 @@ const authSlice = createSlice({
         state.token = null;
         state.refreshToken = null;
         state.isLoggedIn = false;
+        state.isLoading = false;
       })
       .addCase(refreshThunk.fulfilled, (state, action) => {
         state.user = { ...state.user, ...action.payload };
         state.isLoggedIn = true;
         state.isRefreshing = false;
+        state.isLoading = false;
       })
       .addCase(refreshThunk.pending, (state) => {
         state.isRefreshing = true;
@@ -85,6 +87,7 @@ const authSlice = createSlice({
         isAnyOf(
           loginThunk.pending,
           registerThunk.pending,
+          logoutThunk.pending,
           updateTokenThunk.pending,
           updateAvatarThunk.pending,
           updateUserDataThunk.pending,
@@ -96,6 +99,7 @@ const authSlice = createSlice({
         isAnyOf(
           loginThunk.rejected,
           registerThunk.rejected,
+          logoutThunk.rejected,
           updateTokenThunk.rejected,
           updateAvatarThunk.rejected,
           updateUserDataThunk.rejected,

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
 import { fetchUserDataThunk } from "../../redux/auth/authOperations";
 import { selectIsSuccess } from "../../redux/global/globalSelectors";
@@ -25,7 +26,9 @@ const UserPage = () => {
   const location = useLocation();
 
   useEffect(() => {
-    dispatch(fetchUserDataThunk());
+    dispatch(fetchUserDataThunk())
+      .unwrap()
+      .catch((error) => toast.error(error));
   }, [dispatch]);
 
   const handleEditClick = () => {

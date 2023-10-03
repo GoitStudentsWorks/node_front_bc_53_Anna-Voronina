@@ -7,6 +7,7 @@ import { Container } from "../../shared/components/Container/Container";
 import { PageTitle } from "../../shared/components/PageTitle/PageTitle";
 import { selectorIsLoading } from "../../redux/global/globalSelectors";
 import { Loader } from "../../shared/components/Loader/Loader";
+import { toast } from "react-toastify";
 
 const OurFriendsPage = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,9 @@ const OurFriendsPage = () => {
         page: 1,
         limit: 10,
       })
-    );
+    )
+      .unwrap()
+      .catch((error) => toast.error(error));
   }, [dispatch]);
 
   return (

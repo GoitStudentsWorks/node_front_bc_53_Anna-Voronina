@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -39,6 +40,7 @@ import {
 import sprite from "@/shared/icons/sprite.svg";
 import { selectSexFilters } from "@/redux/global/globalSelectors.js";
 import { selectAgeFilters } from "@/redux/global/globalSelectors.js";
+import { fetchFavoriteNoticesThunk } from "@/redux/notices/noticesOperations.js";
 
 const ProductCardList = ({ notices, categoryType }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -58,7 +60,9 @@ const ProductCardList = ({ notices, categoryType }) => {
 
   const handleModalOpen = (id) => {
     setIsModalOpen(true);
-    dispatch(fetchNoticeByIdThunk(id));
+    dispatch(fetchNoticeByIdThunk(id))
+      .unwrap()
+      .catch((error) => toast.error(error));
   };
 
   const handleAttentionModal = () => {
@@ -68,7 +72,14 @@ const ProductCardList = ({ notices, categoryType }) => {
   const handleToggleFavorite = (id) => {
     if (isLoggedIn) {
       setSelectedId(id);
-      dispatch(addOrDeleteFavoriteNoticeThunk(id));
+      dispatch(addOrDeleteFavoriteNoticeThunk(id))
+        .unwrap()
+        .then(() => {
+          if (categoryType === "favorite") {
+            dispatch(fetchFavoriteNoticesThunk({ page: 1, limit: 12 }));
+          }
+        })
+        .catch((error) => toast.error(error));
     } else {
       setIsAttentionModalOpen(true);
     }

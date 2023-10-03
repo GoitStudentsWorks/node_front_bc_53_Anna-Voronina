@@ -2,6 +2,8 @@ import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
   addNewPetThunk,
   addOrDeleteFavoriteNoticeThunk,
+  deleteOwnNoticeThunk,
+  deletePetThunk,
   fetchAllNoticesThunk,
   fetchFavoriteNoticesThunk,
   fetchFilteredNoticesThunk,
@@ -79,13 +81,18 @@ const noticesSlice = createSlice({
           fetchFavoriteNoticesThunk.fulfilled
         ),
         (state, action) => {
+          console.log(action.payload.data);
           state.notices.data = action.payload.data;
           state.notices.total = action.payload.total;
           state.isLoading = false;
         }
       )
       .addMatcher(
-        isAnyOf(addOrDeleteFavoriteNoticeThunk.fulfilled),
+        isAnyOf(
+          addOrDeleteFavoriteNoticeThunk.fulfilled,
+          deletePetThunk.fulfilled,
+          deleteOwnNoticeThunk.fulfilled
+        ),
         (state) => {
           state.isLoading = false;
         }
@@ -101,7 +108,9 @@ const noticesSlice = createSlice({
           fetchFavoriteNoticesThunk.pending,
           fetchNoticeByIdThunk.pending,
           addNewPetThunk.pending,
-          addOrDeleteFavoriteNoticeThunk.pending
+          addOrDeleteFavoriteNoticeThunk.pending,
+          deleteOwnNoticeThunk.pending,
+          deletePetThunk.pending
         ),
         pending
       )
@@ -116,7 +125,9 @@ const noticesSlice = createSlice({
           fetchFavoriteNoticesThunk.rejected,
           fetchNoticeByIdThunk.rejected,
           addNewPetThunk.rejected,
-          addOrDeleteFavoriteNoticeThunk.rejected
+          addOrDeleteFavoriteNoticeThunk.rejected,
+          deleteOwnNoticeThunk.rejected,
+          deletePetThunk.rejected
         ),
         rejected
       );

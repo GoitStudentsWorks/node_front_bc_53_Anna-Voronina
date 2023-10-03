@@ -45,7 +45,7 @@ export const FormDataUser = ({ editing, handleEditClick }) => {
         .unwrap()
         .then(() => {
           handleEditClick();
-          toast.success("Form updated successfully");
+          toast.success("Personal data updated successfully");
         })
         .catch((error) => {
           toast.error(error);
@@ -65,7 +65,7 @@ export const FormDataUser = ({ editing, handleEditClick }) => {
               name="name"
               placeholder="Anna"
               autoComplete="off"
-              value={editing ? name : user?.name}
+              defaultValue={editing ? name : user?.name}
               onChange={formik.handleChange}
               readOnly={!editing}
             />
@@ -79,7 +79,7 @@ export const FormDataUser = ({ editing, handleEditClick }) => {
               type="email"
               name="email"
               placeholder="anna00@gmail.com"
-              value={editing ? email : user?.email}
+              defaultValue={editing ? email : user?.email}
               onChange={formik.handleChange}
               readOnly={!editing}
             />
@@ -92,7 +92,7 @@ export const FormDataUser = ({ editing, handleEditClick }) => {
             <UserInput
               type="date"
               name="birthday"
-              value={editing ? birthday : formatBirthday(user?.birthday)}
+              defaultValue={editing ? birthday : formatBirthday(user?.birthday)}
               onChange={formik.handleChange}
               readOnly={!editing}
             />
@@ -106,7 +106,7 @@ export const FormDataUser = ({ editing, handleEditClick }) => {
               type="tel"
               name="phone"
               placeholder="+38000000000"
-              value={editing ? phone : user?.phone}
+              defaultValue={editing ? phone : user?.phone}
               onChange={formik.handleChange}
               readOnly={!editing}
             />
@@ -120,7 +120,7 @@ export const FormDataUser = ({ editing, handleEditClick }) => {
               type="text"
               name="city"
               placeholder="Kyiv"
-              value={editing ? city : user?.city}
+              defaultValue={editing ? city : user?.city}
               onChange={formik.handleChange}
               readOnly={!editing}
             />

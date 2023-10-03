@@ -51,7 +51,12 @@ const MainPage = () => {
             type="image/webp"
           />
 
-          <img src={mainImgDescWebp} alt="Pets" width={917} height={670} />
+          <img
+            src={mainImgMobileRetinaWebp}
+            alt="Pets"
+            width={917}
+            height={670}
+          />
         </StyledPicture>
       </Wrapper>
     </BackgroundImgWrapper>

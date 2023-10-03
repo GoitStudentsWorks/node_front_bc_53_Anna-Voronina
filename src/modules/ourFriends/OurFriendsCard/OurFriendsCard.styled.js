@@ -90,8 +90,25 @@ export const StyledP = styled.p`
 export const StyledImgLink = styled.a`
   width: 120px;
 
+  transition: transform ${({ theme }) => theme.transitions.regular};
+
+  &:hover,
+  &:focus {
+    transform: scale(1.07);
+  }
+
   @media only screen and (min-width: 768px) {
     width: 150px;
+  }
+`;
+
+export const StyledTitleLink = styled.a`
+  color: ${({ theme }) => theme.colors.blue};
+  transition: color ${({ theme }) => theme.transitions.regular};
+
+  &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.colors.yellow};
   }
 `;
 

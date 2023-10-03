@@ -10,6 +10,7 @@ import {
   StyledListItem,
   StyledP,
   StyledText,
+  StyledTitleLink,
   StyledTittle,
   Wrapper,
 } from "./OurFriendsCard.styled";
@@ -31,29 +32,37 @@ export const OurFriendsCard = ({
     setIsListOpen((prev) => !prev);
   };
 
+  console.log(isListOpen);
+
   const openDay = workDays?.filter((day) => day.isOpen);
 
   return (
     <Wrapper>
       <StyledTittle>
-        <a href={url}>{title}</a>
+        <StyledTitleLink
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+        >
+          {title}
+        </StyledTitleLink>
       </StyledTittle>
       <StyledCardWrapper>
-        <StyledImgLink href={url}>
+        <StyledImgLink
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+        >
           <StyledImg src={imageUrl} alt={title} />
         </StyledImgLink>
 
         <StyledAddress>
           <StyledList>
             <StyledListItem>
-              <button>
+              <button onClick={handleBtnClick}>
                 <StyledH3>Time:</StyledH3>
                 {workDays ? (
-                  <WorkDays
-                    days={openDay}
-                    isActive={isListOpen}
-                    toggleActive={() => handleBtnClick()}
-                  />
+                  <WorkDays days={openDay} isActive={isListOpen} />
                 ) : (
                   <StyledP>day and night</StyledP>
                 )}

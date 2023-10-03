@@ -4,17 +4,17 @@ import { StyledP } from "../OurFriendsCard/OurFriendsCard.styled";
 
 const daysOfWeek = ["MN", "TU", "WE", "TH", "FR", "SA", "SU"];
 
-export const WorkDays = ({ days, isActive, toggleActive }) => {
+export const WorkDays = ({ days, isActive }) => {
   return (
     <StyledDate>
       {isActive ? (
-        <StyledList
-          $isActive={isActive}
-          onClick={() => toggleActive(!isActive)}
-        >
+        <StyledList $isActive={isActive}>
           {days.map((day, idx) => (
             <StyledItem key={idx}>
-              {daysOfWeek[idx]} {day.from} - {day.to}
+              <span>{daysOfWeek[idx]}</span>
+              <span>
+                {day.from}-{day.to}
+              </span>
             </StyledItem>
           ))}
         </StyledList>
@@ -30,5 +30,4 @@ export const WorkDays = ({ days, isActive, toggleActive }) => {
 WorkDays.propTypes = {
   days: PropTypes.array,
   isActive: PropTypes.bool,
-  toggleActive: PropTypes.func,
 };

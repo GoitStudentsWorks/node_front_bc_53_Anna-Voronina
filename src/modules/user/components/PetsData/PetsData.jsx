@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import {
-  selectLoggedIn,
-  selectUser,
-} from "../../../../redux/auth/authSelectors";
-import { Modal } from "../../../../shared/components/Modal/Modal";
-import Button from "../../../../shared/components/Button/Button";
+import { selectUser } from "../../../../redux/auth/authSelectors";
 import { EmptyPetsList } from "../EmptyPetsList/EmptyPetsList";
 import { Pagination } from "@/shared/components/Pagination/Pagination";
 import {
@@ -14,21 +9,30 @@ import {
   PetsCardText,
   PetsCardImg,
   PetsCardIcon,
-  PetsModalTitle,
-  PetsModalText,
-  PetsModalBtnContainer,
 } from "./PetsData.styled";
 import Icon from "../../../../shared/icons/sprite.svg";
 import { DeleteModal } from "../../../modals/components/DeleteModal/DeleteModal";
+import { useEffect } from "react";
 
 export const PetsData = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [page, setPage] = useState(1);
   const [selectedPetName, setSelectedPetName] = useState("");
   const [selectedPetId, setSelectedPetId] = useState("");
 
   const user = useSelector(selectUser);
-  const isLoading = useSelector(selectLoggedIn);
+  const pets = user?.pets;
+
+  const [page, setPage] = useState(1);
+  const [currentPets, setCurrentPets] = useState([]);
+
+  useEffect(() => {
+    if (pets) {
+      const startIndex = (page - 1) * 2;
+      const endIndex = startIndex + 2;
+      const petsSlice = pets.slice(startIndex, endIndex);
+      setCurrentPets(petsSlice);
+    }
+  }, [page, pets]);
 
   const handleModalOpen = ({ id, name }) => {
     setIsModalOpen((prev) => !prev);
@@ -40,8 +44,6 @@ export const PetsData = () => {
     setIsModalOpen((prev) => !prev);
   };
 
-  const pets = user?.pets;
-
   const handlePageChange = (selectedPage) => {
     setPage(selectedPage);
   };
@@ -49,7 +51,7 @@ export const PetsData = () => {
   return (
     <>
       <PetsList>
-        {pets?.map((el) => (
+        {currentPets.map((el) => (
           <PetsCardContainer key={el._id}>
             <PetsCardImg src={el.file} alt="default" />
             <ul>
@@ -92,15 +94,14 @@ export const PetsData = () => {
         />
       )}
 
+      {pets?.length === 0 && <EmptyPetsList />}
+
       <Pagination
         onPageChange={handlePageChange}
         currentPage={page}
-        perPage={4}
+        perPage={2}
         totalItems={pets?.length}
-        variant={isLoading ? "hidden" : "visible"}
       />
-
-      {pets?.length === 0 && <EmptyPetsList />}
     </>
   );
 };

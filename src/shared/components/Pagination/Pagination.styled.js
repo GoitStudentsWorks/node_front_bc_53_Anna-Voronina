@@ -28,13 +28,15 @@ export const PaginationContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: ${({ theme }) => theme.spacing(8.75)};
-    height: ${({ theme }) => theme.spacing(8.75)};
-    padding: 10px 10px 10px 10px;
     border-radius: ${({ theme }) => theme.radii.round};
-    stroke-width: 1px;
     border: 1px solid ${({ theme }) => theme.colors.blue};
-    cursor: pointer;
+
+    a {
+      width: ${({ theme }) => theme.spacing(8.75)};
+      height: ${({ theme }) => theme.spacing(8.75)};
+      padding: 10px 10px 10px 10px;
+      cursor: pointer;
+    }
 
     &.active {
       background-color: ${({ theme }) => theme.colors.blue};

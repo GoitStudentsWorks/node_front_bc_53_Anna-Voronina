@@ -3,7 +3,6 @@ import {
   nameValidator,
   emailValidator,
   phoneValidator,
-  birthdayValidator,
   cityValidator,
 } from "../../../shared/constants/regexp";
 
@@ -16,12 +15,14 @@ export const userValidationSchema = Yup.object().shape({
     .matches(emailValidator, "Invalid email format")
     .required("The field 'Email' is required"),
 
-  birthday: Yup.string()
-    .required("Date of birth is required")
-    .matches(
-      birthdayValidator,
-      "Date of birth must be in the format DD-MM-YYYY"
-    ),
+  birthday: Yup.date()
+    .required("required field")
+    .test("is-in-the-past", "Date must be current or in the past", (value) => {
+      if (!value) return true;
+      const inputDate = new Date(value);
+      const currentDate = new Date();
+      return inputDate <= currentDate;
+    }),
 
   phone: Yup.string()
     .required("The 'Phone' field is required")

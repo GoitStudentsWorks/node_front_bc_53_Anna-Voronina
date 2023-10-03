@@ -28,6 +28,7 @@ export const NoticesFilters = () => {
   const addPetBtnClick = () => {
     if (!isLoggedIn) {
       setIsAttentionModalOpen(true);
+      document.body.style.overflow = "hidden";
     }
   };
 

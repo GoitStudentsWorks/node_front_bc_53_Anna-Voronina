@@ -34,6 +34,7 @@ export const DeleteModal = ({ onClose, title, type, id }) => {
   const isLoading = useSelector(selectIsNoticesLoading);
 
   const handleDelete = () => {
+    document.body.style.overflow = "auto";
     if (type === "own") {
       dispatch(deletePetThunk(id))
         .unwrap()
@@ -65,6 +66,11 @@ export const DeleteModal = ({ onClose, title, type, id }) => {
     }
   };
 
+  const handleClose = () => {
+    document.body.style.overflow = "auto";
+    onClose();
+  };
+
   return (
     <Modal onClose={onClose}>
       <Filling>
@@ -87,7 +93,7 @@ export const DeleteModal = ({ onClose, title, type, id }) => {
             </BlockText>
 
             <BlockButton>
-              <Button onClick={onClose} text="Cancel" variant="cancel" />
+              <Button onClick={handleClose} text="Cancel" variant="cancel" />
               <Button
                 text="Yes"
                 variant="logoutButton"

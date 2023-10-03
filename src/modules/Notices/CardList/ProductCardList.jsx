@@ -60,6 +60,7 @@ const ProductCardList = ({ notices, categoryType }) => {
 
   const handleModalOpen = (id) => {
     setIsModalOpen(true);
+    document.body.style.overflow = "hidden";
     dispatch(fetchNoticeByIdThunk(id))
       .unwrap()
       .catch((error) => toast.error(error));
@@ -82,6 +83,7 @@ const ProductCardList = ({ notices, categoryType }) => {
         .catch((error) => toast.error(error));
     } else {
       setIsAttentionModalOpen(true);
+      document.body.style.overflow = "hidden";
     }
   };
 

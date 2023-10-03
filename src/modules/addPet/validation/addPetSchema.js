@@ -8,7 +8,7 @@ export const categorySchema = yup.object().shape({
 export const sellSchema = yup.object().shape({
   title: yup
     .string()
-    .test("trim", "The field must not start or end with spaces", (value) => {
+    .test("trim", (value) => {
       if (value) {
         return value.trim() === value;
       }
@@ -29,7 +29,15 @@ export const sellSchema = yup.object().shape({
     .matches(nameValidator, "the name must contain only letters")
     .min(2, "the name must contain a minimum of 2 characters")
     .max(30, "the name must contain a maximum of 30 characters"),
-  date: yup.string().required("required field"),
+  date: yup
+    .date()
+    .required("required field")
+    .test("is-in-the-past", "Date must be current or in the past", (value) => {
+      if (!value) return true;
+      const inputDate = new Date(value);
+      const currentDate = new Date();
+      return inputDate <= currentDate;
+    }),
   type: yup
     .string()
     .test("trim", "The field must not start or end with spaces", (value) => {
@@ -46,7 +54,7 @@ export const sellSchema = yup.object().shape({
 export const detailsSchema = yup.object().shape({
   name: yup
     .string()
-    .test("trim", "The field must not start or end with spaces", (value) => {
+    .test("trim", (value) => {
       if (value) {
         return value.trim() === value;
       }
@@ -56,10 +64,18 @@ export const detailsSchema = yup.object().shape({
     .matches(nameValidator, "the name must contain only letters")
     .min(2, "the name must contain a minimum of 2 characters")
     .max(30, "the name must contain a maximum of 30 characters"),
-  date: yup.string().required("required field"),
+  date: yup
+    .date()
+    .required("required field")
+    .test("is-in-the-past", "Date must be current or in the past", (value) => {
+      if (!value) return true;
+      const inputDate = new Date(value);
+      const currentDate = new Date();
+      return inputDate <= currentDate;
+    }),
   type: yup
     .string()
-    .test("trim", "The field must not start or end with spaces", (value) => {
+    .test("trim", (value) => {
       if (value) {
         return value.trim() === value;
       }
@@ -84,7 +100,7 @@ export const moreInfoOwnSchema = yup.object().shape({
     .required("Add a photo"),
   comments: yup
     .string()
-    .test("trim", "The field must not start or end with spaces", (value) => {
+    .test("trim", (value) => {
       if (value) {
         return value.trim() === value;
       }
@@ -116,7 +132,7 @@ export const moreInfoSellSchema = yup.object().shape({
   price: yup.number().required("required field").positive().min(1),
   comments: yup
     .string()
-    .test("trim", "The field must not start or end with spaces", (value) => {
+    .test("trim", (value) => {
       if (value) {
         return value.trim() === value;
       }
@@ -147,7 +163,7 @@ export const notForSellSchema = yup.object().shape({
     .required("Add a photo"),
   comments: yup
     .string()
-    .test("trim", "The field must not start or end with spaces", (value) => {
+    .test("trim", (value) => {
       if (value) {
         return value.trim() === value;
       }

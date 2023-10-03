@@ -35,6 +35,7 @@ export const PetsData = () => {
   }, [page, pets]);
 
   const handleModalOpen = ({ id, name }) => {
+    document.body.style.overflow = "hidden";
     setIsModalOpen((prev) => !prev);
     setSelectedPetName(name);
     setSelectedPetId(id);
@@ -42,6 +43,7 @@ export const PetsData = () => {
 
   const handleModalClose = () => {
     setIsModalOpen((prev) => !prev);
+    document.body.style.overflow = "auto";
   };
 
   const handlePageChange = (selectedPage) => {

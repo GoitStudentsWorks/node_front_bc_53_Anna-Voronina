@@ -121,14 +121,16 @@ const MoreInfo = () => {
     >
       {({ values, handleChange, setFieldValue, touched, errors }) => (
         <FormContainer>
-          <FlexContainer>
+          <FlexContainer isOwn={petFormData?.category === "own"}>
             <ImgSexContainer>
               {petFormData?.category !== "own" && (
                 <RadioContainer>
                   <RadioParag>Sex</RadioParag>
                   <RadioWrapper>
                     <RadioLabel
-                      className={values?.sex === "female" ? "checked" : ""}
+                      className={
+                        values?.sex === "female" ? "checked" : "unchecked"
+                      }
                     >
                       <StyledRadio
                         type="radio"
@@ -144,7 +146,9 @@ const MoreInfo = () => {
                       Female
                     </RadioLabel>
                     <RadioLabel
-                      className={values?.sex === "male" ? "checked" : ""}
+                      className={
+                        values?.sex === "male" ? "checked" : "unchecked"
+                      }
                     >
                       <StyledRadio
                         type="radio"
@@ -162,7 +166,7 @@ const MoreInfo = () => {
                   <FormError name="sex" touched={touched} errors={errors} />
                 </RadioContainer>
               )}
-              <FileWrapper>
+              <FileWrapper isOwn={petFormData?.category === "own"}>
                 <StyledLabel>Load the pet&apos;s image:</StyledLabel>
                 <FileInputContainer
                   $imageUrl={
@@ -213,6 +217,7 @@ const MoreInfo = () => {
               <WrapperField>
                 <StyledLabel>Comments:</StyledLabel>
                 <FieldComentStyled
+                  category={petFormData?.category}
                   type="text"
                   name="comments"
                   placeholder="Comments"

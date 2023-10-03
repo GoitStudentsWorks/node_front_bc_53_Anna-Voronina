@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const PetsList = styled.ul`
+  margin-bottom: 50px;
   display: flex;
   flex-direction: column;
   gap: 20px;

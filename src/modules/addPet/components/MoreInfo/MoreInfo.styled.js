@@ -10,6 +10,7 @@ export const FormContainer = styled(Form)`
 export const WrapperField = styled.div`
   margin-top: 16px;
   margin-bottom: 24px;
+  align-items: baseline;
 `;
 
 export const RadioContainer = styled.div`
@@ -73,6 +74,9 @@ export const RadioLabel = styled.label`
     background: ${({ theme }) => theme.colors.blueGradient};
     color: ${({ theme }) => theme.colors.white};
   }
+  &.checked svg {
+    stroke: ${({ theme }) => theme.colors.white};
+  }
 
   @media screen and (min-width: 768px) {
   }
@@ -80,13 +84,26 @@ export const RadioLabel = styled.label`
 
 export const FileWrapper = styled.div`
   display: flex;
+  flex-direction: row;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 16px;
   gap: 14px;
   @media screen and (min-width: 768px) {
-    display: block;
-    margin-bottom: 60px;
-    margin-top: 30px;
+    ${({ isOwn }) =>
+      isOwn
+        ? `
+        flex-direction: row;
+      flex-wrap: wrap
+      margin-bottom: 60px;
+      margin-top: 30px;
+        `
+        : `
+      flex-direction: column;
+      gap: 10px;
+      align-items: baseline;
+      margin-top: 28px;
+      margin-bottom: 20px;  
+        `}
   }
 `;
 
@@ -94,10 +111,11 @@ export const FieldComentStyled = styled(Field)`
   display: block;
   margin-top: 4px;
   word-wrap: break-word;
+  resize: none;
 
   padding: 12px 16px;
   width: 264px;
-  height: 92px;
+  height: 98px;
 
   outline: none;
   border-radius: ${({ theme }) => theme.radii.s};
@@ -122,9 +140,12 @@ export const FieldComentStyled = styled(Field)`
     border-color: ${({ theme }) =>
       theme.colors.green}; // Зеленый бордер при успешной валидации
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 769px) {
     width: 393px;
-    height: 79px;
+    height: ${({ category }) =>
+      category === "lost-found" || category === "in-good-hands"
+        ? "182px"
+        : "79px"};
   }
 `;
 
@@ -151,8 +172,8 @@ export const FileInputContainer = styled.div`
   background-position: center;
 
   @media screen and (min-width: 768px) {
-    width: 182px;
-    height: 182px;
+    width: 180px;
+    height: 180px;
   }
 `;
 
@@ -185,16 +206,43 @@ export const StyledLabel = styled.label`
 
 export const ImgSexContainer = styled.div``;
 
-export const FieldContainer = styled.div``;
+export const FieldContainer = styled.div`
+  @media screen and (min-width: 768px) {
+  }
+  ${{}}
+`;
 
 export const FlexContainer = styled.div`
   @media screen and (min-width: 768px) {
-    display: flex;
-    gap: 15px;
+    ${({ isOwn }) =>
+      isOwn
+        ? `
+          display: flex;
+          gap: 15px;
+          align-items: baseline;
+          flex-direction: column;
+        `
+        : `
+          display: flex;
+          gap: 15px;
+          align-items: baseline;
+          flex-direction: row;
+        `};
   }
+
   @media screen and (min-width: 1280px) {
-    display: flex;
-    gap: 50px;
+    ${({ isOwn }) =>
+      isOwn
+        ? `
+          display: flex;
+          gap: 20px;
+          flex-direction: column;
+        `
+        : `
+          display: flex;
+          gap: 50px;
+          flex-direction: row;
+        `};
   }
 `;
 

@@ -32,7 +32,9 @@ const Title = () => {
   };
 
   return (
-    <StyledTitle className={isStep3 ? "centered" : ""}>
+    <StyledTitle
+      className={isStep3 && petFormData?.category !== "own" ? "centered" : ""}
+    >
       {getTitle(category)}
     </StyledTitle>
   );

@@ -1,7 +1,6 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Formik, useFormik } from "formik";
+import { Formik } from "formik";
 
 import { addPetFormData, updateStep } from "@/redux/notices/noticesSlice";
 import { selectPetFormData } from "@/redux/notices/noticesSelectors";
@@ -42,7 +41,7 @@ import {
 import { toast } from "react-toastify";
 import { petFormDataInitialState } from "@/redux/notices/noticesSlice";
 import { selectBackLocation } from "@/redux/global/globalSelectors";
-import { updateBackLocation } from "../../../../redux/global/globalSlice";
+import { updateBackLocation } from "@/redux/global/globalSlice";
 
 const MoreInfo = () => {
   const dispatch = useDispatch();

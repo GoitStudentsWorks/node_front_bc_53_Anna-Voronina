@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 export const ProductList = styled.ul`
@@ -227,4 +228,35 @@ export const WrapperLocation = styled.span`
   white-space: nowrap;
   overflow: hidden;
   max-width: 6ch;
+`;
+
+export const AddPetLink = styled(Link)`
+  position: fixed;
+  top: 75%;
+  right: 20px;
+  height: ${({ theme }) => theme.spacing(20)};
+  width: ${({ theme }) => theme.spacing(20)};
+  padding: ${({ theme }) => theme.spacing(4)};
+  padding-top: ${({ theme }) => theme.spacing(5)};
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: ${({ theme }) => theme.spacing(1)};
+  flex-direction: column;
+
+  text-align: center;
+  font-size: ${({ theme }) => theme.fontSizes.xs};
+
+  color: ${({ theme }) => theme.colors.white};
+  background-image: linear-gradient(290deg, #419ef1 0%, #9bd0ff 107.89%);
+  border-radius: ${({ theme }) => theme.radii.round};
+
+  svg {
+    stroke: ${({ theme }) => theme.colors.white};
+  }
+
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
 `;

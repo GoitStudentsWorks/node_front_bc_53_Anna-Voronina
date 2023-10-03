@@ -376,7 +376,5 @@ export const ButtonStyled = styled.button`
         line-height: normal;
         letter-spacing: 0.64px;
       }
-      @media screen and (min-width: 1280px) {
-      }
     `}
 `;

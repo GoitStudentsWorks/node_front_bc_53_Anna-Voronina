@@ -1,11 +1,19 @@
-import { useState } from "react";
+import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { transformAge } from "../helpers/transformAge.js";
+import { transformTitle } from "../helpers/transformTitle.js";
 
 import Button from "@/shared/components/Button/Button";
 import { ModalProductCart } from "../popups/ModalProductCart";
+import { AttentionModal } from "../../modals/components/AttentionModal/AttentionModal.jsx";
+import { DeleteModal } from "../../modals/components/DeleteModal/DeleteModal.jsx";
+
 import { fetchNoticeByIdThunk } from "@/redux/notices/noticesOperations.js";
-import { transformTitle } from "../helpers/transformTitle.js";
+import { selectLoggedIn } from "@/redux/auth/authSelectors.js";
+import { addOrDeleteFavoriteNoticeThunk } from "@/redux/notices/noticesOperations.js";
+import { selectUser } from "@/redux/auth/authSelectors.js";
 
 import { PlugStyled } from "../../news/components/ListNews/ListNews.styled.js";
 import {
@@ -24,22 +32,19 @@ import {
   WrapperLocation,
   DeleteBtn,
   IconPrimal,
+  AddPetLink,
 } from "./ProductCardList.styled";
-
 import sprite from "@/shared/icons/sprite.svg";
-import { selectLoggedIn } from "@/redux/auth/authSelectors.js";
-import { AttentionModal } from "../../modals/components/AttentionModal/AttentionModal.jsx";
-import { addOrDeleteFavoriteNoticeThunk } from "../../../redux/notices/noticesOperations.js";
-import { selectUser } from "../../../redux/auth/authSelectors.js";
-import { DeleteModal } from "../../modals/components/DeleteModal/DeleteModal.jsx";
 
 const ProductCardList = ({ notices, categoryType }) => {
-  const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isAttentionModalOpen, setIsAttentionModalOpen] = useState(false);
   const [idToDelete, setIdToDelete] = useState("");
   const [titleToDelete, setTitleToDelete] = useState("");
+
+  const dispatch = useDispatch();
+  const location = useLocation();
 
   const isLoggedIn = useSelector(selectLoggedIn);
   const user = useSelector(selectUser);
@@ -69,6 +74,12 @@ const ProductCardList = ({ notices, categoryType }) => {
 
   const handleDelete = () => {
     setIsDeleteModalOpen((prev) => !prev);
+  };
+
+  const addPetBtnClick = () => {
+    if (!isLoggedIn) {
+      setIsAttentionModalOpen(true);
+    }
   };
 
   return (
@@ -152,12 +163,24 @@ const ProductCardList = ({ notices, categoryType }) => {
         </PlugStyled>
       )}
 
+      <AddPetLink
+        to={isLoggedIn && "/add-pet"}
+        state={{ from: location }}
+        onClick={addPetBtnClick}
+      >
+        <svg width={24} height={24}>
+          <use href={sprite + "#plus"}></use>
+        </svg>
+        <span>Add Pet</span>
+      </AddPetLink>
+
       {isModalOpen && (
         <ModalProductCart
           setIsModalOpen={setIsModalOpen}
           handleToggleFavorite={handleToggleFavorite}
         />
       )}
+
       {isAttentionModalOpen && (
         <AttentionModal onClose={handleAttentionModal} />
       )}
@@ -171,6 +194,21 @@ const ProductCardList = ({ notices, categoryType }) => {
       )}
     </>
   );
+};
+
+ProductCardList.propTypes = {
+  categoryType: PropTypes.string,
+  notices: PropTypes.arrayOf(
+    PropTypes.shape({
+      category: PropTypes.string,
+      age: PropTypes.number,
+      _id: PropTypes.string,
+      title: PropTypes.string,
+      location: PropTypes.string,
+      file: PropTypes.string,
+      sex: PropTypes.string,
+    })
+  ).isRequired,
 };
 
 export default ProductCardList;

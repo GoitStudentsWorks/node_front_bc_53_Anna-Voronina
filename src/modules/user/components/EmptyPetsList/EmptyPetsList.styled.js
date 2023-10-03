@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const EmptyPetsImg = styled.img`
+export const EmptyPetsImg = styled.picture`
   margin: 0 auto 20px;
 
   @media only screen and (min-width: 1280px) {

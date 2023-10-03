@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 export const pawAnimation = keyframes`
   0% {
@@ -39,6 +39,15 @@ export const PawStyled = styled.div`
   &:nth-child(even) {
     transform: rotate(10deg) translate(125%, 0);
   }
+
+  ${({ $type }) =>
+    $type === "small" &&
+    css`
+      @media only screen and (min-width: 768px) {
+        width: 35px;
+        height: 35px;
+      }
+    `};
 `;
 
 export const AjaxLoader = styled.div`
@@ -79,4 +88,12 @@ export const AjaxLoader = styled.div`
   ${PawStyled}.no-cssanimations {
     opacity: 1;
   }
+
+  ${({ $type }) =>
+    $type === "small" &&
+    css`
+      @media only screen and (min-width: 768px) {
+        top: 45%;
+      }
+    `};
 `;

@@ -59,7 +59,7 @@ export const OurFriendsCard = ({
             <StyledListItem>
               <button onClick={handleBtnClick}>
                 <StyledH3>Time:</StyledH3>
-                {workDays ? (
+                {workDays?.length ? (
                   <WorkDays days={openDay} isActive={isListOpen} />
                 ) : (
                   <StyledP>day and night</StyledP>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import ListNews from "../../modules/news/components/ListNews/ListNews";
 import { Searchbar } from "../../shared/components/Searchbar/Searchbar";
 import { Container } from "../../shared/components/Container/Container";
@@ -22,11 +23,15 @@ const NewsPage = () => {
   const newsSort = useSelector(selectNewsSort);
 
   useEffect(() => {
-    dispatch(fetchNewsThunk({ page, limit: 6 }));
+    dispatch(fetchNewsThunk({ page, limit: 6 }))
+      .unwrap()
+      .catch((error) => toast.error(error));
   }, [dispatch, page]);
 
   const handleSubmit = (searchQuery) => {
-    dispatch(fetchNewsBySearchThunk({ page, limit: 6, searchQuery }));
+    dispatch(fetchNewsBySearchThunk({ page, limit: 6, searchQuery }))
+      .unwrap()
+      .catch((error) => toast.error(error));
   };
 
   const handlePageChange = (selectedPage) => {

@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import SharedLayout from "./shared/components/SharedLayout/SharedLayout";
 import MainPage from "./pages/MainPage/MainPage";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import { selectRefresh } from "./redux/auth/authSelectors";
 import { refreshThunk } from "./redux/auth/authOperations";
 import { Loader } from "./shared/components/Loader/Loader";
@@ -28,7 +29,9 @@ function App() {
   const isRefreshing = useSelector(selectRefresh);
 
   useEffect(() => {
-    dispatch(refreshThunk());
+    dispatch(refreshThunk())
+      .unwrap()
+      .catch((error) => toast.error(error));
   }, [dispatch]);
 
   return (

@@ -1,7 +1,21 @@
 import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { Modal } from "../../../../shared/components/Modal/Modal";
-import Button from "../../../../shared/components/Button/Button";
+import { Modal } from "@/shared/components/Modal/Modal";
+import Button from "@/shared/components/Button/Button";
+import { Loader } from "@/shared/components/Loader/Loader";
+
+import {
+  deleteOwnNoticeThunk,
+  deletePetThunk,
+} from "@/redux/notices/noticesOperations";
+import { selectIsNoticesLoading } from "@/redux/notices/noticesSelectors";
+import { fetchOwnNoticesThunk } from "@/redux/notices/noticesOperations";
+import {
+  selectAgeFilters,
+  selectSexFilters,
+} from "@/redux/global/globalSelectors";
+
 import {
   Filling,
   BlockText,
@@ -10,14 +24,14 @@ import {
   BoldText,
   BlockButton,
 } from "./DeleteModal.styled";
-import { useDispatch } from "react-redux";
-import {
-  deleteOwnNoticeThunk,
-  deletePetThunk,
-} from "../../../../redux/notices/noticesOperations";
 
 export const DeleteModal = ({ onClose, title, type, id }) => {
   const dispatch = useDispatch();
+
+  const ageFilters = useSelector(selectAgeFilters);
+  const sexFilters = useSelector(selectSexFilters);
+
+  const isLoading = useSelector(selectIsNoticesLoading);
 
   const handleDelete = () => {
     if (type === "own") {
@@ -35,6 +49,14 @@ export const DeleteModal = ({ onClose, title, type, id }) => {
         .unwrap()
         .then(() => {
           onClose();
+          dispatch(
+            fetchOwnNoticesThunk({
+              page: 1,
+              limit: 12,
+              age: ageFilters,
+              sex: sexFilters,
+            })
+          );
           toast.success("Deleting completed successfully");
         })
         .catch((error) => {
@@ -46,28 +68,37 @@ export const DeleteModal = ({ onClose, title, type, id }) => {
   return (
     <Modal onClose={onClose}>
       <Filling>
-        <Title>
-          Delete {type === "own" ? "your pet" : "advertisement"}&#63;
-        </Title>
-        <BlockText>
-          <TextStyled>
-            Are you sure you want to delete
-            <BoldText> “{title}”&#63; </BoldText>
-          </TextStyled>
-          <TextStyled>You can`t undo this action.</TextStyled>
-        </BlockText>
+        {isLoading ? (
+          <>
+            <Title>Almost done. Wait for a moment...</Title>
+            <Loader type="small" />
+          </>
+        ) : (
+          <>
+            <Title>
+              Delete {type === "own" ? "your pet" : "advertisement"}&#63;
+            </Title>
+            <BlockText>
+              <TextStyled>
+                Are you sure you want to delete
+                <BoldText> “{title}”&#63; </BoldText>
+              </TextStyled>
+              <TextStyled>You can`t undo this action.</TextStyled>
+            </BlockText>
 
-        <BlockButton>
-          <Button onClick={onClose} text="Cancel" variant="cancel" />
-          <Button
-            text="Yes"
-            variant="logoutButton"
-            icon="trash-2"
-            iconPosition="right"
-            iconVariant="transparent"
-            onClick={handleDelete}
-          />
-        </BlockButton>
+            <BlockButton>
+              <Button onClick={onClose} text="Cancel" variant="cancel" />
+              <Button
+                text="Yes"
+                variant="logoutButton"
+                icon="trash-2"
+                iconPosition="right"
+                iconVariant="transparent"
+                onClick={handleDelete}
+              />
+            </BlockButton>
+          </>
+        )}
       </Filling>
     </Modal>
   );

@@ -23,7 +23,7 @@ export const BurgerMenu = ({ onClick, isOpen = false }) => {
             <AuthNav variant="tabletMenu" onClick={onClick} />
           )}
 
-          <Button onClick={onClick}>
+          <Button onClick={onClick} aria-label="Close mobile menu button">
             <Svgsmall width={24} height={24}>
               <use xlinkHref={icon + "#cross-small"}></use>
             </Svgsmall>

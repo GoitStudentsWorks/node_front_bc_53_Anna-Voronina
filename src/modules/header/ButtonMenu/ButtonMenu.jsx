@@ -17,7 +17,7 @@ export const ButtonMenu = () => {
 
   return (
     <>
-      <Button onClick={open}>
+      <Button onClick={open} aria-label="Mobile menu open button">
         <Svg>
           <use href={icon + "#menu-hamburger"}></use>
         </Svg>

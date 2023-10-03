@@ -4,7 +4,11 @@ import { LogoLink, LogoSvg } from "./Logo.styled";
 
 export const Logo = ({ variant, onClick }) => {
   return (
-    <LogoLink to="/" onClick={variant === "menu" ? onClick : null}>
+    <LogoLink
+      to="/"
+      onClick={variant === "menu" ? onClick : null}
+      aria-label="Your pet logo"
+    >
       <LogoSvg>
         <use xlinkHref={icon + "#icon-logo"}></use>
       </LogoSvg>

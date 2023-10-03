@@ -13,41 +13,49 @@ export const GlobalStyles = createGlobalStyle`
 @font-face {
   font-family: 'Manrope-SemiBold';
   src: url(${ManropeSemiBold});
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Manrope-Regular';
   src: url(${ManropeRegular});
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Manrope-Bold';
   src: url(${ManropeBold});
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Manrope-ExtraBold';
   src: url(${ManropeExtraBold});
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Manrope-Medium';
   src: url(${ManropeMedium});
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Inter-Regular';
   src: url(${InterRegular});
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Inter-Medium';
   src: url(${InterMedium});
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Poppins-Regular';
   src: url(${PoppinsRegular});
+  font-display: swap;
 }
 
 

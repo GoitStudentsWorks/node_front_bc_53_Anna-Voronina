@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { toast } from "react-toastify";
 import sprite from "../../icons/sprite.svg";
 import {
   SearchForm,
@@ -20,10 +19,6 @@ export const Searchbar = ({ onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (inputValue.trim() === "") {
-      return toast.warning("Please fill out the search field!");
-    }
-
     onSubmit(inputValue.trim());
   };
 

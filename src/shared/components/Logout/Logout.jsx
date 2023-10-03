@@ -7,13 +7,19 @@ import Icons from "../../icons/sprite.svg";
 export const Logout = ({ variant = "", type, onMenuClose }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const toggleModal = () => {
-    setIsModalOpen((prev) => !prev);
+  const handleModalOpen = () => {
+    document.body.style.overflow = "hidden";
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    document.body.style.overflow = "auto";
+    setIsModalOpen(false);
   };
 
   return (
     <>
-      <LogoutBtn onClick={toggleModal} $variant={variant} $type={type}>
+      <LogoutBtn onClick={handleModalOpen} $variant={variant} $type={type}>
         Log Out
         <svg>
           <use href={Icons + "#logout"}> </use>
@@ -21,7 +27,7 @@ export const Logout = ({ variant = "", type, onMenuClose }) => {
       </LogoutBtn>
       {isModalOpen && (
         <LogoutModal
-          onClose={toggleModal}
+          onClose={handleModalClose}
           onMenuClose={onMenuClose}
           variant={variant}
         />

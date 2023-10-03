@@ -20,6 +20,7 @@ export const LogoutModal = ({ onClose, onMenuClose, variant }) => {
   const variantCheck = variant === "menu" || variant === "header";
 
   const handleYesClick = () => {
+    document.body.style.overflow = "auto";
     dispatch(logoutThunk())
       .unwrap()
       .then(() => {
@@ -30,6 +31,11 @@ export const LogoutModal = ({ onClose, onMenuClose, variant }) => {
         }
       })
       .catch((error) => toast.error(error));
+  };
+
+  const handleCancelClick = () => {
+    document.body.style.overflow = "auto";
+    onClose();
   };
 
   return (
@@ -44,7 +50,11 @@ export const LogoutModal = ({ onClose, onMenuClose, variant }) => {
           <>
             <ModalTitle>Already leaving&#63;</ModalTitle>
             <BtnContainer>
-              <Button onClick={onClose} text="Cancel" variant="cancel" />
+              <Button
+                onClick={handleCancelClick}
+                text="Cancel"
+                variant="cancel"
+              />
               <Button
                 onClick={handleYesClick}
                 text="Yes"

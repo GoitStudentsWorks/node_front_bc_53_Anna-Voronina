@@ -10,15 +10,18 @@ const routes = [
 export const AuthNav = ({ variant = null, onClick }) => {
   const variantCheck = variant === "menu" || variant === "tabletMenu";
 
+  const handleClick = () => {
+    document.body.style.overflow = "auto";
+    if (variantCheck) {
+      onClick();
+    }
+  };
+
   return (
     <List $variant={variant}>
       {routes.map((route) => (
         <li key={route.path}>
-          <LinkStyles
-            to={route.path}
-            $type={route.type}
-            onClick={variantCheck ? onClick : null}
-          >
+          <LinkStyles to={route.path} $type={route.type} onClick={handleClick}>
             <span>{route.text}</span>
             {route.path === "/login" && (
               <svg>

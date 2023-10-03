@@ -13,7 +13,6 @@ export const WrapperForm = styled.div`
 
   width: ${({ theme }) => theme.spacing(70)};
 
-  /* flex-shrink: 0; */
   border-radius: ${({ theme }) => theme.radii.l};
   box-shadow: ${({ theme }) => theme.shadows.primary};
 
@@ -31,7 +30,6 @@ export const WrapperForm = styled.div`
       step === 3 && categoryWidth !== "own" ? "822px" : "458px"};
     padding: ${({ step, categoryWidth }) =>
       step === 3 && categoryWidth !== "own" ? "20px 73px" : "20px 33px"};
-    /* padding: ${({ step }) => (step === 3 ? "20px 73px" : "20px 33px")}; */
     background-color: ${({ theme }) => theme.colors.white};
   }
 `;

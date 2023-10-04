@@ -32,6 +32,8 @@ export const PaginationContainer = styled.div`
     border: 1px solid ${({ theme }) => theme.colors.blue};
 
     a {
+      display: flex;
+      justify-content: center;
       width: ${({ theme }) => theme.spacing(8.75)};
       height: ${({ theme }) => theme.spacing(8.75)};
       padding: 10px 10px 10px 10px;

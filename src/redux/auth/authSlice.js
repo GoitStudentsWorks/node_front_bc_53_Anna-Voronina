@@ -61,7 +61,7 @@ const authSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(updateAvatarThunk.fulfilled, (state, action) => {
-        state.user.avatarURL = action.payload;
+        state.user.avatarURL = action.payload.avatarURL;
         state.isLoading = false;
       })
       .addCase(registerThunk.fulfilled, (state, action) => {

@@ -80,6 +80,7 @@ export const refreshThunk = createAsyncThunk(
     if (!persistedToken) {
       return rejectWithValue("Token is not found!");
     }
+
     try {
       setToken(persistedToken);
       const { data } = await getCurrentUser();

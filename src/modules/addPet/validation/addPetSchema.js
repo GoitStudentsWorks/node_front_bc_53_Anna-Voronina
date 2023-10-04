@@ -100,12 +100,12 @@ export const moreInfoOwnSchema = yup.object().shape({
     .required("Add a photo"),
   comments: yup
     .string()
-    .test("trim", (value) => {
-      if (value) {
-        return value.trim() === value;
-      }
-      return true;
-    })
+    // .test("trim", (value) => {
+    //   if (value) {
+    //     return value.trim() === value;
+    //   }
+    //   return true;
+    // })
     .max(120, "the name must contain a maximum of 120 characters"),
 });
 
@@ -132,12 +132,12 @@ export const moreInfoSellSchema = yup.object().shape({
   price: yup.number().required("required field").positive().min(1),
   comments: yup
     .string()
-    .test("trim", (value) => {
-      if (value) {
-        return value.trim() === value;
-      }
-      return true;
-    })
+    // .test("trim", (value) => {
+    //   if (value) {
+    //     return value.trim() === value;
+    //   }
+    //   return true;
+    // })
     .max(120, "the name must contain a maximum of 120 characters"),
 });
 
@@ -163,11 +163,11 @@ export const notForSellSchema = yup.object().shape({
     .required("Add a photo"),
   comments: yup
     .string()
-    .test("trim", (value) => {
-      if (value) {
-        return value.trim() === value;
-      }
-      return true;
-    })
+    // .test("trim", (value) => {
+    //   if (value) {
+    //     return value.trim() === value;
+    //   }
+    //   return true;
+    // })
     .max(120, "the name must contain a maximum of 120 characters"),
 });

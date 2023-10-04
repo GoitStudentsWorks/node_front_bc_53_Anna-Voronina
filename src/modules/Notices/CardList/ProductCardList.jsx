@@ -41,6 +41,7 @@ import sprite from "@/shared/icons/sprite.svg";
 import { selectSexFilters } from "@/redux/global/globalSelectors.js";
 import { selectAgeFilters } from "@/redux/global/globalSelectors.js";
 import { fetchFavoriteNoticesThunk } from "@/redux/notices/noticesOperations.js";
+import { fetchUserDataThunk } from "../../../redux/auth/authOperations.js";
 
 const ProductCardList = ({ notices, categoryType }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -78,6 +79,15 @@ const ProductCardList = ({ notices, categoryType }) => {
         .then(() => {
           if (categoryType === "favorite") {
             dispatch(fetchFavoriteNoticesThunk({ page: 1, limit: 12 }));
+          }
+          if (
+            categoryType === "sale" ||
+            categoryType === "lost-found" ||
+            categoryType === "in-good-hands"
+          ) {
+            dispatch(fetchUserDataThunk());
+          } else {
+            dispatch(fetchUserDataThunk());
           }
         })
         .catch((error) => toast.error(error));

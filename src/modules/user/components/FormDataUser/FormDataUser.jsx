@@ -48,7 +48,11 @@ export const FormDataUser = ({ editing, handleEditClick }) => {
           toast.success("Personal data updated successfully");
         })
         .catch((error) => {
-          toast.error(error);
+          if (error.includes("E11000")) {
+            toast.error("This email is already in use");
+          } else {
+            toast.error(error);
+          }
         });
     },
   });

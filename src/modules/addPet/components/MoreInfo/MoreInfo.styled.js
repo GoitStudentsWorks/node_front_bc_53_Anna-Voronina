@@ -89,8 +89,8 @@ export const FileWrapper = styled.div`
   margin-top: 16px;
   gap: 14px;
   @media screen and (min-width: 768px) {
-    ${({ isOwn }) =>
-      isOwn
+    ${({ $isOwn }) =>
+      $isOwn
         ? `
         flex-direction: row;
       flex-wrap: wrap
@@ -214,8 +214,8 @@ export const FieldContainer = styled.div`
 
 export const FlexContainer = styled.div`
   @media screen and (min-width: 768px) {
-    ${({ isOwn }) =>
-      isOwn
+    ${({ $isOwn }) =>
+      $isOwn
         ? `
           display: flex;
           gap: 15px;
@@ -231,8 +231,8 @@ export const FlexContainer = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
-    ${({ isOwn }) =>
-      isOwn
+    ${({ $isOwn }) =>
+      $isOwn
         ? `
           display: flex;
           gap: 20px;

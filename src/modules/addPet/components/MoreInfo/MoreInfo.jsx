@@ -121,7 +121,7 @@ const MoreInfo = () => {
     >
       {({ values, handleChange, setFieldValue, touched, errors }) => (
         <FormContainer>
-          <FlexContainer isOwn={petFormData?.category === "own"}>
+          <FlexContainer $isOwn={petFormData?.category === "own"}>
             <ImgSexContainer>
               {petFormData?.category !== "own" && (
                 <RadioContainer>
@@ -166,7 +166,7 @@ const MoreInfo = () => {
                   <FormError name="sex" touched={touched} errors={errors} />
                 </RadioContainer>
               )}
-              <FileWrapper isOwn={petFormData?.category === "own"}>
+              <FileWrapper $isOwn={petFormData?.category === "own"}>
                 <StyledLabel>Load the pet&apos;s image:</StyledLabel>
                 <FileInputContainer
                   $imageUrl={

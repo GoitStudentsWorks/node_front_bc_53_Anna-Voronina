@@ -3,6 +3,7 @@ import { LoginForm } from "@/modules/authForm/components/LoginForm/LoginForm";
 import { Loader } from "@/shared/components/Loader/Loader";
 import { selectAuthLoading } from "@/redux/auth/authSelectors";
 import { RegisterPageWrapper } from "../RegisterPage/RegisterPage.styled";
+import { BackgroundImgWrapper } from "../../shared/styles/styled components/BackgroundImgWrapper.styled";
 
 const LoginPage = () => {
   const isLoading = useSelector(selectAuthLoading);
@@ -12,9 +13,11 @@ const LoginPage = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <RegisterPageWrapper>
-          <LoginForm />
-        </RegisterPageWrapper>
+        <BackgroundImgWrapper>
+          <RegisterPageWrapper>
+            <LoginForm />
+          </RegisterPageWrapper>
+        </BackgroundImgWrapper>
       )}
     </>
   );

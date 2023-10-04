@@ -4,6 +4,7 @@ import { selectAuthLoading } from "@/redux/auth/authSelectors";
 
 import { RegisterPageWrapper } from "./RegisterPage.styled";
 import { Loader } from "@/shared/components/Loader/Loader";
+import { BackgroundImgWrapper } from "../../shared/styles/styled components/BackgroundImgWrapper.styled";
 
 const RegisterPage = () => {
   const isLoading = useSelector(selectAuthLoading);
@@ -13,9 +14,11 @@ const RegisterPage = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <RegisterPageWrapper>
-          <RegisterForm />
-        </RegisterPageWrapper>
+        <BackgroundImgWrapper>
+          <RegisterPageWrapper>
+            <RegisterForm />
+          </RegisterPageWrapper>
+        </BackgroundImgWrapper>
       )}
     </>
   );

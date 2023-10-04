@@ -9,6 +9,7 @@ export const Avatar = styled.div`
     margin: 0 auto;
     border-radius: ${({ theme }) => theme.radii.l};
     overflow: hidden;
+    object-fit: cover;
   }
 
   @media only screen and (min-width: 768px) {

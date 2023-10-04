@@ -6,6 +6,7 @@ import bgDesk from "@/shared/assets/images/background/bg_desc@1x.png";
 import bgDeskRetina from "@/shared/assets/images/background/bg_desc@2x.png";
 
 export const BackgroundImgWrapper = styled.div`
+  min-height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 0 -100px;
@@ -58,5 +59,11 @@ export const BackgroundImgWrapper = styled.div`
       @media only screen and (min-width: 768px) {
         padding-top: ${({ theme }) => theme.spacing(15)};
       }
+    `}
+
+      ${({ $variant }) =>
+    $variant === "addPet" &&
+    css`
+      background-position: -10px -50px;
     `}
 `;

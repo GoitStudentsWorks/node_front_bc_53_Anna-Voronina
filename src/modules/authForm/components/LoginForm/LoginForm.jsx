@@ -25,6 +25,7 @@ import {
   WrapperField,
   WrapperForm,
 } from "./LoginForm.styled";
+import { GoogleAuthLink } from "../../../../shared/components/GoogleAuthLink/GoogleAuthLink";
 
 export const LoginForm = () => {
   const { showPasswords, togglePasswordVisibility } = usePasswordToggle([
@@ -120,6 +121,7 @@ export const LoginForm = () => {
                 linkTo="/register"
               />
             </WrapperButton>
+            <GoogleAuthLink />
           </FormStyled>
         )}
       </Formik>

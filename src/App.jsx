@@ -11,6 +11,7 @@ import PersonalDetails from "./modules/addPet/components/PersonalDetails/Persona
 import MoreInfo from "./modules/addPet/components/MoreInfo/MoreInfo";
 import { PublicRoute } from "./shared/routes/PublicRoute";
 import { ProtectedRoute } from "./shared/routes/ProtectedRoute";
+import GoogleAuth from "./pages/GoogleAuth/GoogleAuth";
 
 const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
@@ -105,6 +106,7 @@ function App() {
             </Route>
             <Route path="friends" element={<OurFriendsPage />} />
             <Route path="news" element={<NewsPage />} />
+            <Route path="googleAuth" element={<GoogleAuth />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>

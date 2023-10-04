@@ -33,6 +33,18 @@ const initialState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
+  reducers: {
+    updateUser: (state, action) => {
+      state.user = {
+        ...state.user,
+        name: action.payload.name,
+        email: action.payload.email,
+      };
+      state.token = action.payload.token;
+      state.refreshToken = action.payload.refreshToken;
+      state.isLoggedIn = true;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(logoutThunk.fulfilled, (state) => {
@@ -111,3 +123,5 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
+
+export const { updateUser } = authSlice.actions;

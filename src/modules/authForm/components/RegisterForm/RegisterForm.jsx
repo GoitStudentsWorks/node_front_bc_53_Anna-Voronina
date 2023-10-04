@@ -29,6 +29,7 @@ import {
   WrapperAbsoluteEye,
 } from "../LoginForm/LoginForm.styled";
 import { loginThunk } from "../../../../redux/auth/authOperations";
+import { GoogleAuthLink } from "../../../../shared/components/GoogleAuthLink/GoogleAuthLink";
 
 export const RegisterForm = () => {
   const { showPasswords, togglePasswordVisibility } = usePasswordToggle([
@@ -194,6 +195,7 @@ export const RegisterForm = () => {
                 linkTo="/login"
               />
             </WrapperButton>
+            <GoogleAuthLink />
           </FormStyled>
         )}
       </Formik>

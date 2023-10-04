@@ -81,7 +81,6 @@ const noticesSlice = createSlice({
           fetchFavoriteNoticesThunk.fulfilled
         ),
         (state, action) => {
-          console.log(action.payload.data);
           state.notices.data = action.payload.data;
           state.notices.total = action.payload.total;
           state.isLoading = false;

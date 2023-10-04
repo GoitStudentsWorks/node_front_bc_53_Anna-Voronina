@@ -41,7 +41,7 @@ export const LoginForm = () => {
 
   const handleSubmit = (value, { resetForm }) => {
     const { email, password } = value;
-    dispatch(loginThunk({ email, password }))
+    dispatch(loginThunk({ email: email.trim(), password: password.trim() }))
       .unwrap()
       .then(() => {
         navigate("/user");

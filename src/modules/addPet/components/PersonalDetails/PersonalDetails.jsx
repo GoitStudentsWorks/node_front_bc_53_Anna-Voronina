@@ -31,8 +31,15 @@ const PersonalDetails = () => {
   };
 
   const handleSubmit = (values) => {
+    const newValues = {
+      title: values.title.trim(),
+      name: values.name.trim(),
+      type: values.type.trim(),
+    };
+
     const updatedValues = {
       ...values,
+      ...newValues,
       date: formatDate(values?.date),
     };
 

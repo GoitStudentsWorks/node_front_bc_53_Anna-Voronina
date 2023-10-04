@@ -59,9 +59,16 @@ const MoreInfo = () => {
   };
 
   const handleSubmit = (values) => {
+    const newValues = {
+      location: values.location.trim(),
+      price: values.price.trim(),
+      comments: values.comments.trim(),
+    };
+
     const formDataToSend = {
       ...petFormData,
       ...values,
+      ...newValues,
     };
 
     const formData = new FormData();

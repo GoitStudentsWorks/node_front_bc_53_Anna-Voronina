@@ -48,10 +48,16 @@ export const RegisterForm = () => {
 
   const handleSubmit = (value, { resetForm }) => {
     const { name, email, password } = value;
-    dispatch(registerThunk({ name, email, password }))
+    dispatch(
+      registerThunk({
+        name: name.trim(),
+        email: email.trim(),
+        password: password.trim(),
+      })
+    )
       .unwrap()
       .then(() => {
-        dispatch(loginThunk({ email, password }))
+        dispatch(loginThunk({ email: email.trim(), password: password.trim() }))
           .unwrap()
           .then(() => {
             dispatch(setIsSuccess(true));

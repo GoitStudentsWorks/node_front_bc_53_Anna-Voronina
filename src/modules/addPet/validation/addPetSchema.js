@@ -8,23 +8,11 @@ export const categorySchema = yup.object().shape({
 export const sellSchema = yup.object().shape({
   title: yup
     .string()
-    .test("trim", (value) => {
-      if (value) {
-        return value.trim() === value;
-      }
-      return true;
-    })
-    .min(8, "the name must contain a minimum of 8 characters")
-    .max(50, "the name must contain a maximum of 20 characters")
+    .min(8, "the title must contain a minimum of 8 characters")
+    .max(50, "the title must contain a maximum of 50 characters")
     .required("required field"),
   name: yup
     .string()
-    .test("trim", "The field must not start or end with spaces", (value) => {
-      if (value) {
-        return value.trim() === value;
-      }
-      return true;
-    })
     .required("required field")
     .matches(nameValidator, "the name must contain only letters")
     .min(2, "the name must contain a minimum of 2 characters")
@@ -40,26 +28,14 @@ export const sellSchema = yup.object().shape({
     }),
   type: yup
     .string()
-    .test("trim", "The field must not start or end with spaces", (value) => {
-      if (value) {
-        return value.trim() === value;
-      }
-      return true;
-    })
     .required("required field")
-    .min(2, "the name must contain a minimum of 2 characters")
-    .max(50, "the name must contain a maximum of 50 characters"),
+    .min(2, "the type must contain a minimum of 2 characters")
+    .max(50, "the type must contain a maximum of 50 characters"),
 });
 
 export const detailsSchema = yup.object().shape({
   name: yup
     .string()
-    .test("trim", (value) => {
-      if (value) {
-        return value.trim() === value;
-      }
-      return true;
-    })
     .required("required field")
     .matches(nameValidator, "the name must contain only letters")
     .min(2, "the name must contain a minimum of 2 characters")
@@ -75,15 +51,9 @@ export const detailsSchema = yup.object().shape({
     }),
   type: yup
     .string()
-    .test("trim", (value) => {
-      if (value) {
-        return value.trim() === value;
-      }
-      return true;
-    })
     .required("required field")
-    .min(2, "the name must contain a minimum of 2 characters")
-    .max(50, "the name must contain a maximum of 50 characters"),
+    .min(2, "the type must contain a minimum of 2 characters")
+    .max(50, "the type must contain a maximum of 50 characters"),
 });
 
 export const moreInfoOwnSchema = yup.object().shape({
@@ -100,13 +70,7 @@ export const moreInfoOwnSchema = yup.object().shape({
     .required("Add a photo"),
   comments: yup
     .string()
-    // .test("trim", (value) => {
-    //   if (value) {
-    //     return value.trim() === value;
-    //   }
-    //   return true;
-    // })
-    .max(120, "the name must contain a maximum of 120 characters"),
+    .max(120, "the comments must contain a maximum of 120 characters"),
 });
 
 export const moreInfoSellSchema = yup.object().shape({
@@ -132,13 +96,7 @@ export const moreInfoSellSchema = yup.object().shape({
   price: yup.number().required("required field").positive().min(1),
   comments: yup
     .string()
-    // .test("trim", (value) => {
-    //   if (value) {
-    //     return value.trim() === value;
-    //   }
-    //   return true;
-    // })
-    .max(120, "the name must contain a maximum of 120 characters"),
+    .max(120, "the comments must contain a maximum of 120 characters"),
 });
 
 export const notForSellSchema = yup.object().shape({
@@ -163,11 +121,5 @@ export const notForSellSchema = yup.object().shape({
     .required("Add a photo"),
   comments: yup
     .string()
-    // .test("trim", (value) => {
-    //   if (value) {
-    //     return value.trim() === value;
-    //   }
-    //   return true;
-    // })
-    .max(120, "the name must contain a maximum of 120 characters"),
+    .max(120, "the comments must contain a maximum of 120 characters"),
 });

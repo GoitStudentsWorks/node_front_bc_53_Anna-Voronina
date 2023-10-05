@@ -1,5 +1,6 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
+  addNewNoticeThunk,
   addNewPetThunk,
   addOrDeleteFavoriteNoticeThunk,
   deleteOwnNoticeThunk,
@@ -90,7 +91,8 @@ const noticesSlice = createSlice({
         isAnyOf(
           addOrDeleteFavoriteNoticeThunk.fulfilled,
           deletePetThunk.fulfilled,
-          deleteOwnNoticeThunk.fulfilled
+          deleteOwnNoticeThunk.fulfilled,
+          addNewNoticeThunk.fulfilled
         ),
         (state) => {
           state.isLoading = false;
@@ -109,7 +111,8 @@ const noticesSlice = createSlice({
           addNewPetThunk.pending,
           addOrDeleteFavoriteNoticeThunk.pending,
           deleteOwnNoticeThunk.pending,
-          deletePetThunk.pending
+          deletePetThunk.pending,
+          addNewNoticeThunk.pending
         ),
         pending
       )
@@ -126,7 +129,8 @@ const noticesSlice = createSlice({
           addNewPetThunk.rejected,
           addOrDeleteFavoriteNoticeThunk.rejected,
           deleteOwnNoticeThunk.rejected,
-          deletePetThunk.rejected
+          deletePetThunk.rejected,
+          addNewNoticeThunk.rejected
         ),
         rejected
       );

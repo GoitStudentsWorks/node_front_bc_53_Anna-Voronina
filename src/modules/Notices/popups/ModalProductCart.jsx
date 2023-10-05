@@ -22,7 +22,11 @@ import {
 import Button from "../../../shared/components/Button/Button";
 import { selectLoggedIn, selectUser } from "../../../redux/auth/authSelectors";
 
-export const ModalProductCart = ({ setIsModalOpen, handleToggleFavorite }) => {
+export const ModalProductCart = ({
+  setIsModalOpen,
+  handleToggleFavorite,
+  categoryType,
+}) => {
   const notice = useSelector(selectChosenNotice);
   const isLoggedIn = useSelector(selectLoggedIn);
   const user = useSelector(selectUser);
@@ -52,6 +56,12 @@ export const ModalProductCart = ({ setIsModalOpen, handleToggleFavorite }) => {
                 Type:
                 <ParametersValue> {notice?.type}</ParametersValue>
               </NoticesInfoParameters>
+              {categoryType === "sell" && (
+                <NoticesInfoParameters>
+                  Price:
+                  <ParametersValue> {notice?.price}</ParametersValue>
+                </NoticesInfoParameters>
+              )}
               <NoticesInfoParameters>
                 Place:
                 <NavValue
@@ -112,6 +122,7 @@ export const ModalProductCart = ({ setIsModalOpen, handleToggleFavorite }) => {
 };
 
 ModalProductCart.propTypes = {
+  categoryType: PropTypes.string,
   handleToggleFavorite: PropTypes.func,
   setIsModalOpen: PropTypes.func,
 };

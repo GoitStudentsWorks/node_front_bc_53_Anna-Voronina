@@ -21,7 +21,7 @@ export const LogoutBtn = styled(ButtonStyled)`
 
   &:hover::before,
   &:focus::before {
-    opacity: 0;
+    opacity: 1;
   }
 
   ${({ $variant }) =>

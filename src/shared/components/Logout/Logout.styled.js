@@ -45,6 +45,11 @@ export const LogoutBtn = styled(ButtonStyled)`
         position: static;
         margin: 6px 0 0 0;
       }
+
+      &:hover::before,
+      &:focus::before {
+        opacity: 0;
+      }
     `}
 
   ${({ $variant, $type }) =>

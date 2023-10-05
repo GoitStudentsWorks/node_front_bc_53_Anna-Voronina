@@ -193,8 +193,8 @@ const MoreInfo = () => {
                     <use href={sprite + "#plus"}></use>
                   </IconPlus>
                 </FileInputContainer>
-                <FormError name="file" touched={touched} errors={errors} />
               </FileWrapper>
+              <FormError name="file" touched={touched} errors={errors} />
             </ImgSexContainer>
 
             <FieldContainer>

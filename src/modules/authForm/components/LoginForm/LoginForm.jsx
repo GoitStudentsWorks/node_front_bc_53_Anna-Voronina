@@ -116,7 +116,7 @@ export const LoginForm = () => {
             <WrapperButton>
               <Button type="submit" text="Login" variant="authButton" />
               <TextWithRouterLink
-                text="Already have an account?  "
+                text="Don't have an account?  "
                 linkText="Register"
                 linkTo="/register"
               />

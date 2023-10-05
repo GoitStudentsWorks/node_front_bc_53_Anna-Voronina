@@ -4,6 +4,10 @@ import Button from "@/shared/components/Button/Button";
 import { selectStep } from "@/redux/notices/noticesSelectors";
 import { updateStep } from "@/redux/notices/noticesSlice";
 import { selectIsNoticesLoading } from "@/redux/notices/noticesSelectors";
+import {
+  addPetFormData,
+  petFormDataInitialState,
+} from "@/redux/notices/noticesSlice";
 
 import {
   BtnWrapper,
@@ -12,15 +16,21 @@ import {
   LinkText,
 } from "./PetFormButtons.styled";
 import sprite from "@/shared/icons/sprite.svg";
+import { selectBackLocation } from "@/redux/global/globalSelectors";
 
 export const PetFormButtons = ({ backLinkLocation, linkText, btnText }) => {
   const dispatch = useDispatch();
   const step = useSelector(selectStep);
   const isLoading = useSelector(selectIsNoticesLoading);
+  const backLink = useSelector(selectBackLocation);
 
   const handleCancelBackLink = () => {
     if (step > 1) {
       dispatch(updateStep(step - 1));
+    }
+
+    if (linkText === "Cancel") {
+      dispatch(addPetFormData(petFormDataInitialState));
     }
   };
 
@@ -34,7 +44,11 @@ export const PetFormButtons = ({ backLinkLocation, linkText, btnText }) => {
         variant="bigButtonSecond"
         disabled={isLoading}
       />
-      <CancelBackLink to={backLinkLocation} onClick={handleCancelBackLink}>
+      <CancelBackLink
+        to={backLinkLocation === backLink ? backLink : backLinkLocation}
+        onClick={handleCancelBackLink}
+        $disabled={isLoading ? "yes" : "no"}
+      >
         <CancelBackIcon width={24} height={24}>
           <use href={sprite + "#arrow-left"}></use>
         </CancelBackIcon>

@@ -2,7 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useFormik } from "formik";
 import PropTypes from "prop-types";
-import { selectUser } from "../../../../redux/auth/authSelectors";
+import {
+  selectAuthLoading,
+  selectUser,
+} from "../../../../redux/auth/authSelectors";
 import { userAvatarValidationSchema } from "../../helpers/validationSchema";
 import { updateAvatarThunk } from "../../../../redux/auth/authOperations";
 import {
@@ -18,6 +21,8 @@ import Icons from "../../../../shared/icons/sprite.svg";
 
 export const FormAvatar = ({ editing, handleEditClick }) => {
   const dispatch = useDispatch();
+
+  const isLoading = useSelector(selectAuthLoading);
 
   const user = useSelector(selectUser);
 
@@ -80,7 +85,7 @@ export const FormAvatar = ({ editing, handleEditClick }) => {
                       <CheckPhotoSvg>
                         <use href={Icons + "#check"}></use>
                       </CheckPhotoSvg>
-                      <p>Confirm</p>
+                      <p>{isLoading ? "Loading..." : "Confirm"}</p>
                     </button>
 
                     <button

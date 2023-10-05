@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const BtnWrapper = styled.div`
   display: flex;
@@ -27,6 +27,12 @@ export const CancelBackLink = styled(Link)`
   &:focus {
     transform: scale(1.07);
   }
+
+  ${({ $disabled }) =>
+    $disabled === "yes" &&
+    css`
+      opacity: 0.5;
+    `};
 `;
 
 export const CancelBackIcon = styled.svg`

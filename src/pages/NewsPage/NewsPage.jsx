@@ -23,14 +23,15 @@ const NewsPage = () => {
   const newsSort = useSelector(selectNewsSort);
 
   useEffect(() => {
-    dispatch(fetchNewsThunk({ page, limit: 6 }))
+    dispatch(fetchNewsThunk({ page: page === 1 ? 1 : page, limit: 6 }))
       .unwrap()
       .catch((error) => toast.error(error));
   }, [dispatch, page]);
 
   const handleSubmit = (searchQuery) => {
-    dispatch(fetchNewsBySearchThunk({ page, limit: 6, searchQuery }))
+    dispatch(fetchNewsBySearchThunk({ page: 1, limit: 6, searchQuery }))
       .unwrap()
+      .then(() => setPage(1))
       .catch((error) => toast.error(error));
   };
 

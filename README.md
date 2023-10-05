@@ -1,9 +1,7 @@
-# React + Vite
-
 # Petgrammers
 
- This project is an animal classifieds board developed using React with Vipe. It allows users to
-  create listings for the sale of animals and search for listings based on various parameters.
+This project is an animal classifieds board developed using React with Vipe. It allows users to
+create listings for the sale of animals and search for listings based on various parameters.
 
 ## Key Features
 

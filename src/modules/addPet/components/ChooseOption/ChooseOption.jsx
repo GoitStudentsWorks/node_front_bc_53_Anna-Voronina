@@ -27,7 +27,7 @@ const ChooseOption = () => {
 
   const location = useLocation();
   const locationRef = useRef(location?.state?.from);
-  const cancelLinkLocation = locationRef?.current?.pathname || "/";
+  const cancelLinkLocation = locationRef?.current?.pathname || "/user";
 
   useEffect(() => {
     dispatch(updateBackLocation(cancelLinkLocation));

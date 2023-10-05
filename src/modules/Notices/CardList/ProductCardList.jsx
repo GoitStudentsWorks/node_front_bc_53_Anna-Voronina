@@ -238,6 +238,7 @@ const ProductCardList = ({ notices, categoryType }) => {
         <ModalProductCart
           setIsModalOpen={setIsModalOpen}
           handleToggleFavorite={handleToggleFavorite}
+          categoryType={categoryType}
         />
       )}
 

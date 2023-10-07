@@ -12,6 +12,8 @@ export const Pagination = ({
 }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
+  const pageRange = isMobile ? 1 : 2;
+
   const marginPages = isMobile ? 1 : 2;
 
   const pageCount = Math.ceil(totalItems / perPage);
@@ -31,10 +33,11 @@ export const Pagination = ({
       <ReactPaginate
         breakLabel={"..."}
         onPageChange={handlePageClick}
+        forcePage={currentPage - 1}
         pageCount={pageCount}
         previousLabel="←"
         nextLabel="→"
-        pageRangeDisplayed={2}
+        pageRangeDisplayed={pageRange}
         marginPagesDisplayed={marginPages}
         renderOnZeroPageCount={null}
         activeClassName="active"

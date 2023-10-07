@@ -1,17 +1,24 @@
-import PropTypes from "prop-types";
-import { createPortal } from "react-dom";
-import { Backdrop, ModalStyled, ButtonCloseModal } from "./Modal.styled";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { createPortal } from "react-dom";
+import PropTypes from "prop-types";
+import { updateChosenNotice } from "@/redux/notices/noticesSlice";
+import { Backdrop, ModalStyled, ButtonCloseModal } from "./Modal.styled";
 import sprite from "../../icons/sprite.svg";
 
 const modalRoot = document.querySelector("#modal-root");
 
 export const Modal = ({ children, onClose, variant }) => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.code === "Escape") {
         onClose();
         document.body.style.overflow = "auto";
+        if (variant === "petsModal") {
+          dispatch(updateChosenNotice());
+        }
       }
     };
 
@@ -19,18 +26,24 @@ export const Modal = ({ children, onClose, variant }) => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [onClose]);
+  }, [dispatch, onClose, variant]);
 
   const handleClickBackdrop = (e) => {
     if (e.target === e.currentTarget) {
       onClose();
       document.body.style.overflow = "auto";
+      if (variant === "petsModal") {
+        dispatch(updateChosenNotice());
+      }
     }
   };
 
   const handleCloseModal = () => {
     onClose();
     document.body.style.overflow = "auto";
+    if (variant === "petsModal") {
+      dispatch(updateChosenNotice());
+    }
   };
 
   return createPortal(

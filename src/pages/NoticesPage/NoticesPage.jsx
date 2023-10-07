@@ -38,6 +38,10 @@ const NoticesPage = () => {
   const isLoading = useSelector(selectorIsLoading);
 
   useEffect(() => {
+    setPage(1);
+  }, [searchQuery, ageFilters, sexFilters, category]);
+
+  useEffect(() => {
     const newSearchParams = new URLSearchParams();
 
     ageFilters.forEach((ageFilter) => {
@@ -53,7 +57,7 @@ const NoticesPage = () => {
     if (isLoggedIn && category === "favorite") {
       dispatch(
         fetchFavoriteNoticesThunk({
-          page: 1,
+          page,
           limit: 12,
           age: ageFilters,
           sex: sexFilters,
@@ -65,7 +69,7 @@ const NoticesPage = () => {
     } else if (isLoggedIn && category === "own") {
       dispatch(
         fetchOwnNoticesThunk({
-          page: 1,
+          page,
           limit: 12,
           age: ageFilters,
           sex: sexFilters,

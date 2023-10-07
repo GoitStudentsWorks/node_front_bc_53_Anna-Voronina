@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { useMediaQuery } from "react-responsive";
 import {
   Card,
   BeforeDiv,
@@ -14,11 +15,18 @@ import {
 import formatDate from "../../helpers/formatDate";
 
 const OneNews = ({ imgUrl, title, text, date, url }) => {
+  const isDesktop = useMediaQuery({ query: "(min-width: 1280px)" });
+
   return (
     <Card>
       <BeforeDiv></BeforeDiv>
       <Article>
-        <Img src={imgUrl} alt={title} width={395} height={252} />
+        <Img
+          src={imgUrl}
+          alt={title}
+          width={isDesktop ? 395 : 336}
+          height={252}
+        />
 
         <BlockInfo>
           <Title>{title}</Title>

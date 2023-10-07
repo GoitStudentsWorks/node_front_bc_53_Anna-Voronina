@@ -50,7 +50,6 @@ export const PaginationContainer = styled.div`
     }
 
     &.previous {
-      margin-right: 15px;
       color: ${({ theme }) => theme.colors.blue};
 
       @media only screen and (min-width: 1280px) {
@@ -64,7 +63,6 @@ export const PaginationContainer = styled.div`
     }
 
     &.next {
-      margin-left: 15px;
       color: ${({ theme }) => theme.colors.blue};
 
       @media only screen and (min-width: 1280px) {

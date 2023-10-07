@@ -60,6 +60,9 @@ const noticesSlice = createSlice({
     addPetFormData: (state, action) => {
       state.petFormData = { ...state.petFormData, ...action.payload };
     },
+    updateChosenNotice: (state) => {
+      state.chosenNotice = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -139,5 +142,10 @@ const noticesSlice = createSlice({
 
 export const noticesReducer = noticesSlice.reducer;
 
-export const { updateSexArray, updateAgeArray, updateStep, addPetFormData } =
-  noticesSlice.actions;
+export const {
+  updateSexArray,
+  updateAgeArray,
+  updateStep,
+  addPetFormData,
+  updateChosenNotice,
+} = noticesSlice.actions;

@@ -1,4 +1,4 @@
-import{s as i,P as n,j as e}from"./index-e43a8372.js";const o=i.h1`
+import{s as i,P as n,j as e}from"./index-3a9d84e6.js";const o=i.h1`
   margin-top: ${({theme:t})=>t.spacing(10)};
   margin-bottom: ${({theme:t})=>t.spacing(6)};
 

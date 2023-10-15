@@ -9,5 +9,5 @@ export default defineConfig({
       "@": "/src",
     },
   },
-  base: /node_front_bc_53_Anna-Voronina/
+  base: /node_front_bc_53_anna-voronina/
 });

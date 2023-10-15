@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://goitstudentsworks.github.io/node_front_bc_53_Anna-Voronina",
+  
   "scripts": {
     "dev": "vite",
     "build": "npm audit fix && vite build",

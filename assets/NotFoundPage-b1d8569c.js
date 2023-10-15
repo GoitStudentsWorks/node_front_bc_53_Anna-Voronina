@@ -1,4 +1,4 @@
-import{s as t,t as i,j as o,o as s,q as a}from"./index-213be6ca.js";import{C as r}from"./Container-6e3a74bb.js";const e="/node_front_bc_53_Anna-Voronina/assets/not-found@1x-9c84cef6.png",c="/node_front_bc_53_Anna-Voronina/assets/not-found@2x-a7dba45b.png",d="/node_front_bc_53_Anna-Voronina/assets/not-found@1x-ed487dab.webp",l="/node_front_bc_53_Anna-Voronina/assets/not-found@2x-ba8f55ce.webp",p=t.div`
+import{s as t,t as i,j as o,o as s,q as a}from"./index-ac4b763e.js";import{C as r}from"./Container-3d2b75e3.js";const e="/node_front_bc_54_Anna-Voronina/assets/not-found@1x-9c84cef6.png",c="/node_front_bc_54_Anna-Voronina/assets/not-found@2x-a7dba45b.png",d="/node_front_bc_54_Anna-Voronina/assets/not-found@1x-ed487dab.webp",l="/node_front_bc_54_Anna-Voronina/assets/not-found@2x-ba8f55ce.webp",p=t.div`
   display: flex;
   flex-direction: column;
   justify-content: center;

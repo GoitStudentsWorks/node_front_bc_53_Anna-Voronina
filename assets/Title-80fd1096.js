@@ -1,4 +1,4 @@
-import{s as e,P as n,j as s}from"./index-757158b2.js";const o=e.h2`
+import{s as e,P as n,j as s}from"./index-8d9dd412.js";const o=e.h2`
   color: ${({theme:t})=>t.colors.black};
   text-align: center;
   font-family: ${({theme:t})=>t.fonts.manrope.medium};

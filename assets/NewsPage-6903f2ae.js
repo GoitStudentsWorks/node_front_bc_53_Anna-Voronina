@@ -1,4 +1,4 @@
-import{s as t,ar as u,P as n,j as i,x as d,u as w,k as h,$ as b,aC as $,aD as y,Q as j,L as v}from"./index-ac4b763e.js";import{r as k,P}from"./Pagination-34574d54.js";import{P as S,L as R,S as q}from"./Searchbar-2f05abf0.js";import{C as z}from"./Container-3d2b75e3.js";import{P as D}from"./PageTitle-c4251183.js";const L=t.li`
+import{s as t,ar as u,P as n,j as i,x as d,u as w,k as h,$ as b,aC as $,aD as y,Q as j,L as v}from"./index-9f0bcc96.js";import{r as k,P}from"./Pagination-eb908c55.js";import{P as S,L as R,S as q}from"./Searchbar-c350b6f6.js";import{C as z}from"./Container-e4b2e149.js";import{P as D}from"./PageTitle-ab345a70.js";const L=t.li`
   @media screen and (min-width: 768px) {
     flex-basis: calc((100% - 32px) / 2);
   }
